@@ -1,0 +1,21 @@
+name: epigenetic_resistance
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pandas
+  - numpy
+  - scikit-learn
+  - xgboost
+  - shap
+  - matplotlib
+  - seaborn
+  - jupyter
+  - requests
+  - tqdm
+  - pyyaml
+  - pip
+  - pip:
+    - pyarrow
+    - lifelines

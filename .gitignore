@@ -1,0 +1,22 @@
+# Datos crudos y procesados (demasiado grandes para git)
+data/raw/
+data/processed/
+data/external/
+
+# Modelos serializados
+results/models/checkpoints/
+results/models/shap_values/
+
+# Entornos
+.env
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+*.egg-info/
+dist/
+build/
+.DS_Store
+
+# Excepciones: mantener manifiestos de auditoría
+!data/audit/

@@ -1,0 +1,19 @@
+# Rutas principales del proyecto (relativas a la raíz)
+data:
+  raw:
+    depmap: data/raw/depmap
+    gdsc: data/raw/gdsc
+    prism: data/raw/prism
+    lincs_cmap: data/raw/lincs_cmap
+    tcga_gdc: data/raw/tcga_gdc
+  processed:
+    merged: data/processed/merged
+    splits: data/processed/splits
+    signatures: data/processed/signatures
+  audit: data/audit
+
+results:
+  figures: results/figures
+  tables: results/tables
+  models: results/models
+  drug_ranking: results/drug_ranking
