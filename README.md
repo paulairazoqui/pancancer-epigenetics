@@ -4,7 +4,7 @@
 [![Bioinformatics](https://img.shields.io/badge/Domain-Computational%20Oncology-blue.svg)]()
 [![Reproducibility](https://img.shields.io/badge/Reproducibility-Snakemake%20%2F%20Conda-brightgreen.svg)]()
 
-A lineage-aware computational oncology framework designed to identify recurrent, recurrent epigenetic-transcriptomic programs across diverse malignancies and systematically evaluate their statistical associations with resistance-like pharmacogenomic contexts, candidate functional dependencies, and perturbational configurations.
+A lineage-aware computational oncology framework designed to identify recurrent epigenetic-transcriptomic programs across diverse malignancies and systematically evaluate their statistical associations with resistance-like pharmacogenomic contexts, candidate functional dependencies, and perturbational configurations.
 
 ---
 
