@@ -50,13 +50,12 @@ To maintain scientific validity and manage expectations regarding purely computa
 
 ## Documentation
 Comprehensive conceptual and technical documentation is organized within the docs/ directory. For deep dives into the pipeline's logic, please consult:
-- PROJECT_DIRECTION.md — Strategic biological overview and long-term research goals.
-- PROJECT_ARCHITECTURE.md — Detailed breakdown of the four analytical layers and lineage-aware confounding control strategies.
-- DATA_SOURCES.md — Detailed curation, preprocessing, and standardization protocols for each dataset.
+- `PROJECT_DIRECTION.md` — Strategic biological overview and long-term research goals.
+- `PROJECT_ARCHITECTURE.md` — Detailed breakdown of the four analytical layers and lineage-aware confounding control strategies.
+- `DATA_SOURCES.md` — Detailed curation, preprocessing, and standardization protocols for each dataset.
 
 ## Reproducibility & Rigor
-**Data Immutability:** Files within data/raw/ must remain completely unmodified.
-
-**Deterministic Pipeline:** All downstream outputs in data/interim/ and data/processed/ are fully reproducible from the raw source files using the version-controlled workflows located in src/ and the environment configurations in envs/.
+- **Data Immutability:** Files within `data/raw/` must remain completely unmodified.
+- **Deterministic Pipeline:** All downstream outputs in `data/interim/` and `data/processed/` are fully reproducible from the raw source files using the version-controlled workflows located in `src/` and the environment configurations in `envs/`.
 
 ---
