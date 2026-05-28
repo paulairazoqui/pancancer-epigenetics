@@ -4,13 +4,13 @@
 [![Bioinformatics](https://img.shields.io/badge/Domain-Computational%20Oncology-blue.svg)]()
 [![Reproducibility](https://img.shields.io/badge/Reproducibility-Snakemake%20%2F%20Conda-brightgreen.svg)]()
 
-A lineage-aware computational oncology framework designed to identify recurrent, co-regulated epigenetic-transcriptomic programs across diverse malignancies and systematically evaluate their statistical associations with resistance-like pharmacogenomic contexts, candidate functional dependencies, and perturbational configurations.
+A lineage-aware computational oncology framework designed to identify recurrent, recurrent epigenetic-transcriptomic programs across diverse malignancies and systematically evaluate their statistical associations with resistance-like pharmacogenomic contexts, candidate functional dependencies, and perturbational configurations.
 
 ---
 
 ## Project Overview
 
-This repository integrates high-throughput, multi-omic, pharmacogenomic, functional dependency, and perturbational transcriptomic datasets to map latent biological states across heterogeneous tumor and *in vitro* models. 
+This repository integrates high-throughput, multi-omic, pharmacogenomic, functional dependency, and perturbational transcriptomic datasets to identify recurrent biological patterns across heterogeneous tumor and *in vitro* models. 
 
 ### Core Data Integration
 * **Primary Tumors:** The Cancer Genome Atlas (TCGA)
@@ -45,13 +45,13 @@ To maintain scientific validity and manage expectations regarding purely computa
 ├── docs/                  # Detailed architectural and framework documentation
 ├── envs/                  # Conda/Mamba environment definitions for reproducibility
 ├── notebooks/             # Exploratory data analysis (EDA) and prototyping
-└── src/                   # Production-grade, version-controlled source code
+└── src/                   # Version-controlled analytical source code
 ```
 
 ## Documentation
 Comprehensive conceptual and technical documentation is organized within the docs/ directory. For deep dives into the pipeline's logic, please consult:
 - PROJECT_DIRECTION.md — Strategic biological overview and long-term research goals.
-- PROJECT_ARCHITECTURE.md — Detailed breakdown of the four analytical layers and pan-cancer confounding controls.
+- PROJECT_ARCHITECTURE.md — Detailed breakdown of the four analytical layers and lineage-aware confounding control strategies.
 - DATA_SOURCES.md — Detailed curation, preprocessing, and standardization protocols for each dataset.
 
 ## Reproducibility & Rigor
