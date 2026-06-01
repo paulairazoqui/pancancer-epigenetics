@@ -2,6 +2,8 @@
 data/raw/
 data/processed/
 data/external/
+data/interim/
+
 
 # Modelos serializados
 results/models/checkpoints/
