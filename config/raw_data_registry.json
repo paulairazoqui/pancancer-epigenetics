@@ -1,0 +1,77 @@
+{
+  "depmap": {
+    "source_database": "DepMap",
+    "release": "Public 24Q4",
+    "download_page_url": "https://depmap.org/portal/download/",
+
+    "files": {
+      "Model.csv": {
+        "file_url": "https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=Model.csv"
+      },
+
+      "OmicsExpressionProteinCodingGenesTPMLogp1.csv": {
+        "file_url": "https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsExpressionProteinCodingGenesTPMLogp1.csv"
+      },
+
+      "OmicsDefaultModelProfiles.csv": {
+        "file_url": "https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsDefaultModelProfiles.csv"
+      },
+
+      "OmicsProfiles.csv": {
+        "file_url": "https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsProfiles.csv"
+      },
+
+      "OmicsSomaticMutations.csv": {
+        "file_url": "https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsSomaticMutations.csv"
+      }
+    }
+  },
+
+  "gdsc": {
+    "source_database": "Genomics of Drug Sensitivity in Cancer (GDSC)",
+    "provider": "Cell Model Passports",
+    "release": "GDSC2",
+    "download_page_url": "https://cellmodelpassports.sanger.ac.uk/downloads",
+
+    "files": {
+      "GDSC2_fitted_dose_response_27Oct23.xlsx": {
+        "file_url": "https://cmp.cog.sanger.ac.uk/download/GDSC2_fitted_dose_response_27Oct23.xlsx"
+      }
+    }
+  },
+
+  "prism": {
+    "source_database": null,
+    "release": null,
+    "download_page_url": null,
+    "files": {}
+  },
+
+  "lincs_cmap": {
+    "source_database": null,
+    "release": null,
+    "download_page_url": null,
+    "files": {}
+  },
+
+  "tcga_gdc": {
+    "source_database": null,
+    "release": null,
+    "download_page_url": null,
+    "files": {}
+  },
+
+  "chembl": {
+    "source_database": null,
+    "release": null,
+    "download_page_url": null,
+    "files": {}
+  },
+
+  "drugbank": {
+    "source_database": null,
+    "release": null,
+    "download_page_url": null,
+    "files": {}
+  }
+}

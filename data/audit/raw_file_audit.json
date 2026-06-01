@@ -1,44 +1,74 @@
 [
   {
-    "relative_path":"data\/raw\/depmap\/Model.csv",
-    "file_name":"Model.csv",
-    "dataset":"depmap",
-    "size_bytes":699474,
-    "sha256":"9dbb9de8805696c1345816ab07edd23fb4fd95e117739f3c5c3b1cf062c1233b"
+    "relative_path": "data/raw/depmap/Model.csv",
+    "file_name": "Model.csv",
+    "dataset": "depmap",
+    "source_database": "DepMap",
+    "provider": null,
+    "release": "Public 24Q4",
+    "download_page_url": "https://depmap.org/portal/download/",
+    "file_url": "https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=Model.csv",
+    "size_bytes": 645696,
+    "sha256": "b7a0c1385e6cef30132b56aff61f1261d11e3f490490b355c430d32ee0dbdcfa"
   },
   {
-    "relative_path":"data\/raw\/depmap\/OmicsExpressionTPMLogp1HumanProteinCodingGenes.csv",
-    "file_name":"OmicsExpressionTPMLogp1HumanProteinCodingGenes.csv",
-    "dataset":"depmap",
-    "size_bytes":543026959,
-    "sha256":"9d7e64ebbcb2811fa5e0ecf56d952ee96ca9f1f2b6ead00bb17480c1c01848d1"
+    "relative_path": "data/raw/depmap/OmicsDefaultModelProfiles.csv",
+    "file_name": "OmicsDefaultModelProfiles.csv",
+    "dataset": "depmap",
+    "source_database": "DepMap",
+    "provider": null,
+    "release": "Public 24Q4",
+    "download_page_url": "https://depmap.org/portal/download/",
+    "file_url": "https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsDefaultModelProfiles.csv",
+    "size_bytes": 90080,
+    "sha256": "096a96c39d88374cb7c37058816e6cde29d6617b820b8a14d33ae9dd821c6dc5"
   },
   {
-    "relative_path":"data\/raw\/depmap\/OmicsProfiles.csv",
-    "file_name":"OmicsProfiles.csv",
-    "dataset":"depmap",
-    "size_bytes":663971,
-    "sha256":"f9bd7c2f12f859ccc61f1fef36261f5afc6da4fceac000422120bc06f7a2d511"
+    "relative_path": "data/raw/depmap/OmicsExpressionProteinCodingGenesTPMLogp1.csv",
+    "file_name": "OmicsExpressionProteinCodingGenesTPMLogp1.csv",
+    "dataset": "depmap",
+    "source_database": "DepMap",
+    "provider": null,
+    "release": "Public 24Q4",
+    "download_page_url": "https://depmap.org/portal/download/",
+    "file_url": "https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsExpressionProteinCodingGenesTPMLogp1.csv",
+    "size_bytes": 506628654,
+    "sha256": "2a71dc94110efcc0221eae821bb93a9f03b54bea16f005818911a09d33383d56"
   },
   {
-    "relative_path":"data\/raw\/depmap\/OmicsSomaticMutations.csv",
-    "file_name":"OmicsSomaticMutations.csv",
-    "dataset":"depmap",
-    "size_bytes":595799492,
-    "sha256":"ba2a16d408d9220615fb08396c8d3879cb7e3e7ad97d3ce891f3851792b80326"
+    "relative_path": "data/raw/depmap/OmicsProfiles.csv",
+    "file_name": "OmicsProfiles.csv",
+    "dataset": "depmap",
+    "source_database": "DepMap",
+    "provider": null,
+    "release": "Public 24Q4",
+    "download_page_url": "https://depmap.org/portal/download/",
+    "file_url": "https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsProfiles.csv",
+    "size_bytes": 254733,
+    "sha256": "0bb19ee57935d4b213d378a4db9caacaa1db7318a63ae81485d84f91c20a3bf2"
   },
   {
-    "relative_path":"data\/raw\/gdsc\/GDSC2_fitted_dose_response_27Oct23.xlsx",
-    "file_name":"GDSC2_fitted_dose_response_27Oct23.xlsx",
-    "dataset":"gdsc",
-    "size_bytes":21330376,
-    "sha256":"f950a7027be265f8a7a74220a27fd18cbd368485349bd8c2048e88bb1cd07560"
+    "relative_path": "data/raw/depmap/OmicsSomaticMutations.csv",
+    "file_name": "OmicsSomaticMutations.csv",
+    "dataset": "depmap",
+    "source_database": "DepMap",
+    "provider": null,
+    "release": "Public 24Q4",
+    "download_page_url": "https://depmap.org/portal/download/",
+    "file_url": "https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsSomaticMutations.csv",
+    "size_bytes": 338945382,
+    "sha256": "92e86ab6a8457ef99908daf2a2c82d9529320e23cd6c6b7adc128adc1e0f41c8"
   },
   {
-    "relative_path":"data\/raw\/gdsc\/gdsc2_release8.5_IC50_fitted_dose_response.xlsx",
-    "file_name":"gdsc2_release8.5_IC50_fitted_dose_response.xlsx",
-    "dataset":"gdsc",
-    "size_bytes":21330376,
-    "sha256":"f950a7027be265f8a7a74220a27fd18cbd368485349bd8c2048e88bb1cd07560"
+    "relative_path": "data/raw/gdsc/GDSC2_fitted_dose_response_27Oct23.xlsx",
+    "file_name": "GDSC2_fitted_dose_response_27Oct23.xlsx",
+    "dataset": "gdsc",
+    "source_database": "Genomics of Drug Sensitivity in Cancer (GDSC)",
+    "provider": "Cell Model Passports",
+    "release": "GDSC2",
+    "download_page_url": "https://cellmodelpassports.sanger.ac.uk/downloads",
+    "file_url": "https://cmp.cog.sanger.ac.uk/download/GDSC2_fitted_dose_response_27Oct23.xlsx",
+    "size_bytes": 22112537,
+    "sha256": "0e99120a14a003dcbd3c27c020f1cfd35e38ee091067a2406f66c0d4dbc1c899"
   }
 ]
