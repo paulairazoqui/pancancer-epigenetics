@@ -1,9 +1,25 @@
 # Datos crudos y procesados (demasiado grandes para git)
-data/raw/
-data/processed/
-data/external/
-data/interim/
+data/raw/chembl/*
+data/raw/depmap/*
+data/raw/drugbank/*
+data/raw/gdsc/*
+data/raw/lincs_cmap/*
+data/raw/prism/*
+data/raw/tcga_gdc/*
+data/interim/*
+data/processed/*
+data/external/*
 
+!data/raw/chembl/**/.gitkeep
+!data/raw/depmap/**/.gitkeep
+!data/raw/drugbank/**/.gitkeep
+!data/raw/gdsc/**/.gitkeep
+!data/raw/lincs_cmap/**/.gitkeep
+!data/raw/prism/**/.gitkeep
+!data/raw/tcga_gdc/**/.gitkeep
+!data/interim/.gitkeep
+!data/processed/.gitkeep
+!data/external/.gitkeep
 
 # Modelos serializados
 results/models/checkpoints/
