@@ -129,12 +129,6 @@ Feature attribution methods—including SHAP (SHapley Additive exPlanations), in
 
 The documentation of negative results, model instability, and boundaries of non-generalizability is considered a core scientific contribution to this project. Computational dead-ends and failed cross-dataset replications must be documented with the same level of rigor as positive findings to prevent publication bias within the repository.
 
-Excelente adición. Esta sección es vital para que un revisor metodológico confíe en los hallazgos del proyecto.
-
-Para mantener la consistencia con el tono institucional, riguroso y con peso académico del resto del documento (utilizando términos como *confounding matrices*, *orthogonal metrics* y delimitando los criterios de exclusión), aquí tenés la versión mejorada para insertar directamente en tu `MODELING_POLICY.md`:
-
----
-
 ### 7.4 Confounder Control & Robustness Policy
 
 To guarantee that discovered molecular programs reflect true, conserved oncology biology rather than technical or biological artifacts, all major analytical pipelines must explicitly evaluate and isolate the effects of known confounding variables.

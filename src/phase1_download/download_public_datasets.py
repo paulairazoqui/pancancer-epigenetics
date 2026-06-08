@@ -1,8 +1,8 @@
 """
 download_public_datasets.py
-Fase 1 - Descarga/auditoria reproducible de datasets publicos.
+Phase 1 - Reproducible download/audit of public datasets.
 
-Uso:
+Usage:
     python download_public_datasets.py
     python download_public_datasets.py --dataset gdsc_ic50
     python download_public_datasets.py --audit-only
@@ -120,13 +120,13 @@ def download_file(url: str, dest: Path, min_size_mb: float, retries: int = 3) ->
 
     for attempt in range(1, retries + 1):
         try:
-            log.info(f"Intento {attempt}/{retries}: {url}")
+            log.info(f"Attempt {attempt}/{retries}: {url}")
             r = requests.get(url, stream=True, timeout=180, headers=headers)
             r.raise_for_status()
 
             content_type = r.headers.get("content-type", "")
             if any(x in content_type.lower() for x in ["text/html", "application/json", "application/xml"]):
-                log.error(f"Respuesta no válida. Content-Type: {content_type}")
+                log.error(f"Invalid response. Content-Type: {content_type}")
                 return False
 
             total = int(r.headers.get("content-length", 0))
@@ -146,7 +146,7 @@ def download_file(url: str, dest: Path, min_size_mb: float, retries: int = 3) ->
             size_mb = tmp.stat().st_size / 1e6
             if size_mb < min_size_mb:
                 tmp.unlink(missing_ok=True)
-                log.error(f"Archivo demasiado pequeño: {size_mb:.2f} MB < {min_size_mb} MB")
+                log.error(f"File too small: {size_mb:.2f} MB < {min_size_mb} MB")
                 return False
 
             tmp.replace(dest)
@@ -194,16 +194,16 @@ def process_dataset(key: str, meta: dict, output_dir: Path, audit_only: bool) ->
 
     if meta["download_mode"] == "manual":
         if not path.exists():
-            log.warning(f"[{key}] Falta archivo manual: {path}")
-            log.warning(f"Descargar desde: {meta['portal_url']}")
+            log.warning(f"[{key}] Manual file missing: {path}")
+            log.warning(f"Download from: {meta['portal_url']}")
             return build_record(key, meta, path, "missing_manual_download")
 
         size_mb = path.stat().st_size / 1e6
         if size_mb < min_size_mb:
-            log.error(f"[{key}] Archivo demasiado pequeño: {size_mb:.2f} MB")
+            log.error(f"[{key}] File too small: {size_mb:.2f} MB")
             return build_record(key, meta, path, "too_small")
 
-        log.info(f"[{key}] OK manual auditado: {path} ({size_mb:.2f} MB)")
+        log.info(f"[{key}] Manual audit OK: {path} ({size_mb:.2f} MB)")
         return build_record(key, meta, path, "verified_manual")
 
     if meta["download_mode"] == "auto":
@@ -213,13 +213,13 @@ def process_dataset(key: str, meta: dict, output_dir: Path, audit_only: bool) ->
             expected = meta.get("expected_sha256")
 
             if size_mb >= min_size_mb and (not expected or h == expected):
-                log.info(f"[{key}] Ya existe y es válido: {path}")
+                log.info(f"[{key}] Already exists and is valid: {path}")
                 return build_record(key, meta, path, "already_exists")
 
-            log.warning(f"[{key}] Existe, pero no pasa validación. Se descargará de nuevo.")
+            log.warning(f"[{key}] Exists, but does not pass validation. It will be downloaded again.")
 
         if audit_only:
-            log.warning(f"[{key}] No se descarga porque audit_only=True")
+            log.warning(f"[{key}] Skipping download because audit_only=True")
             return build_record(key, meta, path, "missing_auto_download")
 
         ok = download_file(meta["url"], path, min_size_mb=min_size_mb)
@@ -228,13 +228,13 @@ def process_dataset(key: str, meta: dict, output_dir: Path, audit_only: bool) ->
 
         expected = meta.get("expected_sha256")
         if expected and compute_sha256(path) != expected:
-            log.error(f"[{key}] Hash incorrecto.")
+            log.error(f"[{key}] Incorrect hash.")
             return build_record(key, meta, path, "hash_mismatch")
 
-        log.info(f"[{key}] Descarga OK: {path}")
+        log.info(f"[{key}] Download OK: {path}")
         return build_record(key, meta, path, "downloaded")
 
-    raise ValueError(f"download_mode no reconocido: {meta['download_mode']}")
+    raise ValueError(f"Unrecognized download_mode: {meta['download_mode']}")
 
 
 def load_manifest(path: Path) -> dict:
@@ -249,7 +249,7 @@ def save_manifest(manifest: dict, path: Path) -> None:
     manifest["last_updated"] = datetime.now(timezone.utc).isoformat()
     with open(path, "w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=2, ensure_ascii=False)
-    log.info(f"Manifiesto guardado: {path}")
+    log.info(f"Manifest saved: {path}")
 
 
 def main() -> None:
