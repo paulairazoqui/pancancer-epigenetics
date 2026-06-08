@@ -510,7 +510,67 @@ Replication does not imply causal validation or biological confirmation.
 
 ---
 
-# Phase 9 — Manuscript and Preprint Preparation
+# Phase 9 — Transcriptomic Representation Robustness
+
+## Objectives
+
+Evaluate whether candidate transcriptomic programs remain reproducible across alternative transcriptomic representations derived from overlapping model universes.
+
+## Scientific Rationale
+
+The primary discovery workflow is performed using the harmonized DepMap transcriptomic layer.
+
+However, transcriptomic programs may be sensitive to upstream processing decisions, normalization procedures, quantification pipelines, and data-provider-specific representations.
+
+This phase evaluates the robustness of discovered programs under alternative transcriptomic data sources without altering the overall analytical framework.
+
+## Potential Resources
+
+* GDSC RNA-seq
+* Cell Model Passports RNA-seq
+* Sanger transcriptomic releases
+* Alternative harmonized transcriptomic representations when available
+
+## Notebook Series 90
+
+### Tasks
+
+* Reconstruct an independent transcriptomic cohort
+* Repeat preprocessing and quality-control workflows
+* Re-run program discovery analyses
+* Re-run program–phenotype association analyses
+* Re-run functional association analyses when feasible
+* Compare program structure and composition
+* Assess concordance of program-level associations
+* Quantify sensitivity to transcriptomic representation
+
+## Key Questions
+
+* Do candidate programs reappear across transcriptomic representations?
+* Are core genes preserved across transcriptomic datasets?
+* Are resistance-like associations consistent?
+* Are functional associations reproducible?
+* Are discovered programs robust to transcriptomic processing choices?
+
+## Deliverables
+
+* Transcriptomic robustness report
+* Program concordance metrics
+* Representation-specific comparison tables
+* Sensitivity analyses
+* Cross-representation reproducibility summary
+
+## Interpretation Notes
+
+Successful replication within this phase should be interpreted as evidence of robustness to transcriptomic representation and preprocessing choices.
+
+This phase does not constitute orthogonal biological validation and should not be interpreted as independent biological confirmation.
+
+Failure to replicate may reflect differences in transcriptomic quantification, processing pipelines, cohort composition, or technical characteristics of the underlying datasets.
+
+---
+
+# Phase 10 — Manuscript and Preprint Preparation
 
 ## Objectives
 
