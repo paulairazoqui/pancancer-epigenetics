@@ -1,4 +1,4 @@
-# Rutas principales del proyecto (relativas a la raíz)
+# Project root paths (relative to repository root)
 data:
   raw:
     depmap: data/raw/depmap

@@ -1,7 +1,8 @@
 """
-utils/paths.py – Resolución de rutas del proyecto.
-Importar desde cualquier script: from src.utils.paths import Paths
+utils/paths.py – Project path resolution.
+Import from any script: from src.utils.paths import Paths
 """
+
 from pathlib import Path
 import yaml
 
