@@ -1,4 +1,4 @@
-# Datos crudos y procesados (demasiado grandes para git)
+# Raw and processed data (too large for git)
 data/raw/chembl/*
 data/raw/depmap/*
 data/raw/drugbank/*
@@ -21,11 +21,11 @@ data/external/*
 !data/processed/.gitkeep
 !data/external/.gitkeep
 
-# Modelos serializados
+# Serialized models
 results/models/checkpoints/
 results/models/shap_values/
 
-# Entornos
+# Environments
 .env
 __pycache__/
 *.pyc
@@ -36,5 +36,5 @@ dist/
 build/
 .DS_Store
 
-# Excepciones: mantener manifiestos de auditoría
+# Exceptions: keep audit manifests
 !data/audit/

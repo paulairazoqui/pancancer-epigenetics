@@ -1,3 +1,3 @@
 # src
 
-Código fuente Python organizado por fase del pipeline.
+Python source code organized by pipeline phase.

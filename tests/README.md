@@ -1,3 +1,3 @@
 # tests
 
-Tests unitarios e integración para src/.
+Unit and integration tests for src/.

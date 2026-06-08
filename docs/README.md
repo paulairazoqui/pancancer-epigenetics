@@ -1,3 +1,3 @@
 # docs
 
-Documentación técnica: decisiones metodológicas, notas de reuniones, referencias.
+Technical documentation: methodological decisions, meeting notes, and references.
