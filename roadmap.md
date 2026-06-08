@@ -102,11 +102,59 @@ Completed.
 
 ---
 
-# Phase 2 — Transcriptomic Quality Control
+# Phase 2 — Exploratory Data Analysis (EDA)
 
 ## Objectives
 
-Characterize the integrated transcriptomic layer before any biological interpretation.
+Characterize the integrated transcriptomic and pharmacological layers before any modeling or biological association analyses.
+
+## Notebook 20
+
+Cross-dataset overlap analysis.
+
+### Outputs
+
+* shared model universe
+* overlap statistics
+* identifier consistency assessment
+
+---
+
+## Notebook 21
+
+Harmonized model universe construction.
+
+### Outputs
+
+* harmonized model table
+* unified identifiers
+* lineage annotations
+
+---
+
+## Notebook 22
+
+Integrated modeling cohort generation.
+
+### Outputs
+
+* final modeling cohort
+* coverage reports
+* cohort summary tables
+
+---
+
+## Notebook 23
+
+Expression layer integration.
+
+### Outputs
+
+* harmonized transcriptomic matrix
+* expression coverage audit
+* transcriptomic integration report
+
+---
 
 ## Notebook 24
 
@@ -129,15 +177,9 @@ Expression quality-control assessment.
 
 ---
 
-# Phase 3 — Global Transcriptomic Structure
-
-## Objectives
-
-Characterize the major sources of transcriptomic variation within the integrated cohort.
-
 ## Notebook 25
 
-Transcriptomic structure analysis.
+Global transcriptomic structure analysis.
 
 ### Tasks
 
@@ -161,12 +203,6 @@ Transcriptomic structure analysis.
 
 ---
 
-# Phase 4 — Pharmacological Integration
-
-## Objectives
-
-Integrate GDSC pharmacological measurements with the harmonized cohort.
-
 ## Notebook 26
 
 Drug-response integration.
@@ -187,12 +223,6 @@ Drug-response integration.
 
 ---
 
-# Phase 5 — Resistance-Like Phenotype Construction
-
-## Objectives
-
-Define pharmacological phenotypes suitable for downstream association analyses.
-
 ## Notebook 27
 
 Pharmacological phenotype framework.
@@ -201,15 +231,18 @@ Pharmacological phenotype framework.
 
 * AUC characterization
 * LN_IC50 characterization
+* Metric concordance assessment
 * Lineage-aware normalization
 * Phenotype robustness analysis
+* Phenotype representation selection
 
 ### Deliverables
 
 * phenotype tables
 * phenotype QC report
+* phenotype representation summary
 
-## Methodological Notes
+### Methodological Notes
 
 Phenotypes should remain continuous whenever possible.
 
@@ -217,38 +250,167 @@ Binarization is considered exploratory and secondary.
 
 ---
 
-# Phase 6 — Program Discovery
+# Phase 3 — Transcriptome–Phenotype Integration
+
+## Objectives
+
+Construct modeling-ready datasets linking transcriptomic profiles with pharmacology-derived phenotypes.
+
+---
+
+## Notebook 30
+
+Model-level transcriptome–phenotype integration.
+
+### Tasks
+
+* Phenotype integration
+* Transcriptomic alignment
+* Sample matching validation
+* Integration QC
+* Modeling-cohort persistence
+
+### Deliverables
+
+* integrated analysis matrix
+* integration audit report
+* modeling-ready cohort
+
+---
+
+## Notebook 31
+
+Phenotype sensitivity analysis.
+
+### Tasks
+
+* Alternative phenotype representations
+* Sensitivity analyses
+* Lineage-aware robustness assessment
+
+### Deliverables
+
+* phenotype robustness report
+* sensitivity-analysis tables
+
+---
+
+# Phase 4 — Program Discovery and Modeling
 
 ## Objectives
 
 Identify recurrent transcriptomic programs associated with resistance-like contexts.
 
-## Notebook Series 30
+---
+
+## Notebook 40
+
+Gene filtering and feature selection.
 
 ### Tasks
 
-* Gene filtering
-* Feature selection
-* Co-expression analysis
-* Dimensionality reduction
-* Program extraction
+* Expression filtering
+* Variance-based filtering
+* Feature selection assessment
+
+### Deliverables
+
+* filtered expression matrix
+* feature-selection report
+
+---
+
+## Notebook 41
+
+Dimensionality reduction.
+
+### Tasks
+
+* PCA-derived representations
+* Dimensionality assessment
+* Latent-space evaluation
+
+### Deliverables
+
+* reduced-dimensional representations
+* variance-explained reports
+
+---
+
+## Notebook 42
+
+Program extraction.
 
 ### Candidate Methods
 
-* PCA-derived components
 * NMF
 * ICA
-* Consensus approaches
+* PCA-derived components
 
 ### Deliverables
 
 * candidate transcriptomic programs
-* reproducibility assessments
-* lineage-aware validation
+* program loading matrices
 
 ---
 
-# Phase 7 — Functional Association Analysis
+## Notebook 43
+
+Program reproducibility assessment.
+
+### Tasks
+
+* Stability analysis
+* Resampling analyses
+* Cross-method comparison
+
+### Deliverables
+
+* reproducibility report
+* stability metrics
+
+---
+
+## Notebook 44
+
+Lineage-aware program robustness.
+
+### Tasks
+
+* Lineage-confounding assessment
+* Cross-lineage reproducibility
+* Sensitivity analyses
+
+### Deliverables
+
+* lineage robustness report
+* cross-lineage comparison tables
+
+---
+
+# Phase 5 — Signature Refinement
+
+## Objectives
+
+Refine and consolidate transcriptomic programs into robust signatures suitable for downstream analyses.
+
+## Notebook Series 50
+
+### Tasks
+
+* Consensus signature construction
+* Signature refinement
+* Gene-loading analysis
+* Stability assessment
+
+### Deliverables
+
+* refined transcriptomic signatures
+* consensus signature tables
+
+---
+
+# Phase 6 — Functional Association Analysis
 
 ## Objectives
 
@@ -259,6 +421,8 @@ Evaluate associations between candidate programs and functional dependencies.
 * DepMap CRISPR
 * DepMap RNAi
 * Additional functional screens when available
+
+## Notebook Series 60
 
 ### Tasks
 
@@ -273,7 +437,7 @@ Evaluate associations between candidate programs and functional dependencies.
 
 ---
 
-# Phase 8 — Perturbational Reversibility
+# Phase 7 — Perturbational Reversibility
 
 ## Objectives
 
@@ -283,6 +447,8 @@ Evaluate whether candidate programs show evidence of perturbational reversibilit
 
 * LINCS L1000
 * Connectivity Map
+
+## Notebook Series 70
 
 ### Tasks
 
@@ -296,7 +462,7 @@ Evaluate whether candidate programs show evidence of perturbational reversibilit
 * perturbational hypotheses
 * candidate compound rankings
 
-## Methodological Notes
+### Methodological Notes
 
 Perturbational connectivity does not imply therapeutic efficacy.
 
@@ -304,11 +470,11 @@ All findings remain hypothesis-generating.
 
 ---
 
-# Phase 9 — Cross-Dataset Validation
+# Phase 8 — Cross-Dataset Validation
 
 ## Objectives
 
-Assess reproducibility across independent datasets.
+Assess reproducibility across independent datasets and alternative transcriptomic representations.
 
 ## Potential Resources
 
@@ -316,21 +482,35 @@ Assess reproducibility across independent datasets.
 * External cell-line collections
 * scRNA-seq datasets
 * ATAC-seq datasets
+* Cell Model Passports RNA-seq
+* Alternative transcriptomic representations
+
+## Notebook Series 80
 
 ### Tasks
 
 * Replication analyses
 * Concordance assessment
 * Sensitivity analyses
+* Transcriptomic representation robustness
+* Cross-dataset validation
 
 ### Deliverables
 
 * validation reports
 * robustness summaries
+* program concordance metrics
+* representation-specific comparison tables
+
+### Interpretation Notes
+
+Successful replication should be interpreted as evidence of robustness and reproducibility.
+
+Replication does not imply causal validation or biological confirmation.
 
 ---
 
-# Phase 10 — Manuscript and Preprint Preparation
+# Phase 9 — Manuscript and Preprint Preparation
 
 ## Objectives
 
@@ -347,50 +527,3 @@ Prepare a publication-ready computational framework.
 ## Final Output
 
 A reproducible framework for identifying cross-cancer recurrent epigenetic-transcriptomic programs associated with resistance-like contexts, functional vulnerabilities, and perturbational reversibility.
-
-# Phase 9B — Transcriptomic Representation Robustness
-
-## Objectives
-
-Evaluate whether candidate transcriptomic programs remain reproducible across alternative transcriptomic representations derived from overlapping model universes.
-
-## Scientific Rationale
-
-The primary discovery workflow is performed using the harmonized DepMap transcriptomic layer. However, transcriptomic programs may be sensitive to upstream processing decisions, normalization procedures, quantification pipelines, and data-provider-specific representations.
-
-This phase evaluates the robustness of discovered programs under alternative transcriptomic data sources without altering the overall analytical framework.
-
-## Potential Resources
-
-* Cell Model Passports RNA-seq
-* Sanger transcriptomic releases
-* Alternative harmonized transcriptomic representations when available
-
-## Tasks
-
-* Reconstruct an independent transcriptomic cohort
-* Repeat preprocessing and quality-control workflows
-* Re-run program discovery analyses
-* Compare program structure and composition
-* Assess concordance of program-level associations
-* Quantify sensitivity to transcriptomic representation
-
-## Key Questions
-
-* Do candidate programs reappear across transcriptomic representations?
-* Are core genes preserved across datasets?
-* Are resistance-like associations consistent?
-* Are discovered programs robust to transcriptomic processing choices?
-
-## Deliverables
-
-* Transcriptomic robustness report
-* Program concordance metrics
-* Sensitivity analyses
-* Representation-specific comparison tables
-
-## Interpretation Notes
-
-Successful replication within this phase should be interpreted as evidence of robustness to transcriptomic representation and preprocessing choices.
-
-This phase does not constitute orthogonal biological validation and should not be interpreted as independent biological confirmation.
