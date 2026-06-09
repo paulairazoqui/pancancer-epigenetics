@@ -24,6 +24,9 @@ class Paths:
     lincs    = root / _cfg["data"]["raw"]["lincs_cmap"]
     tcga     = root / _cfg["data"]["raw"]["tcga_gdc"]
 
+    # interim
+    interim = root / _cfg["data"]["interim"]
+
     # processed
     merged     = root / _cfg["data"]["processed"]["merged"]
     splits     = root / _cfg["data"]["processed"]["splits"]

@@ -6,6 +6,7 @@ data:
     prism: data/raw/prism
     lincs_cmap: data/raw/lincs_cmap
     tcga_gdc: data/raw/tcga_gdc
+  interim: data/interim  
   processed:
     merged: data/processed/merged
     splits: data/processed/splits
