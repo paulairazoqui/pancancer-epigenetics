@@ -1,9 +1,18 @@
 # results
 
-Publication-ready outputs are organized by manuscript according to roadmap v3.0:
+Publication-ready outputs are organized by manuscript according to roadmap v3.0.
 
-- `paper1/`
-- `paper2/`
-- `supplementary/`
+```text
+results/
+├── paper1/
+│   ├── figures/
+│   └── tables/
+├── paper2/
+│   ├── figures/
+│   └── tables/
+└── supplementary/
+    ├── figures/
+    └── tables/
+```
 
-Pipeline-intermediate outputs belong under `data/interim/` or `data/processed/`.
+Use these folders only for manuscript-ready figures, tables, and supplementary presentation artifacts. Pipeline-intermediate outputs belong under `data/interim/` or `data/processed/`.
