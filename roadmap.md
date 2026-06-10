@@ -1,589 +1,502 @@
 # Pan-Cancer Epigenetics Framework
 
-## Operational Analysis Roadmap (v2.0)
+## Operational Analysis Roadmap (v3.0)
 
 ### Project Objective
 
-Identify recurrent epigenetic-transcriptomic programs associated with resistance-like contexts, functional vulnerabilities, and perturbational reversibility across multiple cancer types using integrated public datasets.
-
-### Scientific Positioning
-
-This project is designed as a computational oncology framework for hypothesis generation and cross-dataset validation.
-
-The project does **not** aim to:
-
-* predict clinical resistance directly from patient cohorts,
-* infer biological causality from observational associations,
-* identify definitive biomarkers,
-* establish validated therapeutic targets,
-* claim therapeutic reversal based solely on in silico evidence.
-
-All findings should be interpreted as computational associations requiring further validation.
+Identify recurrent epigenetic-transcriptomic programs through the integration of DNA methylation, epigenetic regulator activity, and transcriptomic states across human cancers, and evaluate their associations with candidate functional vulnerabilities, resistance-like pharmacogenomic contexts, and perturbational hypotheses.
 
 ---
 
 # Phase 0 — Infrastructure and Reproducibility
 
-## Objectives
+Status: Completed.
 
-Establish a reproducible and auditable data-analysis environment.
+Deliverables:
 
-## Deliverables
-
-* Repository structure
-* Data provenance records
-* Download manifests
-* Versioned intermediate artifacts
-* Reproducible notebook workflow
-
-## Status
-
-Completed.
+* repository structure
+* data provenance records
+* download manifests
+* reproducible workflows
+* version-controlled artifacts
 
 ---
 
-# Phase 1 — Cohort Harmonization and Data Integration
+# Phase 1 — Tumor Discovery Layer
 
-## Objectives
+## Objective
 
-Build a common modeling universe across DepMap and pharmacological resources.
+Construct the primary tumor-based epigenetic-transcriptomic discovery framework.
 
-## Core Principles
+Primary Resources:
 
-* ModelID is the canonical identifier.
-* All identifier conflicts are resolved before integrating molecular data.
-* Every integration step produces an audit artifact.
+* TCGA RNA-seq
+* TCGA DNA methylation
 
-## Notebooks
+---
+
+### Notebook 10
+
+TCGA cohort construction.
+
+Outputs:
+
+* harmonized tumor cohort
+* lineage annotations
+* sample metadata
+
+---
+
+### Notebook 11
+
+RNA-seq quality control.
+
+Outputs:
+
+* QC reports
+* expression summaries
+* filtering thresholds
+
+---
+
+### Notebook 12
+
+DNA methylation quality control.
+
+Outputs:
+
+* methylation QC reports
+* promoter-level methylation matrices
+* coverage assessments
+
+---
+
+### Notebook 13
+
+Methylation-expression integration.
+
+Outputs:
+
+* integrated multi-omic cohort
+* methylation-expression coupling analyses
+
+---
+
+### Notebook 14
+
+Confounder assessment.
+
+Tasks:
+
+* lineage effects
+* tumor purity
+* immune infiltration
+* proliferation
+* batch effects
+
+Outputs:
+
+* confounder reports
+
+---
+
+### Notebook 15
+
+Epigenetic-transcriptomic program discovery.
+
+Candidate methods:
+
+* NMF
+* ICA
+* consensus factorization approaches
+
+Outputs:
+
+* candidate programs
+* program loadings
+* program scores
+
+---
+
+### Notebook 16
+
+Program robustness assessment.
+
+Outputs:
+
+* stability metrics
+* reproducibility analyses
+* lineage-aware robustness reports
+
+---
+
+# Phase 2 — Functional Translation Layer
+
+## Objective
+
+Construct a harmonized cancer cell-line universe and prepare program translation into functional model systems.
+
+Primary Resources:
+
+* DepMap
+* CCLE
+
+Status: In Progress
+
+---
 
 ### Notebook 20
 
 Cross-dataset overlap analysis.
 
-Outputs:
+Completed.
 
-* shared model universe
-* overlap statistics
-* identifier consistency assessment
+---
 
 ### Notebook 21
 
 Harmonized model universe construction.
 
-Outputs:
+Completed.
 
-* harmonized model table
-* unified identifiers
-* lineage annotations
+---
 
 ### Notebook 22
 
 Integrated modeling cohort generation.
 
-Outputs:
+Completed.
 
-* final modeling cohort
-* coverage reports
-* cohort summary tables
+---
 
 ### Notebook 23
 
 Expression layer integration.
 
-Outputs:
+Completed.
 
-* harmonized transcriptomic matrix
-* expression coverage audit
-* transcriptomic integration report
+---
 
-## Status
+### Notebook 24
+
+Expression quality-control assessment.
 
 Completed.
 
 ---
 
-# Phase 2 — Exploratory Data Analysis (EDA)
-
-## Objectives
-
-Characterize the integrated transcriptomic and pharmacological layers before any modeling or biological association analyses.
-
-## Notebook 20
-
-Cross-dataset overlap analysis.
-
-### Outputs
-
-* shared model universe
-* overlap statistics
-* identifier consistency assessment
-
----
-
-## Notebook 21
-
-Harmonized model universe construction.
-
-### Outputs
-
-* harmonized model table
-* unified identifiers
-* lineage annotations
-
----
-
-## Notebook 22
-
-Integrated modeling cohort generation.
-
-### Outputs
-
-* final modeling cohort
-* coverage reports
-* cohort summary tables
-
----
-
-## Notebook 23
-
-Expression layer integration.
-
-### Outputs
-
-* harmonized transcriptomic matrix
-* expression coverage audit
-* transcriptomic integration report
-
----
-
-## Notebook 24
-
-Expression quality-control assessment.
-
-### Tasks
-
-* Expression distribution analysis
-* Feature variance assessment
-* Near-zero variance evaluation
-* Sample-level distribution analysis
-* Expression completeness audit
-* Storage optimization and persistence
-
-### Deliverables
-
-* QC report
-* variance summary
-* candidate filtering thresholds
-
----
-
-## Notebook 25
+### Notebook 25
 
 Global transcriptomic structure analysis.
 
-### Tasks
-
-* PCA
-* Explained variance analysis
-* UMAP visualization
-* Clustering assessment
-* Lineage-aware visualization
-
-### Questions
-
-* How strongly does lineage explain transcriptomic structure?
-* Are there recurrent cross-lineage patterns?
-* Are there potential confounding factors?
-
-### Deliverables
-
-* PCA embeddings
-* UMAP embeddings
-* clustering reports
+Completed.
 
 ---
 
-## Notebook 26
+### Notebook 26
 
 Drug-response integration.
 
-### Tasks
-
-* ModelID ↔ COSMICID validation
-* GDSC harmonization
-* Coverage assessment
-* Drug-family annotation
-* Leakage-risk assessment
-
-### Deliverables
-
-* integrated pharmacology table
-* coverage report
-* drug metadata table
+Completed.
 
 ---
 
-## Notebook 27
+### Notebook 27
 
 Pharmacological phenotype framework.
 
-### Tasks
-
-* AUC characterization
-* LN_IC50 characterization
-* Metric concordance assessment
-* Lineage-aware normalization
-* Phenotype robustness analysis
-* Phenotype representation selection
-
-### Deliverables
-
-* phenotype tables
-* phenotype QC report
-* phenotype representation summary
-
-### Methodological Notes
-
-Phenotypes should remain continuous whenever possible.
-
-Binarization is considered exploratory and secondary.
+Completed.
 
 ---
 
-# Phase 3 — Transcriptome–Phenotype Integration
-
-## Objectives
-
-Construct modeling-ready datasets linking transcriptomic profiles with pharmacology-derived phenotypes.
-
----
-
-## Notebook 30
+### Notebook 30
 
 Model-level transcriptome–phenotype integration.
 
-### Tasks
-
-* Phenotype integration
-* Transcriptomic alignment
-* Sample matching validation
-* Integration QC
-* Modeling-cohort persistence
-
-### Deliverables
-
-* integrated analysis matrix
-* integration audit report
-* modeling-ready cohort
+Completed.
 
 ---
 
-## Notebook 31
+### Notebook 31
 
 Phenotype sensitivity analysis.
 
-### Tasks
-
-* Alternative phenotype representations
-* Sensitivity analyses
-* Lineage-aware robustness assessment
-
-### Deliverables
-
-* phenotype robustness report
-* sensitivity-analysis tables
+Completed.
 
 ---
 
-# Phase 4 — Program Discovery and Modeling
+# Phase 3 — Program Discovery in Cellular Models
 
-## Objectives
+## Objective
 
-Identify recurrent transcriptomic programs associated with resistance-like contexts.
-
----
-
-## Notebook 40
-
-Gene filtering and feature selection.
-
-### Tasks
-
-* Expression filtering
-* Variance-based filtering
-* Feature selection assessment
-
-### Deliverables
-
-* filtered expression matrix
-* feature-selection report
+Project tumor-derived programs into cell-line models and quantify program activity.
 
 ---
 
-## Notebook 41
+### Notebook 32
 
-Dimensionality reduction.
+Program projection.
 
-### Tasks
+Outputs:
 
-* PCA-derived representations
-* Dimensionality assessment
-* Latent-space evaluation
-
-### Deliverables
-
-* reduced-dimensional representations
-* variance-explained reports
+* program activity matrix
+* program score distributions
 
 ---
 
-## Notebook 42
+### Notebook 33
 
-Program extraction.
+Cross-platform program consistency.
 
-### Candidate Methods
+Outputs:
 
-* NMF
-* ICA
-* PCA-derived components
-
-### Deliverables
-
-* candidate transcriptomic programs
-* program loading matrices
+* reproducibility reports
+* projection robustness metrics
 
 ---
 
-## Notebook 43
+# Phase 4 — Program Characterization
 
-Program reproducibility assessment.
+## Objective
 
-### Tasks
-
-* Stability analysis
-* Resampling analyses
-* Cross-method comparison
-
-### Deliverables
-
-* reproducibility report
-* stability metrics
+Refine and biologically characterize candidate epigenetic-transcriptomic programs.
 
 ---
 
-## Notebook 44
+### Notebook 40
 
-Lineage-aware program robustness.
-
-### Tasks
-
-* Lineage-confounding assessment
-* Cross-lineage reproducibility
-* Sensitivity analyses
-
-### Deliverables
-
-* lineage robustness report
-* cross-lineage comparison tables
+Consensus program construction.
 
 ---
 
-# Phase 5 — Signature Refinement
+### Notebook 41
 
-## Objectives
+Program annotation.
 
-Refine and consolidate transcriptomic programs into robust signatures suitable for downstream analyses.
+Tasks:
 
-## Notebook Series 50
-
-### Tasks
-
-* Consensus signature construction
-* Signature refinement
-* Gene-loading analysis
-* Stability assessment
-
-### Deliverables
-
-* refined transcriptomic signatures
-* consensus signature tables
+* pathway enrichment
+* hallmark enrichment
+* biological interpretation
 
 ---
 
-# Phase 6 — Functional Association Analysis
+### Notebook 42
 
-## Objectives
+Epigenetic regulator enrichment.
+
+Focus:
+
+* DNMT
+* TET
+* HDAC
+* KDM
+* chromatin remodeling systems
+
+---
+
+### Notebook 43
+
+Cross-lineage robustness.
+
+---
+
+# Phase 5 — Functional Vulnerability Analysis
+
+## Objective
 
 Evaluate associations between candidate programs and functional dependencies.
 
-## Data Sources
+Primary Resources:
 
 * DepMap CRISPR
 * DepMap RNAi
-* Additional functional screens when available
-
-## Notebook Series 60
-
-### Tasks
-
-* Program–dependency associations
-* Lineage-aware validation
-* Cross-dataset replication
-
-### Deliverables
-
-* candidate vulnerabilities
-* robustness analyses
 
 ---
 
-# Phase 7 — Perturbational Reversibility
+### Notebook 50
 
-## Objectives
+CRISPR dependency associations.
 
-Evaluate whether candidate programs show evidence of perturbational reversibility.
+---
 
-## Data Sources
+### Notebook 51
+
+RNAi dependency associations.
+
+---
+
+### Notebook 52
+
+Integrated vulnerability mapping.
+
+Outputs:
+
+* candidate vulnerabilities
+* vulnerability association maps
+
+---
+
+# Phase 6 — Pharmacogenomic Contexts
+
+## Objective
+
+Characterize resistance-like pharmacogenomic contexts associated with candidate programs.
+
+Primary Resources:
+
+* GDSC
+* CTRP
+* PRISM
+
+---
+
+### Notebook 60
+
+Program–drug associations.
+
+---
+
+### Notebook 61
+
+Predictive modeling.
+
+Candidate methods:
+
+* Elastic Net
+* Random Forest
+* XGBoost
+
+Purpose:
+
+* evaluate predictive signal
+* prioritize candidate programs
+
+---
+
+### Notebook 62
+
+Model interpretation.
+
+Methods:
+
+* SHAP
+* feature attribution
+* stability selection
+
+---
+
+### Notebook 63
+
+Cross-screen replication.
+
+Outputs:
+
+* replicated associations
+* robustness assessments
+
+---
+
+# Phase 7 — Perturbational Hypotheses
+
+## Objective
+
+Identify perturbational signatures inversely associated with candidate programs.
+
+Primary Resources:
 
 * LINCS L1000
 * Connectivity Map
 
-## Notebook Series 70
+---
 
-### Tasks
+### Notebook 70
 
-* Program signature construction
-* Connectivity analyses
-* Perturbational ranking
-* Compound prioritization
+Program signature construction.
 
-### Deliverables
+---
+
+### Notebook 71
+
+Connectivity analysis.
+
+---
+
+### Notebook 72
+
+Compound prioritization.
+
+Outputs:
 
 * perturbational hypotheses
-* candidate compound rankings
-
-### Methodological Notes
-
-Perturbational connectivity does not imply therapeutic efficacy.
-
-All findings remain hypothesis-generating.
+* candidate compounds
 
 ---
 
-# Phase 8 — Cross-Dataset Validation
+### Notebook 73
 
-## Objectives
-
-Assess reproducibility across independent datasets and alternative transcriptomic representations.
-
-## Potential Resources
-
-* TCGA
-* External cell-line collections
-* scRNA-seq datasets
-* ATAC-seq datasets
-* Cell Model Passports RNA-seq
-* Alternative transcriptomic representations
-
-## Notebook Series 80
-
-### Tasks
-
-* Replication analyses
-* Concordance assessment
-* Sensitivity analyses
-* Transcriptomic representation robustness
-* Cross-dataset validation
-
-### Deliverables
-
-* validation reports
-* robustness summaries
-* program concordance metrics
-* representation-specific comparison tables
-
-### Interpretation Notes
-
-Successful replication should be interpreted as evidence of robustness and reproducibility.
-
-Replication does not imply causal validation or biological confirmation.
+Mechanism-of-action aggregation.
 
 ---
 
-# Phase 9 — Transcriptomic Representation Robustness
+# Phase 8 — Orthogonal Validation
 
-## Objectives
+## Objective
 
-Evaluate whether candidate transcriptomic programs remain reproducible across alternative transcriptomic representations derived from overlapping model universes.
-
-## Scientific Rationale
-
-The primary discovery workflow is performed using the harmonized DepMap transcriptomic layer.
-
-However, transcriptomic programs may be sensitive to upstream processing decisions, normalization procedures, quantification pipelines, and data-provider-specific representations.
-
-This phase evaluates the robustness of discovered programs under alternative transcriptomic data sources without altering the overall analytical framework.
-
-## Potential Resources
-
-* GDSC RNA-seq
-* Cell Model Passports RNA-seq
-* Sanger transcriptomic releases
-* Alternative harmonized transcriptomic representations when available
-
-## Notebook Series 90
-
-### Tasks
-
-* Reconstruct an independent transcriptomic cohort
-* Repeat preprocessing and quality-control workflows
-* Re-run program discovery analyses
-* Re-run program–phenotype association analyses
-* Re-run functional association analyses when feasible
-* Compare program structure and composition
-* Assess concordance of program-level associations
-* Quantify sensitivity to transcriptomic representation
-
-## Key Questions
-
-* Do candidate programs reappear across transcriptomic representations?
-* Are core genes preserved across transcriptomic datasets?
-* Are resistance-like associations consistent?
-* Are functional associations reproducible?
-* Are discovered programs robust to transcriptomic processing choices?
-
-## Deliverables
-
-* Transcriptomic robustness report
-* Program concordance metrics
-* Representation-specific comparison tables
-* Sensitivity analyses
-* Cross-representation reproducibility summary
-
-## Interpretation Notes
-
-Successful replication within this phase should be interpreted as evidence of robustness to transcriptomic representation and preprocessing choices.
-
-This phase does not constitute orthogonal biological validation and should not be interpreted as independent biological confirmation.
-
-Failure to replicate may reflect differences in transcriptomic quantification, processing pipelines, cohort composition, or technical characteristics of the underlying datasets.
+Assess reproducibility across independent biological resources.
 
 ---
 
-# Phase 10 — Manuscript and Preprint Preparation
+### Notebook 80
 
-## Objectives
+Independent bulk-cohort replication.
 
-Prepare a publication-ready computational framework.
+---
 
-### Deliverables
+### Notebook 81
 
-* Figures
-* Supplementary tables
-* Methods documentation
-* Reproducibility package
-* Preprint draft
+Cell Model Passports replication.
 
-## Final Output
+---
 
-A reproducible framework for identifying cross-cancer recurrent epigenetic-transcriptomic programs associated with resistance-like contexts, functional vulnerabilities, and perturbational reversibility.
+### Notebook 82
+
+scRNA-seq validation.
+
+---
+
+### Notebook 83
+
+ATAC-seq validation.
+
+---
+
+### Notebook 84
+
+Transcriptomic representation robustness.
+
+Purpose:
+
+* evaluate sensitivity to transcriptomic processing choices
+
+---
+
+# Phase 9 — Manuscript and Preprint Preparation
+
+## Objective
+
+Prepare publication-ready outputs.
+
+Deliverables:
+
+* figures
+* supplementary tables
+* methods documentation
+* reproducibility package
+* manuscript draft
+
+---
+
+## Final Deliverable
+
+A reproducible computational oncology framework for identifying recurrent epigenetic-transcriptomic programs and characterizing their associated functional vulnerabilities, resistance-like pharmacogenomic contexts, and perturbational hypotheses across human cancers.
