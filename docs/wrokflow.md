@@ -102,7 +102,7 @@ Deliverables:
 
 ```text
 data/raw/
-data/audit/download_manifest.json
+data/interim/qc/download_manifest.json
 ```
 
 Human supervision:

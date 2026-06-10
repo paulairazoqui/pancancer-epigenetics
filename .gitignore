@@ -1,25 +1,31 @@
-# Raw and processed data (too large for git)
+# Raw and derived data (too large for git)
+data/raw/cell_model_passports/*
 data/raw/chembl/*
+data/raw/ctrp/*
 data/raw/depmap/*
 data/raw/drugbank/*
 data/raw/gdsc/*
-data/raw/lincs_cmap/*
+data/raw/lincs/*
 data/raw/prism/*
-data/raw/tcga_gdc/*
+data/raw/tcga/*
 data/interim/*
 data/processed/*
-data/external/*
 
+!data/raw/cell_model_passports/**/.gitkeep
 !data/raw/chembl/**/.gitkeep
+!data/raw/ctrp/**/.gitkeep
 !data/raw/depmap/**/.gitkeep
 !data/raw/drugbank/**/.gitkeep
 !data/raw/gdsc/**/.gitkeep
-!data/raw/lincs_cmap/**/.gitkeep
+!data/raw/lincs/**/.gitkeep
 !data/raw/prism/**/.gitkeep
-!data/raw/tcga_gdc/**/.gitkeep
+!data/raw/tcga/**/.gitkeep
 !data/interim/.gitkeep
+!data/interim/**/
+!data/interim/**/.gitkeep
 !data/processed/.gitkeep
-!data/external/.gitkeep
+!data/processed/**/
+!data/processed/**/.gitkeep
 
 # Serialized models
 results/models/checkpoints/
@@ -35,6 +41,3 @@ __pycache__/
 dist/
 build/
 .DS_Store
-
-# Exceptions: keep audit manifests
-!data/audit/

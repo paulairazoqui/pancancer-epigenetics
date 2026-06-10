@@ -20,7 +20,7 @@ The audit identified Spanish text in the following files:
 - `docs/README.md`
 - `docs/MODELING_POLICY.md`
 - `src/README.md`
-- `src/phase1_download/download_public_datasets.py`
+- `src/phase1_data_acquisition_and_auditing/download_public_datasets.py`
 - `tests/README.md`
 - `results/README.md`
 - `notebooks/README.md`
@@ -44,7 +44,7 @@ The audit identified Spanish text in the following files:
 
 - Translate the source-code directory description into English.
 
-### `src/phase1_download/download_public_datasets.py`
+### `src/phase1_data_acquisition_and_auditing/download_public_datasets.py`
 
 - Translate the module docstring from Spanish to English.
 - Translate runtime logging messages and validation errors from Spanish to English.
