@@ -2,22 +2,22 @@
 
 ## Project Overview
 
-This project aims to develop a lineage-aware computational oncology framework to identify recurrent epigenetic-transcriptomic programs across cancer types and explore their associations with resistance-like pharmacogenomic contexts, candidate functional vulnerabilities, and perturbational hypotheses.
+This project aims to develop a lineage-aware computational oncology framework to identify recurrent epigenetic-transcriptomic programs across multiple cancer types and evaluate their associations with resistance-like pharmacogenomic contexts, candidate functional vulnerabilities, and perturbational hypotheses.
 
-The project integrates public multi-omic, pharmacogenomic, dependency, and perturbational transcriptomic datasets, with a strong emphasis on:
+The framework integrates public multi-omic, pharmacogenomic, dependency, and perturbational datasets while prioritizing:
 
 * biological interpretability,
 * reproducibility,
 * lineage-aware evaluation,
 * conservative scientific framing,
-* and cross-dataset consistency.
+* cross-dataset consistency.
 
 The framework is not intended to:
 
 * predict clinical outcomes,
 * infer causal biological mechanisms,
 * reconstruct adaptive evolutionary trajectories,
-* or establish therapeutic efficacy.
+* establish therapeutic efficacy.
 
 All findings should be interpreted as computational associations and candidate hypotheses requiring future validation.
 
@@ -25,11 +25,11 @@ All findings should be interpreted as computational associations and candidate h
 
 # Core Scientific Question
 
-Can recurrent epigenetic-transcriptomic programs be identified across multiple cancer types in a lineage-aware manner, and are these programs associated with:
+Can recurrent epigenetic-transcriptomic programs be identified through the integration of DNA methylation, epigenetic regulator activity, and transcriptomic states across human tumors, and are these programs associated with:
 
 * resistance-like pharmacogenomic contexts,
-* candidate genetic dependencies,
-* and perturbational signatures suggestive of functional reversibility?
+* candidate functional vulnerabilities,
+* perturbational signatures suggestive of program suppression?
 
 ---
 
@@ -37,24 +37,62 @@ Can recurrent epigenetic-transcriptomic programs be identified across multiple c
 
 The project is organized into four biological and analytical layers.
 
-## 1. Tumor Program Discovery Layer
+```text
+[ Layer 1: Tumor Epigenetic-Transcriptomic Discovery ]
+                     (TCGA)
 
-Primary datasets:
+                          │
+                          ▼
 
-* TCGA
-* additional public tumor cohorts (future)
+[ Layer 2: Functional Translation ]
+                 (DepMap / CCLE)
 
-Purpose:
+                          │
+                          ▼
 
-* identify recurrent epigenetic-transcriptomic programs in human tumors,
-* characterize their recurrence across lineages,
-* quantify lineage-specific versus lineage-independent signal.
+[ Layer 3: Pharmacogenomic Contexts ]
+              (GDSC / CTRP / PRISM)
 
-This layer represents the biological foundation of the project.
+                          │
+                          ▼
+
+[ Layer 4: Perturbational Hypotheses ]
+                (LINCS / CMap)
+```
 
 ---
 
-## 2. Functional Translation Layer
+# Layer 1 — Tumor Epigenetic-Transcriptomic Discovery
+
+Primary datasets:
+
+* TCGA DNA methylation
+* TCGA RNA-seq
+
+Future extensions:
+
+* independent bulk tumor cohorts
+
+Purpose:
+
+* identify recurrent epigenetic-transcriptomic programs,
+* characterize methylation-expression relationships,
+* quantify lineage-specific and lineage-independent biological signals,
+* evaluate recurrence across multiple malignancies,
+* construct the biological foundation of the framework.
+
+Outputs:
+
+* candidate epigenetic-transcriptomic programs,
+* methylation-expression modules,
+* recurrent epigenetic maps,
+* lineage-aware biological representations.
+
+This layer serves as the primary discovery engine of the project.
+
+---
+
+# Layer 2 — Functional Translation
 
 Primary datasets:
 
@@ -63,38 +101,52 @@ Primary datasets:
 
 Purpose:
 
-* map tumor-derived programs into experimentally characterized cancer cell lines,
-* evaluate associations with gene dependency profiles,
+* project tumor-derived programs into experimentally characterized cancer cell lines,
+* quantify program activity across models,
+* evaluate associations with functional dependency profiles,
 * identify candidate functional vulnerabilities.
 
+Outputs:
+
+* program activity matrices,
+* dependency associations,
+* candidate vulnerability maps.
+
 This layer does not establish causality.
-Associations will be interpreted conservatively.
+
+All findings remain statistical associations requiring future validation.
 
 ---
 
-## 3. Pharmacogenomic Layer
+# Layer 3 — Pharmacogenomic Contexts
 
 Primary datasets:
 
-* PRISM
 * GDSC
 * CTRP
+* PRISM
 
 Purpose:
 
-* evaluate whether identified programs are associated with relative multi-drug insensitivity or sensitivity patterns,
-* characterize resistance-like pharmacogenomic contexts.
+* evaluate associations between candidate program activity and drug-response phenotypes,
+* characterize resistance-like pharmacogenomic contexts,
+* assess reproducibility across independent pharmacological screens.
 
-The term "resistance-like" refers operationally to:
+Outputs:
 
-* relative baseline drug insensitivity observed in large-scale pharmacogenomic datasets,
-* not to clinically validated acquired resistance.
+* resistance-like associations,
+* pharmacogenomic context maps,
+* cross-screen reproducibility analyses.
 
-No direct clinical resistance claims will be made.
+Operational definition:
+
+> Resistance-like contexts correspond to relative baseline drug insensitivity observed in large-scale pharmacogenomic datasets.
+
+No direct clinical resistance claims are implied.
 
 ---
 
-## 4. Perturbational Hypothesis Layer
+# Layer 4 — Perturbational Hypotheses
 
 Primary datasets:
 
@@ -104,34 +156,86 @@ Primary datasets:
 Purpose:
 
 * identify perturbational signatures inversely associated with candidate programs,
-* generate perturbational hypotheses for future investigation.
+* generate perturbational hypotheses,
+* prioritize compounds for future investigation.
 
-Perturbational associations do not constitute:
+Outputs:
 
-* therapeutic validation,
-* causal reversal,
-* or mechanistic proof.
+* perturbational hypotheses,
+* candidate compound rankings,
+* perturbational context maps.
+
+Connectivity associations do not constitute therapeutic validation, causal reversal, or mechanistic proof.
 
 ---
 
 # Central Biological Object
 
-The primary analytical object of the project is:
+The primary analytical entity of this framework is:
 
 > recurrent epigenetic-transcriptomic programs.
 
-Programs may represent:
+Programs may comprise:
 
-* coordinated transcriptional modules,
-* epigenetic-transcriptional states,
-* recurrent latent biological patterns,
-* or pathway-associated cellular contexts.
+* coordinated DNA methylation patterns,
+* transcriptomic modules,
+* epigenetic regulator activity states,
+* methylation-expression regulatory architectures,
+* pathway-associated biological contexts.
 
-The project does not initially assume:
+Programs are interpreted as computationally derived biological representations rather than:
 
 * discrete cell states,
-* causal regulators,
-* or clinically actionable biomarkers.
+* causal mechanisms,
+* master regulators,
+* validated therapeutic targets,
+* clinically actionable biomarkers.
+
+---
+
+# Epigenetic Integration Principles
+
+## DNA Methylation Layer
+
+Purpose:
+
+* identify recurrent promoter methylation patterns,
+* characterize lineage-aware methylation states,
+* evaluate methylation-expression coupling,
+* detect recurrent epigenetic architectures.
+
+DNA methylation represents a core discovery modality rather than a secondary validation layer.
+
+---
+
+## Epigenetic Regulator Layer
+
+Particular attention is given to major epigenetic regulatory systems, including:
+
+* DNMT family
+* TET family
+* HDAC family
+* KDM family
+* histone methyltransferases
+* histone demethylases
+* chromatin remodeling regulators
+
+These regulators serve as biologically informed interpretation layers and prioritization features.
+
+No causal role is assumed.
+
+---
+
+## Transcriptomic Layer
+
+Purpose:
+
+* quantify downstream biological programs,
+* characterize pathway activity,
+* define integrated molecular states,
+* support methylation-transcriptomic integration.
+
+Transcriptomic signals are interpreted jointly with epigenetic context whenever possible.
 
 ---
 
@@ -144,14 +248,16 @@ The project follows a:
 This means:
 
 * tissue lineage is treated as a major confounding structure,
-* analyses will explicitly control for lineage effects,
-* naïve pan-cancer pooling will be avoided whenever possible.
+* analyses explicitly control for lineage effects,
+* naïve pan-cancer pooling is avoided whenever possible.
 
-Cross-lineage recurrence will only be claimed after controlling for:
+Cross-lineage recurrence is only claimed after controlling for:
 
 * tissue identity,
 * proliferation effects,
-* and dataset-specific confounding factors.
+* tumor purity,
+* batch effects,
+* platform-specific confounding factors.
 
 ---
 
@@ -159,34 +265,54 @@ Cross-lineage recurrence will only be claimed after controlling for:
 
 ## Interpretability First
 
-Preference will be given to:
+Preference is given to:
 
-* interpretable factorization methods,
+* biologically interpretable representations,
 * transparent statistical models,
-* biologically explainable features.
+* explainable feature spaces,
+* reproducible computational workflows.
 
-Examples:
+Preferred methods include:
 
 * NMF
 * ICA
 * GSVA
 * module scoring
 * sparse regression
+* stability selection
 
-Black-box approaches will not be prioritized in the initial paper.
+Black-box approaches are not prioritized in the initial framework.
+
+---
+
+## Explainability
+
+Feature attribution methods may include:
+
+* SHAP
+* feature importance analyses
+* model interpretation frameworks
+
+These methods are used exclusively for:
+
+* prioritization,
+* biological interpretation,
+* hypothesis generation.
+
+They are not interpreted as evidence of causality.
 
 ---
 
 ## Conservative Scientific Framing
 
-The project avoids:
+The framework avoids:
 
 * causal claims,
 * biomarker claims,
 * clinical prediction framing,
 * therapeutic efficacy claims.
 
-Preferred terminology:
+Preferred terminology includes:
 
 * resistance-like context
 * candidate vulnerability
@@ -198,56 +324,58 @@ Preferred terminology:
 
 ## Leakage Prevention
 
-The framework explicitly considers:
+The framework explicitly evaluates:
 
 * lineage leakage,
 * platform leakage,
 * drug-family leakage,
 * cell-line overlap,
 * proliferation confounding,
-* batch effects,
-* tumor purity effects.
+* tumor purity confounding,
+* batch effects.
 
-Random naïve pan-cancer splitting strategies should be avoided.
+Random pan-cancer train/test splitting strategies are prohibited.
 
 ---
 
 # Initial Paper Scope
 
-The first paper is intended as:
+The first manuscript is intended as:
 
-> a reproducible lineage-aware computational framework identifying recurrent epigenetic-transcriptomic programs and their associated candidate functional and pharmacogenomic contexts.
+> a reproducible lineage-aware framework for discovering recurrent epigenetic-transcriptomic programs and characterizing their associated functional, pharmacogenomic, and perturbational landscapes.
 
 Primary goals:
 
 * establish the computational framework,
 * identify robust candidate programs,
+* characterize epigenetic-transcriptomic architectures,
 * demonstrate cross-dataset reproducibility,
 * generate biologically coherent hypotheses.
 
 Secondary goals:
 
+* candidate vulnerability prioritization,
 * perturbational prioritization,
 * candidate repurposing hypotheses.
 
 The first manuscript is not intended to:
 
-* provide definitive therapeutic recommendations,
+* provide therapeutic recommendations,
 * produce clinical predictors,
-* or establish mechanistic causality.
+* establish mechanistic causality.
 
 ---
 
 # Long-Term Expansion
 
-Future project directions may include:
+Future directions may include:
 
-* additional omic layers,
-* single-cell validation,
-* ATAC-seq integration,
+* independent tumor-cohort replication,
+* scRNA-seq validation,
+* ATAC-seq validation,
 * longitudinal resistance models,
 * perturbational validation,
-* prospective experimental collaborations,
-* lineage-specific mechanistic deep dives.
+* experimental collaborations,
+* lineage-specific mechanistic investigations.
 
-The first paper is designed to establish the methodological and biological foundation for these future studies.
+The first paper establishes the methodological and biological foundation for these future studies.
