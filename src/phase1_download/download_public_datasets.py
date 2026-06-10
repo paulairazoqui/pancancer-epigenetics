@@ -20,6 +20,8 @@ from pathlib import Path
 import requests
 from tqdm import tqdm
 
+from src.utils.paths import Paths
+
 
 logging.basicConfig(
     level=logging.INFO,
@@ -255,8 +257,8 @@ def save_manifest(manifest: dict, path: Path) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset", choices=list(DATASETS.keys()) + ["all"], default="all")
-    parser.add_argument("--output-dir", type=Path, default=Path("data/raw"))
-    parser.add_argument("--audit-dir", type=Path, default=Path("data/audit"))
+    parser.add_argument("--output-dir", type=Path, default=Paths.root / "data" / "raw")
+    parser.add_argument("--audit-dir", type=Path, default=Paths.audit)
     parser.add_argument("--audit-only", action="store_true")
     args = parser.parse_args()
 

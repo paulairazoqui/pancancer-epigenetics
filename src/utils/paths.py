@@ -4,14 +4,17 @@ Import from any script: from src.utils.paths import Paths
 """
 
 from pathlib import Path
+
 import yaml
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
+
 def load_paths() -> dict:
     config_file = PROJECT_ROOT / "config" / "paths.yaml"
-    with open(config_file) as f:
+    with open(config_file, encoding="utf-8") as f:
         return yaml.safe_load(f)
+
 
 class Paths:
     root = PROJECT_ROOT
@@ -28,6 +31,7 @@ class Paths:
     interim = root / _cfg["data"]["interim"]
 
     # processed
+    interim    = root / _cfg["data"]["interim"]
     merged     = root / _cfg["data"]["processed"]["merged"]
     splits     = root / _cfg["data"]["processed"]["splits"]
     signatures = root / _cfg["data"]["processed"]["signatures"]
