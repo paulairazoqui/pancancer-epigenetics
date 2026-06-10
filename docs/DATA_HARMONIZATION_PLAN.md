@@ -1,182 +1,381 @@
 ## Purpose
 
-This document outlines the programmatic data harmonization strategy, cross-dataset integration logic, identifier mapping policies, and statistical leakage-prevention protocols implemented across this framework.
+This document defines the data harmonization strategy, integration logic, identifier standardization policies, and leakage-prevention safeguards implemented throughout the Pan-Cancer Epigenetics Framework.
 
-The primary objective is to establish an reproducible, version-controlled, and lineage-aware pipeline for integrating heterogeneous public oncology datasets spanning high-throughput transcriptomics, array-based epigenomics, functional dependencies, and perturbational profiles. This document focuses exclusively on formal data engineering, standardization principles, and analytical interoperability; it does not define downstream modeling architectures or draw biological conclusions.
+The objective is to establish a reproducible, version-controlled, lineage-aware infrastructure capable of integrating heterogeneous public oncology datasets spanning:
 
----
+* DNA methylation,
+* transcriptomics,
+* functional dependencies,
+* pharmacogenomics,
+* perturbational transcriptomics.
 
-## 1. Integration Philosophy & Layered Architecture
+This document focuses exclusively on data engineering, harmonization, interoperability, and quality-control procedures.
 
-To preserve underlying biological signals and minimize technical artifacts, this framework rejects naïve pan-cancer data pooling (e.g., aggregating distinct studies into a single unadjusted matrix). Instead, it abstracts data integration into three complementary, decoupled analytical layers:
-
-### 1.1 Patient Biology Layer
-
-* **Primary Objective:** identify and characterize recurrent epigenetic-transcriptomic programs within human malignancies, enabling lineage-aware biological stratification.
-* **Primary Resources:** The Cancer Genome Atlas (TCGA); engineered for extensibility to independent external validation cohorts.
-
-### 1.2 Functional Translation Layer
-
-* **Primary Objective:** Model baseline associations between patient-derived programs and cellular phenotypes, prioritizing candidate functional vulnerabilities and evaluating cross-dataset screening robustness.
-* **Primary Resources:** Cancer Dependency Map (DepMap) / Cancer Cell Line Encyclopedia (CCLE), GDSC, CTRP, and PRISM.
-
-### 1.3 Perturbational Layer
-
-* **Primary Objective:** Evaluate perturbational signatures inversely associated with candidate programs.
-* **Primary Resources:** Library of Integrated Network-Based Cellular Signatures (LINCS L1000) and the Connectivity Map (CMap).
-* **Boundary Condition:** This layer serves strictly for *in silico* hypothesis generation and does not imply direct clinical or therapeutic validation.
+It does not define biological interpretations, modeling architectures, or downstream analytical claims.
 
 ---
 
-## 2. Dataset Roles & Functional Layout
+# 1. Integration Philosophy
 
-| Dataset | Analytical Role | Entity Type | Primary Curated Features |
-| --- | --- | --- | --- |
-| **TCGA** | Discovery Baseline | Primary Tumors | Epigenetic-transcriptomic program deconvolution |
-| **DepMap / CCLE** | Functional Translation | Cancer Cell Lines | CRISPR/RNAi gene dependencies & baseline molecular profiles |
-| **GDSC** | Pharmacogenomics | Cancer Cell Lines | Small-molecule dose-response curves & sensitivity profiles |
-| **CTRP** | Pharmacogenomics | Cancer Cell Lines | High-throughput chemical sensitivity cross-validation |
-| **PRISM** | Pharmacogenomics | Cancer Cell Lines | Repurposing-focused barcoded drug-screening profiles |
-| **LINCS / CMap** | Perturbational Space | Cell Lines & Clones | High-dimensional differential expression signatures |
+The framework is designed around a central principle:
 
----
+> Biological discovery should originate from primary human tumors and subsequently be translated into functional, pharmacogenomic, and perturbational contexts.
 
-## 3. Reference Harmonization Backbones
+Consequently, the framework rejects naïve pan-cancer pooling and unstructured dataset concatenation.
 
-### 3.1 Gene Identifier Standardization
-
-Gene-level feature integration utilizes HUGO Gene Nomenclature Committee (**HGNC**)-approved official gene symbols as its foundational reference spine.
-
-* **Nomenclature Alignment:** All Ensembl IDs are mapped to current HGNC nomenclature. Historical or deprecated aliases are resolved programmatically.
-* **Conflict Resolution:** Ambiguous or duplicated gene aliases are resolved conservatively (e.g., prioritizing highest mean expression variance or excluding non-unique mappings from confirmatory analyses).
-* **Dimensionality Policy:** Cross-dataset intersection prioritizes genes with robust, continuous representation across all primary modalities over the inflation of the feature space with sparse or missing variables.
-
-### 3.2 Cell-Line Identifier Harmonization
-
-To improve interoperability across functional and pharmacogenomic screening datasets, **DepMap Unique IDs** serve as the primary lookup reference.
-
-* **Cross-Mapping Layers:** Downstream schemas ingest CCLE, Sanger, and COSMIC annotations, mapping them back to the core DepMap ID.
-* **Rigor Checks:** The preprocessing pipeline flags and segregates cell lines characterized by lineage inconsistencies, historically documented cross-contamination, duplicate sub-clones, or model deprecation.
-
-### 3.3 Drug Identifier Harmonization
-
-Small-molecule perturbations and chemical screens are mapped onto a unified ontology containing:
-
-* Standardized chemical names and synonyms (collapsed via conservative string-distance matching).
-* Broad Institute IDs, PubChem Substance/Compound IDs (SIDs/CIDs).
-* Mechanism of Action (MoA) classifications and explicit drug-family annotations.
-* **Leakage Control:** Compounds sharing overlapping chemical scaffolds or target affinity profiles are grouped to monitor drug-family leakage during cross-validation partitioning.
+Instead, integration is organized into four complementary analytical layers.
 
 ---
 
-## 4. Multi-Omic Preprocessing Principles
+# 2. Layered Integration Architecture
 
-### 4.1 Transcriptomic Data
+## 2.1 Tumor Discovery Layer
 
-Raw count matrices and transcripts-per-million (TPM) inputs undergo standardized normalization steps including:
+Primary resources:
 
-* $\log_2(\text{TPM} + 1)$ transformations.
-* Variance-based filtering to isolate highly informative variable features.
-* Lineage-stratified scaling.
-* *Note on Batch Effects:* Computational batch-correction algorithms (e.g., ComBat) are evaluated against biological covariates to prevent the artificial deflation of true tissue-specific signals.
+* TCGA DNA methylation
+* TCGA RNA-seq
 
-### 4.2 DNA Methylation Data
+Primary objective:
 
-Array-based epigenomic profiles (e.g., Illumina HumanMethylation450/EPIC) are subjected to:
+* identify recurrent epigenetic-transcriptomic programs,
+* characterize methylation-expression architectures,
+* quantify lineage-specific and lineage-independent biological variation.
 
-* Probe-level detection $p$-value and quality filtering.
-* CpG annotation harmonization against current genome builds.
-* Spatial aggregation across functional promoter regions and genomic islands.
-* Systematic exclusion of cross-reactive probes and polymorphic CpGs.
+Entity type:
 
-### 4.3 Drug-Response Data
+* primary human tumors
 
-Pharmacogenomic metrics—including Area Under the Curve (AUC), Area Over the Curve (AOC), Half-Maximal Inhibitory Concentration ($IC_{50}$), and automated viability summaries—are kept unmerged during baseline normalization.
+Outputs:
 
-* **Calibration Assessment:** Metric distributions are evaluated for dataset-specific screening shifts before any mathematical synthesis.
-* **Validation Standard:** Cross-dataset validation schemas are prioritized over direct, uncalibrated data concatenation.
+* harmonized methylation matrices,
+* harmonized transcriptomic matrices,
+* integrated tumor multi-omic cohorts.
 
 ---
 
-## 5. Strict Data Leakage Prevention Framework
+## 2.2 Functional Translation Layer
 
-To protect against artificial performance inflation and overoptimistic generalization, the pipeline implements five explicit validation guardrails:
+Primary resources:
 
-```
-                  [ DATA INTEGRATION STREAM ]
-                               │
-       ┌───────────────────────┼───────────────────────┐
-       ▼                       ▼                       ▼
-[ Lineage Safeguard ]  [ Model Separation ]   [ Class Separation ]
- No random pooling;     No shared cell lines   Group drugs by MoA
- Control for tissue      across Train / Eval    to prevent class
- cross-validation.       partitions.            leakage.
+* DepMap
+* CCLE
 
-```
+Primary objective:
 
-* **5.1 Lineage Leakage:** Random pan-cancer splitting strategies are disabled. Because tissue lineage exerts a dominant effect on transcriptional topology, evaluation splits must be structurally lineage-independent or explicitly controlled for lineage configuration.
-* **5.2 Cell-Line Overlap Leakage:** Under no circumstances may identical biological models (cell lines) appear simultaneously in training and evaluation partitions across datasets. Shared lines across overlapping screens (e.g., GDSC and CTRP) are mapped and partitioned as singular validation units.
-* **5.3 Drug-Family Leakage:** Compounds belonging to identical pharmacological classes or sharing explicit targets are segregated during partitioning. Model performance driven by highly correlated chemical classes is isolated from claims of generalized biological discovery.
-* **5.4 Perturbational Leakage:** LINCS transcriptomic signatures induced by compounds directly under evaluation in pharmacogenomic validation modules are isolated to prevent circularity.
-* **5.5 Feature Leakage:** Supervised filtering, post-hoc variable selection, or label-dependent transformations are completely restricted prior to split generation. All feature selection workflows must remain strictly unsupervised or confined strictly within training partitions.
+* project tumor-derived programs into cellular models,
+* evaluate candidate functional vulnerabilities,
+* establish biological correspondence between tumors and cell lines.
 
----
+Entity type:
 
-## 6. Confounding Factor Controls
+* cancer cell lines
 
-The framework implements explicit statistical controls to mitigate the following high-risk confounding variables:
+Outputs:
 
-* Tissue-of-origin lineage imbalances.
-* Background baseline cellular proliferation rates.
-* Tumor purity scores, stromal infiltration, and immune microenvironment contamination (primarily for TCGA primary tumors).
-* Assay heterogeneity, plate-based batch effects, and platform-specific artifacts.
-* Chemical dosage levels and variable drug exposure-time intervals.
-
-All mathematically extracted associations are interpreted through these conservative control boundaries.
+* harmonized expression matrices,
+* dependency matrices,
+* tumor-to-cell-line mapping tables.
 
 ---
 
-## 7. Data Completeness & Missingness Policy
+## 2.3 Pharmacogenomic Layer
 
-Given the fragmented nature of overlapping cross-dataset arrays, the pipeline assumes incomplete data coverage. This framework prioritizes **reproducibility and features stability** over maximal feature retention.
+Primary resources:
 
-* Feature spaces or modalities displaying critical sparsity or insufficient sample intersections will be analyzed as separate, independent validation modules rather than forced into low-confidence integration.
-* Automated data coverage and missingness summary reports are dynamically compiled before any confirmatory downstream evaluation.
+* GDSC
+* CTRP
+* PRISM
+
+Primary objective:
+
+* characterize resistance-like pharmacogenomic contexts,
+* evaluate program–drug associations,
+* assess reproducibility across pharmacological screens.
+
+Entity type:
+
+* drug-response measurements
+
+Outputs:
+
+* harmonized pharmacology tables,
+* drug annotations,
+* cross-screen overlap reports.
 
 ---
 
-## 8. Planned Harmonized Outputs Structure
+## 2.4 Perturbational Layer
 
-The harmonized and standardized outputs are strictly structured within the following directory tree:
+Primary resources:
+
+* LINCS L1000
+* Connectivity Map
+
+Primary objective:
+
+* identify perturbational signatures inversely associated with candidate programs.
+
+Entity type:
+
+* perturbational transcriptional profiles
+
+Outputs:
+
+* harmonized perturbational signatures,
+* connectivity resources.
+
+---
+
+# 3. Dataset Roles
+
+| Dataset          | Role                   | Entity Type | Primary Purpose                      |
+| ---------------- | ---------------------- | ----------- | ------------------------------------ |
+| TCGA Methylation | Discovery              | Tumors      | Epigenetic program discovery         |
+| TCGA RNA-seq     | Discovery              | Tumors      | Transcriptomic program discovery     |
+| DepMap / CCLE    | Functional Translation | Cell lines  | Functional vulnerability mapping     |
+| DepMap CRISPR    | Functional Translation | Cell lines  | Dependency profiling                 |
+| DepMap RNAi      | Functional Translation | Cell lines  | Dependency profiling                 |
+| GDSC             | Pharmacogenomics       | Cell lines  | Drug-response profiling              |
+| CTRP             | Pharmacogenomics       | Cell lines  | Drug-response replication            |
+| PRISM            | Pharmacogenomics       | Cell lines  | Drug-response replication            |
+| LINCS / CMap     | Perturbational         | Cell lines  | Perturbational hypothesis generation |
+
+---
+
+# 4. Harmonization Backbones
+
+## 4.1 Gene Identifier Standardization
+
+HGNC-approved symbols constitute the primary reference framework.
+
+Policies:
+
+* Ensembl IDs mapped to HGNC symbols.
+* Deprecated aliases resolved programmatically.
+* Ambiguous mappings excluded from confirmatory analyses.
+* Harmonization procedures fully versioned.
+
+---
+
+## 4.2 Tumor Sample Harmonization
+
+TCGA barcodes serve as canonical identifiers.
+
+Metadata layers include:
+
+* lineage,
+* tumor type,
+* sample type,
+* purity metrics,
+* clinical annotations when relevant.
+
+---
+
+## 4.3 Cell-Line Harmonization
+
+DepMap ModelID serves as the canonical identifier.
+
+Additional mappings include:
+
+* CCLE identifiers,
+* Sanger identifiers,
+* COSMIC identifiers.
+
+Quality-control procedures flag:
+
+* duplicated models,
+* deprecated models,
+* lineage inconsistencies,
+* contamination reports.
+
+---
+
+## 4.4 Drug Harmonization
+
+Drug entities are harmonized through:
+
+* standardized compound names,
+* PubChem identifiers,
+* Broad identifiers,
+* mechanism-of-action annotations,
+* drug-family annotations.
+
+Drug-family information is retained explicitly to support leakage prevention.
+
+---
+
+# 5. Multi-Omic Harmonization Principles
+
+## 5.1 Transcriptomic Data
+
+Standard processing includes:
+
+* log2(TPM + 1) transformation when applicable,
+* variance filtering,
+* lineage-aware normalization,
+* batch-effect evaluation.
+
+Batch-correction procedures must preserve biological lineage structure.
+
+---
+
+## 5.2 DNA Methylation Data
+
+Standard processing includes:
+
+* probe-level QC,
+* detection p-value filtering,
+* removal of cross-reactive probes,
+* removal of polymorphic CpGs,
+* promoter-level aggregation,
+* gene-level methylation summaries.
+
+Special emphasis is placed on preserving methylation-expression interoperability.
+
+---
+
+## 5.3 Methylation–Expression Integration
+
+A dedicated integration layer is implemented to evaluate:
+
+* promoter methylation versus gene expression,
+* methylation-expression coupling,
+* recurrent epigenetic-transcriptomic architectures.
+
+This integration constitutes a core discovery component rather than a downstream validation exercise.
+
+---
+
+## 5.4 Functional Dependency Data
+
+Dependency matrices remain separated by technology:
+
+* CRISPR
+* RNAi
+
+Cross-platform replication is preferred over naïve merging.
+
+---
+
+## 5.5 Drug-Response Data
+
+Response metrics remain separated during preprocessing.
+
+Examples:
+
+* LN_IC50
+* AUC
+* viability summaries
+
+Cross-screen validation is prioritized over metric fusion.
+
+---
+
+# 6. Data Leakage Prevention Framework
+
+The framework explicitly guards against:
+
+## 6.1 Lineage Leakage
+
+Random pan-cancer partitioning is prohibited.
+
+Lineage-aware evaluation strategies are required.
+
+---
+
+## 6.2 Cell-Line Overlap Leakage
+
+Shared cell lines across datasets must be tracked and controlled.
+
+A biological model cannot appear simultaneously in discovery and validation partitions.
+
+---
+
+## 6.3 Drug-Family Leakage
+
+Compounds sharing targets or mechanisms must be grouped during validation procedures.
+
+---
+
+## 6.4 Perturbational Leakage
+
+Compounds evaluated in pharmacogenomic analyses must be isolated from perturbational evaluation procedures when circularity risks exist.
+
+---
+
+## 6.5 Feature Leakage
+
+Feature selection, filtering, normalization, and transformation procedures must respect training/validation boundaries.
+
+---
+
+# 7. Confounder Control Framework
+
+Major confounders explicitly tracked include:
+
+* lineage,
+* proliferation,
+* tumor purity,
+* immune infiltration,
+* stromal contamination,
+* batch effects,
+* sequencing platform effects,
+* drug-exposure variables.
+
+All downstream analyses must document how these factors were evaluated.
+
+---
+
+# 8. Missingness Policy
+
+The framework prioritizes:
+
+> reproducibility and biological robustness over maximal feature retention.
+
+Sparse modalities may be analyzed as independent validation layers rather than forced into low-confidence integrations.
+
+Coverage reports are generated for every harmonized dataset.
+
+---
+
+# 9. Harmonized Output Structure
 
 ```text
 data/
-├── raw/                             # Immutable raw source data dumps
-├── interim/                         # Standardized and mapped data matrices
-│   ├── metadata/                    # Unified sample and compound indices
-│   ├── harmonized_expression/       # Transformed, log-scaled transcriptomics
-│   ├── harmonized_methylation/      # Filtered CpG promoter-aggregated matrices
-│   ├── harmonized_drug_response/    # Standardized pharmacogenomic profiles
-│   ├── lineage_annotations/         # Curated tissue ontologies
-│   ├── overlap_tables/              # Calculated intersections across layers
-│   └── quality_control/             # Profiling and pre-filtered quality reports
-└── processed/                       # Ready-to-model analytical inputs
-    ├── signatures/                  # Extracted continuous gene sets
-    ├── program_scores/              # Quantified matrix factorization weights
-    ├── perturbational_results/      # Small-molecule connectivity mappings
-    └── modeling_inputs/             # Lineage-controlled matrix configurations
-
+├── raw/
+├── interim/
+│   ├── metadata/
+│   ├── harmonized_expression/
+│   ├── harmonized_methylation/
+│   ├── harmonized_dependencies/
+│   ├── harmonized_drug_response/
+│   ├── harmonized_perturbational/
+│   ├── lineage_annotations/
+│   ├── overlap_tables/
+│   └── quality_control/
+│
+└── processed/
+    ├── tumor_programs/
+    ├── methylation_expression_modules/
+    ├── program_scores/
+    ├── vulnerability_associations/
+    ├── pharmacogenomic_associations/
+    ├── perturbational_results/
+    └── modeling_inputs/
 ```
 
 ---
 
-## 9. Scope Limitations & Boundary Declarations
+# 10. Scope Limitations
 
-In alignment with our conservative scientific framing, this integration plan is explicitly **restricted** from:
+This harmonization framework is explicitly restricted from:
 
-* Inferring definitive causal or single-gene biological mechanisms.
-* Reconstructing longitudinal or clonal adaptive evolutionary trajectories.
-* Directly predicting real-world patient survival curves or clinical outcomes.
-* Establishing or claiming clinical biomarker utility and therapeutic drug efficacy.
+* causal inference,
+* clinical outcome prediction,
+* therapeutic efficacy claims,
+* biomarker validation,
+* adaptive evolutionary reconstruction.
 
-This framework functions exclusively to identify robust, recurrent computational associations across public high-throughput datasets. All downstream interpretations remain restricted to hypothesis-generating frameworks tailored to survive rigorous, reviewer-level scrutiny.
+The sole purpose of this infrastructure is to provide a reproducible foundation for identifying recurrent epigenetic-transcriptomic programs and evaluating their associations across multiple independent biological layers.
