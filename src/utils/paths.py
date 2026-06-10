@@ -48,6 +48,11 @@ class Paths:
     root = PROJECT_ROOT
     _cfg = load_paths()
 
+    # configuration
+    config = root / "config"
+    paths_config = config / "paths.yaml"
+    raw_data_registry = config / "raw_data_registry.json"
+
     # raw source datasets
     depmap = root / _cfg["data"]["raw"]["depmap"]
     gdsc = root / _cfg["data"]["raw"]["gdsc"]
@@ -82,3 +87,6 @@ class Paths:
     paper1 = root / _cfg["results"]["paper1"]
     paper2 = root / _cfg["results"]["paper2"]
     supplementary = root / _cfg["results"]["supplementary"]
+    
+    # backward-compatible audit alias
+    audit = qc
