@@ -78,6 +78,7 @@ This migration used `roadmap.md` v3.0 as the source of truth for the biological-
 - Created `results/paper1/`
 - Created `results/paper2/`
 - Created `results/supplementary/`
+- Follow-up cleanup added manuscript-ready subfolders under each result grouping: `figures/` and `tables/` for `paper1`, `paper2`, and `supplementary`.
 
 ## Created or moved `.gitkeep` files
 
@@ -91,7 +92,7 @@ This migration used `roadmap.md` v3.0 as the source of truth for the biological-
 - `data/README.md`: documented roadmap v3.0 data conventions.
 - `notebooks/phase1_data_acquisition_and_auditing/audit.ipynb`: moved out of `data/` and updated stale output text to the new raw dataset key names.
 - `docs/language_normalization_audit.md`: updated the moved download script path.
-- `docs/wrokflow.md`: updated the audit manifest path to `data/interim/qc`.
+- `docs/workflow.md`: renamed from the typo-named workflow document during follow-up cleanup and retains the updated audit manifest path to `data/interim/qc`.
 - `notebooks/README.md`: documented v3.0 notebook phase directories.
 - `notebooks/phase3_cell_line_discovery_layer/20_cross_dataset_overlap_analysis.ipynb`: updated the upstream notebook path reference and changed the created QC directory from the obsolete `reports/phase2_eda` path to `Paths.qc`.
 - `notebooks/phase3_cell_line_discovery_layer/30_model-level_transcriptome–phenotype_integration.ipynb`: updated the output path reference from the removed `Paths.merged` alias to `Paths.interim`.
