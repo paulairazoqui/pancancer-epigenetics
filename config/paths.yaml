@@ -3,19 +3,32 @@ data:
   raw:
     depmap: data/raw/depmap
     gdsc: data/raw/gdsc
+    ctrp: data/raw/ctrp
     prism: data/raw/prism
-    lincs_cmap: data/raw/lincs_cmap
-    tcga_gdc: data/raw/tcga_gdc
-  interim: data/interim  
+    tcga: data/raw/tcga
+    lincs: data/raw/lincs
+    cell_model_passports: data/raw/cell_model_passports
+    chembl: data/raw/chembl
+    drugbank: data/raw/drugbank
+  interim:
+    root: data/interim
+    metadata: data/interim/metadata
+    expression: data/interim/expression
+    methylation: data/interim/methylation
+    dependencies: data/interim/dependencies
+    pharmacology: data/interim/pharmacology
+    perturbational: data/interim/perturbational
+    qc: data/interim/qc
   processed:
-    merged: data/processed/merged
-    splits: data/processed/splits
-    signatures: data/processed/signatures
-  interim: data/interim
-  audit: data/audit
+    tumor_programs: data/processed/tumor_programs
+    cellline_programs: data/processed/cellline_programs
+    consensus_programs: data/processed/consensus_programs
+    functional_vulnerabilities: data/processed/functional_vulnerabilities
+    pharmacogenomic_contexts: data/processed/pharmacogenomic_contexts
+    perturbational_hypotheses: data/processed/perturbational_hypotheses
+    validation: data/processed/validation
 
 results:
-  figures: results/figures
-  tables: results/tables
-  models: results/models
-  drug_ranking: results/drug_ranking
+  paper1: results/paper1
+  paper2: results/paper2
+  supplementary: results/supplementary
