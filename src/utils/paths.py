@@ -87,6 +87,6 @@ class Paths:
     paper1 = root / _cfg["results"]["paper1"]
     paper2 = root / _cfg["results"]["paper2"]
     supplementary = root / _cfg["results"]["supplementary"]
-    
+
     # backward-compatible audit alias
     audit = qc
