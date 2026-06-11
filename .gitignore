@@ -1,43 +1,68 @@
-# Raw and derived data (too large for git)
-data/raw/cell_model_passports/*
-data/raw/chembl/*
-data/raw/ctrp/*
-data/raw/depmap/*
-data/raw/drugbank/*
-data/raw/gdsc/*
-data/raw/lincs/*
-data/raw/prism/*
-data/raw/tcga/*
-data/interim/*
-data/processed/*
+# ------------------------------------------------------------
+# Data files
+# ------------------------------------------------------------
+# Raw source datasets are not version-controlled.
+data/raw/**/*
+!data/raw/**/
+!data/raw/**/.gitkeep
 
-!data/raw/cell_model_passports/**/.gitkeep
-!data/raw/chembl/**/.gitkeep
-!data/raw/ctrp/**/.gitkeep
-!data/raw/depmap/**/.gitkeep
-!data/raw/drugbank/**/.gitkeep
-!data/raw/gdsc/**/.gitkeep
-!data/raw/lincs/**/.gitkeep
-!data/raw/prism/**/.gitkeep
-!data/raw/tcga/**/.gitkeep
-!data/interim/.gitkeep
+# Interim derived artifacts are not version-controlled.
+# Directory structure is preserved via .gitkeep files.
+data/interim/**/*
 !data/interim/**/
 !data/interim/**/.gitkeep
-!data/processed/.gitkeep
+
+# Processed analytical outputs are not version-controlled.
+# Directory structure is preserved via .gitkeep files.
+data/processed/**/*
 !data/processed/**/
 !data/processed/**/.gitkeep
 
-# Serialized models
-results/models/checkpoints/
-results/models/shap_values/
 
-# Environments
-.env
+# ------------------------------------------------------------
+# Manuscript-ready results
+# ------------------------------------------------------------
+# Keep manuscript-ready results trackable by default.
+# Add specific ignore rules here only for large temporary files.
+results/**/.ipynb_checkpoints/
+results/**/~*
+results/**/*.tmp
+
+
+# ------------------------------------------------------------
+# Python / notebook cache
+# ------------------------------------------------------------
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
 .ipynb_checkpoints/
 *.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+
+# ------------------------------------------------------------
+# Environments
+# ------------------------------------------------------------
+.env
+.venv/
+venv/
+env/
+
+
+# ------------------------------------------------------------
+# Build / distribution artifacts
+# ------------------------------------------------------------
 dist/
 build/
+*.egg-info/
+
+
+# ------------------------------------------------------------
+# OS / editor files
+# ------------------------------------------------------------
 .DS_Store
+Thumbs.db
+.vscode/
+.idea/
