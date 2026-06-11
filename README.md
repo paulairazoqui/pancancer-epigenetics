@@ -1,8 +1,5 @@
 # pancancer-epigenetics
 
-
-\
-
 A lineage-aware computational oncology framework for discovering recurrent epigenetic-transcriptomic programs across diverse malignancies and evaluating their computational associations with resistance-like pharmacogenomic contexts, candidate functional vulnerabilities, and perturbational hypotheses.
 
 ---
@@ -109,23 +106,29 @@ Large raw and derived data files are not version-controlled. Directory structure
 
 ## Environment Setup
 
+This project is developed and tested using **Python 3.11.x**.
+
+The original local development environment used Python 3.11.8. Any later patch release within the Python 3.11 series is expected to be appropriate, provided that the dependencies in `requirements.txt` install successfully.
+
 This project requires a Python environment with the dependencies listed in `requirements.txt`.
 
-Create a local Python virtual environment using `venv`, activate it, and then install the project dependencies. For example, from the repository root:
+Create a local Python virtual environment using `venv`, activate it, and then install the project dependencies. From the repository root:
 
 ```powershell
-python -m venv .venv
+py -3.11 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
+
+
 
 ## Reproducing the Repository Workflow
 
 A minimal reproducibility sequence is:
 
 1. Clone the repository.
-2. Create and activate the local `.venv`.
+2. Create and activate the local `.venv` using Python 3.11.x.
 3. Install dependencies from `requirements.txt`.
 4. Download or place raw datasets into the appropriate `data/raw/<source>/` folders according to `config/raw_data_registry.json`.
 5. Run the Phase 1 notebooks to confirm source availability and raw-file auditing.
