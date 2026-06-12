@@ -11,3 +11,5 @@ jupyter
 ipykernel
 tqdm
 requests
+umap-learn
+hdbscan
