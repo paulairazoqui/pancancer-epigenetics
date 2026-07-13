@@ -50,6 +50,16 @@
     "release": "GDC Data Portal query export, 2026-06-12",
     "download_page_url": "https://portal.gdc.cancer.gov/repository",
     "retrieval_method": "GDC Data Portal query-derived cohort export",
+    "query": {
+      "program": "TCGA",
+      "data_category": "Transcriptome Profiling",
+      "data_type": "Gene Expression Quantification",
+      "experimental_strategy": "RNA-Seq",
+      "workflow_type": "STAR - Counts",
+      "access": "Open",
+      "tissue_type": "Tumor",
+      "tumor_descriptor": "Primary"
+    },
     "files": {
       "gdc_manifest_tcga_primary_tumor_rnaseq_star_counts.txt": {
         "file_url": "GDC Data Portal manifest generated from query filters",
