@@ -1,0 +1,48 @@
+{
+  "cohort_name": "tcga_primary_tumor_rnaseq_star_counts",
+  "source_database": "Genomic Data Commons (GDC)",
+  "provider": "National Cancer Institute",
+  "release": "GDC Data Portal query export, 2026-06-12",
+  "retrieval_method": "GDC Data Portal query-derived cohort export",
+  "download_page_url": "https://portal.gdc.cancer.gov/repository",
+  "filters": {
+    "program": "TCGA",
+    "data_category": "Transcriptome Profiling",
+    "data_type": "Gene Expression Quantification",
+    "experimental_strategy": "RNA-Seq",
+    "workflow_type": "STAR - Counts",
+    "access": "Open",
+    "tissue_type": "Tumor",
+    "tumor_descriptor": "Primary"
+  },
+  "raw_inputs": {
+    "manifest": {
+      "path": "data/raw/tcga/gdc_manifest_tcga_primary_tumor_rnaseq_star_counts.txt",
+      "sha256": "3fcbb6353753d47a851826005500ca6de7f58a3734479075e390bd33e712cc3d"
+    },
+    "sample_sheet": {
+      "path": "data/raw/tcga/gdc_sample_sheet_tcga_primary_tumor_rnaseq_star_counts.tsv",
+      "sha256": "bcb922f064d2aa4c60c4f10f1afd0ebe6db657a8d7740e7cc3f3ac3537473fd4"
+    },
+    "metadata_json": {
+      "path": "data/raw/tcga/gdc_metadata_tcga_primary_tumor_rnaseq_star_counts.json",
+      "sha256": "7656b10f8d45fad4d33af9fccfd50ea48884b76569dc9f5e5f24ff3146e762fc"
+    }
+  },
+  "cohort_counts": {
+    "n_files": 10308,
+    "n_projects": 33,
+    "n_cases": 10122,
+    "n_samples": 10174,
+    "total_file_size_bytes": 43671957963,
+    "total_file_size_gib": 40.673
+  },
+  "versioned_outputs": {
+    "manifest": "config/manifests/gdc_manifest_tcga_primary_tumor_rnaseq_star_counts.txt",
+    "sample_sheet": "config/manifests/gdc_sample_sheet_tcga_primary_tumor_rnaseq_star_counts.tsv",
+    "file_index": "config/manifests/gdc_file_index_tcga_primary_tumor_rnaseq_star_counts.tsv",
+    "cohort_freeze": "config/manifests/gdc_cohort_freeze_tcga_primary_tumor_rnaseq_star_counts.json"
+  },
+  "reproducibility_note": "This TCGA cohort was generated from a GDC Data Portal query. Because portal queries are dynamic, the version-controlled manifest and file index define the exact frozen file-level cohort used by this repository.",
+  "scientific_scope": "Tumor-level discovery input for recurrent transcriptomic program analysis. This cohort freeze does not imply clinical resistance prediction, causal inference, or therapeutic validation."
+}
