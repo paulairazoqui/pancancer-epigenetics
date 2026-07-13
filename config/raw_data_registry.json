@@ -62,14 +62,17 @@
     },
     "files": {
       "gdc_manifest_tcga_primary_tumor_rnaseq_star_counts.txt": {
+        "role": "manifest",
         "file_url": "GDC Data Portal manifest generated from query filters",
         "description": "Frozen file-level manifest for TCGA primary tumor RNA-seq STAR Counts cohort"
       },
       "gdc_sample_sheet_tcga_primary_tumor_rnaseq_star_counts.tsv": {
+        "role": "sample_sheet",
         "file_url": "GDC Data Portal sample sheet generated from query filters",
         "description": "GDC sample sheet for the frozen TCGA primary tumor RNA-seq STAR Counts cohort"
       },
       "gdc_metadata_tcga_primary_tumor_rnaseq_star_counts.json": {
+        "role": "metadata_json",
         "file_url": "GDC Data Portal metadata export generated from query filters",
         "description": "Full GDC metadata JSON for the frozen TCGA primary tumor RNA-seq STAR Counts cohort"
       }
