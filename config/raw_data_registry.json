@@ -45,10 +45,25 @@
     "files": {}
   },
   "tcga": {
-    "source_database": null,
-    "release": null,
-    "download_page_url": null,
-    "files": {}
+    "source_database": "Genomic Data Commons (GDC)",
+    "provider": "National Cancer Institute",
+    "release": "GDC Data Portal query export, 2026-06-12",
+    "download_page_url": "https://portal.gdc.cancer.gov/repository",
+    "retrieval_method": "GDC Data Portal query-derived cohort export",
+    "files": {
+      "gdc_manifest_tcga_primary_tumor_rnaseq_star_counts.txt": {
+        "file_url": "GDC Data Portal manifest generated from query filters",
+        "description": "Frozen file-level manifest for TCGA primary tumor RNA-seq STAR Counts cohort"
+      },
+      "gdc_sample_sheet_tcga_primary_tumor_rnaseq_star_counts.tsv": {
+        "file_url": "GDC Data Portal sample sheet generated from query filters",
+        "description": "GDC sample sheet for the frozen TCGA primary tumor RNA-seq STAR Counts cohort"
+      },
+      "gdc_metadata_tcga_primary_tumor_rnaseq_star_counts.json": {
+        "file_url": "GDC Data Portal metadata export generated from query filters",
+        "description": "Full GDC metadata JSON for the frozen TCGA primary tumor RNA-seq STAR Counts cohort"
+      }
+    }
   },
   "lincs": {
     "source_database": null,
