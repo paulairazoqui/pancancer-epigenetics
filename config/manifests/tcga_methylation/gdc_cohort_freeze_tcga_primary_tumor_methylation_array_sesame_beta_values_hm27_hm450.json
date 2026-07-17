@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0",
+  "cohort_name": "tcga_primary_tumor_methylation_array_sesame_beta_values_hm27_hm450",
+  "created_at_utc": "2026-07-17T20:37:36.353654+00:00",
+  "created_by_notebook": "105_tcga_methylation_cohort_freeze.ipynb",
+  "source": {
+    "database": "Genomic Data Commons",
+    "program": "TCGA",
+    "source_export_scope": "all available methylation platforms",
+    "raw_inputs": {
+      "manifest": {
+        "path": "config/manifests/tcga_methylation/gdc_manifest_tcga_primary_tumor_methylation_array_sesame_beta_values.txt",
+        "sha256": "ec6bc909777e46285f3489ca031c7fa1269c35f463d86fc3e128ef386cddaad6",
+        "size_bytes": 1813169
+      },
+      "sample_sheet": {
+        "path": "config/manifests/tcga_methylation/gdc_sample_sheet_tcga_primary_tumor_methylation_array_sesame_beta_values.tsv",
+        "sha256": "f7dfd89c23f5251ec7f2ff0b133cfc2fcb695e8ccc8445ebfe31bee75d35e10b",
+        "size_bytes": 2474092
+      },
+      "metadata": {
+        "path": "config/manifests/tcga_methylation/gdc_metadata_tcga_primary_tumor_methylation_array_sesame_beta_values.json",
+        "sha256": "c4e64ab0fd4f090c36d5f82d86b1cffa39017ed2777d6d7b12d8b28de7b25718",
+        "size_bytes": 14750520
+      }
+    }
+  },
+  "gdc_filters": {
+    "program": "TCGA",
+    "data_category": "DNA Methylation",
+    "data_type": "Methylation Beta Value",
+    "experimental_strategy": "Methylation Array",
+    "workflow_type": "SeSAMe Methylation Beta Estimation",
+    "data_format": "TXT",
+    "access": "open",
+    "tissue_type": "Tumor",
+    "tumor_descriptor": "Primary"
+  },
+  "platform_acquisition_decision": {
+    "decision_source_notebook": "104_tcga_methylation_coverage_assessment.ipynb",
+    "acquisition_scope": "source-complete",
+    "included_platforms": [
+      "Illumina Human Methylation 27",
+      "Illumina Human Methylation 450"
+    ],
+    "excluded_platforms": [
+      "Illumina Methylation Epic v2"
+    ],
+    "excluded_file_count": 53,
+    "rationale": "HM27 is retained because it provides substantial incremental case coverage in several TCGA projects, including OV and GBM. HM450 is retained as the principal high-density platform. EPICv2 is excluded because its 53 files add no exclusive cases and would introduce a third probe space without increasing case-level coverage.",
+    "deferred_decisions": [
+      "one sample or aliquot per case",
+      "sample-level methylation quality control",
+      "probe-level quality control",
+      "cross-platform feature harmonization",
+      "cross-platform normalization or correction"
+    ]
+  },
+  "source_cohort_counts": {
+    "n_files": 10950,
+    "n_aliquots": 10756,
+    "n_samples": 10656,
+    "n_cases": 10610,
+    "n_projects": 33,
+    "total_file_size_bytes": 115957815135,
+    "total_file_size_gib": 107.994131
+  },
+  "frozen_cohort_counts": {
+    "n_files": 10897,
+    "n_aliquots": 10703,
+    "n_samples": 10656,
+    "n_cases": 10610,
+    "n_projects": 33,
+    "total_file_size_bytes": 114606561259,
+    "total_file_size_gib": 106.735678,
+    "platform_counts": [
+      {
+        "platform": "Illumina Human Methylation 27",
+        "n_files": 2279,
+        "n_aliquots": 2279,
+        "n_samples": 2271,
+        "n_cases": 2270,
+        "total_file_size_bytes": 1752659375,
+        "total_file_size_gib": 1.632291
+      },
+      {
+        "platform": "Illumina Human Methylation 450",
+        "n_files": 8618,
+        "n_aliquots": 8618,
+        "n_samples": 8598,
+        "n_cases": 8555,
+        "total_file_size_bytes": 112853901884,
+        "total_file_size_gib": 105.103386
+      }
+    ]
+  },
+  "versioned_outputs": {
+    "manifest": {
+      "path": "config/manifests/tcga_methylation/gdc_manifest_tcga_primary_tumor_methylation_array_sesame_beta_values_hm27_hm450.txt",
+      "sha256": "9138d9c9010005da57abfa02bba49248111405d1c84b914f53d9223da60eaa0a",
+      "n_rows": 10897
+    },
+    "sample_sheet": {
+      "path": "config/manifests/tcga_methylation/gdc_sample_sheet_tcga_primary_tumor_methylation_array_sesame_beta_values_hm27_hm450.tsv",
+      "sha256": "a8da01adcede092be39a8996a323e958bf92a42e608ebc3cf912937b92659021",
+      "n_rows": 10897
+    },
+    "file_index": {
+      "path": "config/manifests/tcga_methylation/gdc_file_index_tcga_primary_tumor_methylation_array_sesame_beta_values_hm27_hm450.tsv",
+      "sha256": "f325bf27b670b8365c1fd80df210dfcd98ae59e223a3c5a74fb20d09a4668f77",
+      "n_rows": 10897
+    },
+    "cohort_freeze": {
+      "path": "config/manifests/tcga_methylation/gdc_cohort_freeze_tcga_primary_tumor_methylation_array_sesame_beta_values_hm27_hm450.json"
+    }
+  },
+  "reproducibility_note": "The source GDC exports are immutable provenance inputs. The version-controlled HM27/HM450 manifest and file index define the operational file-level methylation cohort used by this repository.",
+  "scientific_scope": "This artifact freezes the methylation acquisition cohort. It does not perform sample selection, methylation quality control, probe filtering, platform harmonization, biological modeling, causal inference, or therapeutic validation."
+}
