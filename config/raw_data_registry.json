@@ -47,34 +47,69 @@
   "tcga": {
     "source_database": "Genomic Data Commons (GDC)",
     "provider": "National Cancer Institute",
-    "release": "GDC Data Portal query export, 2026-06-12",
     "download_page_url": "https://portal.gdc.cancer.gov/repository",
     "retrieval_method": "GDC Data Portal query-derived cohort export",
-    "query": {
-      "program": "TCGA",
-      "data_category": "Transcriptome Profiling",
-      "data_type": "Gene Expression Quantification",
-      "experimental_strategy": "RNA-Seq",
-      "workflow_type": "STAR - Counts",
-      "access": "Open",
-      "tissue_type": "Tumor",
-      "tumor_descriptor": "Primary"
-    },
-    "files": {
-      "gdc_manifest_tcga_primary_tumor_rnaseq_star_counts.txt": {
-        "role": "manifest",
-        "file_url": "GDC Data Portal manifest generated from query filters",
-        "description": "Frozen file-level manifest for TCGA primary tumor RNA-seq STAR Counts cohort"
+    "cohorts": {
+      "rnaseq_star_counts": {
+        "release": "GDC Data Portal query export, 2026-06-12",
+        "canonical_dir": "config/manifests/tcga_rna",
+        "filters": {
+          "program": "TCGA",
+          "data_category": "Transcriptome Profiling",
+          "data_type": "Gene Expression Quantification",
+          "experimental_strategy": "RNA-Seq",
+          "workflow_type": "STAR - Counts",
+          "access": "Open",
+          "tissue_type": "Tumor",
+          "tumor_descriptor": "Primary"
+        },
+        "files": {
+          "gdc_manifest_tcga_primary_tumor_rnaseq_star_counts.txt": {
+            "role": "manifest",
+            "file_url": "GDC Data Portal manifest generated from query filters",
+            "description": "Frozen file-level manifest for TCGA primary tumor RNA-seq STAR Counts cohort"
+          },
+          "gdc_sample_sheet_tcga_primary_tumor_rnaseq_star_counts.tsv": {
+            "role": "sample_sheet",
+            "file_url": "GDC Data Portal sample sheet generated from query filters",
+            "description": "GDC sample sheet for the frozen TCGA primary tumor RNA-seq STAR Counts cohort"
+          },
+          "gdc_metadata_tcga_primary_tumor_rnaseq_star_counts.json": {
+            "role": "metadata_json",
+            "file_url": "GDC Data Portal metadata export generated from query filters",
+            "description": "Full GDC metadata JSON for the frozen TCGA primary tumor RNA-seq STAR Counts cohort"
+          }
+        }
       },
-      "gdc_sample_sheet_tcga_primary_tumor_rnaseq_star_counts.tsv": {
-        "role": "sample_sheet",
-        "file_url": "GDC Data Portal sample sheet generated from query filters",
-        "description": "GDC sample sheet for the frozen TCGA primary tumor RNA-seq STAR Counts cohort"
-      },
-      "gdc_metadata_tcga_primary_tumor_rnaseq_star_counts.json": {
-        "role": "metadata_json",
-        "file_url": "GDC Data Portal metadata export generated from query filters",
-        "description": "Full GDC metadata JSON for the frozen TCGA primary tumor RNA-seq STAR Counts cohort"
+      "methylation_array_sesame_beta_values": {
+        "release": "GDC Data Portal query export, 2026-07-17",
+        "canonical_dir": "config/manifests/tcga_methylation",
+        "filters": {
+          "program": "TCGA",
+          "access": "Open",
+          "tumor_descriptor": "Primary",
+          "data_category": "DNA Methylation",
+          "experimental_strategy": "Methylation Array",
+          "data_type": "Methylation Beta Value",
+          "workflow_type": "SeSAMe Methylation Beta Estimation"
+        },
+        "files": {
+          "gdc_manifest_tcga_primary_tumor_methylation_array_sesame_beta_values.txt": {
+            "role": "manifest",
+            "file_url": "GDC Data Portal manifest generated from query filters",
+            "description": "Frozen file-level manifest for TCGA primary tumor methylation array SeSAMe beta values cohort"
+          },
+          "gdc_sample_sheet_tcga_primary_tumor_methylation_array_sesame_beta_values.tsv": {
+            "role": "sample_sheet",
+            "file_url": "GDC Data Portal sample sheet generated from query filters",
+            "description": "GDC sample sheet for the frozen TCGA primary tumor methylation array SeSAMe beta values cohort"
+          },
+          "gdc_metadata_tcga_primary_tumor_methylation_array_sesame_beta_values.json": {
+            "role": "metadata_json",
+            "file_url": "GDC Data Portal metadata export generated from query filters",
+            "description": "Full GDC metadata JSON for the frozen TCGA primary tumor methylation array SeSAMe beta values cohort"
+          }
+        }
       }
     }
   },
