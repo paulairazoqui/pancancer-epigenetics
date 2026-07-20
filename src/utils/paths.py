@@ -5,6 +5,8 @@ Import from any script: from src.utils.paths import Paths
 
 from pathlib import Path
 
+from utils.file_checks import to_project_relative_posix_path
+
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 
@@ -90,3 +92,10 @@ class Paths:
 
     # backward-compatible audit alias
     audit = qc
+
+def project_relative_path(path: Path) -> str:
+    """Return a portable project-relative path."""
+    return to_project_relative_posix_path(
+        path,
+        PROJECT_ROOT,
+    )
