@@ -14,8 +14,6 @@ data/interim/**
 
 # Processed analytical outputs are not version-controlled.
 # Directory structure is preserved via .gitkeep files.
-data\processed\merged\30_analysis_cohort.csv
-data/processed/merged/30_integrated_analysis_matrix.parquet
 data/processed/**
 !data/processed/**/
 !data/processed/**/.gitkeep
