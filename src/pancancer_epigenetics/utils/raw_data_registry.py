@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from src.utils.paths import Paths
+from pancancer_epigenetics.utils.paths import Paths
 
 Registry = dict[str, Any]
 

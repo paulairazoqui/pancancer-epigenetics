@@ -1,13 +1,15 @@
 """
 utils/paths.py – Project path resolution.
-Import from any script: from src.utils.paths import Paths
+Import from any script: from pancancer_epigenetics.utils.paths import Paths
 """
 
 from pathlib import Path
 
-from src.utils.file_checks import to_project_relative_posix_path
+from pancancer_epigenetics.utils.file_checks import (
+    to_project_relative_posix_path,
+)
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 
 
 def load_paths() -> dict:

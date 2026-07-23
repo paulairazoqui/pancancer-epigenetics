@@ -1,13 +1,8 @@
-import sys
 from pathlib import Path
 
 import pytest
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.append(str(PROJECT_ROOT))
-
-from src.utils.raw_data_registry import (
+from pancancer_epigenetics.utils.raw_data_registry import (
     get_cohort,
     get_dataset,
     get_file_by_role,
