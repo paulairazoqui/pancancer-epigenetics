@@ -119,9 +119,8 @@ py -3.11 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
+python -m pip install -e .
 ```
-
-
 
 ## Reproducing the Repository Workflow
 
@@ -129,7 +128,7 @@ A minimal reproducibility sequence is:
 
 1. Clone the repository.
 2. Create and activate the local `.venv` using Python 3.11.x.
-3. Install dependencies from `requirements.txt`.
+3. Install the dependencies from `requirements.txt` and install the repository package in editable mode with `python -m pip install -e .`.
 4. Download or place raw datasets into the appropriate `data/raw/<source>/` folders according to `config/raw_data_registry.json`.
 5. Run the Phase 1 notebooks to confirm source availability and raw-file auditing.
 6. Run downstream notebooks in numerical order within each roadmap phase.
