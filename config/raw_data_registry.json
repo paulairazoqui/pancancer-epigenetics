@@ -111,6 +111,99 @@
           }
         }
       }
+    },
+    "external_resources": {
+      "estimate": {
+        "source_database": "Nature Communications supplementary data",
+        "provider": "Springer Nature",
+        "publication_title": "Inferring tumour purity and stromal and immune cell admixture from expression data",
+        "publication_year": 2013,
+        "doi": "10.1038/ncomms3612",
+        "download_page_url": "https://www.nature.com/articles/ncomms3612",
+        "retrieval_method": "Manual download from the publication supplementary-information section",
+        "canonical_dir": "data/raw/tcga/confounders",
+        "files": {
+          "41467_2013_BFncomms3612_MOESM488_ESM.xlsx": {
+            "supplement": "Supplementary Data 1",
+            "role": "supporting_signature_definition",
+            "file_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fncomms3612/MediaObjects/41467_2013_BFncomms3612_MOESM488_ESM.xlsx",
+            "description": "Gene lists defining the stromal and immune ESTIMATE signatures; supporting resource rather than a sample-level covariate table"
+          },
+          "41467_2013_BFncomms3612_MOESM489_ESM.xlsx": {
+            "supplement": "Supplementary Data 2",
+            "role": "candidate_sample_level_confounder_input",
+            "file_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fncomms3612/MediaObjects/41467_2013_BFncomms3612_MOESM489_ESM.xlsx",
+            "description": "Precomputed TCGA stromal, immune, ESTIMATE, and expression-derived tumor-purity scores across Affymetrix, Agilent, RNA-seq, and RNASeqV2 sheets"
+          },
+          "41467_2013_BFncomms3612_MOESM490_ESM.xlsx": {
+            "supplement": "Supplementary Note 1",
+            "role": "provenance_only",
+            "file_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fncomms3612/MediaObjects/41467_2013_BFncomms3612_MOESM490_ESM.xlsx",
+            "description": "List of TCGA Research Network contributors; not an analytical input"
+          }
+        }
+      },
+      "consensus_purity_estimate": {
+        "source_database": "Nature Communications supplementary data",
+        "provider": "Springer Nature",
+        "publication_title": "Systematic pan-cancer analysis of tumour purity",
+        "publication_year": 2015,
+        "doi": "10.1038/ncomms9971",
+        "download_page_url": "https://www.nature.com/articles/ncomms9971",
+        "retrieval_method": "Manual download from the publication supplementary-information section",
+        "canonical_dir": "data/raw/tcga/confounders",
+        "files": {
+          "41467_2015_BFncomms9971_MOESM1236_ESM.xlsx": {
+            "supplement": "Supplementary Data 1",
+            "role": "candidate_primary_tumor_purity_input",
+            "file_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fncomms9971/MediaObjects/41467_2015_BFncomms9971_MOESM1236_ESM.xlsx",
+            "description": "Sample-level TCGA purity estimates from ESTIMATE, ABSOLUTE, LUMP, IHC, and the consensus purity estimate (CPE)"
+          },
+          "41467_2015_BFncomms9971_MOESM1237_ESM.xlsx": {
+            "supplement": "Supplementary Data 2",
+            "role": "supporting_publication_result",
+            "file_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fncomms9971/MediaObjects/41467_2015_BFncomms9971_MOESM1237_ESM.xlsx",
+            "description": "Cancer-type clinical-feature associations with tumor-purity estimates; not a sample-level confounder input"
+          },
+          "41467_2015_BFncomms9971_MOESM1238_ESM.xlsx": {
+            "supplement": "Supplementary Data 3",
+            "role": "supporting_publication_result",
+            "file_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fncomms9971/MediaObjects/41467_2015_BFncomms9971_MOESM1238_ESM.xlsx",
+            "description": "Gene-rank changes in differential-expression analyses after purity adjustment; not a sample-level confounder input"
+          }
+        }
+      },
+      "panimmune_leukocyte_fraction": {
+        "source_database": "NCI Genomic Data Commons publication resources",
+        "provider": "National Cancer Institute",
+        "publication_title": "The Immune Landscape of Cancer",
+        "publication_year": 2018,
+        "doi": "10.1016/j.immuni.2018.03.023",
+        "download_page_url": "https://gdc.cancer.gov/about-data/publications/panimmune",
+        "retrieval_method": "Manual download from the GDC publication page",
+        "canonical_dir": "data/raw/tcga/confounders",
+        "files": {
+          "TCGA_all_leuk_estimate.masked.20170107.tsv": {
+            "role": "candidate_secondary_immune_infiltration_input",
+            "file_url": "https://api.gdc.cancer.gov/data/6f75c9d7-5134-4ed1-b8f3-72856c98a4e8",
+            "description": "Sample-level PanCanAtlas leukocyte-fraction estimates"
+          }
+        }
+      },
+      "pancanatlas_absolute": {
+        "source_database": "NCI Genomic Data Commons PanCanAtlas resources",
+        "provider": "National Cancer Institute",
+        "download_page_url": "https://gdc.cancer.gov/about-data/publications/pancanatlas",
+        "retrieval_method": "Manual download from the GDC PanCanAtlas page",
+        "canonical_dir": "data/raw/tcga/confounders",
+        "files": {
+          "TCGA_mastercalls.abs_tables_JSedit.fixed.txt": {
+            "role": "candidate_secondary_purity_and_genomic_composition_input",
+            "file_url": "https://api.gdc.cancer.gov/data/4f277128-f793-4354-a13d-30cc7fe9f6b5",
+            "description": "Sample-level ABSOLUTE purity, ploidy, genome-doubling, cancer-DNA-fraction, and subclonal-genome-fraction estimates"
+          }
+        }
+      }
     }
   },
   "lincs": {
