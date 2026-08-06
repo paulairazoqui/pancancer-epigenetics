@@ -66,3 +66,4 @@ build/
 Thumbs.db
 .vscode/
 .idea/
+.Rhistory

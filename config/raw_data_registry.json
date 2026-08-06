@@ -203,6 +203,27 @@
             "description": "Sample-level ABSOLUTE purity, ploidy, genome-doubling, cancer-DNA-fraction, and subclonal-genome-fraction estimates"
           }
         }
+      },
+      "gdc_case_demographics": {
+        "source_database": "NCI Genomic Data Commons API",
+        "provider": "National Cancer Institute",
+        "endpoint_url": "https://api.gdc.cancer.gov/cases",
+        "data_release": "Data Release 45.0 - December 04, 2025",
+        "retrieval_method": "Programmatic query to the GDC cases endpoint for the frozen 9,965-case TCGA cohort",
+        "canonical_dir": "data/raw/tcga/confounders",
+        "query_scope": {
+          "entity": "cases",
+          "identifier": "submitter_id",
+          "requested_field": "demographic.sex_at_birth",
+          "requested_case_count": 9965
+        },
+        "files": {
+          "gdc_tcga_case_demographics_2026-08-06.json": {
+            "role": "case_level_demographic_confounder_input",
+            "retrieved_at_utc": "2026-08-06T12:20:09.023038+00:00",
+            "description": "GDC case-level demographic metadata retrieved for the frozen TCGA multiomic cohort, retaining sex_at_birth for downstream sex-chromosome confounding assessment"
+          }
+        }
       }
     }
   },
