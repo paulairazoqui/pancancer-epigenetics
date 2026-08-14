@@ -19,14 +19,22 @@ The framework emphasizes biological interpretability, data leakage prevention, r
 
 ---
 
+## Current Project Status
+
+- **Phase 2 — Independent Tumor Discovery:** closed / frozen with 9,965 TCGA primary-tumor cases and 13 retained candidate cross-omic programs.
+- **Phase 3 — Independent Cell-Line Discovery:** closed with 713 DepMap–GDSC models; latent-program extraction was phenotype-independent and internal robustness was completed in notebook 311.
+- **Next analytical step:** Phase 4, beginning with notebook 400 — Cross-System Program Comparison. Phase 4 has not yet been executed.
+
+---
+
 ## Scientific Scope
 
 The project is designed to generate computational associations and candidate hypotheses. It does **not** aim to:
 
-* predict clinical resistance or patient outcomes,
+* support clinical prediction or patient-outcome prediction,
 * infer causal mechanisms from observational data,
 * establish validated targets or definitive biomarkers,
-* claim therapeutic reversal or translational efficacy from in silico analyses, or
+* claim translational efficacy from in silico analyses, or
 * reconstruct longitudinal, adaptive, or clonal drug-resistance trajectories.
 
 > [!NOTE]
@@ -34,7 +42,9 @@ The project is designed to generate computational associations and candidate hyp
 
 ---
 
-## Roadmap v3.0 Repository Structure
+## Repository and Notebook Structure
+
+The repository physically contains directories for Phases 0–8. Implemented notebooks currently exist only for Phases 1–3; the directories for Phases 4–8 are placeholders. Phase 9 is part of the roadmap v3.0 architecture but does not currently have a notebook directory.
 
 ```text
 ├── config/                # Path and source-data registry configuration
@@ -44,7 +54,7 @@ The project is designed to generate computational associations and candidate hyp
 │   └── processed/         # Program, vulnerability, context, hypothesis, and validation outputs
 ├── docs/                  # Project direction, architecture, policy, terminology, and workflow docs
 ├── envs/                  # Environment-related documentation or alternative environment files
-├── notebooks/             # Roadmap v3.0 phase-organized computational notebooks
+├── notebooks/             # Implemented Phase 1–3 notebooks plus planned-phase placeholders
 ├── results/               # Manuscript-ready figures and tables by paper/supplement
 ├── src/                   # Reusable source code and path helpers
 └── tests/                 # Test documentation and future automated checks
@@ -131,9 +141,9 @@ A minimal reproducibility sequence is:
 3. Install the dependencies from `requirements.txt` and install the repository package in editable mode with `python -m pip install -e .`.
 4. Download or place raw datasets into the appropriate `data/raw/<source>/` folders according to `config/raw_data_registry.json`.
 5. Run the Phase 1 notebooks to confirm source availability and raw-file auditing.
-6. Run downstream notebooks in numerical order within each roadmap phase.
+6. Execute implemented notebooks in numerical order within the completed phases. Future phases are run only after their notebooks are implemented and their frozen inputs are available.
 
-Notebook phases follow the roadmap v3.0 numbering convention:
+The implemented notebook series are `100`–`106`, `200`–`206`, and `300`–`311`. The physical notebook layout currently is:
 
 ```text
 notebooks/
@@ -141,13 +151,14 @@ notebooks/
 ├── phase1_data_acquisition_and_auditing/
 ├── phase2_tumor_discovery_layer/
 ├── phase3_cell_line_discovery_layer/
-├── phase4_consensus_programs/
-├── phase5_functional_vulnerabilities/
-├── phase6_pharmacogenomic_contexts/
-├── phase7_perturbational_hypotheses/
-├── phase8_orthogonal_validation/
-└── phase9_manuscript_preparation/
+├── phase4_consensus_programs/              # planned placeholder
+├── phase5_functional_vulnerabilities/      # planned placeholder
+├── phase6_pharmacogenomic_contexts/        # planned placeholder
+├── phase7_perturbational_hypotheses/       # planned placeholder
+└── phase8_orthogonal_validation/           # planned placeholder
 ```
+
+Phase 9 is planned in roadmap v3.0 but has no current directory. The Phase 4–8 directories do not imply implemented notebooks.
 
 Raw data files are expected to remain unchanged after acquisition. Derived files should be regenerated into `data/interim/` or `data/processed/` according to the notebook logic.
 
@@ -163,7 +174,7 @@ The current roadmap v3.0 source-of-truth documents are:
 * `docs/DATA_HARMONIZATION_PLAN.md` — identifier harmonization, data integration, and leakage-prevention principles.
 * `docs/MODELING_POLICY.md` — modeling boundaries, leakage prevention, and interpretation policy.
 * `docs/TERMINOLOGY_GUIDE.md` — approved terminology for candidate vulnerabilities, resistance-like contexts, perturbational hypotheses, and validation language.
-* `docs/workflow.md` — sequential workflow notes for data acquisition, auditing, integration planning, and downstream execution.
+* `docs/workflow.md` — current roadmap v3.0 operational workflow, including completed-phase boundaries and planned handoffs.
 
 ---
 
