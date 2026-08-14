@@ -421,7 +421,7 @@ Primary deliverables:
 
 ## Objective
 
-Assess reproducibility across independent biological resources.
+Assess cross-dataset replication and orthogonal support across independent biological resources.
 
 ### Notebook Series 800
 

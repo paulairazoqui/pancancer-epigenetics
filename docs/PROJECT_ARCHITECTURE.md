@@ -4,7 +4,7 @@
 
 This project is a lineage-aware computational oncology framework oriented toward identifying recurrent epigenetic-transcriptomic programs associated with resistance-like contexts, functional vulnerabilities, and perturbational hypotheses.
 
-It integrates public multi-omic, pharmacogenomic, dependency, and perturbational datasets while prioritizing biological interpretability, internal robustness, cross-dataset reproducibility, leakage prevention, and conservative scientific framing. All findings are computational associations and candidate hypotheses requiring future validation.
+It integrates public multi-omic, pharmacogenomic, dependency, and perturbational datasets while prioritizing biological interpretability, internal robustness, cross-dataset replication, leakage prevention, and conservative scientific framing. All findings are computational associations and candidate hypotheses requiring future validation.
 
 The framework does not provide clinical prediction, causal inference, adaptive-resistance reconstruction, biomarker-development, treatment-target-development, or therapeutic-efficacy claims.
 
