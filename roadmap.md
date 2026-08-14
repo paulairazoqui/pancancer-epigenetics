@@ -20,9 +20,9 @@ This project is designed as a computational oncology framework focused on:
 
 The framework does **not** aim to:
 
-* predict clinical resistance directly from patient cohorts,
+* support clinical prediction directly from patient cohorts,
 * infer biological causality from observational data,
-* establish validated therapeutic targets,
+* establish validated targets,
 * claim therapeutic efficacy from in silico analyses,
 * reconstruct adaptive evolutionary trajectories.
 
@@ -127,13 +127,17 @@ Acquire, document, validate, and version all source datasets.
 
 #### 100 — Dataset Inventory
 
-#### 101 — Source Validation
+#### 101 — Raw File Audit
 
-#### 102 — Download Automation
+#### 102 — TCGA RNA-seq Cohort Freeze
 
-#### 103 — Provenance Auditing
+#### 103 — TCGA RNA-seq Download Validation
 
-#### 104 — Coverage Assessment
+#### 104 — TCGA Methylation Coverage Assessment
+
+#### 105 — TCGA Methylation Cohort Freeze
+
+#### 106 — TCGA Methylation Download Validation
 
 Outputs:
 
@@ -144,6 +148,10 @@ Outputs:
 ---
 
 # Phase 2 — Tumor Discovery Layer
+
+## Status
+
+**CLOSED / FROZEN.** The final cohort contains 9,965 TCGA primary tumors and 13 candidate cross-omic programs retained after robustness assessment. There is no notebook 207. Phase 2 reopens only for a concrete identified problem.
 
 ## Objective
 
@@ -156,15 +164,15 @@ Discover candidate epigenetic-transcriptomic programs in primary tumors.
 
 ### Notebook Series 200
 
-#### 200 — TCGA Cohort Construction
+#### 200 — TCGA Multi-omic Candidate Cohort Construction
 
-#### 201 — RNA-seq Quality Control
+#### 201 — TCGA RNA-seq Quality Control
 
-#### 202 — DNA Methylation Quality Control
+#### 202 — TCGA Methylation Quality Control
 
-#### 203 — Multi-omic Integration
+#### 203 — TCGA Multi-omic Integration
 
-#### 204 — Confounder Assessment
+#### 204 — TCGA Confounder Assessment
 
 Evaluate:
 
@@ -175,7 +183,7 @@ Evaluate:
 * proliferation
 * batch effects
 
-#### 205 — Program Discovery
+#### 205 — TCGA Epigenetic-Transcriptomic Program Discovery
 
 Candidate methods:
 
@@ -183,7 +191,7 @@ Candidate methods:
 * ICA
 * consensus factorization
 
-#### 206 — Program Robustness
+#### 206 — TCGA Tumor Program Robustness
 
 Outputs:
 
@@ -194,6 +202,10 @@ Outputs:
 ---
 
 # Phase 3 — Cell-Line Discovery Layer
+
+## Status
+
+**CLOSED.** The frozen cohort contains 713 models. Transcriptomic discovery was independent of the tumor system; latent-program extraction was phenotype-independent, and internal robustness was completed in notebook 311.
 
 ## Objective
 
@@ -207,23 +219,23 @@ Independently discover candidate programs in cancer cell models.
 
 ### Notebook Series 300
 
-#### 300 — Cross-Dataset Overlap
+#### 300 — Cross-Dataset Overlap Analysis
 
-#### 301 — Model Harmonization
+#### 301 — Identifier Landscape and Harmonization Strategy
 
-#### 302 — Integrated Modeling Cohort
+#### 302 — Integrated Modeling Cohort Construction
 
-#### 303 — Expression Integration
+#### 303 — Expression Matrix Integration
 
-#### 304 — Expression Quality Control
+#### 304 — Expression Quality Control and Variability Assessment
 
-#### 305 — Transcriptomic Structure Assessment
+#### 305 — Global Transcriptomic Structure Analysis
 
-#### 306 — Pharmacology Integration
+#### 306 — GDSC Pharmacology Integration
 
-#### 307 — Phenotype Framework
+#### 307 — Pharmacological Phenotype Framework
 
-#### 308 — Transcriptome–Phenotype Integration
+#### 308 — Model-Level Transcriptome–Phenotype Integration
 
 #### 309 — Phenotype Sensitivity Analysis
 
@@ -240,6 +252,10 @@ Outputs:
 ---
 
 # Phase 4 — Consensus Programs
+
+## Status
+
+**NEXT PLANNED PHASE — not yet executed.** The next notebook is **400 — Cross-System Program Comparison**.
 
 ## Objective
 

@@ -1,792 +1,101 @@
-# Pan-Cancer Epigenetic Resistance Project — Sequential Workflow
+# Pan-Cancer Epigenetics: Operational Workflow (v3.0)
 
-## Phase 0 — Project Foundation
+This workflow describes the operational sequence for the roadmap v3.0 framework. Provenance, release names, and canonical source filenames are maintained in `config/raw_data_registry.json`; repository paths are maintained in `config/paths.yaml`.
 
-### 0.1 Define project philosophy
+## Phase 0 — Infrastructure and Reproducibility
 
-Objective:
+**Status:** completed.
 
-* Establish scientific and computational principles.
+- **Objective:** maintain an auditable, reproducible repository environment.
+- **Primary inputs:** repository configuration, environment definitions, and provenance records.
+- **Primary outputs:** version-controlled conventions, source manifests, and reproducible data-tier structure.
+- **Handoff:** downstream notebooks consume immutable raw data and reproducible interim layers.
 
-Deliverables:
+## Phase 1 — Data Acquisition and Auditing
 
-* project scope
-* reproducibility policy
-* interpretability policy
-* version freezing policy
+**Status:** implemented; acquisition and auditing remain dataset-specific when future phases require additional resources.
 
-Files:
+- **Objective:** inventory, freeze, download, and audit source data required by the implemented analysis.
+- **Notebook series:** `100_dataset_inventory`, `101_raw_file_audit`, `102_tcga_rnaseq_cohort_freeze`, `103_tcga_rnaseq_download_validation`, `104_tcga_methylation_coverage_assessment`, `105_tcga_methylation_cohort_freeze`, and `106_tcga_methylation_download_validation`.
+- **Primary inputs:** source datasets, manifests, and `config/raw_data_registry.json`.
+- **Primary outputs:** audited source inventory, frozen TCGA RNA-seq and methylation cohorts, download-validation records, and coverage summaries.
+- **Handoff:** frozen, audited inputs are supplied to the independent tumor and cell-line discovery phases. Future CTRP, PRISM, LINCS, or other resources require their own acquisition and audit work when needed.
 
-```text
-docs/decisions/
-docs/protocols/
-README.md
-```
+## Phase 2 — Independent Tumor Discovery
 
-Human supervision:
+**Status:** **CLOSED / FROZEN**.
 
-* Confirm that every decision is biologically justifiable.
-* Avoid adding omics/features “because more is better”.
+- **Objective:** discover candidate cross-omic programs in TCGA primary tumors.
+- **Notebook series:** `200_tcga_multiomic_candidate_cohort_construction`, `201_tcga_rnaseq_quality_control`, `202_tcga_methylation_quality_control`, `203_tcga_multiomic_integration`, `204_tcga_confounder_assessment`, `205_tcga_epigenetic_transcriptomic_program_discovery`, and `206_tcga_tumor_program_robustness`.
+- **Primary inputs:** frozen TCGA primary-tumor RNA-seq and DNA-methylation layers.
+- **Primary outputs:** the frozen 9,965-case cohort and 13 retained candidate cross-omic programs after robustness assessment, stored under `data/processed/tumor_programs`.
+- **Boundary / handoff:** tumor candidates are frozen before cross-system comparison. This phase is independent of cell-line discovery and reopens only for a concrete identified problem. There is no notebook 207.
 
-Primary AI:
+## Phase 3 — Independent Cell-Line Discovery
 
-* ChatGPT → architecture + scientific reasoning
-* Claude → documentation polishing
+**Status:** **CLOSED**.
 
----
+- **Objective:** independently discover latent transcriptomic programs in cancer cell models.
+- **Notebook series:** `300_cross_dataset_overlap_analysis`, `301_identifier_landscape_and_harmonization_strategy`, `302_integrated_modeling_cohort_construction`, `303_expression_matrix_integration`, `304_expression_quality_control_and_variability_assessment`, `305_global_transcriptomic_structure_analysis`, `306_gdsc_pharmacology_integration`, `307_pharmacological_phenotype_framework`, `308_model_level_transcriptome_phenotype_integration`, `309_phenotype_sensitivity_analysis`, `310_program_discovery`, and `311_program_robustness`.
+- **Primary inputs:** DepMap and GDSC data with provenance defined exclusively in `config/raw_data_registry.json`; the frozen cohort contains 713 models.
+- **Primary outputs:** independently discovered cell-line program representations, internal robustness results, and frozen candidate-program outputs under `data/processed/cellline_programs`.
+- **Boundary / handoff:** the sequence is transcriptomic representation discovery → representation freeze → pharmacogenomic phenotype association → internal robustness. Latent-program extraction in notebook 310 is phenotype-independent; the phenotype did not select the latent programs. The frozen cell-line candidates enter Phase 4 without being refit to tumor candidates.
 
-### 0.2 Create repository architecture
+## Phase 4 — Cross-System Comparison and Consensus
 
-Objective:
+**Status:** **NEXT / PLANNED — not executed**.
 
-* Build stable project structure.
+- **Objective:** compare the separately frozen tumor and cell-line candidates across systems.
+- **Notebook series:** `400` Cross-System Program Comparison; then `401` Consensus Program Construction, `402` Cross-Lineage Robustness, `403` Epigenetic Regulator Enrichment, and `404` Program Annotation.
+- **Primary inputs:** frozen outputs from `data/processed/tumor_programs` and `data/processed/cellline_programs`.
+- **Primary outputs:** cross-system comparison results and, only if supported, consensus-program artifacts in `data/processed/consensus_programs`.
+- **Boundary / handoff:** matching is multiview; an outcome of “not recoverable” is valid. ICA component numbers are not assumed portable across systems. Notebook 400 is the next analytical notebook, and consensus programs do not yet exist.
 
-Deliverables:
+## Phase 5 — Functional Vulnerabilities
 
-* folder scaffold
-* environment definition
-* gitignore
-* raw/processed separation
+**Status:** planned.
 
-Human supervision:
+- **Objective:** evaluate computational associations between consensus programs and functional dependencies.
+- **Notebook series:** `500`–`502`.
+- **Primary inputs:** consensus programs and functional-genomics resources.
+- **Primary outputs:** putative vulnerabilities and dependency maps in `data/processed/functional_vulnerabilities`.
+- **Handoff:** candidate associations, not validated targets, provide context for subsequent work.
 
-* Confirm folder clarity for future collaborators.
-* Ensure repo remains understandable for non-bioinformaticians.
+## Phase 6 — Pharmacogenomic Contexts
 
-Primary AI:
+**Status:** planned.
 
-* ChatGPT
-* Codex (optional for refactoring)
+- **Objective:** characterize resistance-like pharmacogenomic contexts associated with consensus programs.
+- **Notebook series:** `600`–`603`.
+- **Primary inputs:** consensus programs and pharmacogenomic data, acquired and audited for the relevant resource.
+- **Primary outputs:** computational association maps, predictive-association modeling summaries, feature-attribution and interpretive-support results, and cross-screen replication outputs in `data/processed/pharmacogenomic_contexts`.
+- **Boundary:** predictive modeling and SHAP/feature attribution are interpretive support only; they do not constitute clinical prediction or causal interpretation.
 
----
+## Phase 7 — Perturbational Hypotheses
 
-### 0.3 Define data governance
+**Status:** planned.
 
-Objective:
+- **Objective:** generate perturbational hypotheses from inverse computational associations with consensus programs.
+- **Notebook series:** `700`–`703`.
+- **Primary inputs:** consensus-program signatures and perturbational resources.
+- **Primary outputs:** perturbational hypotheses, candidate compounds, and mechanism-of-action summaries in `data/processed/perturbational_hypotheses`.
+- **Boundary:** compound prioritization is limited to perturbational hypothesis generation from inverse computational associations.
 
-* Freeze dataset versions.
+## Phase 8 — Orthogonal Validation
 
-Deliverables:
+**Status:** planned.
 
-* release definitions
-* manifests
-* SHA256 hashes
-* provenance documentation
+- **Objective:** assess cross-dataset replication and cross-system reproducibility in orthogonal resources.
+- **Notebook series:** `800`–`804`.
+- **Primary inputs:** frozen program representations and independent bulk cohorts, Cell Model Passports where applicable, scRNA-seq, ATAC-seq, and other orthogonal resources.
+- **Primary outputs:** validation reports, robustness assessments, and cross-resource concordance analyses in `data/processed/validation`.
+- **Boundary:** TCGA is the tumor discovery system, not an external validation cohort.
 
-Human supervision:
+## Phase 9 — Manuscript Preparation
 
-* Verify every release manually.
-* Ensure exact filenames are documented.
+**Status:** planned.
 
-Primary AI:
-
-* ChatGPT
-* Claude
-
----
-
-# Phase 1 — Data Acquisition
-
-## 1.1 Download public datasets
-
-Objective:
-
-* Acquire reproducible raw datasets.
-
-Datasets:
-
-* DepMap 25Q3
-* GDSC 8.5
-
-Deliverables:
-
-```text
-data/raw/
-data/interim/qc/download_manifest.json
-```
-
-Human supervision:
-
-* Verify file sizes.
-* Verify hashes.
-* Verify no corrupted downloads.
-* Verify release names.
-
-Primary AI:
-
-* ChatGPT
-* Codex
-
----
-
-## 1.2 Audit dataset structure
-
-Objective:
-
-* Confirm datasets are readable and internally consistent.
-
-Checks:
-
-* shapes
-* columns
-* missingness
-* IDs
-* duplicated keys
-
-Deliverables:
-
-```text
-01_dataset_inventory.ipynb
-```
-
-Human supervision:
-
-* Identify suspicious IDs.
-* Detect weird duplicated models.
-* Detect inconsistent naming.
-
-Primary AI:
-
-* ChatGPT
-
----
-
-# Phase 2 — Identifier Mapping & Integration Planning
-
-## 2.1 Define integration keys
-
-Objective:
-
-* Determine stable identifiers.
-
-Current decisions:
-
-```text
-ModelID
-SangerModelID
-SequencingID
-```
-
-Deliverables:
-
-```text
-001_data_integration_strategy.md
-```
-
-Human supervision:
-
-* Confirm biological meaning of identifiers.
-* Avoid merges based on cell line names.
-
-Primary AI:
-
-* ChatGPT
-
----
-
-## 2.2 Build mapping tables
-
-Objective:
-
-* Create canonical mapping tables.
-
-Tasks:
-
-* ModelID ↔ SangerModelID
-* ModelID ↔ ProfileID
-* ModelID ↔ SequencingID
-
-Deliverables:
-
-```text
-master_model_mapping.parquet
-```
-
-Human supervision:
-
-* Inspect duplicated mappings.
-* Validate one-to-many relationships.
-
-Primary AI:
-
-* ChatGPT
-* Codex
-
----
-
-## 2.3 Coverage analysis
-
-Objective:
-
-* Determine usable overlap.
-
-Tasks:
-
-* overlap RNA ↔ GDSC
-* overlap mutations ↔ GDSC
-* overlap cancer types
-* overlap drug coverage
-
-Deliverables:
-
-```text
-02_coverage_analysis.ipynb
-```
-
-Human supervision:
-
-* Detect underrepresented tumor types.
-* Decide minimum sample thresholds.
-
-Primary AI:
-
-* ChatGPT
-
----
-
-# Phase 3 — Transcriptomic Processing
-
-## 3.1 Expression preprocessing
-
-Objective:
-
-* Generate ML-ready transcriptomic matrix.
-
-Tasks:
-
-* keep canonical RNA profiles
-* remove metadata columns
-* handle duplicated genes
-* inspect low-variance genes
-
-Deliverables:
-
-```text
-expression_matrix.parquet
-```
-
-Human supervision:
-
-* Verify no accidental sample leakage.
-* Verify gene counts remain biologically realistic.
-
-Primary AI:
-
-* ChatGPT
-* Codex
-
----
-
-## 3.2 Transcriptomic QC
-
-Objective:
-
-* Evaluate transcriptomic structure.
-
-Tasks:
-
-* PCA
-* UMAP
-* clustering
-* outlier detection
-* batch inspection
-
-Deliverables:
-
-```text
-03_expression_qc.ipynb
-```
-
-Human supervision:
-
-* Detect technical artifacts.
-* Detect impossible biological clusters.
-
-Primary AI:
-
-* ChatGPT
-* Perplexity (literature comparison)
-
----
-
-# Phase 4 — Mutation Processing
-
-## 4.1 Mutation filtering
-
-Objective:
-
-* Reduce raw variant complexity.
-
-Tasks:
-
-* select canonical WGS profiles
-* keep coding variants
-* remove low-confidence variants
-* annotate drivers
-
-Deliverables:
-
-```text
-filtered_mutations.parquet
-```
-
-Human supervision:
-
-* Verify filtering logic biologically.
-* Avoid overly aggressive filtering.
-
-Primary AI:
-
-* ChatGPT
-* Perplexity
-
----
-
-## 4.2 Mutation feature engineering
-
-Objective:
-
-* Create interpretable mutation features.
-
-Possible features:
-
-* TP53 mutated
-* KRAS mutated
-* DNA repair burden
-* pathway mutation burden
-* hotspot mutations
-
-Deliverables:
-
-```text
-mutation_features.parquet
-```
-
-Human supervision:
-
-* Ensure features remain explainable.
-* Avoid generating thousands of meaningless sparse features.
-
-Primary AI:
-
-* ChatGPT
-
----
-
-# Phase 5 — Drug Response Processing
-
-## 5.1 GDSC preprocessing
-
-Objective:
-
-* Clean pharmacologic response matrix.
-
-Tasks:
-
-* remove duplicated experiments
-* inspect LN_IC50 distribution
-* inspect AUC distribution
-* standardize drug names
-
-Deliverables:
-
-```text
-gdsc_cleaned.parquet
-```
-
-Human supervision:
-
-* Detect impossible IC50 values.
-* Detect duplicated drug aliases.
-
-Primary AI:
-
-* ChatGPT
-
----
-
-## 5.2 Drug coverage analysis
-
-Objective:
-
-* Identify drugs suitable for modeling.
-
-Tasks:
-
-* sample count per drug
-* missingness
-* tissue distribution
-* response variability
-
-Deliverables:
-
-```text
-04_drug_coverage.ipynb
-```
-
-Human supervision:
-
-* Avoid low-sample drugs initially.
-* Avoid highly imbalanced response distributions.
-
-Primary AI:
-
-* ChatGPT
-
----
-
-# Phase 6 — Integrated Modeling Dataset
-
-## 6.1 Build master integrated dataset
-
-Objective:
-
-* Merge transcriptomics + mutations + pharmacology.
-
-Core structure:
-
-```text
-sample × drug
-```
-
-Deliverables:
-
-```text
-master_modeling_dataset.parquet
-```
-
-Human supervision:
-
-* Validate merge counts carefully.
-* Confirm no silent row explosions.
-
-Primary AI:
-
-* ChatGPT
-* Codex
-
----
-
-## 6.2 Define resistance labels
-
-Objective:
-
-* Define prediction targets.
-
-Recommended strategy:
-
-* continuous modeling first
-* no binary resistant/sensitive threshold initially
-
-Targets:
-
-* LN_IC50
-* AUC
-
-Human supervision:
-
-* Inspect target distributions.
-* Detect outlier drugs.
-
-Primary AI:
-
-* ChatGPT
-
----
-
-# Phase 7 — Baseline Machine Learning
-
-## 7.1 Baseline interpretable models
-
-Objective:
-
-* Establish robust baseline performance.
-
-Models:
-
-* Elastic Net
-* Random Forest
-* XGBoost
-
-Deliverables:
-
-```text
-baseline_model_results.csv
-```
-
-Metrics:
-
-* RMSE
-* MAE
-* Spearman correlation
-* R²
-
-Human supervision:
-
-* Detect overfitting.
-* Ensure proper train/test splitting.
-
-Primary AI:
-
-* ChatGPT
-* Codex
-
----
-
-## 7.2 Cross-validation strategy
-
-Objective:
-
-* Build biologically realistic evaluation.
-
-Preferred:
-
-* grouped CV
-* tissue-aware CV
-
-Human supervision:
-
-* Avoid data leakage.
-* Avoid train/test overlap through replicated models.
-
-Primary AI:
-
-* ChatGPT
-
----
-
-# Phase 8 — Explainability & Biomarker Discovery
-
-## 8.1 SHAP analysis
-
-Objective:
-
-* Identify interpretable biomarkers.
-
-Tasks:
-
-* global SHAP
-* local SHAP
-* pathway enrichment
-
-Deliverables:
-
-```text
-shap_analysis/
-```
-
-Human supervision:
-
-* Reject biologically nonsensical biomarkers.
-* Compare with literature.
-
-Primary AI:
-
-* ChatGPT
-* Perplexity
-
----
-
-## 8.2 Resistance signature discovery
-
-Objective:
-
-* Identify transcriptomic signatures.
-
-Tasks:
-
-* differential expression
-* pathway enrichment
-* gene set scoring
-
-Deliverables:
-
-```text
-resistance_signatures/
-```
-
-Human supervision:
-
-* Verify pathway plausibility.
-* Avoid overinterpretation.
-
-Primary AI:
-
-* ChatGPT
-* Perplexity
-* Claude (writing)
-
----
-
-# Phase 9 — Target Prioritization
-
-## 9.1 Target ranking
-
-Objective:
-
-* Prioritize candidate therapeutic targets.
-
-Inputs:
-
-* SHAP importance
-* mutation burden
-* pathway relevance
-* literature evidence
-
-Deliverables:
-
-```text
-target_ranking.csv
-```
-
-Human supervision:
-
-* Reject targets lacking biological plausibility.
-* Verify cancer relevance.
-
-Primary AI:
-
-* ChatGPT
-* Perplexity
-
----
-
-# Phase 10 — Drug Repurposing
-
-## 10.1 Transcriptomic reversal
-
-Objective:
-
-* Identify drugs reversing resistance signatures.
-
-Resources:
-
-* LINCS L1000
-* CMap
-
-Deliverables:
-
-```text
-repurposing_candidates.csv
-```
-
-Human supervision:
-
-* Validate mechanism coherence.
-* Reject contradictory candidates.
-
-Primary AI:
-
-* ChatGPT
-* Perplexity
-
----
-
-## 10.2 Multi-evidence prioritization
-
-Objective:
-
-* Rank repurposing candidates.
-
-Evidence:
-
-* transcriptomic reversal
-* target overlap
-* pathway correction
-* literature support
-
-Human supervision:
-
-* Avoid ranking purely statistical hits.
-* Prioritize mechanistic coherence.
-
-Primary AI:
-
-* ChatGPT
-* Perplexity
-* Claude
-
----
-
-# Phase 11 — External Validation
-
-## 11.1 TCGA validation
-
-Objective:
-
-* Validate findings in patient cohorts.
-
-Tasks:
-
-* external expression validation
-* mutation validation
-* survival association
-
-Deliverables:
-
-```text
-tcga_validation/
-```
-
-Human supervision:
-
-* Verify cohort comparability.
-* Avoid overclaiming clinical translatability.
-
-Primary AI:
-
-* ChatGPT
-* Perplexity
-
----
-
-# Phase 12 — Publication & Deployment
-
-## 12.1 Publication preparation
-
-Objective:
-
-* Build publication-ready outputs.
-
-Deliverables:
-
-* figures
-* tables
-* methods
-* supplementary data
-
-Primary AI:
-
-* Claude
-* ChatGPT
-
----
-
-## 12.2 Public release
-
-Objective:
-
-* Make project reproducible.
-
-Deliverables:
-
-* GitHub repository
-* processed datasets
-* manifests
-* reproducibility guide
-
-Optional:
-
-* Streamlit app
-* dashboard
-
-Human supervision:
-
-* Verify all paths run from clean clone.
-* Verify README reproducibility.
-
-Primary AI:
-
-* ChatGPT
-* Codex
-* Claude
+- **Objective:** prepare figures, supplementary materials, methods documentation, and reproducibility packages.
+- **Notebook series:** `900`–`904`.
+- **Primary inputs:** frozen analytical results from the preceding phases.
+- **Primary outputs:** manuscript-ready materials under `results/`.
