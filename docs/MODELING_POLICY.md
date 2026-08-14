@@ -1,324 +1,125 @@
 # MODELING_POLICY.md
 
-## 1. Purpose & Scope
+## 1. Purpose and Scope
 
-This document establishes the mandatory methodological principles, evaluation constraints, leakage-prevention safeguards, robustness requirements, and interpretive boundaries governing the Pan-Cancer Epigenetics Framework.
+This mandatory policy establishes methodological principles, evaluation constraints, leakage-prevention safeguards, robustness requirements, and interpretive boundaries for the Pan-Cancer Epigenetics Framework. It applies to all phases and modalities.
 
-The objectives of this policy are to:
+The framework is a computational oncology framework oriented toward identifying recurrent epigenetic-transcriptomic programs associated with resistance-like contexts, functional vulnerabilities, and perturbational hypotheses. It is not a clinical predictor, causal inference framework, adaptive-resistance reconstruction, pipeline for discovering biomarkers, pipeline for discovering treatment targets, or drug-repurposing engine.
 
-* maintain rigorous statistical and computational standards,
-* prevent biological overinterpretation,
-* minimize technical artifacts and confounding,
-* ensure reproducibility across datasets and environments,
-* preserve conceptual consistency across all analytical layers.
-
-Compliance with this document is mandatory for all downstream analyses.
+All findings are computational associations requiring further validation.
 
 ---
 
-# 2. Scientific Positioning
+# 2. Central Modeling Philosophy
 
-This framework is explicitly designed as:
+The primary objective is not maximal predictive performance. It is the identification of biologically interpretable, robust, and reproducible candidate programs.
 
-> a computational oncology framework for identifying recurrent epigenetic-transcriptomic programs and evaluating their associations with functional, pharmacogenomic, and perturbational contexts.
-
-The framework is not designed as:
-
-* a clinical prediction system,
-* a causal inference framework,
-* a therapeutic recommendation engine,
-* a resistance forecasting model,
-* a reconstruction of adaptive evolutionary trajectories.
-
-All findings must be interpreted as computational associations requiring further validation.
-
----
-
-# 3. Central Modeling Philosophy
-
-The primary objective of modeling within this project is not maximal predictive performance.
-
-The primary objective is:
-
-> identification of biologically interpretable and reproducible epigenetic-transcriptomic programs.
-
-Priority hierarchy:
-
-| Priority | Preferred Characteristics          |
-| -------- | ---------------------------------- |
-| Highest  | Biological interpretability        |
-| Highest  | Cross-dataset reproducibility      |
-| Highest  | Lineage-aware robustness           |
-| High     | Confounder resistance              |
+| Priority | Preferred characteristic |
+| --- | --- |
+| Highest | Biological interpretability |
+| Highest | Internal robustness within the relevant system |
+| Highest | Leakage prevention and lineage-aware evaluation |
+| High | Cross-system reproducibility where applicable |
+| High | Cross-dataset or external replication when elevating evidence |
 | Moderate | Statistical predictive performance |
-| Low      | Black-box optimization             |
-| Low      | Clinical deployment readiness      |
+| Low | Black-box optimization or clinical deployment readiness |
 
-A simpler and interpretable model with robust biological consistency is preferred over a more accurate but opaque model.
-
----
-
-# 4. Central Biological Entity
-
-All analyses should be centered on:
-
-> recurrent epigenetic-transcriptomic programs.
-
-These programs may include:
-
-* DNA methylation architectures,
-* methylation-expression coupling,
-* epigenetic regulator activity states,
-* transcriptomic modules,
-* pathway-level biological representations.
-
-Programs should not be interpreted as:
-
-* causal mechanisms,
-* master regulators,
-* validated biomarkers,
-* clinically actionable entities.
+The central analytical entity is the recurrent epigenetic-transcriptomic program. Programs may include DNA-methylation architectures, methylation-expression coupling, epigenetic-regulator activity, transcriptomic modules, and pathway-level representations. They are not assumed to be master regulators, causal explanations, validated biomarkers, or clinically actionable entities.
 
 ---
 
-# 5. Permitted vs Prohibited Claims
+# 3. Phase and Dataset Roles
 
-## Permitted Claims
+## Phase 2 — Tumor Discovery
 
-* recurrence of epigenetic-transcriptomic programs,
-* methylation-expression associations,
-* associations with resistance-like contexts,
-* associations with functional dependencies,
-* candidate vulnerability hypotheses,
-* perturbational hypotheses,
-* cross-dataset reproducibility.
+TCGA RNA-seq and DNA methylation support independent tumor program discovery, multi-omic integration, lineage-aware assessment, and tumor-specific internal robustness.
 
-## Prohibited Claims
+## Phase 3 — Cell-Line Discovery
 
-* direct clinical resistance prediction,
-* therapeutic efficacy prediction,
-* mechanistic causality,
-* validated repurposing claims,
-* adaptive resistance reconstruction,
-* universal pan-cancer mechanisms without lineage-aware validation.
+DepMap and CCLE expression resources support independent cell-line transcriptomic program discovery. GDSC may support a predefined resistance-like pharmacogenomic phenotype association within this discovery system. Tumor program identities, tumor–cell-line matching, tumor rankings, and Phase 2 information must not select cell-line discovery components.
+
+## Phase 4 — Cross-System Reproducibility
+
+Tumor–cell-line comparison, multiview matching, and consensus construction occur only after both candidate universes are frozen. “Not recoverable” is a valid result; component indices are not presumed portable.
+
+## Phases 5–8 — Downstream Characterization and Validation
+
+Phase 5 uses CRISPR and RNAi data for functional-vulnerability characterization. Phase 6 characterizes pharmacogenomic contexts using GDSC, CTRP, and PRISM. Phase 7 generates perturbational hypotheses with LINCS or CMap. Phase 8 evaluates cross-dataset replication and orthogonal support. No downstream association establishes clinical efficacy or causality.
 
 ---
 
-# 6. Dataset-Specific Roles
+# 4. Robustness, Reproducibility, and Replication
 
-## TCGA
+These evidence categories are distinct and must not be conflated.
 
-Permitted:
+## Internal Robustness
 
-* program discovery,
-* methylation-expression integration,
-* epigenetic architecture characterization,
-* lineage-aware stratification.
+Internal robustness evaluates whether a candidate representation is stable and interpretable within its own discovery system. Examples include notebook 206 for tumor programs and notebook 311 for cell-line programs.
 
-Prohibited:
+Depending on the phase and available data, evaluations can include lineage-aware analysis, bootstrap procedures, leave-one-project-out or leave-one-lineage-out analyses, covariate sensitivity, negative controls, permutation tests, and failure documentation. Internal robustness is not independent validation.
 
-* resistance labeling,
-* treatment-response prediction,
-* temporal trajectory inference.
+## Cross-System Reproducibility
 
----
+Phase 4 evaluates tumor–cell-line reproducibility after independent discovery through explicit multiview matching and possible consensus construction. This evidence is computational and does not establish biological validation or causality.
 
-## DepMap / CCLE
+## Cross-Dataset and External Replication
 
-Permitted:
+Cross-dataset replication, particularly in Phase 8, is required to elevate the level of evidence for a finding. It is not a prerequisite that must already have been met by the individual discovery or within-system robustness notebook.
 
-* program projection,
-* dependency associations,
-* vulnerability prioritization.
-
-Limitations:
-
-* culture artifacts,
-* lineage distortion,
-* absence of tumor microenvironment.
+Failed replication, partial correspondence, instability, and “not recoverable” outcomes must be reported.
 
 ---
 
-## GDSC / CTRP / PRISM
+# 5. Confounder Control Policy
 
-Permitted:
+Every relevant analysis must document its applicable confounders, available representations, sensitivity analyses, and unresolved limitations.
 
-* resistance-like context characterization,
-* pharmacogenomic association analyses,
-* cross-screen validation.
+## Tumor Analyses
 
-Prohibited:
+Evaluate, where applicable:
 
-* clinical efficacy inference.
+* lineage and project structure;
+* purity;
+* immune and stromal infiltration;
+* proliferation; and
+* technical, batch, and platform factors.
 
----
+## Cell-Line Analyses
 
-## LINCS / CMap
+Evaluate, where applicable:
 
-Permitted:
+* lineage;
+* available biological, culture, and provenance metadata;
+* pharmacological ascertainment when relevant;
+* technical factors; and
+* proliferation when a valid frozen representation exists.
 
-* perturbational hypothesis generation,
-* inverse-signature analyses,
-* compound prioritization.
+If a relevant covariate is unavailable in a previously defined and defensible form, the limitation must be reported as unresolved confounding. Covariates must not be constructed post hoc solely to remove a limitation.
 
-Prohibited:
-
-* claims of therapeutic reversal.
-
----
-
-## Single-Cell & ATAC Resources
-
-Permitted:
-
-* orthogonal validation,
-* chromatin-context evaluation,
-* subpopulation enrichment analyses.
-
-Prohibited:
-
-* primary discovery engine,
-* causal proof.
+Signals that remain technically confounded or unresolved must be downgraded and must not be represented as cross-cancer recurrent programs merely because they receive partial supporting evidence.
 
 ---
 
-# 7. Robustness & Validation Requirements
+# 6. Leakage Prevention
 
-All major findings must undergo evaluation across multiple robustness dimensions.
+Random pan-cancer train/test splits are prohibited. Analyses must evaluate and prevent lineage, platform, drug-family, cell-line-overlap, feature-selection, and perturbational leakage.
 
-Mandatory evaluations include:
-
-* lineage-aware analyses,
-* cross-dataset replication,
-* confounder sensitivity analyses,
-* stability analyses,
-* negative controls,
-* permutation tests,
-* failure-case documentation.
-
-Where appropriate, additional evaluations may include:
-
-* Leave-One-Lineage-Out analyses,
-* external validation cohorts,
-* transcriptomic representation robustness,
-* perturbational reproducibility.
-
-No single validation strategy is considered sufficient in isolation.
+The discovery phases must remain independent: no tumor-derived program identity, ranking, or matching result can select Phase 3 components. Cross-system operations are restricted to Phase 4 or later.
 
 ---
 
-# 8. Confounder Control Policy
+# 7. Interpretability and Claim Boundaries
 
-Every candidate program must be evaluated against:
+Permitted language includes recurrent program, candidate program, resistance-like context, putative vulnerability, computational association, perturbational hypothesis, internal robustness, cross-system reproducibility, and cross-dataset replication.
 
-## Biological Confounders
+Feature-attribution methods such as SHAP, feature importance, latent-factor inspection, and enrichment analysis are exclusively interpretive or predictive-attribution tools. They support prioritization, biological interpretation, and hypothesis generation; they are not evidence of causality.
 
-* lineage,
-* proliferation,
-* tumor purity,
-* stromal infiltration,
-* immune infiltration,
-* cell-stress responses.
-
-## Technical Confounders
-
-* batch structure,
-* sequencing depth,
-* processing center,
-* platform effects.
-
-Programs failing confounder assessments must be:
-
-* classified as lineage-restricted,
-* or classified as unresolved confounded signals.
-
-Such programs must not be presented as cross-cancer entities.
+Drug-response analyses describe associations with baseline pharmacogenomic contexts. Relative drug insensitivity in a screen must not be interpreted as direct measurement of clinical resistance. Perturbational analyses must not be described as proof that a therapy-resistant context can be reversed.
 
 ---
 
-# 9. Interpretability Policy
+# 8. Technical Reproducibility and Negative Results
 
-Interpretability methods are used exclusively for:
+All analyses must maintain version-controlled preprocessing, data provenance, deterministic execution where possible, documented software environments, and strict separation of raw, interim, and processed data. Undocumented manual interventions are prohibited.
 
-* prioritization,
-* biological interpretation,
-* hypothesis generation.
-
-Methods may include:
-
-* SHAP,
-* feature importance analyses,
-* latent-factor inspection,
-* enrichment analyses.
-
-Interpretability outputs do not constitute evidence of causality.
-
----
-
-# 10. Drug Response Policy
-
-Drug-response analyses must be interpreted as:
-
-> associations between molecular programs and baseline pharmacogenomic contexts.
-
-Drug-response metrics:
-
-* LN_IC50
-* AUC
-* related viability metrics
-
-must not be interpreted as direct measurements of clinical resistance.
-
-Compound prioritization remains hypothesis-generating.
-
----
-
-# 11. Negative Results Policy
-
-Negative findings represent valid scientific outputs.
-
-The following must be documented:
-
-* failed replications,
-* unstable programs,
-* lineage-specific failures,
-* cross-dataset inconsistencies,
-* sensitivity to preprocessing choices.
-
-Negative evidence is considered equally important as positive findings.
-
----
-
-# 12. Technical Reproducibility Standards
-
-All analyses must:
-
-* maintain version-controlled preprocessing,
-* preserve data provenance,
-* use deterministic execution whenever possible,
-* document software environments,
-* maintain strict separation between raw, interim, and processed data.
-
-Undocumented manual interventions are prohibited.
-
----
-
-# 13. Success Criteria
-
-The framework will be considered scientifically successful if it identifies:
-
-1. recurrent epigenetic-transcriptomic programs reproducible across independent cohorts;
-2. robust methylation-expression architectures;
-3. candidate functional vulnerabilities associated with these programs;
-4. reproducible resistance-like pharmacogenomic contexts;
-5. coherent perturbational hypotheses.
-
-Success does not require:
-
-* clinical deployment,
-* biomarker qualification,
-* therapeutic validation,
-* mechanistic proof,
-* universal pan-cancer applicability.
-
-The primary deliverable is a reproducible and biologically interpretable map of recurrent epigenetic-transcriptomic programs across human cancers.
+Negative findings are valid outputs. Failed replications, unstable programs, lineage-specific failures, cross-dataset inconsistencies, preprocessing sensitivity, and unresolved confounding must be documented.

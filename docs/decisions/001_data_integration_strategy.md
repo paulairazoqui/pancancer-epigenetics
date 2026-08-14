@@ -1,5 +1,11 @@
 # 001 — Data Integration Strategy
 
+> **Status: Superseded**
+>
+> Superseded by [002_independent_discovery_and_cross_system_integration.md](002_independent_discovery_and_cross_system_integration.md).
+>
+> This record reflects an early project strategy. Its releases, framing, and architecture were subsequently replaced and it must not be used as current operational guidance. It is retained solely as a historical decision record.
+
 ## Status
 
 Accepted

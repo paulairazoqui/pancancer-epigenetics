@@ -4,21 +4,19 @@
 
 ## Project Vision
 
-Cancer drug resistance remains one of the major challenges in oncology. Although resistance mechanisms are highly heterogeneous, accumulating evidence suggests that recurrent epigenetic and transcriptional alterations may contribute to therapy-associated cellular states across multiple malignancies.
+This project is a computational oncology framework oriented toward identifying recurrent epigenetic-transcriptomic programs associated with resistance-like contexts, functional vulnerabilities, and perturbational hypotheses.
 
-The long-term goal of this project is to establish a reproducible computational oncology framework capable of identifying recurrent epigenetic-transcriptomic programs across cancer types and evaluating their associations with resistance-like pharmacogenomic contexts, candidate functional vulnerabilities, and perturbational hypotheses.
-
-The framework is designed to generate biologically interpretable hypotheses rather than clinical predictions or mechanistic claims.
+The framework is designed to generate biologically interpretable hypotheses and computational associations. It is not a clinical predictor, causal inference framework, adaptive-resistance reconstruction, pipeline for discovering biomarkers, pipeline for discovering treatment targets, or drug-repurposing engine.
 
 ---
 
 ## Central Biological Question
 
-Do recurrent epigenetic-transcriptomic programs emerge across diverse malignancies, and are these programs consistently associated with:
+Do recurrent epigenetic-transcriptomic programs emerge across diverse malignancies, and are they associated with:
 
 1. resistance-like pharmacogenomic contexts,
-2. candidate functional vulnerabilities,
-3. and perturbational signatures suggestive of program suppression?
+2. putative functional vulnerabilities, and
+3. perturbational signatures consistent with program suppression?
 
 ---
 
@@ -28,158 +26,144 @@ The primary analytical entity of this project is the:
 
 > recurrent epigenetic-transcriptomic program.
 
-These programs are defined as coordinated patterns involving multiple biological layers, including:
-
-* DNA methylation states,
-* expression of epigenetic regulators,
-* transcriptomic modules,
-* pathway-level biological activity,
-* and integrated epigenetic-transcriptional signatures.
-
-The project does not assume that these programs represent discrete cell states, master regulators, causal mechanisms, or clinically actionable biomarkers.
+Programs are coordinated representations that can involve DNA methylation states, transcriptomic modules, epigenetic-regulator activity, pathway-level activity, and integrated epigenetic-transcriptional structure. They are candidate biological representations, not discrete cell states, master regulators, or causal explanations.
 
 ---
 
-## Biological Rationale
+## Scientific Architecture
 
-The framework is motivated by the hypothesis that resistance-associated biology is not exclusively driven by isolated genetic events, but may also involve recurrent epigenetic-transcriptomic architectures that appear across multiple tumor contexts.
+The framework proceeds through the following ordered stages:
 
-Potential contributors include:
+1. independent tumor discovery;
+2. independent cell-line discovery;
+3. cross-system comparison and consensus construction;
+4. functional vulnerability characterization;
+5. pharmacogenomic context characterization;
+6. perturbational hypothesis generation; and
+7. orthogonal or external validation.
 
-* promoter hypermethylation and hypomethylation patterns,
-* altered expression of epigenetic regulators,
-* coordinated transcriptomic reprogramming,
-* pathway-level adaptations associated with therapy tolerance or drug insensitivity.
-
-The objective is not to prove causality, but to identify reproducible computational associations that remain robust after controlling for lineage effects and other major confounders.
+Tumor and cell-line discoveries are intentionally independent. Cross-system matching and consensus construction occur only after each system has produced and frozen its own candidate-program representation and internal robustness assessment.
 
 ---
 
-## Multi-Layer Architecture
+## Layer 1 — Tumor Discovery
 
-The project is organized into four complementary analytical layers.
-
-### Layer 1 — Tumor Program Discovery
+**Phase 2 — closed and frozen**
 
 Primary resources:
 
-* TCGA
-* future external tumor cohorts
+* TCGA RNA-seq
+* TCGA DNA methylation
 
 Purpose:
 
-* identify recurrent epigenetic-transcriptomic programs in primary tumors,
-* characterize methylation-expression relationships,
-* evaluate recurrence across lineages,
-* establish the biological foundation of the framework.
+* identify candidate epigenetic-transcriptomic programs in primary tumors;
+* characterize methylation-expression relationships;
+* evaluate recurrence and confounding within the tumor system; and
+* establish a frozen tumor candidate universe.
+
+The completed cohort contains 9,965 TCGA primary-tumor cases with RNA-seq and DNA methylation. Thirteen candidate cross-omic programs were retained after the Phase 2 robustness workflow. These results are not used to select cellular discovery components.
 
 ---
 
-### Layer 2 — Functional Translation
+## Layer 2 — Cell-Line Discovery
+
+**Phase 3 — closed**
 
 Primary resources:
 
-* DepMap
-* CCLE
+* DepMap and CCLE expression resources;
+* GDSC, where relevant to defining or evaluating resistance-like pharmacogenomic phenotype associations.
 
 Purpose:
 
-* project tumor-derived programs into cellular models,
-* evaluate associations with CRISPR and RNAi dependencies,
-* identify candidate functional vulnerabilities.
+* independently discover transcriptomic candidate programs in cancer cell models;
+* evaluate their internal robustness within the cell-line system; and
+* characterize discovery-level phenotype associations without importing tumor-program identities or rankings.
 
-No causal interpretation is implied.
+The completed DepMap–GDSC cohort contains 713 models. Cellular discovery did not use tumor–cell-line matching, TCGA program identities, TCGA rankings, or Phase 2 information to select cellular components. Functional dependency analyses using CRISPR or RNAi are downstream work, not part of Phase 3 discovery.
 
 ---
 
-### Layer 3 — Pharmacogenomic Contexts
+## Layer 3 — Cross-System Comparison and Consensus
+
+**Phase 4 — planned**
+
+Purpose:
+
+* compare the independently frozen tumor and cell-line candidate universes;
+* evaluate cross-system reproducibility through explicit multiview matching;
+* construct consensus programs only after matching; and
+* retain explicit “not recoverable” outcomes.
+
+Component indices are not assumed to be portable between systems. Future scoring or projection can be used as an analytical operation in this phase or downstream, but not as the mechanism of cell-line discovery.
+
+---
+
+## Layer 4 — Functional Vulnerability Characterization
+
+**Phase 5 — planned**
 
 Primary resources:
 
-* GDSC
-* CTRP
-* PRISM
+* DepMap CRISPR;
+* DepMap RNAi.
 
 Purpose:
 
-* evaluate associations between candidate programs and baseline drug-response profiles,
-* identify resistance-like pharmacogenomic contexts,
-* assess reproducibility across independent screening platforms.
+* characterize associations between consensus or cross-system programs and functional dependency profiles; and
+* generate putative vulnerability hypotheses.
 
-Resistance-like contexts refer exclusively to relative baseline drug insensitivity observed in pharmacogenomic datasets.
-
-No direct clinical resistance claims are made.
+These associations do not establish a causal role or a validated intervention.
 
 ---
 
-### Layer 4 — Perturbational Hypotheses
+## Layer 5 — Pharmacogenomic Context Characterization
+
+**Phase 6 — planned**
 
 Primary resources:
 
-* LINCS L1000
-* Connectivity Map
+* GDSC;
+* CTRP;
+* PRISM.
 
 Purpose:
 
-* identify perturbational signatures inversely associated with candidate programs,
-* generate candidate perturbational hypotheses,
-* prioritize compounds for future investigation.
+* characterize associations between program activity and baseline drug-response profiles; and
+* assess cross-screen reproducibility of resistance-like pharmacogenomic contexts.
 
-Connectivity results are interpreted strictly as computational associations.
+Resistance-like context refers only to relative baseline drug insensitivity in pharmacogenomic datasets; it does not imply clinical treatment response.
 
 ---
 
-## Epigenetic Focus
+## Layer 6 — Perturbational Hypothesis Generation
 
-A central emphasis of this project is the integration of:
+**Phase 7 — planned**
 
-* DNA methylation patterns,
-* epigenetic regulator activity,
-* transcriptomic states.
+Primary resources:
 
-Particular attention will be given to recurrent alterations involving major epigenetic regulatory systems, including:
+* LINCS L1000;
+* Connectivity Map.
 
-* DNMT family members,
-* TET family members,
-* HDAC family members,
-* histone methyltransferases,
-* histone demethylases,
-* chromatin remodeling regulators.
+Purpose:
 
-These regulators are treated as biologically informed interpretation layers rather than pre-assumed causal drivers.
+* identify perturbational signatures inversely associated with candidate programs; and
+* generate perturbational hypotheses for future investigation.
+
+---
+
+## Layer 7 — Orthogonal and External Validation
+
+**Phase 8 — planned**
+
+Purpose:
+
+* assess cross-dataset replication in independent biological resources; and
+* evaluate orthogonal support from additional tumor, cell-model, single-cell, or chromatin-context resources where appropriate.
 
 ---
 
 ## Scientific Positioning
 
-This project is designed as a hypothesis-generating computational oncology framework.
-
-The framework is intended to:
-
-* identify recurrent candidate programs,
-* quantify reproducibility across datasets,
-* generate candidate vulnerability hypotheses,
-* generate perturbational hypotheses.
-
-The framework is not intended to:
-
-* predict clinical treatment response,
-* infer causal biological mechanisms,
-* reconstruct adaptive evolutionary trajectories,
-* establish therapeutic efficacy,
-* produce validated biomarkers.
-
----
-
-## Long-Term Deliverable
-
-The ultimate objective is to construct an interpretable epigenetic-transcriptomic map of resistance-associated biology across cancer types.
-
-This map should integrate:
-
-* recurrent molecular programs,
-* candidate functional vulnerabilities,
-* resistance-like pharmacogenomic contexts,
-* and perturbational hypotheses,
-
-while maintaining strict methodological rigor and conservative biological interpretation.
+The framework emphasizes internal robustness, cross-system reproducibility, and cross-dataset replication while maintaining conservative interpretation. Association does not establish causality. Findings remain computational associations and perturbational or putative-vulnerability hypotheses requiring future validation.
