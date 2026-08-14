@@ -85,7 +85,7 @@ This workflow describes the operational sequence for the roadmap v3.0 framework.
 
 **Status:** planned.
 
-- **Objective:** assess cross-dataset replication and cross-system reproducibility in orthogonal resources.
+- **Objective:** assess cross-dataset replication and orthogonal support in independent biological resources.
 - **Notebook series:** `800`–`804`.
 - **Primary inputs:** frozen program representations and independent bulk cohorts, Cell Model Passports where applicable, scRNA-seq, ATAC-seq, and other orthogonal resources.
 - **Primary outputs:** validation reports, robustness assessments, and cross-resource concordance analyses in `data/processed/validation`.

@@ -119,9 +119,13 @@ Completed.
 
 # Phase 1 — Data Acquisition and Auditing
 
+## Status
+
+Implemented for currently required inputs; acquisition and auditing remain open on a dataset-specific basis for future phases.
+
 ## Objective
 
-Acquire, document, validate, and version all source datasets.
+Acquire, document, validate, and version the source datasets required by implemented analyses, with dataset-specific acquisition and auditing continuing when future phases require new resources.
 
 ### Notebook Series 100
 
@@ -185,11 +189,11 @@ Evaluate:
 
 #### 205 — TCGA Epigenetic-Transcriptomic Program Discovery
 
-Candidate methods:
+Implemented discovery framework:
 
-* NMF
-* ICA
-* consensus factorization
+* PCA diagnostic
+* ICA primary representation
+* NMF contrast
 
 #### 206 — TCGA Tumor Program Robustness
 
@@ -247,7 +251,7 @@ Outputs:
 
 * cell-line program scores
 * cell-line program loadings
-* reproducibility reports
+* internal robustness reports
 
 ---
 
