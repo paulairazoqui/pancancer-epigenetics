@@ -20,7 +20,7 @@ Can independently discovered epigenetic-transcriptomic programs in tumors and ca
 
 ```text
 [ Tumor Discovery: Phase 2 ]             [ Cell-Line Discovery: Phase 3 ]
-       TCGA multi-omic data                    DepMap / CCLE / GDSC context
+       TCGA multi-omic data              DepMap / CCLE expression; GDSC phenotype context
                   \                                      /
                    \                                    /
                     +-- Cross-System Comparison: Phase 4 --+
@@ -64,7 +64,7 @@ Phase 2 is closed and frozen. Its final cohort comprises 9,965 primary tumors wi
 Primary datasets:
 
 * DepMap and CCLE expression resources;
-* GDSC for resistance-like pharmacogenomic phenotype definition or association evaluation where relevant.
+* GDSC for resistance-like pharmacogenomic phenotype definition and downstream association evaluation where relevant.
 
 Purpose:
 
@@ -72,7 +72,7 @@ Purpose:
 * assess within-system robustness of discovery-level, phenotype-associated candidates; and
 * preserve a frozen cell-line candidate universe for later comparison.
 
-Phase 3 is closed. Its final DepMap–GDSC cohort comprises 713 models. Cell-line program discovery did not use TCGA identities, tumor-derived rankings, tumor–cell-line matching, or Phase 2 information to select cellular components. CRISPR and RNAi dependency analysis belong to Phase 5.
+Phase 3 is closed. Its final DepMap–GDSC cohort comprises 713 models. Cell-line transcriptomic program extraction was phenotype-independent: the representation was frozen before the pharmacogenomic phenotype was introduced for association testing and candidate characterization. Cell-line program discovery did not use TCGA identities, tumor-derived rankings, tumor–cell-line matching, or Phase 2 information to select cellular components. CRISPR and RNAi dependency analysis belong to Phase 5.
 
 ---
 

@@ -36,7 +36,7 @@ TCGA RNA-seq and DNA methylation support independent tumor program discovery, mu
 
 ## Phase 3 — Cell-Line Discovery
 
-DepMap and CCLE expression resources support independent cell-line transcriptomic program discovery. GDSC may support a predefined resistance-like pharmacogenomic phenotype association within this discovery system. Tumor program identities, tumor–cell-line matching, tumor rankings, and Phase 2 information must not select cell-line discovery components.
+DepMap and CCLE expression resources support independent cell-line transcriptomic program discovery. Cell-line latent-program extraction is phenotype-independent, and its representation must be frozen before a predefined GDSC resistance-like pharmacogenomic phenotype is introduced for downstream association testing and candidate characterization. Tumor program identities, tumor–cell-line matching, tumor rankings, and Phase 2 information must not select cell-line discovery components.
 
 ## Phase 4 — Cross-System Reproducibility
 

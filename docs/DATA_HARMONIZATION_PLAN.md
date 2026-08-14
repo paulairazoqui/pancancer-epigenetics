@@ -38,7 +38,7 @@ Entity type: primary human tumors.
 Primary resources:
 
 * DepMap and CCLE expression resources;
-* GDSC, where relevant to resistance-like pharmacogenomic phenotype associations.
+* GDSC, after cell-line representation freezing where relevant, for resistance-like pharmacogenomic phenotype associations.
 
 Primary objective:
 
@@ -48,7 +48,7 @@ Primary objective:
 
 Entity type: cancer cell models.
 
-Cell-line discovery does not use tumor-program identities, tumor rankings, or tumor–cell-line matching to select cellular components. CRISPR and RNAi dependency data are reserved for downstream functional-vulnerability characterization.
+Cell-line transcriptomic program extraction is phenotype-independent; the representation is frozen before the GDSC pharmacogenomic phenotype is introduced for association testing and candidate characterization. Cell-line discovery does not use tumor-program identities, tumor rankings, or tumor–cell-line matching to select cellular components. CRISPR and RNAi dependency data are reserved for downstream functional-vulnerability characterization.
 
 ## 2.3 Cross-System Comparison and Consensus — Phase 4
 
@@ -72,7 +72,7 @@ Functional dependencies (Phase 5), pharmacogenomic contexts (Phase 6), perturbat
 | TCGA methylation | Tumor discovery | Tumors | Epigenetic program discovery |
 | TCGA RNA-seq | Tumor discovery | Tumors | Transcriptomic and cross-omic discovery |
 | DepMap / CCLE | Cell-line discovery | Cell models | Independent transcriptomic program discovery |
-| GDSC | Cell-line discovery context / pharmacogenomics | Cell models and response measurements | Resistance-like phenotype associations and downstream pharmacogenomic context |
+| GDSC | Pharmacogenomic phenotype and association context | Cell models and response measurements | Resistance-like phenotype associations after cell-line representation freezing and downstream pharmacogenomic context |
 | DepMap CRISPR | Functional vulnerabilities | Cell models | Dependency profiling |
 | DepMap RNAi | Functional vulnerabilities | Cell models | Dependency profiling |
 | CTRP / PRISM | Pharmacogenomics | Drug-response measurements | Cross-screen pharmacogenomic context |

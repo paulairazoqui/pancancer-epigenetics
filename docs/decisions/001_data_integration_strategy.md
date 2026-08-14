@@ -6,9 +6,10 @@
 >
 > This record reflects an early project strategy. Its releases, framing, and architecture were subsequently replaced and it must not be used as current operational guidance. It is retained solely as a historical decision record.
 
-## Status
+## Historical Status
 
-Accepted
+Accepted at the time of the original decision.
+Now superseded by ADR 002.
 
 ---
 
