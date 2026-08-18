@@ -23,7 +23,7 @@ The framework emphasizes biological interpretability, data leakage prevention, r
 
 - **Phase 2 — Independent Tumor Discovery:** closed / frozen with 9,965 TCGA primary-tumor cases and 13 retained candidate cross-omic programs.
 - **Phase 3 — Independent Cell-Line Discovery:** closed with 713 DepMap–GDSC models; latent-program extraction was phenotype-independent and internal robustness was completed in notebook 311.
-- **Next analytical step:** Phase 4, beginning with notebook 400 — Cross-System Program Comparison. Phase 4 has not yet been executed.
+- **Phase 4 — Cross-System Integration:** notebook 400 — Cross-System Program Comparison is complete. Notebook 401 — Consensus Program Construction is next after the tracked Phase 2 → Phase 4 handoff contract is frozen.
 
 ---
 
@@ -44,7 +44,7 @@ The project is designed to generate computational associations and candidate hyp
 
 ## Repository and Notebook Structure
 
-The repository physically contains directories for Phases 0–8. Implemented notebooks currently exist only for Phases 1–3; the directories for Phases 4–8 are placeholders. Phase 9 is part of the roadmap v3.0 architecture but does not currently have a notebook directory.
+The repository physically contains directories for Phases 0–8. Implemented notebooks currently exist for Phases 1–3 and Phase 4 through notebook 400; later Phase 4 notebooks and the directories for Phases 5–8 remain planned. Phase 9 is part of the roadmap v3.0 architecture but does not currently have a notebook directory.
 
 ```text
 ├── config/                # Path and source-data registry configuration
