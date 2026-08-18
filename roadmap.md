@@ -259,7 +259,7 @@ Outputs:
 
 ## Status
 
-**NEXT PLANNED PHASE — not yet executed.** The next notebook is **400 — Cross-System Program Comparison**.
+**IN PROGRESS.** Notebook **400 — Cross-System Program Comparison** is complete. Notebook **401 — Consensus Program Construction** is next after the tracked Phase 2 → Phase 4 handoff contract is frozen.
 
 ## Objective
 
