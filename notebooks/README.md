@@ -5,12 +5,13 @@
 - **Phase 1 — Data Acquisition and Auditing:** notebooks `100`–`106` in `phase1_data_acquisition_and_auditing/`.
 - **Phase 2 — Independent Tumor Discovery:** notebooks `200`–`206` in `phase2_tumor_discovery_layer/` — **CLOSED / FROZEN**.
 - **Phase 3 — Independent Cell-Line Discovery:** notebooks `300`–`311` in `phase3_cell_line_discovery_layer/` — **CLOSED**.
+- **Phase 4 — Cross-System Integration:** notebook `400` in `phase4_consensus_programs/` — **COMPLETE / FROZEN FOR THE 401 HANDOFF**.
 
 Phase 2 and Phase 3 are independent discovery systems. Their implemented notebooks should be run only in numerical order within their respective completed phases and with their frozen inputs.
 
 ## Next phase
 
-Phase 4 is not yet executed. The next planned notebook is `400` — **Cross-System Program Comparison**. The directory `phase4_consensus_programs/` currently exists only as a placeholder; it does not contain an implemented notebook.
+Notebook `400` — **Cross-System Program Comparison** is complete. The next planned notebook is `401` — **Consensus Program Construction**, after the tracked [401 input contract](../docs/PHASE4_401_INPUT_CONTRACT.md) is frozen. Notebook 401 has not begun.
 
 ## Future phases
 
