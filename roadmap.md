@@ -259,7 +259,7 @@ Outputs:
 
 ## Status
 
-**IN PROGRESS.** Notebook **400 — Cross-System Program Comparison** is complete. Notebook **401 — Consensus Program Construction** is next after the tracked Phase 2 → Phase 4 handoff contract is frozen.
+**IN PROGRESS.** Notebooks **400 — Cross-System Program Comparison** and **401 — Consensus Program Construction** are complete. Notebook **402 — Cross-Lineage Robustness** is next.
 
 ## Objective
 
