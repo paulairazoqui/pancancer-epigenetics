@@ -69,6 +69,7 @@ class Paths:
     chembl = root / _cfg["data"]["raw"]["chembl"]
     drugbank = root / _cfg["data"]["raw"]["drugbank"]
     epifactors = root / _cfg["data"]["raw"]["epifactors"]
+    msigdb = root / _cfg["data"]["raw"]["msigdb"]
 
     # interim analysis-ready inputs
     interim = root / _cfg["data"]["interim"]["root"]
