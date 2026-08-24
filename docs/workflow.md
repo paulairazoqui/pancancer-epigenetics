@@ -43,13 +43,13 @@ This workflow describes the operational sequence for the roadmap v3.0 framework.
 
 ## Phase 4 — Cross-System Comparison and Consensus
 
-**Status:** **IN PROGRESS — notebooks 400 and 401 complete; notebook 402 next**.
+**Status:** **IN PROGRESS — notebooks 400, 401, and 402 complete; notebook 403 next**.
 
-- **Objective:** compare the separately frozen tumor and cell-line candidates across systems and construct consensus representations only for supported transcriptomic correspondence events.
-- **Notebook series:** `400` Cross-System Program Comparison; `401` Consensus Program Construction; then `402` Cross-Lineage Robustness, `403` Epigenetic Regulator Enrichment, and `404` Program Annotation.
+- **Objective:** compare the separately frozen tumor and cell-line candidates across systems, construct consensus transcriptomic representations only for supported correspondence events, and characterize those frozen representations before biological annotation.
+- **Notebook series:** `400` Cross-System Program Comparison; `401` Consensus Program Construction; `402` Cross-Lineage Robustness; then `403` Epigenetic Regulator Enrichment and `404` Program Annotation.
 - **Primary inputs:** frozen outputs from `data/processed/tumor_programs` and `data/processed/cellline_programs`, followed by the frozen cross-system correspondence and consensus artifacts under `data/processed/consensus_programs`.
-- **Primary outputs:** cross-system comparison results and candidate cross-system transcriptomic consensus representations with tumor-side methylation context in `data/processed/consensus_programs`.
-- **Boundary / handoff:** notebook 400 froze supported versus ambiguous transcriptomic correspondences without phenotype-based rescue; notebook 401 constructed consensus representations without reoptimizing orientation, gene weights, or eligibility from robustness, phenotype, biological annotation, or methylation context. Notebook 402 is the next analytical notebook and evaluates cross-lineage robustness of the frozen consensus layer.
+- **Primary outputs:** cross-system comparison results, candidate cross-system transcriptomic consensus representations with tumor-side methylation context, and cross-lineage robustness summaries in `data/processed/consensus_programs`.
+- **Boundary / handoff:** notebook 400 froze supported versus ambiguous transcriptomic correspondences without phenotype-based rescue; notebook 401 constructed consensus representations without reoptimizing orientation, gene weights, or eligibility from robustness, phenotype, biological annotation, or methylation context; notebook 402 assessed lineage structure, within-lineage variation, lineage-specific source-program fidelity, and leave-one-lineage-out influence without refitting, reweighting, or categorical robustness promotion. Notebook 403 is the next analytical notebook and evaluates epigenetic-regulator enrichment without using annotation to retrospectively redefine the frozen consensus layer.
 
 ## Phase 5 — Functional Vulnerabilities
 
