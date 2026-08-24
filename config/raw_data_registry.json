@@ -269,5 +269,28 @@
         "description": "EpiFactors v2.1 protein-complex annotation table for curated epigenetic complexes"
       }
     }
+  },
+  "msigdb": {
+    "source_database": "Molecular Signatures Database (MSigDB)",
+    "provider": "UC San Diego and Broad Institute",
+    "release": "v2026.1.Hs",
+    "download_page_url": "https://www.gsea-msigdb.org/gsea/msigdb/collections.jsp",
+    "retrieval_method": "Manual download from the Human MSigDB collection download page",
+    "retrieved_on": "2026-08-24",
+    "canonical_dir": "data/raw/msigdb",
+    "files": {
+      "h.all.v2026.1.Hs.symbols.gmt": {
+        "role": "hallmark_gene_set_annotation",
+        "description": "Human MSigDB Hallmark collection in HGNC gene-symbol GMT format"
+      },
+      "c2.cp.reactome.v2026.1.Hs.symbols.gmt": {
+        "role": "reactome_pathway_gene_set_annotation",
+        "description": "Human MSigDB Reactome canonical-pathway collection in HGNC gene-symbol GMT format"
+      },
+      "c5.go.bp.v2026.1.Hs.symbols.gmt": {
+        "role": "go_biological_process_gene_set_annotation",
+        "description": "Human MSigDB Gene Ontology Biological Process collection in HGNC gene-symbol GMT format"
+      }
+    }
   }
 }
