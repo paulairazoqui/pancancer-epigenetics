@@ -23,7 +23,7 @@ The framework emphasizes biological interpretability, data leakage prevention, r
 
 - **Phase 2 — Independent Tumor Discovery:** closed / frozen with 9,965 TCGA primary-tumor cases and 13 retained candidate cross-omic programs.
 - **Phase 3 — Independent Cell-Line Discovery:** closed with 713 DepMap–GDSC models; latent-program extraction was phenotype-independent and internal robustness was completed in notebook 311.
-- **Phase 4 — Cross-System Integration:** notebook 400 — Cross-System Program Comparison is complete. Notebook 401 — Consensus Program Construction is next after the tracked Phase 2 → Phase 4 handoff contract is frozen.
+- **Phase 4 — Cross-System Integration:** notebooks 400 — Cross-System Program Comparison, 401 — Consensus Program Construction, and 402 — Cross-Lineage Robustness are complete. Notebook 403 — Epigenetic Regulator Enrichment is next.
 
 ---
 
@@ -44,7 +44,7 @@ The project is designed to generate computational associations and candidate hyp
 
 ## Repository and Notebook Structure
 
-The repository physically contains directories for Phases 0–8. Implemented notebooks currently exist for Phases 1–3 and Phase 4 through notebook 400; later Phase 4 notebooks and the directories for Phases 5–8 remain planned. Phase 9 is part of the roadmap v3.0 architecture but does not currently have a notebook directory.
+The repository physically contains directories for Phases 0–8. Implemented notebooks currently exist for Phases 1–3 and Phase 4 through notebook 402; later Phase 4 notebooks and the directories for Phases 5–8 remain planned. Phase 9 is part of the roadmap v3.0 architecture but does not currently have a notebook directory.
 
 ```text
 ├── config/                # Path and source-data registry configuration
@@ -54,7 +54,7 @@ The repository physically contains directories for Phases 0–8. Implemented not
 │   └── processed/         # Program, vulnerability, context, hypothesis, and validation outputs
 ├── docs/                  # Project direction, architecture, policy, terminology, and workflow docs
 ├── envs/                  # Environment-related documentation or alternative environment files
-├── notebooks/             # Implemented Phase 1–3 notebooks plus planned-phase placeholders
+├── notebooks/             # Implemented Phase 1–4 notebooks plus planned-phase placeholders
 ├── results/               # Manuscript-ready figures and tables by paper/supplement
 ├── src/                   # Reusable source code and path helpers
 └── tests/                 # Test documentation and future automated checks
@@ -143,7 +143,7 @@ A minimal reproducibility sequence is:
 5. Run the Phase 1 notebooks to confirm source availability and raw-file auditing.
 6. Execute implemented notebooks in numerical order within the completed phases. Future phases are run only after their notebooks are implemented and their frozen inputs are available.
 
-The implemented notebook series are `100`–`106`, `200`–`206`, and `300`–`311`. The physical notebook layout currently is:
+The implemented notebook series are `100`–`106`, `200`–`206`, `300`–`311`, and `400`–`402`. The physical notebook layout currently is:
 
 ```text
 notebooks/
@@ -151,14 +151,14 @@ notebooks/
 ├── phase1_data_acquisition_and_auditing/
 ├── phase2_tumor_discovery_layer/
 ├── phase3_cell_line_discovery_layer/
-├── phase4_consensus_programs/              # planned placeholder
+├── phase4_consensus_programs/              # implemented through notebook 402
 ├── phase5_functional_vulnerabilities/      # planned placeholder
 ├── phase6_pharmacogenomic_contexts/        # planned placeholder
 ├── phase7_perturbational_hypotheses/       # planned placeholder
 └── phase8_orthogonal_validation/           # planned placeholder
 ```
 
-Phase 9 is planned in roadmap v3.0 but has no current directory. The Phase 4–8 directories do not imply implemented notebooks.
+Phase 9 is planned in roadmap v3.0 but has no current directory. The Phase 5–8 directories do not imply implemented notebooks.
 
 Raw data files are expected to remain unchanged after acquisition. Derived files should be regenerated into `data/interim/` or `data/processed/` according to the notebook logic.
 
