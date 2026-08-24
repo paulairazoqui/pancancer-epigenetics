@@ -11,6 +11,7 @@ data:
     chembl: data/raw/chembl
     drugbank: data/raw/drugbank
     epifactors: data/raw/epifactors
+    msigdb: data/raw/msigdb   
   interim:
     root: data/interim
     metadata: data/interim/metadata
