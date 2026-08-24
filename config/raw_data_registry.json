@@ -250,5 +250,24 @@
     "release": null,
     "download_page_url": null,
     "files": {}
+  },
+  "epifactors": {
+    "source_database": "EpiFactors",
+    "release": "v2.1",
+    "release_date": "2024-09-10",
+    "download_page_url": "https://epifactors.autosome.org/description",
+    "retrieval_method": "Manual download from the EpiFactors v2.1 description/download page",
+    "retrieved_on": "2026-08-24",
+    "canonical_dir": "data/raw/epifactors",
+    "files": {
+      "EpiGenes_main.csv": {
+        "role": "protein_level_epigenetic_regulator_annotation",
+        "description": "EpiFactors v2.1 protein-level annotation table for curated epigenetic regulators"
+      },
+      "EpiGenes_complexes.csv": {
+        "role": "epigenetic_protein_complex_annotation",
+        "description": "EpiFactors v2.1 protein-complex annotation table for curated epigenetic complexes"
+      }
+    }
   }
 }
