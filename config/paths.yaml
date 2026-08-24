@@ -10,6 +10,7 @@ data:
     cell_model_passports: data/raw/cell_model_passports
     chembl: data/raw/chembl
     drugbank: data/raw/drugbank
+    epifactors: data/raw/epifactors
   interim:
     root: data/interim
     metadata: data/interim/metadata
