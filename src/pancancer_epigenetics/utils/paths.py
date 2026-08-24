@@ -3,6 +3,7 @@ utils/paths.py – Project path resolution.
 Import from any script: from pancancer_epigenetics.utils.paths import Paths
 """
 
+from logging import root
 from pathlib import Path
 
 from pancancer_epigenetics.utils.file_checks import (
@@ -67,6 +68,7 @@ class Paths:
     cell_model_passports = root / _cfg["data"]["raw"]["cell_model_passports"]
     chembl = root / _cfg["data"]["raw"]["chembl"]
     drugbank = root / _cfg["data"]["raw"]["drugbank"]
+    epifactors = root / _cfg["data"]["raw"]["epifactors"]
 
     # interim analysis-ready inputs
     interim = root / _cfg["data"]["interim"]["root"]
