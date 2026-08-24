@@ -259,7 +259,7 @@ Outputs:
 
 ## Status
 
-**IN PROGRESS.** Notebooks **400 — Cross-System Program Comparison** and **401 — Consensus Program Construction** are complete. Notebook **402 — Cross-Lineage Robustness** is next.
+**IN PROGRESS.** Notebooks **400 — Cross-System Program Comparison**, **401 — Consensus Program Construction**, and **402 — Cross-Lineage Robustness** are complete. Notebook **403 — Epigenetic Regulator Enrichment** is next.
 
 ## Objective
 
@@ -272,6 +272,8 @@ Identify reproducible programs emerging independently across tumors and cell mod
 #### 401 — Consensus Program Construction
 
 #### 402 — Cross-Lineage Robustness
+
+Completed as an internal lineage-aware robustness assessment of the frozen consensus transcriptomic representations, without refitting, reweighting, phenotype-based rescue, or categorical robustness promotion.
 
 #### 403 — Epigenetic Regulator Enrichment
 
