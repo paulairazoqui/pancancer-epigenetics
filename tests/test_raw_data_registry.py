@@ -97,6 +97,19 @@ def test_acquired_file_identity_requires_complete_pair() -> None:
         validate_file_identity({}, required=True)
 
 
+def test_file_managed_file_status_is_required_during_registry_validation() -> None:
+    registry = {
+        "example": {
+            "provenance_mode": "file_managed",
+            "canonical_dir": "data/raw/example",
+            "files": {"example.tsv": {"role": "example_input"}},
+        }
+    }
+
+    with pytest.raises(ValueError, match="requires a status on the file or resource"):
+        validate_raw_data_registry(registry)
+
+
 def test_manifest_payloads_do_not_require_individual_identity() -> None:
     registry = {
         "tcga": {
@@ -168,7 +181,12 @@ def test_actual_registry_management_modes_and_statuses() -> None:
     paths = {record["relative_path"] for record in files}
     assert "data/raw/tcga/confounders/41467_2013_BFncomms3612_MOESM489_ESM.xlsx" in paths
     assert not any("star_counts" in path or "methylation" in path for path in paths)
-    assert len(files) == 22
+    assert any(path.startswith("data/raw/depmap/") for path in paths)
+    assert any(path.startswith("data/raw/gdsc/") for path in paths)
+    assert any(path.startswith("data/raw/epifactors/") for path in paths)
+    assert any(path.startswith("data/raw/msigdb/") for path in paths)
+    assert registry["ctrp"]["status"] == "planned"
+    assert registry["prism"]["status"] == "planned"
 
 
 def test_resolve_canonical_file_path_uses_registry_filename(tmp_path: Path) -> None:

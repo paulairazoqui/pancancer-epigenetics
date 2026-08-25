@@ -146,8 +146,12 @@ def validate_raw_data_registry(registry: Registry) -> Registry:
                         f"File '{label}.{file_name}' metadata must be an object."
                     )
                 file_status = file_metadata.get("status", status)
-                if file_status is not None:
-                    validate_status(file_status)
+                if file_status is None:
+                    raise ValueError(
+                        f"File-managed resource '{label}' file '{file_name}' "
+                        "requires a status on the file or resource."
+                    )
+                validate_status(file_status)
                 validate_file_identity(
                     file_metadata,
                     required=file_status in {
@@ -343,7 +347,3 @@ def enumerate_manifest_managed_resources(registry: Registry) -> list[Registry]:
             resource["resource_id"] or "",
         ),
     )
-
-
-# Backward/reader-friendly alias for callers that prefer an iterator name.
-iter_file_managed_files = enumerate_file_managed_files
