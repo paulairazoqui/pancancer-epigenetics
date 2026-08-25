@@ -259,7 +259,7 @@ Outputs:
 
 ## Status
 
-**IN PROGRESS.** Notebooks **400 — Cross-System Program Comparison**, **401 — Consensus Program Construction**, and **402 — Cross-Lineage Robustness** are complete. Notebook **403 — Epigenetic Regulator Enrichment** is next.
+**CLOSED / FROZEN.** Notebooks **400 — Cross-System Program Comparison** through **404 — Program Annotation** are complete. The phase retains three frozen candidate cross-system transcriptomic consensus representations with tumor-side methylation context, lineage-aware robustness characterization, epigenetic-regulator enrichment results, and prespecified biological annotations. Phase 4 reopens only for a concrete identified problem; downstream evidence must not retrospectively redefine, rescue, exclude, reweight, or rename the frozen consensus representations.
 
 ## Objective
 
@@ -310,6 +310,10 @@ Primary deliverables:
 ---
 
 # Phase 5 — Functional Vulnerabilities
+
+## Status
+
+**NEXT / PLANNED.** Notebook **500 — CRISPR Associations** is the next analytical notebook once the required functional-dependency inputs have been acquired, audited, and frozen for use.
 
 ## Objective
 

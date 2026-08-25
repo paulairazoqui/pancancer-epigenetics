@@ -34,15 +34,15 @@ Read phase-specific contracts and decision records before modifying or extending
 | [`NOTEBOOK_STYLE_GUIDE.md`](NOTEBOOK_STYLE_GUIDE.md) | Defines notebook implementation and documentation conventions, including short single-responsibility cells and downstream reuse of frozen upstream artifacts. |
 | [`workflow.md`](workflow.md) | Summarizes the operational handoff between phases, notebook series, inputs, outputs, and analytical boundaries. For the latest completion status, use the root README and `roadmap.md`. |
 
-## Current Phase 4 handoff
+## Phase 4 closure and Phase 5 handoff
 
-Phase 2 tumor discovery is closed and frozen, Phase 3 independent cell-line discovery is closed, and Phase 4 cross-system integration is in progress. Notebooks `400 — Cross-System Program Comparison`, `401 — Consensus Program Construction`, and `402 — Cross-Lineage Robustness` are complete. Notebook `403 — Epigenetic Regulator Enrichment` is the next analytical step.
+Phase 2 tumor discovery is closed and frozen, Phase 3 independent cell-line discovery is closed, and Phase 4 cross-system integration is now closed and frozen after completion of notebooks `400 — Cross-System Program Comparison` through `404 — Program Annotation`.
 
-The frozen Phase 4 layer now contains supported cross-system transcriptomic correspondences, three candidate cross-system transcriptomic consensus representations with tumor-side methylation context, and lineage-aware internal robustness evidence. Notebook 402 did not refit or reweight consensus representations and did not introduce phenotype-based rescue or categorical robustness promotion.
+The frozen Phase 4 layer contains supported cross-system transcriptomic correspondences, three candidate cross-system transcriptomic consensus representations with tumor-side methylation context, lineage-aware internal robustness evidence, epigenetic-regulator enrichment results, and prespecified biological annotations. Notebooks 402–404 did not refit or reweight the consensus representations and did not use downstream robustness or annotation evidence to retrospectively redefine consensus eligibility.
 
 The historical input contract for notebook 401 remains available at [`PHASE4_401_INPUT_CONTRACT.md`](PHASE4_401_INPUT_CONTRACT.md). It preserves the provenance and interpretation rules that governed consensus construction, including the distinction between unique RNA correspondence events, tumor structural families, and tumor cross-omic arms.
 
-Notebook 403 should treat the consensus definitions, source-program mappings, orientations, weights, and completed cross-lineage robustness analysis as frozen upstream inputs. Epigenetic-regulator enrichment is an annotation layer and must not retrospectively redefine consensus eligibility or rescue context-sensitive representations.
+Phase 5 — Functional Vulnerabilities is the next planned analytical phase. Notebook `500 — CRISPR Associations` should consume the frozen consensus layer only after the required functional-dependency inputs have been acquired, audited, harmonized where necessary, and frozen. Downstream dependency associations are putative vulnerability evidence and must not be used to retrospectively redefine Phase 4 programs.
 
 Phase-specific contracts constrain only their declared scope and should not be generalized into new project-wide rules without an explicit documented decision.
 
