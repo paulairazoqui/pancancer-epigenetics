@@ -87,7 +87,7 @@ The completed DepMap–GDSC cohort contains 713 models. Cellular discovery did n
 
 ## Layer 3 — Cross-System Comparison and Consensus
 
-**Phase 4 — planned**
+**Phase 4 — closed and frozen**
 
 Purpose:
 
@@ -96,13 +96,15 @@ Purpose:
 * construct consensus programs only after matching; and
 * retain explicit “not recoverable” outcomes.
 
-Component indices are not assumed to be portable between systems. Future scoring or projection can be used as an analytical operation in this phase or downstream, but not as the mechanism of cell-line discovery.
+Phase 4 completed notebooks 400–404 and froze three candidate cross-system transcriptomic consensus representations with tumor-side methylation context. Cross-lineage robustness, epigenetic-regulator enrichment, and biological annotation were used for characterization only and did not retrospectively redefine, rescue, exclude, reweight, or rename the frozen consensus representations.
+
+Component indices are not assumed to be portable between systems. Scoring or projection can be used as an analytical operation downstream, but not as the mechanism of cell-line discovery. Cross-system correspondence remains computational reproducibility evidence rather than biological or causal validation.
 
 ---
 
 ## Layer 4 — Functional Vulnerability Characterization
 
-**Phase 5 — planned**
+**Phase 5 — next / planned**
 
 Primary resources:
 
@@ -113,6 +115,8 @@ Purpose:
 
 * characterize associations between consensus or cross-system programs and functional dependency profiles; and
 * generate putative vulnerability hypotheses.
+
+Notebook 500 — CRISPR Associations is the next analytical notebook once the required dependency inputs have been acquired, audited, and frozen.
 
 These associations do not establish a causal role or a validated intervention.
 
