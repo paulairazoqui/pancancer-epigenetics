@@ -18,8 +18,24 @@
       "sha256": "e23efdd601e370beeb30a58a7e592c6f03ff59c4e308912d141588d1e70a51b3",
       "inputs": [
         {
-          "type": "raw_registry",
-          "ref": "/tcga"
+          "type": "artifact",
+          "artifact_id": "phase2.201.candidate_raw_rna_counts"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_gene_feature_index"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_file_qc_inventory"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_raw_counts_metadata"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.qc_annotated_candidate_pair_inventory"
         }
       ]
     },
@@ -40,8 +56,8 @@
       "sha256": "6b91570c3232199c61490a0f70d6778e19c0499593827a0a682cba1192c375de",
       "inputs": [
         {
-          "type": "raw_registry",
-          "ref": "/tcga"
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_gene_feature_index"
         }
       ]
     },
@@ -62,8 +78,40 @@
       "sha256": "b32edc2e658b4025ded2a88845013e2c4c962c50924794908206f73ffa7cbdb3",
       "inputs": [
         {
-          "type": "raw_registry",
-          "ref": "/tcga"
+          "type": "artifact",
+          "artifact_id": "phase2.201.candidate_raw_rna_counts"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_gene_feature_index"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_file_qc_inventory"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_raw_counts_metadata"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.qc_annotated_candidate_pair_inventory"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.qc_annotated_candidate_pair_inventory"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.methylation_file_qc_metrics"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.probe_level_qc_metrics"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.shared_probe_qc_inventory"
         }
       ]
     },
@@ -84,8 +132,40 @@
       "sha256": "040ddb0f4d058f57432803165996734e0981521e0e2fd9c15fe05db8c0756a3f",
       "inputs": [
         {
-          "type": "raw_registry",
-          "ref": "/tcga"
+          "type": "artifact",
+          "artifact_id": "phase2.201.candidate_raw_rna_counts"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_gene_feature_index"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_file_qc_inventory"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_raw_counts_metadata"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.qc_annotated_candidate_pair_inventory"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.qc_annotated_candidate_pair_inventory"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.methylation_file_qc_metrics"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.probe_level_qc_metrics"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.shared_probe_qc_inventory"
         }
       ]
     },
@@ -106,8 +186,40 @@
       "sha256": "f9c28f4dd3640bfb1e66abdf2c1d68cb6f166744b503dd79b0558bbfe4b7c456",
       "inputs": [
         {
-          "type": "raw_registry",
-          "ref": "/tcga"
+          "type": "artifact",
+          "artifact_id": "phase2.201.candidate_raw_rna_counts"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_gene_feature_index"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_file_qc_inventory"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_raw_counts_metadata"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.qc_annotated_candidate_pair_inventory"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.qc_annotated_candidate_pair_inventory"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.methylation_file_qc_metrics"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.probe_level_qc_metrics"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.shared_probe_qc_inventory"
         }
       ]
     },
@@ -171,8 +283,40 @@
       "sha256": "9bbdde971ac47048508e04a5ac0523b98f622d8330155532cdfa61069ce0377f",
       "inputs": [
         {
-          "type": "raw_registry",
-          "ref": "/tcga"
+          "type": "artifact",
+          "artifact_id": "phase2.201.candidate_raw_rna_counts"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_gene_feature_index"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_file_qc_inventory"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_raw_counts_metadata"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.qc_annotated_candidate_pair_inventory"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.qc_annotated_candidate_pair_inventory"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.methylation_file_qc_metrics"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.probe_level_qc_metrics"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.shared_probe_qc_inventory"
         }
       ]
     },
@@ -193,8 +337,40 @@
       "sha256": "410babdc86a41d7e29ccf3ab180ab8ab790d0bd7faa0e9aef76f69a0c2fbb1a9",
       "inputs": [
         {
-          "type": "raw_registry",
-          "ref": "/tcga"
+          "type": "artifact",
+          "artifact_id": "phase2.201.candidate_raw_rna_counts"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_gene_feature_index"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_file_qc_inventory"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_raw_counts_metadata"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.qc_annotated_candidate_pair_inventory"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.qc_annotated_candidate_pair_inventory"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.methylation_file_qc_metrics"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.probe_level_qc_metrics"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.shared_probe_qc_inventory"
         }
       ]
     },
@@ -220,7 +396,19 @@
         },
         {
           "type": "raw_registry",
-          "ref": "/tcga"
+          "ref": "/tcga/external_resources/estimate/files/41467_2013_BFncomms3612_MOESM489_ESM.xlsx"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/external_resources/consensus_purity_estimate/files/41467_2015_BFncomms9971_MOESM1236_ESM.xlsx"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/external_resources/panimmune_leukocyte_fraction/files/TCGA_all_leuk_estimate.masked.20170107.tsv"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/external_resources/pancanatlas_absolute/files/TCGA_mastercalls.abs_tables_JSedit.fixed.txt"
         }
       ]
     },
@@ -544,11 +732,19 @@
         },
         {
           "type": "raw_registry",
-          "ref": "/depmap"
+          "ref": "/depmap/files/OmicsExpressionProteinCodingGenesTPMLogp1.csv"
         },
         {
           "type": "raw_registry",
-          "ref": "/gdsc"
+          "ref": "/depmap/files/OmicsSomaticMutations.csv"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/depmap/files/OmicsProfiles.csv"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/gdsc/files/GDSC2_fitted_dose_response_27Oct23.xlsx"
         }
       ]
     },
@@ -561,7 +757,10 @@
         "type": "notebook",
         "path": "notebooks/phase3_cell_line_discovery_layer/303_expression_matrix_integration.ipynb"
       },
-      "shape": null,
+      "shape": [
+        713,
+        19194
+      ],
       "size_bytes": 57579236,
       "sha256": "b641c3f94ba3f028f4d0d88d62660d7db4009c7fdd6e63f8a2363ddd46cbd463",
       "inputs": [
@@ -571,7 +770,7 @@
         },
         {
           "type": "raw_registry",
-          "ref": "/depmap"
+          "ref": "/depmap/files/OmicsExpressionProteinCodingGenesTPMLogp1.csv"
         }
       ]
     },
@@ -584,17 +783,16 @@
         "type": "notebook",
         "path": "notebooks/phase3_cell_line_discovery_layer/307_pharmacological_phenotype_framework.ipynb"
       },
-      "shape": null,
+      "shape": [
+        713,
+        7
+      ],
       "size_bytes": 31613,
       "sha256": "2764917a7812cf317bbafd4be147c09417068e3d5331309f08fd6883e2d561d6",
       "inputs": [
         {
           "type": "artifact",
           "artifact_id": "phase3.302.integrated_modeling_cohort"
-        },
-        {
-          "type": "raw_registry",
-          "ref": "/gdsc"
         }
       ]
     },
@@ -637,7 +835,10 @@
         "type": "notebook",
         "path": "notebooks/phase3_cell_line_discovery_layer/309_phenotype_sensitivity_analysis.ipynb"
       },
-      "shape": null,
+      "shape": [
+        713,
+        16
+      ],
       "size_bytes": 66382,
       "sha256": "f908c1abbe9fb9aadb81e1d17520ddaf526515f3933e7eb355e9ca658d6b062a",
       "inputs": [
@@ -660,7 +861,10 @@
         "type": "notebook",
         "path": "notebooks/phase3_cell_line_discovery_layer/310_program_discovery.ipynb"
       },
-      "shape": null,
+      "shape": [
+        5000,
+        51
+      ],
       "size_bytes": 2508814,
       "sha256": "27460cd3c38bbca52b4e1253aee6093bbe5dca335815d8770904164cc7076c80",
       "inputs": [
@@ -683,7 +887,10 @@
         "type": "notebook",
         "path": "notebooks/phase3_cell_line_discovery_layer/310_program_discovery.ipynb"
       },
-      "shape": null,
+      "shape": [
+        713,
+        51
+      ],
       "size_bytes": 367004,
       "sha256": "10be346327c9eb866a0a536b151bd3dd6a964815726d8f95ecf7a55f120d50a2",
       "inputs": [
@@ -1023,7 +1230,10 @@
         "type": "notebook",
         "path": "notebooks/phase4_consensus_programs/401_consensus_program_construction.ipynb"
       },
-      "shape": null,
+      "shape": [
+        9965,
+        8
+      ],
       "size_bytes": 498941,
       "sha256": "038a5595b20c20e1ae6f176273c5478e3ba641df0b16458ef217e2cb11c1bbf8",
       "inputs": [
@@ -1050,7 +1260,10 @@
         "type": "notebook",
         "path": "notebooks/phase4_consensus_programs/401_consensus_program_construction.ipynb"
       },
-      "shape": null,
+      "shape": [
+        713,
+        4
+      ],
       "size_bytes": 27416,
       "sha256": "7fe35074405097df62c5fa61c2014a265ce37fcfa1e0f5eeab3072f651183a1b",
       "inputs": [
@@ -1197,7 +1410,11 @@
         },
         {
           "type": "raw_registry",
-          "ref": "/epifactors"
+          "ref": "/epifactors/files/EpiGenes_main.csv"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/epifactors/files/EpiGenes_complexes.csv"
         }
       ]
     },
@@ -1227,7 +1444,11 @@
         },
         {
           "type": "raw_registry",
-          "ref": "/epifactors"
+          "ref": "/epifactors/files/EpiGenes_main.csv"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/epifactors/files/EpiGenes_complexes.csv"
         }
       ]
     },
@@ -1257,7 +1478,15 @@
         },
         {
           "type": "raw_registry",
-          "ref": "/msigdb"
+          "ref": "/msigdb/files/h.all.v2026.1.Hs.symbols.gmt"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/msigdb/files/c2.cp.reactome.v2026.1.Hs.symbols.gmt"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/msigdb/files/c5.go.bp.v2026.1.Hs.symbols.gmt"
         }
       ]
     },
@@ -1279,11 +1508,15 @@
       "inputs": [
         {
           "type": "raw_registry",
-          "ref": "/depmap"
+          "ref": "/depmap/files/Model.csv"
         },
         {
           "type": "raw_registry",
-          "ref": "/gdsc"
+          "ref": "/depmap/files/OmicsProfiles.csv"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/gdsc/files/GDSC2_fitted_dose_response_27Oct23.xlsx"
         }
       ]
     },
@@ -1318,7 +1551,10 @@
         "type": "notebook",
         "path": "notebooks/phase2_tumor_discovery_layer/205_tcga_epigenetic_transcriptomic_program_discovery.ipynb"
       },
-      "shape": null,
+      "shape": [
+        18123,
+        9965
+      ],
       "size_bytes": 1186681637,
       "sha256": "0072307c93357f4c4008a444d1999fe5a5374222ef87b6c3fff2e17e81d97fc8",
       "inputs": [
@@ -1329,6 +1565,149 @@
         {
           "type": "artifact",
           "artifact_id": "phase2.203.final_rna_feature_index"
+        }
+      ]
+    },
+    "phase2.201.candidate_raw_rna_counts": {
+      "path": "data/interim/expression/tcga_primary_tumor_rnaseq_candidate_unstranded_raw_counts.npy",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/201_tcga_rnaseq_quality_control.ipynb"
+      },
+      "shape": [
+        60660,
+        10122
+      ],
+      "size_bytes": 2456002208,
+      "sha256": "7b0869367ecb81d5118a5736884c6924927e220d0c045a2e3f9a256153dea669",
+      "inputs": []
+    },
+    "phase2.201.rna_gene_feature_index": {
+      "path": "data/interim/expression/tcga_primary_tumor_rnaseq_gene_feature_index.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/201_tcga_rnaseq_quality_control.ipynb"
+      },
+      "shape": [
+        60660,
+        6
+      ],
+      "size_bytes": 4084566,
+      "sha256": "6b91570c3232199c61490a0f70d6778e19c0499593827a0a682cba1192c375de",
+      "inputs": []
+    },
+    "phase2.201.rna_file_qc_inventory": {
+      "path": "data/interim/qc/tcga_primary_tumor_rnaseq_file_qc_inventory.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/201_tcga_rnaseq_quality_control.ipynb"
+      },
+      "shape": [
+        10122,
+        105
+      ],
+      "size_bytes": 11315440,
+      "sha256": "4bbf95a16df7f5a5b2e03913b090b26d42155857720acaa7b765dafa5f356ba9",
+      "inputs": []
+    },
+    "phase2.201.rna_raw_counts_metadata": {
+      "path": "data/interim/expression/tcga_primary_tumor_rnaseq_candidate_unstranded_raw_counts_metadata.json",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/201_tcga_rnaseq_quality_control.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 9683,
+      "sha256": "b8e57f4e4fadd7575bb275ea5aed2451811c81c7e9776edec26fa8bbf2d3546c",
+      "inputs": []
+    },
+    "phase2.202.qc_annotated_candidate_pair_inventory": {
+      "path": "data/interim/metadata/tcga_primary_tumor_rnaseq_methylation_qc_annotated_candidate_pair_inventory.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/202_tcga_methylation_quality_control.ipynb"
+      },
+      "shape": [
+        10162,
+        63
+      ],
+      "size_bytes": 9889577,
+      "sha256": "1831142238f98868fd7a2c4d58ec6d51982a896a1b29668eb91319ad2b01e661",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_file_qc_inventory"
+        }
+      ]
+    },
+    "phase2.202.methylation_file_qc_metrics": {
+      "path": "data/interim/qc/tcga_primary_tumor_methylation_candidate_file_qc_metrics.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/202_tcga_methylation_quality_control.ipynb"
+      },
+      "shape": [
+        10038,
+        22
+      ],
+      "size_bytes": 3107678,
+      "sha256": "fcbe981b3349cfaa39eea96139df054cb3d453d364a19c53cdf79adc1157bcb9",
+      "inputs": []
+    },
+    "phase2.202.probe_level_qc_metrics": {
+      "path": "data/interim/qc/tcga_primary_tumor_methylation_hm27_hm450_probe_qc_metrics.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/202_tcga_methylation_quality_control.ipynb"
+      },
+      "shape": [
+        514005,
+        14
+      ],
+      "size_bytes": 81688197,
+      "sha256": "c821f49e120e9d603ebce01a3b79826c592d90da5727b821a36870f35a5f1800",
+      "inputs": []
+    },
+    "phase2.202.shared_probe_qc_inventory": {
+      "path": "data/interim/metadata/tcga_primary_tumor_methylation_hm27_hm450_shared_probe_qc_inventory.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/202_tcga_methylation_quality_control.ipynb"
+      },
+      "shape": [
+        25978,
+        8
+      ],
+      "size_bytes": 1629838,
+      "sha256": "8d7ebd256b1cb34e885e5dd0320018d4117d611e1d82e3bbe1a333fb267eab75",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.probe_level_qc_metrics"
         }
       ]
     }

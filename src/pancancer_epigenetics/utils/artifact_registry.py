@@ -14,6 +14,7 @@ _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 _ROLES = {"data", "metadata", "handoff"}
 _PRODUCER_TYPES = {"notebook", "tracked_handoff"}
 _INPUT_TYPES = {"artifact", "raw_registry"}
+_COARSE_RAW_REFS = {"/tcga", "/depmap", "/gdsc", "/epifactors", "/msigdb"}
 
 
 def load_artifact_registry(path: Path = Paths.artifact_registry) -> dict[str, Any]:
@@ -123,7 +124,10 @@ def validate_artifact_registry(
                 if reference == artifact_id:
                     raise ValueError("artifact cannot depend on itself")
             else:
-                _resolve_pointer(raw_registry, item.get("ref"))
+                raw_ref = item.get("ref")
+                if raw_ref in _COARSE_RAW_REFS:
+                    raise ValueError("raw_registry ref must identify a cohort, resource, or file")
+                _resolve_pointer(raw_registry, raw_ref)
     _validate_cycles(artifacts)
     return registry
 
@@ -155,6 +159,3 @@ def verify_artifact_identity(registry: dict[str, Any], root: Path = PROJECT_ROOT
             findings.append({"artifact_id": artifact_id, "issue": "sha256_mismatch"})
     return findings
 
-
-# Backwards-compatible spelling for callers written during initial scaffolding.
-verify_artifact_files = verify_artifact_identity

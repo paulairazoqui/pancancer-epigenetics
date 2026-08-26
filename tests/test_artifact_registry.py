@@ -57,6 +57,15 @@ def test_missing_artifact_and_raw_references_rejected() -> None:
     registry["artifacts"]["a"]["inputs"] = [{"type": "artifact", "artifact_id": "missing"}]
     with pytest.raises(ValueError, match="does not exist"):
         validate_artifact_registry(registry, raw)
+
+
+@pytest.mark.parametrize("coarse_ref", ["/tcga", "/depmap", "/gdsc", "/epifactors", "/msigdb"])
+def test_top_level_raw_registry_references_are_rejected(coarse_ref: str) -> None:
+    registry, raw = _registry()
+    raw[coarse_ref[1:]] = {}
+    registry["artifacts"]["a"]["inputs"] = [{"type": "raw_registry", "ref": coarse_ref}]
+    with pytest.raises(ValueError, match="cohort, resource, or file"):
+        validate_artifact_registry(registry, raw)
     registry["artifacts"]["a"]["inputs"] = [{"type": "raw_registry", "ref": "/missing"}]
     with pytest.raises(ValueError, match="does not resolve"):
         validate_artifact_registry(registry, raw)
@@ -83,6 +92,12 @@ def test_real_registry_structure_and_frozen_phase4_outputs() -> None:
     registry = load_artifact_registry()
     assert registry["schema_version"] == 1
     assert all(not item["path"].startswith("data/raw/") for item in registry["artifacts"].values())
+    assert all(
+        input_item.get("ref") not in {"/tcga", "/depmap", "/gdsc", "/epifactors", "/msigdb"}
+        for item in registry["artifacts"].values()
+        for input_item in item["inputs"]
+        if input_item["type"] == "raw_registry"
+    )
     for artifact_id in (
         "phase4.400.cross_system_shared_gene_universe",
         "phase4.401.consensus_transcriptomic_program_catalog",
