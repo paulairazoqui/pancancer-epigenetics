@@ -48,17 +48,18 @@ The project is designed to generate computational associations and candidate hyp
 The repository physically contains directories for Phases 0–8. Implemented notebooks currently exist for Phases 1–4, with Phase 4 complete through notebook 404. The directories for Phases 5–8 remain planned placeholders; Phase 5 is the next analytical phase. Phase 9 is part of the roadmap v3.0 architecture but does not currently have a notebook directory.
 
 ```text
-├── config/                # Path and source-data registry configuration
+├── .github/workflows/     # Data-free continuous-integration checks
+├── config/                # Paths plus raw-data and derived-artifact registries
 ├── data/                  # Immutable raw data and reproducible derived data tiers
 │   ├── raw/               # Source-dataset folders such as depmap, gdsc, tcga, lincs
 │   ├── interim/           # Harmonized analysis-ready inputs, metadata, and QC artifacts
 │   └── processed/         # Program, vulnerability, context, hypothesis, and validation outputs
 ├── docs/                  # Project direction, architecture, policy, terminology, and workflow docs
-├── envs/                  # Environment-related documentation or alternative environment files
+├── envs/                  # Current reproduction-environment records and historical evidence
 ├── notebooks/             # Implemented Phase 1–4 notebooks plus planned-phase placeholders
 ├── results/               # Manuscript-ready figures and tables by paper/supplement
 ├── src/                   # Reusable source code and path helpers
-└── tests/                 # Test documentation and future automated checks
+└── tests/                 # Automated contract tests and test documentation
 ```
 
 Publication-facing outputs belong under `results/paper1/`, `results/paper2/`, and `results/supplementary/`, each with `figures/` and `tables/` subfolders.
@@ -117,11 +118,9 @@ Large raw and derived data files are not version-controlled. Directory structure
 
 ## Environment Setup
 
-This project is developed and tested using **Python 3.11.x**.
+The current captured reproduction environment uses **Python 3.11.8**.
 
-The original local development environment used Python 3.11.8. Any later patch release within the Python 3.11 series is expected to be appropriate, provided that the dependencies in `requirements.txt` install successfully.
-
-This project requires a Python environment with the dependencies listed in `requirements.txt`.
+`requirements.txt` is the direct dependency contract with exact pins, and `envs/environment.yml` represents the same contract. `envs/python_environment_snapshot.txt` records the complete captured Python environment, including transitive packages. These current reproduction records do not establish that every historical analysis ran under exactly the same software environment; see `envs/README.md` for scope and historical execution evidence.
 
 Create a local Python virtual environment using `venv`, activate it, and then install the project dependencies. From the repository root:
 
@@ -138,7 +137,7 @@ python -m pip install -e .
 A minimal reproducibility sequence is:
 
 1. Clone the repository.
-2. Create and activate the local `.venv` using Python 3.11.x.
+2. Create and activate the local `.venv` using Python 3.11.8.
 3. Install the dependencies from `requirements.txt` and install the repository package in editable mode with `python -m pip install -e .`.
 4. Download or place raw datasets into the appropriate `data/raw/<source>/` folders according to `config/raw_data_registry.json`.
 5. Run the Phase 1 notebooks to confirm source availability and raw-file auditing.
@@ -183,6 +182,8 @@ The current roadmap v3.0 source-of-truth documents are:
 
 * **Data immutability:** Files within `data/raw/` must remain unmodified after acquisition.
 * **Deterministic derived data:** Outputs in `data/interim/` and `data/processed/` should be reproducible from raw source files using version-controlled code, notebooks, and environment definitions.
-* **Strict data provenance:** Source datasets, releases, file locations, and audit summaries should be documented through `config/raw_data_registry.json` and `data/interim/qc/`.
+* **Raw-data provenance:** `config/raw_data_registry.json` records source datasets, releases, file locations, and audit summaries; `data/interim/qc/` contains relevant tracked audit outputs.
+* **Derived-artifact lineage:** `config/artifact_registry.json` records the frozen identity and lineage of registered derived artifacts.
+* **Current reproduction environment:** `envs/environment.yml`, `envs/python_environment_snapshot.txt`, and `envs/r_environment.json` record the current reproduction environment; `envs/README.md` distinguishes these records from historical execution evidence where it exists.
 * **Leakage prevention:** Analyses should avoid naïve pan-cancer pooling, random cross-lineage splits, post-split feature leakage, cell-line overlap leakage, platform leakage, and drug-family leakage.
 * **Conservative interpretation:** Results should be described as recurrent epigenetic-transcriptomic programs, resistance-like pharmacogenomic contexts, candidate functional vulnerabilities, perturbational hypotheses, or computational associations according to the evidence level.

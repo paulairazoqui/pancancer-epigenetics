@@ -84,7 +84,9 @@ Functional dependencies (Phase 5), pharmacogenomic contexts (Phase 6), perturbat
 
 ## 4.1 Gene Identifier Standardization
 
-HGNC-approved symbols are the primary reference framework. Ensembl identifiers are mapped to HGNC symbols; deprecated aliases are resolved programmatically; ambiguous mappings are excluded from confirmatory analyses; and harmonization procedures are versioned.
+**General harmonization policy / preferred future behavior.** HGNC-approved symbols are the preferred reference framework. Where a future workflow requires identifier normalization, Ensembl identifiers should be mapped to HGNC symbols, deprecated aliases should be resolved programmatically, ambiguous mappings should be excluded from confirmatory analyses, and the harmonization procedure should be versioned.
+
+**Executed Phase 4 implementation.** The cross-system shared-gene universe was constructed from the identifiers already present in the frozen loading tables: TCGA `gene_name` was used as the tumor gene symbol, and the cell-line `gene` field had a final numeric suffix of the form `"GENE (1234)"` removed. The two representations were then intersected by exact gene-symbol equality after that transformation. This executed Phase 4 harmonization is an exact-symbol crosswalk over frozen representations, not a comprehensive HGNC normalization pipeline. It did not perform external HGNC remapping, deprecated-alias resolution, ambiguous-symbol rescue, or transcript-version reconciliation.
 
 ## 4.2 Tumor Sample Harmonization
 

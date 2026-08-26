@@ -70,6 +70,6 @@ Thumbs.db
 
 
 # ------------------------------------------------------------
-# agents auditory
+# Local exploratory audit scratch
 # ------------------------------------------------------------
-_codex_exploratory_audit
+*_exploratory_audit/
