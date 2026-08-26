@@ -158,4 +158,3 @@ def verify_artifact_identity(registry: dict[str, Any], root: Path = PROJECT_ROOT
         elif calculate_sha256(path) != artifact["sha256"]:
             findings.append({"artifact_id": artifact_id, "issue": "sha256_mismatch"})
     return findings
-
