@@ -62,10 +62,12 @@ Decision records should document durable choices that affect multiple notebooks 
 Narrative documentation does not replace machine-readable configuration.
 
 - [`../config/raw_data_registry.json`](../config/raw_data_registry.json) is the source for dataset releases, source files, and raw-data provenance used by the implemented workflow.
+- [`../config/artifact_registry.json`](../config/artifact_registry.json) records frozen derived-artifact identity and lineage.
+- [`../envs/README.md`](../envs/README.md) describes the current software reproduction records and the scope of historical execution evidence.
 - [`../config/paths.yaml`](../config/paths.yaml) defines repository paths consumed through the project path utilities.
 - Phase-specific tracked handoff manifests under `config/` may be authoritative for downstream interpretation when explicitly declared by the relevant contract.
 
-Raw-data provenance, frozen cohort definitions, and analytical results should be read from their versioned configuration, metadata, and processed/interim artifacts rather than reconstructed from prose summaries.
+Raw-data provenance, frozen derived-artifact lineage, software reproduction records, cohort definitions, and analytical results should be read from their versioned configuration, metadata, environment records, and processed/interim artifacts rather than reconstructed from prose summaries.
 
 ## Documentation principles
 
