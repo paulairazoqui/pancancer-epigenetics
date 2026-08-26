@@ -1,0 +1,1336 @@
+{
+  "schema_version": 1,
+  "artifacts": {
+    "phase2.203.final_rna_counts": {
+      "path": "data/interim/expression/tcga_primary_tumor_rnaseq_final_case_level_unstranded_raw_counts.npy",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/203_tcga_multiomic_integration.ipynb"
+      },
+      "shape": [
+        60660,
+        9965
+      ],
+      "size_bytes": 2417907728,
+      "sha256": "e23efdd601e370beeb30a58a7e592c6f03ff59c4e308912d141588d1e70a51b3",
+      "inputs": [
+        {
+          "type": "raw_registry",
+          "ref": "/tcga"
+        }
+      ]
+    },
+    "phase2.203.final_rna_feature_index": {
+      "path": "data/interim/expression/tcga_primary_tumor_rnaseq_final_case_level_gene_feature_index.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/203_tcga_multiomic_integration.ipynb"
+      },
+      "shape": [
+        60660,
+        6
+      ],
+      "size_bytes": 4084566,
+      "sha256": "6b91570c3232199c61490a0f70d6778e19c0499593827a0a682cba1192c375de",
+      "inputs": [
+        {
+          "type": "raw_registry",
+          "ref": "/tcga"
+        }
+      ]
+    },
+    "phase2.203.final_shared_methylation_betas": {
+      "path": "data/interim/methylation/tcga_primary_tumor_methylation_shared_hm27_hm450_final_case_level_beta_values.npy",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/203_tcga_multiomic_integration.ipynb"
+      },
+      "shape": [
+        23356,
+        9965
+      ],
+      "size_bytes": 930970288,
+      "sha256": "b32edc2e658b4025ded2a88845013e2c4c962c50924794908206f73ffa7cbdb3",
+      "inputs": [
+        {
+          "type": "raw_registry",
+          "ref": "/tcga"
+        }
+      ]
+    },
+    "phase2.203.final_sample_mapping": {
+      "path": "data/interim/metadata/tcga_primary_tumor_multiomic_final_case_level_sample_mapping.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/203_tcga_multiomic_integration.ipynb"
+      },
+      "shape": [
+        9965,
+        30
+      ],
+      "size_bytes": 8927371,
+      "sha256": "040ddb0f4d058f57432803165996734e0981521e0e2fd9c15fe05db8c0756a3f",
+      "inputs": [
+        {
+          "type": "raw_registry",
+          "ref": "/tcga"
+        }
+      ]
+    },
+    "phase2.203.final_probe_mapping": {
+      "path": "data/interim/metadata/tcga_primary_tumor_methylation_final_probe_mapping.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/203_tcga_multiomic_integration.ipynb"
+      },
+      "shape": [
+        455355,
+        14
+      ],
+      "size_bytes": 54618806,
+      "sha256": "f9c28f4dd3640bfb1e66abdf2c1d68cb6f166744b503dd79b0558bbfe4b7c456",
+      "inputs": [
+        {
+          "type": "raw_registry",
+          "ref": "/tcga"
+        }
+      ]
+    },
+    "phase2.203.final_consumables_metadata": {
+      "path": "data/interim/metadata/tcga_primary_tumor_multiomic_final_consumables_metadata.json",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/203_tcga_multiomic_integration.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 10396,
+      "sha256": "078b56ef3eea3b0a30202c26ed2c516d2b01956adaee88f17c2676e4659c0b3c",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_rna_counts"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_rna_feature_index"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_shared_methylation_betas"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_sample_mapping"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_probe_mapping"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_hm27_methylation_betas"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_hm450_methylation_betas"
+        }
+      ]
+    },
+    "phase2.203.final_hm27_methylation_betas": {
+      "path": "data/interim/methylation/tcga_primary_tumor_methylation_hm27_final_case_level_beta_values.npy",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/203_tcga_multiomic_integration.ipynb"
+      },
+      "shape": [
+        24303,
+        1620
+      ],
+      "size_bytes": 157483568,
+      "sha256": "9bbdde971ac47048508e04a5ac0523b98f622d8330155532cdfa61069ce0377f",
+      "inputs": [
+        {
+          "type": "raw_registry",
+          "ref": "/tcga"
+        }
+      ]
+    },
+    "phase2.203.final_hm450_methylation_betas": {
+      "path": "data/interim/methylation/tcga_primary_tumor_methylation_hm450_final_case_level_beta_values.npy",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/203_tcga_multiomic_integration.ipynb"
+      },
+      "shape": [
+        407696,
+        8345
+      ],
+      "size_bytes": 13608892608,
+      "sha256": "410babdc86a41d7e29ccf3ab180ab8ab790d0bd7faa0e9aef76f69a0c2fbb1a9",
+      "inputs": [
+        {
+          "type": "raw_registry",
+          "ref": "/tcga"
+        }
+      ]
+    },
+    "phase2.204.confounder_covariates": {
+      "path": "data/interim/metadata/tcga_primary_tumor_multiomic_confounder_covariates.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/204_tcga_confounder_assessment.ipynb"
+      },
+      "shape": [
+        9965,
+        18
+      ],
+      "size_bytes": 1866003,
+      "sha256": "25c3ed346a1bc00428fa584c4d0fcfc045bb11e88f4c12f79134208b927b8894",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_consumables_metadata"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga"
+        }
+      ]
+    },
+    "phase2.205.candidate_pair_catalog": {
+      "path": "data/processed/tumor_programs/tcga_primary_tumor_cross_omic_candidate_pair_catalog.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/205_tcga_epigenetic_transcriptomic_program_discovery.ipynb"
+      },
+      "shape": [
+        14,
+        30
+      ],
+      "size_bytes": 8291,
+      "sha256": "4041b0d7b944be037d5296703f5bdd0d08caa9269700e28543a17b3caa19c920",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_rna_counts"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_shared_methylation_betas"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.204.confounder_covariates"
+        }
+      ]
+    },
+    "phase2.205.rna_candidate_scores": {
+      "path": "data/processed/tumor_programs/tcga_primary_tumor_rna_ica_candidate_scores.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/205_tcga_epigenetic_transcriptomic_program_discovery.ipynb"
+      },
+      "shape": [
+        9965,
+        15
+      ],
+      "size_bytes": 1857415,
+      "sha256": "b900ba3f56b8a1dc7ac6c5ef3ac182095d8d14647a4ae653409691607b16a690",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_rna_counts"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.204.confounder_covariates"
+        }
+      ]
+    },
+    "phase2.205.rna_candidate_gene_loadings": {
+      "path": "data/processed/tumor_programs/tcga_primary_tumor_rna_ica_candidate_gene_loadings.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/205_tcga_epigenetic_transcriptomic_program_discovery.ipynb"
+      },
+      "shape": [
+        5000,
+        21
+      ],
+      "size_bytes": 1230313,
+      "sha256": "a4972520f753dd4dc8884e22078c2bb3e048a0007e2b8a9a52009aa46bd79f33",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_rna_counts"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_rna_feature_index"
+        }
+      ]
+    },
+    "phase2.205.methylation_candidate_scores": {
+      "path": "data/processed/tumor_programs/tcga_primary_tumor_hm450_ica_candidate_scores.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/205_tcga_epigenetic_transcriptomic_program_discovery.ipynb"
+      },
+      "shape": [
+        8345,
+        17
+      ],
+      "size_bytes": 1744715,
+      "sha256": "213777f212c3864b14cc3e48a63ad2c2ad39bcadc7ae200f2cb05f135cada422",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_hm450_methylation_betas"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.204.confounder_covariates"
+        }
+      ]
+    },
+    "phase2.205.methylation_candidate_probe_loadings": {
+      "path": "data/processed/tumor_programs/tcga_primary_tumor_hm450_ica_candidate_probe_loadings.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/205_tcga_epigenetic_transcriptomic_program_discovery.ipynb"
+      },
+      "shape": [
+        10000,
+        29
+      ],
+      "size_bytes": 2953308,
+      "sha256": "7639024f548bceb9a1ffd009633ea2cbe2809c3fc98eb4e76bf20b3d7d5f99a8",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_hm450_methylation_betas"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_probe_mapping"
+        }
+      ]
+    },
+    "phase2.205.project_correlations": {
+      "path": "data/processed/tumor_programs/tcga_primary_tumor_cross_omic_candidate_project_correlations.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/205_tcga_epigenetic_transcriptomic_program_discovery.ipynb"
+      },
+      "shape": [
+        448,
+        12
+      ],
+      "size_bytes": 66695,
+      "sha256": "ede0cbd0e807f3e72c7b1c20a0df62d266e91cf4967e873f7d84ef71cf809976",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.rna_candidate_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.methylation_candidate_scores"
+        }
+      ]
+    },
+    "phase2.205.sex_sensitivity_correlations": {
+      "path": "data/processed/tumor_programs/tcga_primary_tumor_cross_omic_matched_sex_sensitivity.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/205_tcga_epigenetic_transcriptomic_program_discovery.ipynb"
+      },
+      "shape": [
+        336,
+        10
+      ],
+      "size_bytes": 58508,
+      "sha256": "9873eee4074848559a76993053bd90ba8fad8127fb36a2a0a586557c826786d1",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.rna_candidate_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.methylation_candidate_scores"
+        }
+      ]
+    },
+    "phase2.205.program_discovery_metadata": {
+      "path": "data/processed/tumor_programs/tcga_primary_tumor_program_discovery_metadata.json",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/205_tcga_epigenetic_transcriptomic_program_discovery.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 2663,
+      "sha256": "9d7787fecb530bd2d719043aaa7f07c96182cd4ebb111d50802c4ffc2cb9e1c6",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.candidate_pair_catalog"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.rna_candidate_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.rna_candidate_gene_loadings"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.methylation_candidate_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.methylation_candidate_probe_loadings"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.project_correlations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.sex_sensitivity_correlations"
+        }
+      ]
+    },
+    "phase2.206.robustness_evidence": {
+      "path": "data/processed/tumor_programs/tcga_cross_omic_candidate_program_robustness_evidence.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/206_tcga_tumor_program_robustness.ipynb"
+      },
+      "shape": [
+        13,
+        19
+      ],
+      "size_bytes": 3989,
+      "sha256": "752501dc176e0de6c2c213e484814870b0b819950c36ca51c0197c8461881a23",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.candidate_pair_catalog"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.rna_candidate_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.methylation_candidate_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.204.confounder_covariates"
+        }
+      ]
+    },
+    "phase2.206.robustness_metadata": {
+      "path": "data/processed/tumor_programs/tcga_cross_omic_candidate_program_robustness_metadata.json",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/206_tcga_tumor_program_robustness.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 2664,
+      "sha256": "bbfed3add1d01c47ba054e4df606b81742ddb37416fd5e209120f88c806001cc",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.206.robustness_evidence"
+        }
+      ]
+    },
+    "phase2.handoff.tcga_candidate_program_classification": {
+      "path": "config/program_handoffs/tcga_phase2_candidate_program_handoff.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "tracked_handoff"
+      },
+      "shape": [
+        13,
+        11
+      ],
+      "size_bytes": 10835,
+      "sha256": "ea71646c6dfcf377b82f2db1502fdc2e2d9267875a7899d37dbd9a30a51c7b62",
+      "inputs": []
+    },
+    "phase3.302.integrated_modeling_cohort": {
+      "path": "data/interim/metadata/302_integrated_modeling_cohort.csv",
+      "phase": 3,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase3_cell_line_discovery_layer/302_integrated_modeling_cohort_construction.ipynb"
+      },
+      "shape": [
+        713,
+        8
+      ],
+      "size_bytes": 85385,
+      "sha256": "1431e6318bd2effa642b3ee73d9d5a46fb5322673fd9d851381421b257169d7d",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.301.harmonized_model_universe"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/depmap"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/gdsc"
+        }
+      ]
+    },
+    "phase3.303.harmonized_expression": {
+      "path": "data/interim/expression/303_expression_harmonized.parquet",
+      "phase": 3,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase3_cell_line_discovery_layer/303_expression_matrix_integration.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 57579236,
+      "sha256": "b641c3f94ba3f028f4d0d88d62660d7db4009c7fdd6e63f8a2363ddd46cbd463",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.302.integrated_modeling_cohort"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/depmap"
+        }
+      ]
+    },
+    "phase3.307.model_level_phenotype": {
+      "path": "data/interim/pharmacology/307_model_level_phenotype.parquet",
+      "phase": 3,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase3_cell_line_discovery_layer/307_pharmacological_phenotype_framework.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 31613,
+      "sha256": "2764917a7812cf317bbafd4be147c09417068e3d5331309f08fd6883e2d561d6",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.302.integrated_modeling_cohort"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/gdsc"
+        }
+      ]
+    },
+    "phase3.308.analysis_cohort": {
+      "path": "data/interim/pharmacology/308_analysis_cohort.csv",
+      "phase": 3,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase3_cell_line_discovery_layer/308_model_level_transcriptome_phenotype_integration.ipynb"
+      },
+      "shape": [
+        713,
+        9
+      ],
+      "size_bytes": 91945,
+      "sha256": "c36e8306c9f1c781778dedaf5882ad6cf35b24b1dd2001aba092a4ebcc61ea35",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.302.integrated_modeling_cohort"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.303.harmonized_expression"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.307.model_level_phenotype"
+        }
+      ]
+    },
+    "phase3.309.phenotype_sensitivity_representations": {
+      "path": "data/interim/pharmacology/309_phenotype_sensitivity_representations.parquet",
+      "phase": 3,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase3_cell_line_discovery_layer/309_phenotype_sensitivity_analysis.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 66382,
+      "sha256": "f908c1abbe9fb9aadb81e1d17520ddaf526515f3933e7eb355e9ca658d6b062a",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.307.model_level_phenotype"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.308.analysis_cohort"
+        }
+      ]
+    },
+    "phase3.310.ica_program_loadings": {
+      "path": "data/processed/cellline_programs/310_ica_program_loadings.parquet",
+      "phase": 3,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase3_cell_line_discovery_layer/310_program_discovery.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 2508814,
+      "sha256": "27460cd3c38bbca52b4e1253aee6093bbe5dca335815d8770904164cc7076c80",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.303.harmonized_expression"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.308.analysis_cohort"
+        }
+      ]
+    },
+    "phase3.310.ica_program_scores": {
+      "path": "data/processed/cellline_programs/310_ica_program_scores.parquet",
+      "phase": 3,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase3_cell_line_discovery_layer/310_program_discovery.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 367004,
+      "sha256": "10be346327c9eb866a0a536b151bd3dd6a964815726d8f95ecf7a55f120d50a2",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.303.harmonized_expression"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.308.analysis_cohort"
+        }
+      ]
+    },
+    "phase3.310.program_phenotype_associations": {
+      "path": "data/processed/cellline_programs/310_program_phenotype_associations.csv",
+      "phase": 3,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase3_cell_line_discovery_layer/310_program_discovery.ipynb"
+      },
+      "shape": [
+        50,
+        24
+      ],
+      "size_bytes": 19231,
+      "sha256": "63c8cc9d2a1c35df44cd30582856f8e6c79b5c105e9728fcddb4ee6d7746b916",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.310.ica_program_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.307.model_level_phenotype"
+        }
+      ]
+    },
+    "phase3.310.program_discovery_metadata": {
+      "path": "data/processed/cellline_programs/310_program_discovery_metadata.json",
+      "phase": 3,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase3_cell_line_discovery_layer/310_program_discovery.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 635,
+      "sha256": "967ba434325ffb70fdd893b9fb6532673a00c2e1c984dbcf7e77c7acbea17bdb",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.310.ica_program_loadings"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.310.ica_program_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.310.program_phenotype_associations"
+        }
+      ]
+    },
+    "phase3.311.program_robustness_summary": {
+      "path": "data/processed/cellline_programs/311_program_robustness_summary.csv",
+      "phase": 3,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase3_cell_line_discovery_layer/311_program_robustness.ipynb"
+      },
+      "shape": [
+        10,
+        33
+      ],
+      "size_bytes": 5437,
+      "sha256": "b4f97f7ddb1016bd5b84ab0c4f17e36d0fd9bb384b8c5adbf93d810c65fcbff3",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.309.phenotype_sensitivity_representations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.310.ica_program_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.310.program_phenotype_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.310.program_discovery_metadata"
+        }
+      ]
+    },
+    "phase3.311.program_robustness_metadata": {
+      "path": "data/processed/cellline_programs/311_program_robustness_metadata.json",
+      "phase": 3,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase3_cell_line_discovery_layer/311_program_robustness.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 3955,
+      "sha256": "9f91e9097b2376d269c0758cf55857e720616b9a017bf58a5fdca815757ffb7b",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.311.program_robustness_summary"
+        }
+      ]
+    },
+    "phase4.400.cross_system_shared_gene_universe": {
+      "path": "data/processed/consensus_programs/400_cross_system_shared_gene_universe.csv",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4_consensus_programs/400_cross_system_program_comparison.ipynb"
+      },
+      "shape": [
+        2389,
+        4
+      ],
+      "size_bytes": 109857,
+      "sha256": "080fee1216c41f488414817f9265cb36e6162743391f7f28eb735c1253f0a84c",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.candidate_pair_catalog"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.rna_candidate_gene_loadings"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.310.ica_program_loadings"
+        }
+      ]
+    },
+    "phase4.400.cross_system_pairwise_matching_metrics": {
+      "path": "data/processed/consensus_programs/400_cross_system_pairwise_matching_metrics.csv",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4_consensus_programs/400_cross_system_program_comparison.ipynb"
+      },
+      "shape": [
+        100,
+        21
+      ],
+      "size_bytes": 25239,
+      "sha256": "53b6a4bb60496619563f25b66a408b2e7097556c600d270f7d135ca81acee181",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.rna_candidate_gene_loadings"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.310.ica_program_loadings"
+        }
+      ]
+    },
+    "phase4.400.cross_system_correspondence_summary": {
+      "path": "data/processed/consensus_programs/400_cross_system_correspondence_summary.csv",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4_consensus_programs/400_cross_system_program_comparison.ipynb"
+      },
+      "shape": [
+        10,
+        24
+      ],
+      "size_bytes": 3809,
+      "sha256": "df9a7e640dcac334de66f176ccc6a9636c9b08830ec27315e76f010a08f2ce52",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.400.cross_system_pairwise_matching_metrics"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.311.program_robustness_summary"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.206.robustness_evidence"
+        }
+      ]
+    },
+    "phase4.400.cross_system_tumor_arm_handoff": {
+      "path": "data/processed/consensus_programs/400_cross_system_tumor_arm_handoff.csv",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4_consensus_programs/400_cross_system_program_comparison.ipynb"
+      },
+      "shape": [
+        13,
+        36
+      ],
+      "size_bytes": 6738,
+      "sha256": "9b0848027f40bdf86721a54f0ecabae775045c409b1b296ce0199ddf0ce02872",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.400.cross_system_correspondence_summary"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.candidate_pair_catalog"
+        }
+      ]
+    },
+    "phase4.400.cross_system_comparison_metadata": {
+      "path": "data/processed/consensus_programs/400_cross_system_comparison_metadata.json",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4_consensus_programs/400_cross_system_program_comparison.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 1826,
+      "sha256": "3991b2bcbd829df5a31329dfacc55bb74f31c7c350165cb21c4c60fd20696cbe",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.400.cross_system_shared_gene_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.400.cross_system_pairwise_matching_metrics"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.400.cross_system_correspondence_summary"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.400.cross_system_tumor_arm_handoff"
+        }
+      ]
+    },
+    "phase4.401.consensus_transcriptomic_program_catalog": {
+      "path": "data/processed/consensus_programs/401_consensus_transcriptomic_program_catalog.csv",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4_consensus_programs/401_consensus_program_construction.ipynb"
+      },
+      "shape": [
+        3,
+        21
+      ],
+      "size_bytes": 1637,
+      "sha256": "c97024c2cd5d2403dc39a6f225ad7cbd4df3d3758bdcfb6e502f18906059e7e7",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.handoff.tcga_candidate_program_classification"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.400.cross_system_correspondence_summary"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.400.cross_system_tumor_arm_handoff"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.rna_candidate_gene_loadings"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.310.ica_program_loadings"
+        }
+      ]
+    },
+    "phase4.401.consensus_transcriptomic_gene_weights": {
+      "path": "data/processed/consensus_programs/401_consensus_transcriptomic_gene_weights.csv",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4_consensus_programs/401_consensus_program_construction.ipynb"
+      },
+      "shape": [
+        7167,
+        8
+      ],
+      "size_bytes": 751474,
+      "sha256": "09b33db831e1d723915da8a62dce331ba493187c131506ab8fd172c5ab472b39",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_program_catalog"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.rna_candidate_gene_loadings"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.310.ica_program_loadings"
+        }
+      ]
+    },
+    "phase4.401.consensus_tumor_scores": {
+      "path": "data/processed/consensus_programs/401_consensus_tumor_scores.parquet",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4_consensus_programs/401_consensus_program_construction.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 498941,
+      "sha256": "038a5595b20c20e1ae6f176273c5478e3ba641df0b16458ef217e2cb11c1bbf8",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_gene_weights"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.rna_candidate_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.rna_program_discovery_expression"
+        }
+      ]
+    },
+    "phase4.401.consensus_cellline_scores": {
+      "path": "data/processed/consensus_programs/401_consensus_cellline_scores.parquet",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4_consensus_programs/401_consensus_program_construction.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 27416,
+      "sha256": "7fe35074405097df62c5fa61c2014a265ce37fcfa1e0f5eeab3072f651183a1b",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_gene_weights"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.310.ica_program_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.303.harmonized_expression"
+        }
+      ]
+    },
+    "phase4.401.consensus_tumor_arm_context": {
+      "path": "data/processed/consensus_programs/401_consensus_tumor_arm_context.csv",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4_consensus_programs/401_consensus_program_construction.ipynb"
+      },
+      "shape": [
+        4,
+        25
+      ],
+      "size_bytes": 2634,
+      "sha256": "574402b5112ea8aa7356621fb7ba0a20db746bf85050a9374cee3f541cc04837",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_program_catalog"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.400.cross_system_tumor_arm_handoff"
+        }
+      ]
+    },
+    "phase4.401.consensus_construction_metadata": {
+      "path": "data/processed/consensus_programs/401_consensus_construction_metadata.json",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4_consensus_programs/401_consensus_program_construction.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 4508,
+      "sha256": "b88ba5f000a93bdc2299dee7803c86a3b5c2b3a108b78b431f9cb54011c18b72",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_program_catalog"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_gene_weights"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_tumor_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_cellline_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_tumor_arm_context"
+        }
+      ]
+    },
+    "phase4.402.cross_lineage_robustness_summary": {
+      "path": "data/processed/consensus_programs/402_cross_lineage_robustness_summary.csv",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4_consensus_programs/402_cross_lineage_robustness.ipynb"
+      },
+      "shape": [
+        6,
+        24
+      ],
+      "size_bytes": 2827,
+      "sha256": "867998e3c6cf7f57828d17c9727016a45375d668a376600402611a71db507497",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_program_catalog"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_tumor_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_cellline_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.rna_candidate_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.310.ica_program_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.302.integrated_modeling_cohort"
+        }
+      ]
+    },
+    "phase4.403.epigenetic_regulator_enrichment_summary": {
+      "path": "data/processed/consensus_programs/403_epigenetic_regulator_enrichment_summary.csv",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4_consensus_programs/403_epigenetic_regulator_enrichment.ipynb"
+      },
+      "shape": [
+        237,
+        17
+      ],
+      "size_bytes": 27598,
+      "sha256": "7fde2845e62e2ee6e76cab1a65004a6e83f7821b52e85ab943acfb13b00d05e2",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_program_catalog"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_gene_weights"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/epifactors"
+        }
+      ]
+    },
+    "phase4.403.epigenetic_regulator_gene_context": {
+      "path": "data/processed/consensus_programs/403_epigenetic_regulator_gene_context.csv",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4_consensus_programs/403_epigenetic_regulator_enrichment.ipynb"
+      },
+      "shape": [
+        96,
+        18
+      ],
+      "size_bytes": 24590,
+      "sha256": "dbcfba01d65e59d74727784a98abb73e6f4cd4da8a6e2328d0ad55d6b8f9432e",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.403.epigenetic_regulator_enrichment_summary"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_gene_weights"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/epifactors"
+        }
+      ]
+    },
+    "phase4.404.program_annotation_enrichment": {
+      "path": "data/processed/consensus_programs/404_program_annotation_enrichment.csv",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4_consensus_programs/404_program_annotation.ipynb"
+      },
+      "shape": [
+        7113,
+        10
+      ],
+      "size_bytes": 1104036,
+      "sha256": "92b50f8d1843562376e366dc8160d89f6931177aa81e48622293de39a089b328",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_program_catalog"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_gene_weights"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/msigdb"
+        }
+      ]
+    },
+    "phase3.300.shared_depmap_gdsc_models": {
+      "path": "data/interim/metadata/300_shared_depmap_gdsc_models.csv",
+      "phase": 3,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase3_cell_line_discovery_layer/300_cross_dataset_overlap_analysis.ipynb"
+      },
+      "shape": [
+        968,
+        8
+      ],
+      "size_bytes": 115265,
+      "sha256": "7db2f923d34c5fe32ef5c3c0cfbebf9b52dc30e212c894a38fc4825ffa5789b8",
+      "inputs": [
+        {
+          "type": "raw_registry",
+          "ref": "/depmap"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/gdsc"
+        }
+      ]
+    },
+    "phase3.301.harmonized_model_universe": {
+      "path": "data/interim/metadata/301_harmonized_model_universe.csv",
+      "phase": 3,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase3_cell_line_discovery_layer/301_identifier_landscape_and_harmonization_strategy.ipynb"
+      },
+      "shape": [
+        968,
+        8
+      ],
+      "size_bytes": 115265,
+      "sha256": "7db2f923d34c5fe32ef5c3c0cfbebf9b52dc30e212c894a38fc4825ffa5789b8",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.300.shared_depmap_gdsc_models"
+        }
+      ]
+    },
+    "phase2.205.rna_program_discovery_expression": {
+      "path": "data/interim/expression/tcga_primary_tumor_rnaseq_program_discovery_tmm_logcpm.h5",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/205_tcga_epigenetic_transcriptomic_program_discovery.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 1186681637,
+      "sha256": "0072307c93357f4c4008a444d1999fe5a5374222ef87b6c3fff2e17e81d97fc8",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_rna_counts"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_rna_feature_index"
+        }
+      ]
+    }
+  }
+}
