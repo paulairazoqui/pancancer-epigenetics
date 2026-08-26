@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "scope": "current_reproduction_environment",
+  "historical_execution_claim": false,
+  "r_version": "R version 4.3.1 (2023-06-16 ucrt)",
+  "bioconductor_version": "3.18",
+  "packages": {
+    "edgeR": "4.0.16",
+    "rhdf5": "2.46.1",
+    "minfi": "1.48.0",
+    "IlluminaHumanMethylation450kanno.ilmn12.hg19": "0.6.1"
+  }
+}
