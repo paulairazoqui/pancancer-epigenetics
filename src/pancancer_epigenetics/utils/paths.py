@@ -57,6 +57,7 @@ class Paths:
     config = root / "config"
     paths_config = config / "paths.yaml"
     raw_data_registry = config / "raw_data_registry.json"
+    artifact_registry = config / "artifact_registry.json"
 
     # raw source datasets
     depmap = root / _cfg["data"]["raw"]["depmap"]
