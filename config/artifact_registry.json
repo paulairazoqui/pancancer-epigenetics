@@ -914,6 +914,10 @@
       "inputs": [
         {
           "type": "artifact",
+          "artifact_id": "phase2.205.candidate_pair_catalog"
+        },
+        {
+          "type": "artifact",
           "artifact_id": "phase2.205.rna_candidate_gene_loadings"
         },
         {
@@ -1047,11 +1051,35 @@
         },
         {
           "type": "artifact",
+          "artifact_id": "phase4.400.cross_system_shared_gene_universe"
+        },
+        {
+          "type": "artifact",
           "artifact_id": "phase2.205.rna_candidate_gene_loadings"
         },
         {
           "type": "artifact",
           "artifact_id": "phase3.310.ica_program_loadings"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_gene_weights"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_tumor_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_cellline_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.rna_candidate_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.310.ica_program_scores"
         }
       ]
     },
@@ -1073,7 +1101,11 @@
       "inputs": [
         {
           "type": "artifact",
-          "artifact_id": "phase4.401.consensus_transcriptomic_program_catalog"
+          "artifact_id": "phase4.400.cross_system_correspondence_summary"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.400.cross_system_shared_gene_universe"
         },
         {
           "type": "artifact",
@@ -1107,11 +1139,23 @@
         },
         {
           "type": "artifact",
-          "artifact_id": "phase2.205.rna_candidate_scores"
+          "artifact_id": "phase4.400.cross_system_shared_gene_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.400.cross_system_correspondence_summary"
         },
         {
           "type": "artifact",
           "artifact_id": "phase2.205.rna_program_discovery_expression"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.rna_candidate_gene_loadings"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.rna_candidate_scores"
         }
       ]
     },
@@ -1137,7 +1181,11 @@
         },
         {
           "type": "artifact",
-          "artifact_id": "phase3.310.ica_program_scores"
+          "artifact_id": "phase4.400.cross_system_shared_gene_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.400.cross_system_correspondence_summary"
         },
         {
           "type": "artifact",
@@ -1163,7 +1211,11 @@
       "inputs": [
         {
           "type": "artifact",
-          "artifact_id": "phase4.401.consensus_transcriptomic_program_catalog"
+          "artifact_id": "phase2.handoff.tcga_candidate_program_classification"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.400.cross_system_correspondence_summary"
         },
         {
           "type": "artifact",
