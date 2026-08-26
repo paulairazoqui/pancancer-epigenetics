@@ -40,6 +40,13 @@
         "file_url": "https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=OmicsSomaticMutations.csv",
         "size_bytes": 338945382,
         "sha256": "92e86ab6a8457ef99908daf2a2c82d9529320e23cd6c6b7adc128adc1e0f41c8"
+      },
+      "CRISPRGeneEffect.csv": {
+        "role": "crispr_gene_effect_matrix",
+        "status": "acquired_not_used",
+        "file_url": "https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=CRISPRGeneEffect.csv",
+        "size_bytes": 428678699,
+        "sha256": "3d8f3ec6dbf2db7ff834b79b508622ec0b226f3518003fe96ecf5a4fcf167e3b"
       }
     }
   },
