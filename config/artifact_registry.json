@@ -23,15 +23,7 @@
         },
         {
           "type": "artifact",
-          "artifact_id": "phase2.201.rna_gene_feature_index"
-        },
-        {
-          "type": "artifact",
           "artifact_id": "phase2.201.rna_file_qc_inventory"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.201.rna_raw_counts_metadata"
         },
         {
           "type": "artifact",
@@ -79,35 +71,11 @@
       "inputs": [
         {
           "type": "artifact",
-          "artifact_id": "phase2.201.candidate_raw_rna_counts"
+          "artifact_id": "phase2.203.final_hm27_methylation_betas"
         },
         {
           "type": "artifact",
-          "artifact_id": "phase2.201.rna_gene_feature_index"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.201.rna_file_qc_inventory"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.201.rna_raw_counts_metadata"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.202.qc_annotated_candidate_pair_inventory"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.202.qc_annotated_candidate_pair_inventory"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.202.methylation_file_qc_metrics"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.202.probe_level_qc_metrics"
+          "artifact_id": "phase2.203.final_hm450_methylation_betas"
         },
         {
           "type": "artifact",
@@ -133,39 +101,7 @@
       "inputs": [
         {
           "type": "artifact",
-          "artifact_id": "phase2.201.candidate_raw_rna_counts"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.201.rna_gene_feature_index"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.201.rna_file_qc_inventory"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.201.rna_raw_counts_metadata"
-        },
-        {
-          "type": "artifact",
           "artifact_id": "phase2.202.qc_annotated_candidate_pair_inventory"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.202.qc_annotated_candidate_pair_inventory"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.202.methylation_file_qc_metrics"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.202.probe_level_qc_metrics"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.202.shared_probe_qc_inventory"
         }
       ]
     },
@@ -185,34 +121,6 @@
       "size_bytes": 54618806,
       "sha256": "f9c28f4dd3640bfb1e66abdf2c1d68cb6f166744b503dd79b0558bbfe4b7c456",
       "inputs": [
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.201.candidate_raw_rna_counts"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.201.rna_gene_feature_index"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.201.rna_file_qc_inventory"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.201.rna_raw_counts_metadata"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.202.qc_annotated_candidate_pair_inventory"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.202.qc_annotated_candidate_pair_inventory"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.202.methylation_file_qc_metrics"
-        },
         {
           "type": "artifact",
           "artifact_id": "phase2.202.probe_level_qc_metrics"
@@ -284,26 +192,6 @@
       "inputs": [
         {
           "type": "artifact",
-          "artifact_id": "phase2.201.candidate_raw_rna_counts"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.201.rna_gene_feature_index"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.201.rna_file_qc_inventory"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.201.rna_raw_counts_metadata"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.202.qc_annotated_candidate_pair_inventory"
-        },
-        {
-          "type": "artifact",
           "artifact_id": "phase2.202.qc_annotated_candidate_pair_inventory"
         },
         {
@@ -313,10 +201,6 @@
         {
           "type": "artifact",
           "artifact_id": "phase2.202.probe_level_qc_metrics"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.202.shared_probe_qc_inventory"
         }
       ]
     },
@@ -338,26 +222,6 @@
       "inputs": [
         {
           "type": "artifact",
-          "artifact_id": "phase2.201.candidate_raw_rna_counts"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.201.rna_gene_feature_index"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.201.rna_file_qc_inventory"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.201.rna_raw_counts_metadata"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.202.qc_annotated_candidate_pair_inventory"
-        },
-        {
-          "type": "artifact",
           "artifact_id": "phase2.202.qc_annotated_candidate_pair_inventory"
         },
         {
@@ -367,10 +231,6 @@
         {
           "type": "artifact",
           "artifact_id": "phase2.202.probe_level_qc_metrics"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase2.202.shared_probe_qc_inventory"
         }
       ]
     },
@@ -1028,10 +888,6 @@
       "inputs": [
         {
           "type": "artifact",
-          "artifact_id": "phase2.205.candidate_pair_catalog"
-        },
-        {
-          "type": "artifact",
           "artifact_id": "phase2.205.rna_candidate_gene_loadings"
         },
         {
@@ -1063,6 +919,10 @@
         {
           "type": "artifact",
           "artifact_id": "phase3.310.ica_program_loadings"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.310.program_phenotype_associations"
         }
       ]
     },
@@ -1084,15 +944,19 @@
       "inputs": [
         {
           "type": "artifact",
+          "artifact_id": "phase2.205.candidate_pair_catalog"
+        },
+        {
+          "type": "artifact",
           "artifact_id": "phase4.400.cross_system_pairwise_matching_metrics"
         },
         {
           "type": "artifact",
-          "artifact_id": "phase3.311.program_robustness_summary"
+          "artifact_id": "phase3.310.program_phenotype_associations"
         },
         {
           "type": "artifact",
-          "artifact_id": "phase2.206.robustness_evidence"
+          "artifact_id": "phase3.311.program_robustness_summary"
         }
       ]
     },
@@ -1114,11 +978,11 @@
       "inputs": [
         {
           "type": "artifact",
-          "artifact_id": "phase4.400.cross_system_correspondence_summary"
+          "artifact_id": "phase2.205.candidate_pair_catalog"
         },
         {
           "type": "artifact",
-          "artifact_id": "phase2.205.candidate_pair_catalog"
+          "artifact_id": "phase4.400.cross_system_correspondence_summary"
         }
       ]
     },
@@ -1583,7 +1447,16 @@
       ],
       "size_bytes": 2456002208,
       "sha256": "7b0869367ecb81d5118a5736884c6924927e220d0c045a2e3f9a256153dea669",
-      "inputs": []
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.200.eligible_pair_inventory"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/rnaseq_star_counts"
+        }
+      ]
     },
     "phase2.201.rna_gene_feature_index": {
       "path": "data/interim/expression/tcga_primary_tumor_rnaseq_gene_feature_index.csv",
@@ -1600,7 +1473,16 @@
       ],
       "size_bytes": 4084566,
       "sha256": "6b91570c3232199c61490a0f70d6778e19c0499593827a0a682cba1192c375de",
-      "inputs": []
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.200.eligible_pair_inventory"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/rnaseq_star_counts"
+        }
+      ]
     },
     "phase2.201.rna_file_qc_inventory": {
       "path": "data/interim/qc/tcga_primary_tumor_rnaseq_file_qc_inventory.csv",
@@ -1617,7 +1499,16 @@
       ],
       "size_bytes": 11315440,
       "sha256": "4bbf95a16df7f5a5b2e03913b090b26d42155857720acaa7b765dafa5f356ba9",
-      "inputs": []
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.200.eligible_pair_inventory"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/rnaseq_star_counts"
+        }
+      ]
     },
     "phase2.201.rna_raw_counts_metadata": {
       "path": "data/interim/expression/tcga_primary_tumor_rnaseq_candidate_unstranded_raw_counts_metadata.json",
@@ -1631,7 +1522,24 @@
       "shape": null,
       "size_bytes": 9683,
       "sha256": "b8e57f4e4fadd7575bb275ea5aed2451811c81c7e9776edec26fa8bbf2d3546c",
-      "inputs": []
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.200.eligible_pair_inventory"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.candidate_raw_rna_counts"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_gene_feature_index"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_file_qc_inventory"
+        }
+      ]
     },
     "phase2.202.qc_annotated_candidate_pair_inventory": {
       "path": "data/interim/metadata/tcga_primary_tumor_rnaseq_methylation_qc_annotated_candidate_pair_inventory.csv",
@@ -1651,7 +1559,19 @@
       "inputs": [
         {
           "type": "artifact",
-          "artifact_id": "phase2.201.rna_file_qc_inventory"
+          "artifact_id": "phase2.201.rna_qc_annotated_candidate_pair_inventory"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.methylation_file_qc_metrics"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.probe_level_qc_metrics"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.shared_probe_qc_inventory"
         }
       ]
     },
@@ -1670,7 +1590,16 @@
       ],
       "size_bytes": 3107678,
       "sha256": "fcbe981b3349cfaa39eea96139df054cb3d453d364a19c53cdf79adc1157bcb9",
-      "inputs": []
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_qc_annotated_candidate_pair_inventory"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/methylation_array_sesame_beta_values"
+        }
+      ]
     },
     "phase2.202.probe_level_qc_metrics": {
       "path": "data/interim/qc/tcga_primary_tumor_methylation_hm27_hm450_probe_qc_metrics.csv",
@@ -1687,7 +1616,20 @@
       ],
       "size_bytes": 81688197,
       "sha256": "c821f49e120e9d603ebce01a3b79826c592d90da5727b821a36870f35a5f1800",
-      "inputs": []
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_qc_annotated_candidate_pair_inventory"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.202.methylation_file_qc_metrics"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/methylation_array_sesame_beta_values"
+        }
+      ]
     },
     "phase2.202.shared_probe_qc_inventory": {
       "path": "data/interim/metadata/tcga_primary_tumor_methylation_hm27_hm450_shared_probe_qc_inventory.csv",
@@ -1708,6 +1650,58 @@
         {
           "type": "artifact",
           "artifact_id": "phase2.202.probe_level_qc_metrics"
+        }
+      ]
+    },
+    "phase2.200.eligible_pair_inventory": {
+      "path": "data/interim/metadata/tcga_primary_tumor_rnaseq_methylation_eligible_pair_inventory.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/200_tcga_multiomic_candidate_cohort_construction.ipynb"
+      },
+      "shape": [
+        10162,
+        38
+      ],
+      "size_bytes": 6776982,
+      "sha256": "244fbe39c416ca12b7796bf435479f1c567f64804ecf1d920743b87defae5d26",
+      "inputs": [
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/rnaseq_star_counts"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/methylation_array_sesame_beta_values"
+        }
+      ]
+    },
+    "phase2.201.rna_qc_annotated_candidate_pair_inventory": {
+      "path": "data/interim/metadata/tcga_primary_tumor_rnaseq_methylation_rna_qc_annotated_candidate_pair_inventory.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/201_tcga_rnaseq_quality_control.ipynb"
+      },
+      "shape": [
+        10162,
+        51
+      ],
+      "size_bytes": 8271484,
+      "sha256": "86107809b0d5b459ce5d552a07193cedd1ce48b60a0e5b970caf90bef28e25b8",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.200.eligible_pair_inventory"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.201.rna_file_qc_inventory"
         }
       ]
     }

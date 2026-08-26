@@ -14,7 +14,6 @@ _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 _ROLES = {"data", "metadata", "handoff"}
 _PRODUCER_TYPES = {"notebook", "tracked_handoff"}
 _INPUT_TYPES = {"artifact", "raw_registry"}
-_COARSE_RAW_REFS = {"/tcga", "/depmap", "/gdsc", "/epifactors", "/msigdb"}
 
 
 def load_artifact_registry(path: Path = Paths.artifact_registry) -> dict[str, Any]:
@@ -39,7 +38,7 @@ def _validate_relative_path(value: Any) -> str:
     if not isinstance(value, str) or not value or "\\" in value:
         raise ValueError("artifact path must be a non-empty POSIX-style string")
     path = PurePosixPath(value)
-    if value.startswith("/") or path.is_absolute() or ".." in path.parts:
+    if value.startswith("/") or re.match(r"^[A-Za-z]:/", value) or path.is_absolute() or ".." in path.parts:
         raise ValueError("artifact path must be repository-relative")
     if value.startswith("data/raw/"):
         raise ValueError("artifact registry cannot include derived paths under data/raw")
@@ -114,6 +113,7 @@ def validate_artifact_registry(
         inputs = artifact.get("inputs")
         if not isinstance(inputs, list):
             raise ValueError("inputs must be a list")
+        input_identities: set[tuple[str, str]] = set()
         for item in inputs:
             if not isinstance(item, dict) or item.get("type") not in _INPUT_TYPES:
                 raise ValueError("invalid input type")
@@ -123,11 +123,16 @@ def validate_artifact_registry(
                     raise ValueError("artifact input ref does not exist")
                 if reference == artifact_id:
                     raise ValueError("artifact cannot depend on itself")
+                identity = ("artifact", reference)
             else:
                 raw_ref = item.get("ref")
-                if raw_ref in _COARSE_RAW_REFS:
+                if not isinstance(raw_ref, str) or raw_ref.count("/") < 2:
                     raise ValueError("raw_registry ref must identify a cohort, resource, or file")
                 _resolve_pointer(raw_registry, raw_ref)
+                identity = ("raw_registry", raw_ref)
+            if identity in input_identities:
+                raise ValueError("duplicate direct input")
+            input_identities.add(identity)
     _validate_cycles(artifacts)
     return registry
 
