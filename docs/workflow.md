@@ -53,13 +53,13 @@ This workflow describes the operational sequence for the roadmap v3.0 framework.
 
 ## Phase 5 — Functional Vulnerabilities
 
-**Status:** **NEXT / PLANNED**.
+**Status:** **ACTIVE — notebook 500 complete**.
 
 - **Objective:** evaluate computational associations between consensus programs and functional dependencies.
-- **Notebook series:** `500`–`502`; notebook `500` — CRISPR Associations is next once the required functional-dependency inputs are acquired, audited, and frozen.
-- **Primary inputs:** frozen consensus programs and functional-genomics resources.
-- **Primary outputs:** putative vulnerabilities and dependency maps in `data/processed/functional_vulnerabilities`.
-- **Handoff:** candidate associations, not validated targets, provide context for subsequent work.
+- **Notebook series:** `500`–`502`; notebook `500` — CRISPR Associations is complete. Notebook `501` — RNAi Associations is next only after the required RNAi dependency input has been acquired, audited, and frozen for use.
+- **Primary inputs:** frozen consensus programs and functional-genomics resources. DepMap Public 24Q4 CRISPR gene effect is now an acquired-and-used input through notebook 500; RNAi remains a future dataset-specific acquisition/audit requirement before notebook 501.
+- **Primary outputs:** putative vulnerability-oriented dependency associations and dependency maps under `data/processed/functional_vulnerabilities`.
+- **Boundary / handoff:** notebook 500 provides computational dependency associations and putative functional-vulnerability evidence, not validated targets or causal dependencies. Later RNAi or integrated-vulnerability analyses must not retrospectively redefine the frozen Phase 4 consensus representations or the completed CRISPR analysis.
 
 ## Phase 6 — Pharmacogenomic Contexts
 
