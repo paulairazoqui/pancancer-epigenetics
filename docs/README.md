@@ -34,15 +34,15 @@ Read phase-specific contracts and decision records before modifying or extending
 | [`NOTEBOOK_STYLE_GUIDE.md`](NOTEBOOK_STYLE_GUIDE.md) | Defines notebook implementation and documentation conventions, including short single-responsibility cells and downstream reuse of frozen upstream artifacts. |
 | [`workflow.md`](workflow.md) | Summarizes the operational handoff between phases, notebook series, inputs, outputs, and analytical boundaries. For the latest completion status, use the root README and `roadmap.md`. |
 
-## Phase 4 closure and Phase 5 handoff
+## Phase 4 closure and active Phase 5 work
 
-Phase 2 tumor discovery is closed and frozen, Phase 3 independent cell-line discovery is closed, and Phase 4 cross-system integration is now closed and frozen after completion of notebooks `400 — Cross-System Program Comparison` through `404 — Program Annotation`.
+Phase 2 tumor discovery is closed and frozen, Phase 3 independent cell-line discovery is closed, and Phase 4 cross-system integration is closed and frozen after completion of notebooks `400 — Cross-System Program Comparison` through `404 — Program Annotation`.
 
 The frozen Phase 4 layer contains supported cross-system transcriptomic correspondences, three candidate cross-system transcriptomic consensus representations with tumor-side methylation context, lineage-aware internal robustness evidence, epigenetic-regulator enrichment results, and prespecified biological annotations. Notebooks 402–404 did not refit or reweight the consensus representations and did not use downstream robustness or annotation evidence to retrospectively redefine consensus eligibility.
 
 The historical input contract for notebook 401 remains available at [`PHASE4_401_INPUT_CONTRACT.md`](PHASE4_401_INPUT_CONTRACT.md). It preserves the provenance and interpretation rules that governed consensus construction, including the distinction between unique RNA correspondence events, tumor structural families, and tumor cross-omic arms.
 
-Phase 5 — Functional Vulnerabilities is the next planned analytical phase. Notebook `500 — CRISPR Associations` should consume the frozen consensus layer only after the required functional-dependency inputs have been acquired, audited, harmonized where necessary, and frozen. Downstream dependency associations are putative vulnerability evidence and must not be used to retrospectively redefine Phase 4 programs.
+Phase 5 — Functional Vulnerabilities is now active. Notebook `500 — CRISPR Associations` is complete and consumed the frozen Phase 4 consensus layer together with the audited DepMap Public 24Q4 CRISPR gene-effect resource. Its dependency associations are putative functional-vulnerability evidence only and must not be used to retrospectively redefine Phase 4 programs. Notebook `501 — RNAi Associations` is the next planned analysis, but should begin only after the required RNAi dependency input has been acquired, audited, harmonized where necessary, and frozen for use.
 
 Phase-specific contracts constrain only their declared scope and should not be generalized into new project-wide rules without an explicit documented decision.
 
