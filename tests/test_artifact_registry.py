@@ -99,7 +99,7 @@ def test_resolution_is_deterministic(tmp_path: Path) -> None:
     assert resolve_artifact_path(registry, "a", tmp_path) == (tmp_path / "data/interim/example.csv").resolve()
 
 
-def test_real_registry_structure_and_frozen_phase4_outputs() -> None:
+def test_real_registry_structure_and_frozen_outputs() -> None:
     registry = load_artifact_registry()
     assert registry["schema_version"] == 1
     assert all(not item["path"].startswith("data/raw/") for item in registry["artifacts"].values())
@@ -115,5 +115,12 @@ def test_real_registry_structure_and_frozen_phase4_outputs() -> None:
         "phase4.402.cross_lineage_robustness_summary",
         "phase4.403.epigenetic_regulator_enrichment_summary",
         "phase4.404.program_annotation_enrichment",
+        "phase5.500.crispr_model_cohort",
+        "phase5.500.crispr_gene_coverage",
+        "phase5.500.crispr_primary_associations",
+        "phase5.500.crispr_primary_significant_evidence",
+        "phase5.500.crispr_within_lineage_associations",
+        "phase5.500.crispr_putative_vulnerability_associations",
+        "phase5.500.crispr_analysis_metadata",
     ):
         assert artifact_id in registry["artifacts"]

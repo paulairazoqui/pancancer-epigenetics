@@ -1406,6 +1406,217 @@
         }
       ]
     },
+    "phase5.500.crispr_model_cohort": {
+      "path": "data/interim/dependencies/500_crispr_model_cohort.csv",
+      "phase": 5,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase5_functional_vulnerabilities/500_crispr_associations.ipynb"
+      },
+      "shape": [
+        539,
+        5
+      ],
+      "size_bytes": 43845,
+      "sha256": "268a58dbfcef63a16469d26d5516208dbf0017d671503f664a5d053bb41f9be7",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_cellline_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.302.integrated_modeling_cohort"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/depmap/files/CRISPRGeneEffect.csv"
+        }
+      ]
+    },
+    "phase5.500.crispr_gene_coverage": {
+      "path": "data/interim/dependencies/500_crispr_gene_coverage.csv",
+      "phase": 5,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase5_functional_vulnerabilities/500_crispr_associations.ipynb"
+      },
+      "shape": [
+        17916,
+        9
+      ],
+      "size_bytes": 1200182,
+      "sha256": "67152e5638b13dcf986ba6c22ded37a6abd0c4ad130659effa738ae51acbc9e6",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_cellline_scores"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/depmap/files/CRISPRGeneEffect.csv"
+        }
+      ]
+    },
+    "phase5.500.crispr_primary_associations": {
+      "path": "data/processed/functional_vulnerabilities/500_crispr_primary_associations.csv",
+      "phase": 5,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase5_functional_vulnerabilities/500_crispr_associations.ipynb"
+      },
+      "shape": [
+        51615,
+        10
+      ],
+      "size_bytes": 6924575,
+      "sha256": "d2a3cec67a52bbceb7ff91fcdc56bfed0c82fbe2aabfd2ed721a89efc8a2c44c",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.500.crispr_model_cohort"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.500.crispr_gene_coverage"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/depmap/files/CRISPRGeneEffect.csv"
+        }
+      ]
+    },
+    "phase5.500.crispr_within_lineage_associations": {
+      "path": "data/processed/functional_vulnerabilities/500_crispr_within_lineage_associations.csv",
+      "phase": 5,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase5_functional_vulnerabilities/500_crispr_associations.ipynb"
+      },
+      "shape": [
+        12272,
+        7
+      ],
+      "size_bytes": 946045,
+      "sha256": "b0343798e0ded839c93d09f4e345f43b306e7d21f319a2d2bfbeb194f73be5cf",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.500.crispr_primary_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.500.crispr_model_cohort"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/depmap/files/CRISPRGeneEffect.csv"
+        }
+      ]
+    },
+    "phase5.500.crispr_primary_significant_evidence": {
+      "path": "data/processed/functional_vulnerabilities/500_crispr_primary_significant_evidence.csv",
+      "phase": 5,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase5_functional_vulnerabilities/500_crispr_associations.ipynb"
+      },
+      "shape": [
+        944,
+        22
+      ],
+      "size_bytes": 304075,
+      "sha256": "894b351320d610a7b92dd20dfe00775c3ebce9a8d7cf2011e2a231d04ad09b92",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.500.crispr_primary_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.500.crispr_within_lineage_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.500.crispr_model_cohort"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/depmap/files/CRISPRGeneEffect.csv"
+        }
+      ]
+    },
+    "phase5.500.crispr_putative_vulnerability_associations": {
+      "path": "data/processed/functional_vulnerabilities/500_crispr_putative_vulnerability_associations.csv",
+      "phase": 5,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase5_functional_vulnerabilities/500_crispr_associations.ipynb"
+      },
+      "shape": [
+        492,
+        20
+      ],
+      "size_bytes": 140026,
+      "sha256": "74d0e2c7f9cd18b2f9ee26342cf3236a8210a498c6f3ca23878e495fda752d02",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.500.crispr_primary_significant_evidence"
+        }
+      ]
+    },
+    "phase5.500.crispr_analysis_metadata": {
+      "path": "data/processed/functional_vulnerabilities/500_crispr_analysis_metadata.json",
+      "phase": 5,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase5_functional_vulnerabilities/500_crispr_associations.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 1364,
+      "sha256": "b37394f3661bef379282bbb5efd56400673357213975f2a63a5aa82f6cc98a5b",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_cellline_scores"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/depmap/files/CRISPRGeneEffect.csv"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.500.crispr_model_cohort"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.500.crispr_gene_coverage"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.500.crispr_primary_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.500.crispr_putative_vulnerability_associations"
+        }
+      ]
+    },
     "phase3.300.shared_depmap_gdsc_models": {
       "path": "data/interim/metadata/300_shared_depmap_gdsc_models.csv",
       "phase": 3,
