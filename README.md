@@ -24,7 +24,7 @@ The framework emphasizes biological interpretability, data leakage prevention, r
 - **Phase 2 — Independent Tumor Discovery:** closed / frozen with 9,965 TCGA primary-tumor cases and 13 retained candidate cross-omic programs.
 - **Phase 3 — Independent Cell-Line Discovery:** closed with 713 DepMap–GDSC models; latent-program extraction was phenotype-independent and internal robustness was completed in notebook 311.
 - **Phase 4 — Cross-System Integration:** closed / frozen. Notebooks 400–404 completed cross-system comparison, consensus construction, cross-lineage robustness, epigenetic-regulator enrichment, and biological program annotation without downstream redefinition of the frozen consensus representations.
-- **Phase 5 — Functional Vulnerabilities:** next planned analytical phase; notebook 500 — CRISPR Associations is the next notebook once the required dependency inputs are acquired, audited, and frozen for use.
+- **Phase 5 — Functional Vulnerabilities:** active. Notebook 500 — CRISPR Associations is complete; notebook 501 — RNAi Associations is next once the required RNAi dependency input has been acquired, audited, and frozen for use.
 
 ---
 
@@ -45,7 +45,7 @@ The project is designed to generate computational associations and candidate hyp
 
 ## Repository and Notebook Structure
 
-The repository physically contains directories for Phases 0–8. Implemented notebooks currently exist for Phases 1–4, with Phase 4 complete through notebook 404. The directories for Phases 5–8 remain planned placeholders; Phase 5 is the next analytical phase. Phase 9 is part of the roadmap v3.0 architecture but does not currently have a notebook directory.
+The repository physically contains directories for Phases 0–8. Implemented notebooks currently exist for Phases 1–5, with Phase 5 implemented through notebook 500. Phase 5 remains active; the directories for Phases 6–8 remain planned placeholders. Phase 9 is part of the roadmap v3.0 architecture but does not currently have a notebook directory.
 
 ```text
 ├── .github/workflows/     # Data-free continuous-integration checks
@@ -56,7 +56,7 @@ The repository physically contains directories for Phases 0–8. Implemented not
 │   └── processed/         # Program, vulnerability, context, hypothesis, and validation outputs
 ├── docs/                  # Project direction, architecture, policy, terminology, and workflow docs
 ├── envs/                  # Current reproduction-environment records and historical evidence
-├── notebooks/             # Implemented Phase 1–4 notebooks plus planned-phase placeholders
+├── notebooks/             # Implemented Phase 1–5 notebooks plus planned-phase placeholders
 ├── results/               # Manuscript-ready figures and tables by paper/supplement
 ├── src/                   # Reusable source code and path helpers
 └── tests/                 # Automated contract tests and test documentation
@@ -141,9 +141,9 @@ A minimal reproducibility sequence is:
 3. Install the dependencies from `requirements.txt` and install the repository package in editable mode with `python -m pip install -e .`.
 4. Download or place raw datasets into the appropriate `data/raw/<source>/` folders according to `config/raw_data_registry.json`.
 5. Run the Phase 1 notebooks to confirm source availability and raw-file auditing.
-6. Execute implemented notebooks in numerical order within the completed phases. Future phases are run only after their notebooks are implemented and their frozen inputs are available.
+6. Execute implemented notebooks in numerical order within the completed or active phases. Future notebooks are run only after their required inputs are available and frozen.
 
-The implemented notebook series are `100`–`106`, `200`–`206`, `300`–`311`, and `400`–`404`. The physical notebook layout currently is:
+The implemented notebook series are `100`–`106`, `200`–`206`, `300`–`311`, `400`–`404`, and `500`. The physical notebook layout currently is:
 
 ```text
 notebooks/
@@ -152,13 +152,13 @@ notebooks/
 ├── phase2_tumor_discovery_layer/
 ├── phase3_cell_line_discovery_layer/
 ├── phase4_consensus_programs/              # complete through notebook 404
-├── phase5_functional_vulnerabilities/      # next planned phase
+├── phase5_functional_vulnerabilities/      # active; complete through notebook 500
 ├── phase6_pharmacogenomic_contexts/        # planned placeholder
 ├── phase7_perturbational_hypotheses/       # planned placeholder
 └── phase8_orthogonal_validation/           # planned placeholder
 ```
 
-Phase 9 is planned in roadmap v3.0 but has no current directory. The Phase 5–8 directories do not imply implemented notebooks.
+Phase 9 is planned in roadmap v3.0 but has no current directory. Phase 5 is implemented through notebook 500; the Phase 6–8 directories do not imply implemented notebooks.
 
 Raw data files are expected to remain unchanged after acquisition. Derived files should be regenerated into `data/interim/` or `data/processed/` according to the notebook logic.
 

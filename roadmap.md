@@ -313,7 +313,7 @@ Primary deliverables:
 
 ## Status
 
-**NEXT / PLANNED.** Notebook **500 — CRISPR Associations** is the next analytical notebook once the required functional-dependency inputs have been acquired, audited, and frozen for use.
+**ACTIVE.** Notebook **500 — CRISPR Associations** is complete. Notebook **501 — RNAi Associations** is the next planned analytical notebook, contingent on acquisition, audit, and freeze of the required RNAi dependency input.
 
 ## Objective
 
@@ -328,7 +328,11 @@ Evaluate associations between consensus programs and functional dependencies.
 
 #### 500 — CRISPR Associations
 
+Completed as a lineage-adjusted, hypothesis-generating functional-dependency characterization of the frozen Phase 4 consensus programs using DepMap Public 24Q4 CRISPR gene-effect data. The resulting associations are computational evidence for putative functional vulnerabilities and do not establish causal dependencies or validated targets.
+
 #### 501 — RNAi Associations
+
+Next planned notebook once the required RNAi dependency resource has been acquired, audited, and frozen for use.
 
 #### 502 — Integrated Vulnerability Mapping
 

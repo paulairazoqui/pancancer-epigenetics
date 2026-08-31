@@ -43,7 +43,7 @@
       },
       "CRISPRGeneEffect.csv": {
         "role": "crispr_gene_effect_matrix",
-        "status": "acquired_not_used",
+        "status": "acquired_and_used",
         "file_url": "https://depmap.org/portal/data_page/?tab=allData&releasename=DepMap%20Public%2024Q4&filename=CRISPRGeneEffect.csv",
         "size_bytes": 428678699,
         "sha256": "3d8f3ec6dbf2db7ff834b79b508622ec0b226f3518003fe96ecf5a4fcf167e3b"
