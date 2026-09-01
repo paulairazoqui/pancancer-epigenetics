@@ -65,7 +65,7 @@ This workflow describes the operational sequence for the roadmap v3.2 framework.
 
 ## Phase 5 — Functional Vulnerabilities
 
-**Status:** **ANALYTICAL WORKFLOW COMPLETE THROUGH NOTEBOOK 502; FORMAL ARTIFACT-REGISTRY SYNCHRONIZATION PENDING**.
+**Status:** **CLOSED / FROZEN — notebooks 500–502 complete**.
 
 - **Objective:** evaluate computational associations between consensus programs and functional dependencies while preserving platform-specific evidence and interpretation boundaries.
 - **Notebook series:** `500` CRISPR Associations; `501` RNAi Associations; `502` Integrated Vulnerability Mapping. All three analytical notebooks are complete.
@@ -74,7 +74,7 @@ This workflow describes the operational sequence for the roadmap v3.2 framework.
 - **Platform boundary:** CRISPR and RNAi retain separate dependency scales, primary eligibility criteria, FDR families, coverage properties, and model composition. Notebook 502 does not pool dependency scores or regression coefficients, combine p/q values, impose a common post-hoc coverage threshold, recalculate joint cross-platform FDR, or construct a composite vulnerability score or ranking.
 - **Concordance boundary:** cross-platform agreement is complementary computational evidence rather than independent validation because biological context and cell-line populations overlap. Single-platform and directionally discordant findings remain valid platform-specific observations and are not discarded or resolved through post-hoc platform preference.
 - **Lineage / sensitivity boundary:** lineage-aware summaries and RNAi source-adjusted or ≥90% coverage analyses remain descriptive or sensitivity context only. They do not redefine platform-specific primary significance, eligibility, or cross-platform comparability.
-- **Repository handoff:** the analytical outputs are ready for downstream use under their frozen notebook contracts, but formal machine-readable registration of the newly generated Phase 5 derived artifacts must be completed before the phase is declared repository-frozen.
+- **Repository handoff:** the Phase 5 derived artifacts are machine-readably registered with frozen identity and lineage in `config/artifact_registry.json`. Downstream phases consume these frozen evidence layers without redefining their platform-specific eligibility, significance, or comparability rules.
 
 ## Phase 6 — Pharmacogenomic Contexts and Explainable Modeling (XAI)
 
