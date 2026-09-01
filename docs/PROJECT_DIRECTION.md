@@ -149,7 +149,7 @@ Positive, negative, lineage-specific, heterogeneous, and non-recurrent outcomes 
 
 ## Layer 4 — Functional Vulnerability Characterization
 
-**Phase 5 — active**
+**Phase 5 — analytical workflow complete through notebook 502; formal artifact-registry synchronization pending**
 
 Primary resources:
 
@@ -161,9 +161,11 @@ Purpose:
 * characterize associations between frozen consensus programs and functional dependency profiles; and
 * generate putative vulnerability hypotheses.
 
-Notebook 500 — CRISPR Associations is complete/frozen. The RNAi acquisition and audit prerequisite is complete through notebook 107, and notebook 501 — RNAi Associations is next.
+Notebooks `500 — CRISPR Associations`, `501 — RNAi Associations`, and `502 — Integrated Vulnerability Mapping` are complete. The CRISPR and RNAi analyses remain methodologically distinct, with platform-specific eligibility criteria, effect scales, FDR families, coverage properties, and lineage-aware characterization. Notebook 502 integrates the frozen evidence layers without coefficient pooling, p/q-value combination, joint cross-platform FDR, a retrospectively harmonized coverage threshold, or a composite vulnerability ranking.
 
-These associations do not establish a causal role or a validated intervention.
+Cross-platform concordance is complementary computational evidence across distinct functional-genomics assays, not independent validation. Shared biological context and partially overlapping cell-line populations remain explicit, and single-platform or directionally discordant associations are retained rather than discarded or resolved through post-hoc platform preference.
+
+These associations do not establish a causal role or a validated intervention. Formal machine-readable registration of the newly generated Phase 5 derived artifacts remains to be completed before declaring the phase repository-frozen.
 
 ---
 

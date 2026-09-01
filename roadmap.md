@@ -403,15 +403,15 @@ Phase 4B is not required to redefine or reopen Paper 1 discovery claims. Seconda
 
 ## Status
 
-**ACTIVE.** Notebook **500 — CRISPR Associations** remains complete/frozen. The RNAi acquisition/audit prerequisite is now complete through notebook **107**, and notebook **501 — RNAi Associations** is the next scientific notebook.
+**ANALYTICAL WORKFLOW COMPLETE THROUGH NOTEBOOK 502; FORMAL ARTIFACT-REGISTRY SYNCHRONIZATION PENDING.** Notebooks **500 — CRISPR Associations**, **501 — RNAi Associations**, and **502 — Integrated Vulnerability Mapping** are complete. Formal machine-readable registration of the newly generated Phase 5 derived artifacts remains to be completed before the phase is declared repository-frozen.
 
 ## Objective
 
-Evaluate associations between consensus programs and functional dependencies.
+Evaluate associations between frozen consensus programs and functional dependencies while preserving platform-specific evidence and avoiding unsupported cross-platform pooling.
 
 ## Primary Resources
 
-* DepMap CRISPR
+* DepMap Public 24Q4 CRISPR gene effect
 * Historical DEMETER2 v5 RNAi (combined Achilles, DRIVE, and Marcotte)
 
 ### Notebook Series 500
@@ -422,14 +422,23 @@ Completed as a lineage-adjusted, hypothesis-generating functional-dependency cha
 
 #### 501 — RNAi Associations
 
-Next scientific notebook. It may use the frozen notebook-107 handoffs, with 443 available frozen models. RNAi is an orthogonal/complementary functional-genomics layer and must not be naively pooled with CRISPR. Before inspecting results, notebook 501 must prespecify gene eligibility and its association-testing framework; the analysis must not claim independent biological validation or causal vulnerabilities.
+Completed using the frozen notebook-107 DEMETER2 handoff with a primary single-gene eligibility framework, lineage-adjusted association testing, global multiple-testing control, and prespecified source-pattern and higher-coverage sensitivities. RNAi remains a distinct functional-genomics platform and is not pooled with CRISPR. Its associations are computational evidence and do not constitute independent biological validation or causal vulnerabilities.
 
 #### 502 — Integrated Vulnerability Mapping
 
+Completed as a program × gene integration layer over the frozen CRISPR and RNAi association outputs. The notebook preserves platform-specific effect estimates, FDR values, coverage, lineage-aware context, and RNAi sensitivities. Cross-platform comparability uses each platform's frozen primary eligibility criterion rather than a retrospectively harmonized coverage threshold.
+
+Notebook 502 does not average dependency scores, pool coefficients, combine p/q values, recalculate a joint cross-platform FDR, construct a composite vulnerability score, or use cross-platform concordance as a retrospective significance gate. Concordance is interpreted as complementary computational evidence rather than independent validation because biological context and cell-line populations overlap. Single-platform and directionally discordant findings remain explicit components of the evidence map.
+
 Outputs:
 
-* candidate vulnerabilities
-* dependency maps
+* platform-specific CRISPR and RNAi program–dependency association layers
+* lineage-aware contextual summaries
+* RNAi prespecified sensitivity summaries
+* cross-platform gene comparability map
+* integrated platform-aware program × gene vulnerability evidence map
+* concordant putative-vulnerability association handoff
+* machine-readable analysis metadata
 
 ---
 

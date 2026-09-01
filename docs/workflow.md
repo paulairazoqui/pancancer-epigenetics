@@ -65,13 +65,16 @@ This workflow describes the operational sequence for the roadmap v3.2 framework.
 
 ## Phase 5 — Functional Vulnerabilities
 
-**Status:** **ACTIVE — notebook 500 complete/frozen; RNAi prerequisite complete through notebook 107; notebook 501 next**.
+**Status:** **ANALYTICAL WORKFLOW COMPLETE THROUGH NOTEBOOK 502; FORMAL ARTIFACT-REGISTRY SYNCHRONIZATION PENDING**.
 
-- **Objective:** evaluate computational associations between consensus programs and functional dependencies.
-- **Notebook series:** `500`–`502`; notebook `500` — CRISPR Associations remains complete/frozen, and notebook `501` — RNAi Associations is next. Its acquisition/audit prerequisite is complete through notebook 107, with 443 frozen models available.
-- **Primary inputs:** frozen consensus programs and functional-genomics resources. DepMap Public 24Q4 CRISPR gene effect is an acquired-and-used input through notebook 500; the distinct historical DEMETER2 v5 RNAi resource combines Achilles, DRIVE, and Marcotte.
-- **Primary outputs:** putative vulnerability-oriented dependency associations and dependency maps under `data/processed/functional_vulnerabilities`.
-- **Boundary / handoff:** notebook 500 provides computational dependency associations and putative functional-vulnerability evidence, not independent biological validation, validated targets, or causal dependencies. RNAi is an orthogonal/complementary layer and must not be naively pooled with CRISPR. Notebook 501 must prespecify gene eligibility and its association-testing framework before inspecting results; later analyses must not retrospectively redefine the frozen Phase 4 consensus representations or completed CRISPR analysis.
+- **Objective:** evaluate computational associations between consensus programs and functional dependencies while preserving platform-specific evidence and interpretation boundaries.
+- **Notebook series:** `500` CRISPR Associations; `501` RNAi Associations; `502` Integrated Vulnerability Mapping. All three analytical notebooks are complete.
+- **Primary inputs:** frozen Phase 4 consensus programs; DepMap Public 24Q4 CRISPR gene effect; and the distinct historical DEMETER2 v5 RNAi resource combining Achilles, DRIVE, and Marcotte through the frozen notebook-107 handoff.
+- **Primary outputs:** platform-specific CRISPR and RNAi program–dependency association layers, lineage-aware contextual summaries, RNAi prespecified sensitivities, and a platform-aware integrated program × gene evidence map under `data/processed/functional_vulnerabilities`, with the cross-platform gene map under `data/interim/dependencies`.
+- **Platform boundary:** CRISPR and RNAi retain separate dependency scales, primary eligibility criteria, FDR families, coverage properties, and model composition. Notebook 502 does not pool dependency scores or regression coefficients, combine p/q values, impose a common post-hoc coverage threshold, recalculate joint cross-platform FDR, or construct a composite vulnerability score or ranking.
+- **Concordance boundary:** cross-platform agreement is complementary computational evidence rather than independent validation because biological context and cell-line populations overlap. Single-platform and directionally discordant findings remain valid platform-specific observations and are not discarded or resolved through post-hoc platform preference.
+- **Lineage / sensitivity boundary:** lineage-aware summaries and RNAi source-adjusted or ≥90% coverage analyses remain descriptive or sensitivity context only. They do not redefine platform-specific primary significance, eligibility, or cross-platform comparability.
+- **Repository handoff:** the analytical outputs are ready for downstream use under their frozen notebook contracts, but formal machine-readable registration of the newly generated Phase 5 derived artifacts must be completed before the phase is declared repository-frozen.
 
 ## Phase 6 — Pharmacogenomic Contexts and Explainable Modeling (XAI)
 
