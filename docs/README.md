@@ -62,6 +62,7 @@ Current decision records:
 
 - [`decisions/001_data_integration_strategy.md`](decisions/001_data_integration_strategy.md) — historical data-integration strategy; superseded by ADR 002.
 - [`decisions/002_independent_discovery_and_cross_system_integration.md`](decisions/002_independent_discovery_and_cross_system_integration.md) — formalizes independent tumor and cell-line discovery followed by cross-system integration only after both representations are frozen.
+- [`decisions/003_xai_and_integrated_evidence_architecture.md`](decisions/003_xai_and_integrated_evidence_architecture.md) — formalizes roadmap v3.1, the explicit Phase 6 XAI/SHAP layer, the new Phase 9 integrated-evidence layer, and the Phase 10 manuscript boundary.
 
 Decision records should document durable choices that affect multiple notebooks or downstream interpretation. Notebook-local implementation details should remain in the notebook unless they become project-wide policy.
 
