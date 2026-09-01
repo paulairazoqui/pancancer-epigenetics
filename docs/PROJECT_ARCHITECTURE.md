@@ -39,6 +39,9 @@ Can independently discovered epigenetic-transcriptomic programs in tumors and ca
           v                           v                           v
  [ Functional vulnerabilities ] [ Pharmacogenomics + XAI ] [ Perturbational hypotheses ]
           Phase 5                    Phase 6                     Phase 7
+                                      |
+                         model attribution + biological
+                              contextualization
           |                           |                           |
           +---------------------------+---------------------------+
                                       |
@@ -49,6 +52,7 @@ Can independently discovered epigenetic-transcriptomic programs in tumors and ca
                                       v
                 [ Integrated evidence synthesis / prioritization ]
                                   Phase 9
+                         structured evidence handoff
                                       |
                                       v
                          [ Manuscript preparation ]
@@ -164,6 +168,8 @@ GDSC, CTRP, and PRISM are used to characterize baseline drug-response associatio
 
 This phase contains the explicit explainable-AI component of the project. Lineage-aware predictive models may use Elastic Net, Random Forest, XGBoost, or other prespecified interpretable or explainable approaches where justified. SHAP attribution and stability analyses are applied only after the evaluation design and feature space are frozen and model validity is assessed.
 
+Biological interpretation follows a hierarchical rule: model attribution is reported only at the resolution of actual model features. A model using consensus-program scores produces program-level SHAP attribution. Stable attributed programs can then be contextualized through frozen gene loadings, pathway annotations, epigenetic-regulator enrichment, tumor-side methylation context, and Phase 4B molecular context. This mapping is biological contextualization, not additional SHAP evidence. Gene-level SHAP requires a model that actually contains gene-level features under the same leakage-safe evaluation design.
+
 Random pan-cancer train/test splits are prohibited. Cell-line overlap, drug-family leakage, preprocessing leakage, and post-split feature-selection leakage must be controlled. SHAP describes model attribution; it is not evidence of biological causality or therapeutic actionability.
 
 ## Phase 7 — Perturbational Hypotheses
@@ -180,7 +186,9 @@ Frozen evidence from Phase 4, Phase 4B, and Phases 5–8 is integrated into a tr
 
 Evidence dimensions remain explicit rather than being treated as interchangeable observations. Secondary genomic context, locus-level methylation-expression context, functional-genomics support, pharmacogenomic/XAI support, perturbational support, drug–target knowledgebase support, lineage heterogeneity, external replication, and unresolved limitations are retained separately before any candidate evidence stratification.
 
-The preferred output is a multidimensional evidence map and candidate catalog rather than an opaque universal score. Convergent computational evidence supports prioritization and hypothesis generation only.
+The preferred output is a multidimensional evidence map and candidate catalog rather than an opaque universal score. Notebook 904 additionally freezes a structured computational-to-experimental evidence handoff containing the relevant program, vulnerability/target context, compound and mechanism annotation, evidence directions, lineage heterogeneity, external support, missing/conflicting evidence, and limitations. RMS/OS or broader sarcoma relevance is annotated only where directly supported by available computational data.
+
+Convergent computational evidence supports prioritization and hypothesis generation only. The handoff is not an experimental result, assay prescription, dose recommendation, or claim of therapeutic efficacy.
 
 ## Phase 10 — Manuscript Preparation
 
@@ -200,6 +208,6 @@ Programs are not assumed to be master regulators, causal explanations, clinicall
 
 The framework is lineage-aware: tissue lineage is treated as a major confounding structure, naïve pan-cancer pooling is avoided, and random pan-cancer train/test splits are prohibited. Analyses must evaluate relevant lineage, platform, batch, proliferation, tumor-purity, cell-model, drug-family, mutation-prevalence, and overlap confounding.
 
-Preference is given to interpretable representations, transparent models, and reproducible workflows. Feature-attribution methods, including SHAP, are exclusively interpretive or predictive-attribution tools for prioritization and hypothesis generation; they are not evidence of causality.
+Preference is given to interpretable representations, transparent models, and reproducible workflows. Feature-attribution methods, including SHAP, are exclusively interpretive or predictive-attribution tools for prioritization and hypothesis generation; they are not evidence of causality. Biological contextualization of model attribution must preserve the distinction between the model feature level and downstream annotation layers.
 
-Conservative terminology includes recurrent program, candidate program, resistance-like context, secondary genomic context, locus-level methylation-expression association, putative vulnerability, computational association, explainable model attribution, perturbational hypothesis, internal robustness, cross-system reproducibility, cross-dataset replication, and integrated evidence prioritization.
+Conservative terminology includes recurrent program, candidate program, resistance-like context, secondary genomic context, locus-level methylation-expression association, putative vulnerability, computational association, explainable model attribution, biological contextualization, perturbational hypothesis, internal robustness, cross-system reproducibility, cross-dataset replication, computational-to-experimental handoff, and integrated evidence prioritization.
