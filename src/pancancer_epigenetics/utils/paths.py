@@ -77,6 +77,7 @@ class Paths:
     metadata = root / _cfg["data"]["interim"]["metadata"]
     expression = root / _cfg["data"]["interim"]["expression"]
     methylation = root / _cfg["data"]["interim"]["methylation"]
+    genomics = root / _cfg["data"]["interim"]["genomics"]
     dependencies = root / _cfg["data"]["interim"]["dependencies"]
     pharmacology = root / _cfg["data"]["interim"]["pharmacology"]
     perturbational = root / _cfg["data"]["interim"]["perturbational"]
@@ -86,10 +87,12 @@ class Paths:
     tumor_programs = root / _cfg["data"]["processed"]["tumor_programs"]
     cellline_programs = root / _cfg["data"]["processed"]["cellline_programs"]
     consensus_programs = root / _cfg["data"]["processed"]["consensus_programs"]
+    secondary_characterization = root / _cfg["data"]["processed"]["secondary_characterization"]
     functional_vulnerabilities = root / _cfg["data"]["processed"]["functional_vulnerabilities"]
     pharmacogenomic_contexts = root / _cfg["data"]["processed"]["pharmacogenomic_contexts"]
     perturbational_hypotheses = root / _cfg["data"]["processed"]["perturbational_hypotheses"]
     validation = root / _cfg["data"]["processed"]["validation"]
+    integrated_evidence = root / _cfg["data"]["processed"]["integrated_evidence"]
 
     # manuscript-ready results
     paper1 = root / _cfg["results"]["paper1"]

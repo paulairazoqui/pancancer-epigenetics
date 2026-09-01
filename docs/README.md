@@ -2,7 +2,9 @@
 
 This directory contains the scientific, methodological, operational, and decision documentation for the `pancancer-epigenetics` framework.
 
-The project is a lineage-aware computational oncology framework oriented toward identifying recurrent epigenetic-transcriptomic programs associated with resistance-like pharmacogenomic contexts, putative functional vulnerabilities, and perturbational hypotheses. The documentation is intentionally conservative: computational association does not establish causality, clinical utility, therapeutic efficacy, or a validated target.
+The project is a lineage-aware computational oncology framework oriented toward identifying recurrent epigenetic-transcriptomic programs associated with resistance-like pharmacogenomic contexts, secondary genomic and locus-level methylation-expression context, putative functional vulnerabilities, explainable predictive-model behavior, perturbational hypotheses, and integrated therapeutic-prioritization evidence. The documentation is intentionally conservative: computational association or model attribution does not establish causality, clinical utility, therapeutic efficacy, or a validated target.
+
+The broader approved scientific project includes experimental validation. Experimental work is intentionally outside this computational repository; the repository produces reproducible computational hypotheses and frozen evidence handoffs for possible downstream experimental evaluation.
 
 This README is a navigation layer. It does not replace the individual documents, frozen analytical artifacts, or dataset-provenance records.
 
@@ -11,10 +13,10 @@ This README is a navigation layer. It does not replace the individual documents,
 For a new contributor or a new analytical session, the recommended reading order is:
 
 1. [`../README.md`](../README.md) — repository overview, current project status, data organization, and reproducibility entry point.
-2. [`../roadmap.md`](../roadmap.md) — operational roadmap, notebook sequence, phase boundaries, and current analytical progression.
-3. [`PROJECT_DIRECTION.md`](PROJECT_DIRECTION.md) — scientific objective, central biological object, scope, and claim boundaries.
-4. [`PROJECT_ARCHITECTURE.md`](PROJECT_ARCHITECTURE.md) — analytical layers, dataset roles, independent discovery design, and cross-system architecture.
-5. [`MODELING_POLICY.md`](MODELING_POLICY.md) — mandatory modeling, confounder-control, robustness, leakage-prevention, and interpretation policy.
+2. [`../roadmap.md`](../roadmap.md) — roadmap v3.2, notebook sequence, Phase 4B secondary characterization, explicit XAI layer, integrated evidence phase, and current analytical progression.
+3. [`PROJECT_DIRECTION.md`](PROJECT_DIRECTION.md) — scientific objective, central biological object, secondary characterization role, XAI role, scope, and claim boundaries.
+4. [`PROJECT_ARCHITECTURE.md`](PROJECT_ARCHITECTURE.md) — analytical layers, dataset roles, independent discovery design, Phase 4B placement, XAI placement, and cross-evidence architecture.
+5. [`MODELING_POLICY.md`](MODELING_POLICY.md) — mandatory modeling, confounder-control, secondary molecular-characterization, robustness, leakage-prevention, XAI/SHAP, and evidence-integration policy.
 6. [`TERMINOLOGY_GUIDE.md`](TERMINOLOGY_GUIDE.md) — mandatory reviewer-resistant terminology and evidence vocabulary.
 7. [`ANALYSIS_EXECUTION_POLICY.md`](ANALYSIS_EXECUTION_POLICY.md) — execution strategy, interactive-analysis policy, Python/R guidance, and delegation boundaries.
 8. [`NOTEBOOK_STYLE_GUIDE.md`](NOTEBOOK_STYLE_GUIDE.md) — notebook cell structure, documentation, reproducibility, and downstream-notebook conventions.
@@ -25,26 +27,32 @@ Read phase-specific contracts and decision records before modifying or extending
 
 | Document | Primary purpose |
 | --- | --- |
-| [`PROJECT_DIRECTION.md`](PROJECT_DIRECTION.md) | Defines the scientific question, central biological object, framework scope, and prohibited overclaims. |
-| [`PROJECT_ARCHITECTURE.md`](PROJECT_ARCHITECTURE.md) | Defines the tumor, cell-line, cross-system, functional, pharmacogenomic, perturbational, and validation layers. |
+| [`PROJECT_DIRECTION.md`](PROJECT_DIRECTION.md) | Defines the scientific question, central biological object, framework scope, Phase 4B role, explicit XAI role, and prohibited overclaims. |
+| [`PROJECT_ARCHITECTURE.md`](PROJECT_ARCHITECTURE.md) | Defines the tumor, cell-line, cross-system, secondary-characterization, functional, pharmacogenomic/XAI, perturbational, validation, and integrated-evidence layers. |
 | [`DATA_HARMONIZATION_PLAN.md`](DATA_HARMONIZATION_PLAN.md) | Defines identifier harmonization, integration logic, dataset alignment, and leakage-aware harmonization principles. |
-| [`MODELING_POLICY.md`](MODELING_POLICY.md) | Defines mandatory modeling safeguards, confounder control, evidence categories, robustness, and leakage prevention. |
+| [`MODELING_POLICY.md`](MODELING_POLICY.md) | Defines mandatory modeling safeguards, confounder control, secondary genomic and methylation-expression rules, evidence categories, XAI/SHAP requirements, robustness, evidence integration, and leakage prevention. |
 | [`TERMINOLOGY_GUIDE.md`](TERMINOLOGY_GUIDE.md) | Defines approved terminology for candidate programs, resistance-like contexts, putative vulnerabilities, perturbational hypotheses, and validation language. |
 | [`ANALYSIS_EXECUTION_POLICY.md`](ANALYSIS_EXECUTION_POLICY.md) | Defines how analytical and repository work should be executed and when interactive analysis, Python, R, or delegated repository work is appropriate. |
 | [`NOTEBOOK_STYLE_GUIDE.md`](NOTEBOOK_STYLE_GUIDE.md) | Defines notebook implementation and documentation conventions, including short single-responsibility cells and downstream reuse of frozen upstream artifacts. |
-| [`workflow.md`](workflow.md) | Summarizes the operational handoff between phases, notebook series, inputs, outputs, and analytical boundaries. For the latest completion status, use the root README and `roadmap.md`. |
+| [`workflow.md`](workflow.md) | Summarizes the operational handoff between phases, notebook series, inputs, outputs, Phase 4B boundaries, XAI boundaries, integrated evidence, and analytical boundaries. For the latest completion status, use the root README and `roadmap.md`. |
 
-## Phase 1 and active Phase 5 work
+## Current analytical progression
 
 Phase 2 tumor discovery is closed and frozen, Phase 3 independent cell-line discovery is closed, and Phase 4 cross-system integration is closed and frozen after completion of notebooks `400 — Cross-System Program Comparison` through `404 — Program Annotation`.
 
 The frozen Phase 4 layer contains supported cross-system transcriptomic correspondences, three candidate cross-system transcriptomic consensus representations with tumor-side methylation context, lineage-aware internal robustness evidence, epigenetic-regulator enrichment results, and prespecified biological annotations. Notebooks 402–404 did not refit or reweight the consensus representations and did not use downstream robustness or annotation evidence to retrospectively redefine consensus eligibility.
+
+Roadmap v3.2 adds **Phase 4B — Secondary Molecular Context Characterization** without reopening Phase 4. Planned notebook `108 — TCGA Somatic Mutation Acquisition and Audit` provides the mutation-resource prerequisite; notebook `450 — Secondary Genomic Context Characterization` evaluates lineage-aware somatic genomic context; notebook `451 — Locus-Level Methylation–Expression Characterization` evaluates CpG-to-gene and promoter/regulatory methylation-expression relationships. Positive, negative, lineage-specific, heterogeneous, or non-recurrent outcomes are all valid, and Phase 4B results cannot redefine frozen programs.
 
 The historical input contract for notebook 401 remains available at [`PHASE4_401_INPUT_CONTRACT.md`](PHASE4_401_INPUT_CONTRACT.md). It preserves the provenance and interpretation rules that governed consensus construction, including the distinction between unique RNA correspondence events, tumor structural families, and tumor cross-omic arms.
 
 Phase 1 notebook `107 — DepMap RNAi Acquisition and Audit` is complete. Its distinct historical DEMETER2 v5 RNAi resource combines Achilles, DRIVE, and Marcotte, and its audited, harmonized handoffs are frozen for downstream use. The 443-model RNAi overlap is lineage- and screen-source-dependent; no fuzzy identifier rescue was used.
 
 Phase 5 — Functional Vulnerabilities is active. Notebook `500 — CRISPR Associations` remains complete/frozen and its dependency associations are putative functional-vulnerability evidence only, not independent biological validation or causal vulnerabilities. Notebook `501 — RNAi Associations` is next and may now use the frozen notebook-107 handoffs. RNAi is an orthogonal/complementary layer and must not be naively pooled with CRISPR; notebook 501 must prespecify gene eligibility and its association-testing framework before inspecting results.
+
+Phase 6 is planned as **Pharmacogenomic Contexts and Explainable Modeling (XAI)**. It contains the explicit explainable-AI component of the project: lineage-aware predictive modeling, SHAP attribution, attribution/stability analysis, and cross-screen replication. SHAP is interpreted as model attribution only and cannot compensate for weak predictive validity or inadequate evaluation design.
+
+Phase 7 generates perturbational hypotheses, Phase 8 evaluates orthogonal or external computational support, Phase 9 integrates the frozen evidence—including Phase 4B context where informative—into a transparent program–vulnerability–compound framework, and Phase 10 is reserved for manuscript preparation.
 
 Phase-specific contracts constrain only their declared scope and should not be generalized into new project-wide rules without an explicit documented decision.
 
@@ -54,8 +62,10 @@ Repository-level scientific and architectural decisions are stored under [`decis
 
 Current decision records:
 
-- [`decisions/001_data_integration_strategy.md`](decisions/001_data_integration_strategy.md) — data-integration strategy and dataset-role decisions.
+- [`decisions/001_data_integration_strategy.md`](decisions/001_data_integration_strategy.md) — historical data-integration strategy; superseded by ADR 002.
 - [`decisions/002_independent_discovery_and_cross_system_integration.md`](decisions/002_independent_discovery_and_cross_system_integration.md) — formalizes independent tumor and cell-line discovery followed by cross-system integration only after both representations are frozen.
+- [`decisions/003_xai_and_integrated_evidence_architecture.md`](decisions/003_xai_and_integrated_evidence_architecture.md) — formalizes roadmap v3.1, the explicit Phase 6 XAI/SHAP layer, the new Phase 9 integrated-evidence layer, and the Phase 10 manuscript boundary.
+- [`decisions/004_secondary_molecular_context_characterization.md`](decisions/004_secondary_molecular_context_characterization.md) — formalizes roadmap v3.2, planned notebook 108, Phase 4B notebooks 450–451, the post-freeze characterization boundary, and optional publication of secondary analyses.
 
 Decision records should document durable choices that affect multiple notebooks or downstream interpretation. Notebook-local implementation details should remain in the notebook unless they become project-wide policy.
 
@@ -63,10 +73,10 @@ Decision records should document durable choices that affect multiple notebooks 
 
 Narrative documentation does not replace machine-readable configuration.
 
-- [`../config/raw_data_registry.json`](../config/raw_data_registry.json) is the source for dataset releases, source files, and raw-data provenance used by the implemented workflow.
+- [`../config/raw_data_registry.json`](../config/raw_data_registry.json) is the source for dataset releases, source files, and raw-data provenance used by the implemented workflow. Planned mutation provenance will be registered when notebook 108 selects and audits the concrete source resource.
 - [`../config/artifact_registry.json`](../config/artifact_registry.json) records frozen derived-artifact identity and lineage.
 - [`../envs/README.md`](../envs/README.md) describes the current software reproduction records and the scope of historical execution evidence.
-- [`../config/paths.yaml`](../config/paths.yaml) defines repository paths consumed through the project path utilities.
+- [`../config/paths.yaml`](../config/paths.yaml) defines repository paths consumed through the project path utilities, including `data/interim/genomics`, `data/processed/secondary_characterization`, and `data/processed/integrated_evidence`.
 - Phase-specific tracked handoff manifests under `config/` may be authoritative for downstream interpretation when explicitly declared by the relevant contract.
 
 Raw-data provenance, frozen derived-artifact lineage, software reproduction records, cohort definitions, and analytical results should be read from their versioned configuration, metadata, environment records, and processed/interim artifacts rather than reconstructed from prose summaries.
@@ -76,11 +86,14 @@ Raw-data provenance, frozen derived-artifact lineage, software reproduction reco
 All documentation should preserve the same methodological boundaries as the analysis:
 
 - tumor and cell-line discovery remain independent before Phase 4;
-- lineage, platform, batch, purity/cellularity, proliferation, drug-family, and cell-line-overlap leakage or confounding are considered where applicable;
+- Phase 4B is post-freeze characterization and cannot alter frozen Phase 4 programs;
+- lineage, platform, batch, purity/cellularity, proliferation, mutation prevalence/caller provenance, drug-family, and cell-line-overlap leakage or confounding are considered where applicable;
 - random pan-cancer splitting and naive cross-lineage pooling are not acceptable substitutes for lineage-aware evaluation;
-- internal robustness, cross-system reproducibility, cross-dataset replication, and orthogonal support are distinct evidence categories;
-- `not recoverable`, partial correspondence, instability, negative results, and unresolved confounding are valid outcomes and should be retained;
+- preprocessing, feature selection, and hyperparameter tuning for predictive models must remain inside the training/resampling structure;
+- internal robustness, cross-system reproducibility, secondary molecular context, cross-screen reproducibility, cross-dataset replication, and orthogonal support are distinct evidence categories;
+- `not recoverable`, partial correspondence, instability, weak predictive performance, unstable attribution, absent genomic associations, absent methylation-expression coupling, negative results, and unresolved confounding are valid outcomes and should be retained;
 - SHAP, feature importance, enrichment, and latent-factor inspection are interpretive or predictive-attribution tools, not causal evidence;
+- Phase 9 evidence dimensions must remain separately traceable rather than being naively pooled;
 - terminology must remain consistent with [`TERMINOLOGY_GUIDE.md`](TERMINOLOGY_GUIDE.md).
 
 ## Supporting directories
