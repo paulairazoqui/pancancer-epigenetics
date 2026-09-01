@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted for roadmap v3.1.
+Accepted for roadmap v3.1. Subsequently extended by ADR 004 / roadmap v3.2 with a post-freeze secondary molecular-context characterization layer; the XAI and integrated-evidence decisions below remain in force.
 
 ---
 
