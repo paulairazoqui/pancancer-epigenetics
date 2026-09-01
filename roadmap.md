@@ -478,6 +478,9 @@ Primary XAI analyses:
 * stability selection / resampling-based feature stability
 * comparison of attribution consistency across lineages, folds, and screens
 * attribution sensitivity to model class
+* hierarchical biological contextualization of stable attributions using frozen upstream biological representations
+
+Attribution must remain at the resolution of the actual model feature space. If the fitted model uses consensus-program scores, SHAP is program-level attribution. A stable attributed program may then be mapped to its frozen gene loadings/member genes, Phase 4 pathways and biological annotations, epigenetic-regulator enrichment, tumor-side methylation context, and Phase 4B locus-level or genomic context where informative. This downstream mapping is biological contextualization, not additional SHAP evidence. Gene-level SHAP may be reported only for models that actually contain gene-level features under the same leakage-safe evaluation design.
 
 SHAP values quantify model attribution only. They must not be interpreted as causal biological effects, mechanistic proof, or validated biomarkers.
 
@@ -491,6 +494,7 @@ Outputs:
 * predictive-model performance summaries
 * SHAP attribution tables and plots
 * stability-selection summaries
+* hierarchical biological-context tables for supported model attributions
 * cross-screen reproducibility reports
 * pharmacogenomic context maps
 
@@ -588,7 +592,7 @@ Candidate dimensions may include:
 * locus-level methylation-expression context
 * functional-genomics support
 * cross-screen pharmacogenomic support
-* XAI attribution stability
+* XAI attribution stability and biological contextualization
 * perturbational inverse-signature support
 * target–drug knowledgebase support
 * lineage breadth and heterogeneity
@@ -601,7 +605,28 @@ Construct the final integrated evidence map linking frozen recurrent programs to
 
 #### 904 — Final Candidate Catalog and Handoff
 
-Freeze the final evidence catalog and manuscript-facing handoff. Downstream manuscript preparation may summarize these results but must not retrospectively redefine the underlying Phase 4 consensus programs or earlier analytical families.
+Freeze the final evidence catalog, manuscript-facing handoff, and structured computational-to-experimental evidence package. Downstream manuscript preparation may summarize these results but must not retrospectively redefine the underlying Phase 4 consensus programs or earlier analytical families.
+
+Where information exists, each retained candidate relationship should preserve:
+
+* frozen program identity
+* putative vulnerability or target context
+* candidate compound and known target/mechanism annotation
+* expected association or perturbational direction
+* CRISPR/RNAi evidence
+* pharmacogenomic association and cross-screen evidence
+* predictive-model and XAI attribution/stability context
+* perturbational evidence
+* target–drug knowledgebase evidence
+* secondary genomic or locus-level methylation-expression context
+* lineage breadth and heterogeneity
+* external or orthogonal support
+* explicit missing, conflicting, or unresolved evidence
+* concise computational rationale for possible downstream experimental evaluation
+
+Because the broader approved project includes experimental work in sarcoma models, RMS or OS relevance may be annotated when directly supported by the computational datasets. Lack of sarcoma/RMS/OS coverage or evidence must remain explicit and cannot be inferred from other lineages.
+
+The handoff is an evidence package, not a therapeutic recommendation, experimental result, assay prescription, dose recommendation, or substitute for experimental design.
 
 Outputs:
 
@@ -610,6 +635,7 @@ Outputs:
 * candidate evidence strata
 * integrated program–vulnerability–compound map
 * final candidate catalog with explicit limitations
+* structured computational-to-experimental evidence handoff
 
 ---
 
@@ -622,6 +648,7 @@ Primary deliverables:
 * vulnerability maps
 * pharmacogenomic contexts
 * explainable predictive-model analyses and SHAP attribution
+* biologically contextualized XAI summaries
 * perturbational hypotheses
 * cross-resource replication evidence
 * integrated program–vulnerability–compound evidence map
@@ -659,4 +686,4 @@ Outputs:
 
 # Final Deliverable
 
-A reproducible computational oncology framework for discovering recurrent epigenetic-transcriptomic programs and characterizing their secondary genomic context, locus-level methylation-expression relationships, functional vulnerabilities, resistance-like pharmacogenomic contexts, explainable model attributions, perturbational hypotheses, and convergent program–vulnerability–compound evidence across human cancers.
+A reproducible computational oncology framework for discovering recurrent epigenetic-transcriptomic programs and characterizing their secondary genomic context, locus-level methylation-expression relationships, functional vulnerabilities, resistance-like pharmacogenomic contexts, explainable model attributions with biologically contextualized interpretation, perturbational hypotheses, convergent program–vulnerability–compound evidence, and a structured computational evidence handoff for possible downstream experimental evaluation across human cancers.

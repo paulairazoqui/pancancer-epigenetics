@@ -29,10 +29,10 @@ The broader approved scientific project includes experimental validation. Experi
 - **Phase 4 — Cross-System Integration:** closed / frozen. Notebooks 400–404 completed cross-system comparison, consensus construction, cross-lineage robustness, epigenetic-regulator enrichment, and biological program annotation without downstream redefinition of the frozen consensus representations.
 - **Phase 4B — Secondary Molecular Context Characterization:** planned. Notebook 450 will characterize somatic genomic context after a dataset-specific TCGA mutation audit in planned notebook 108; notebook 451 will characterize locus-level methylation-expression relationships. This layer cannot redefine frozen Phase 4 programs and may yield positive, lineage-specific, heterogeneous, or negative results.
 - **Phase 5 — Functional Vulnerabilities:** active. Notebook 500 — CRISPR Associations remains complete/frozen; the RNAi acquisition/audit prerequisite is complete, with 443 frozen models available for RNAi analysis. Notebook 501 — RNAi Associations is next.
-- **Phase 6 — Pharmacogenomic Contexts and Explainable Modeling (XAI):** planned. This is the explicit XAI layer, including lineage-aware predictive modeling, SHAP attribution, stability analysis, and cross-screen replication.
+- **Phase 6 — Pharmacogenomic Contexts and Explainable Modeling (XAI):** planned. This is the explicit XAI layer, including lineage-aware predictive modeling, SHAP attribution, stability analysis, hierarchical biological contextualization at the resolution supported by actual model features, and cross-screen replication.
 - **Phase 7 — Perturbational Hypotheses:** planned.
 - **Phase 8 — Orthogonal Validation:** planned.
-- **Phase 9 — Integrated Evidence Synthesis and Therapeutic Prioritization:** planned.
+- **Phase 9 — Integrated Evidence Synthesis and Therapeutic Prioritization:** planned, including a structured computational-to-experimental evidence handoff in notebook 904.
 - **Phase 10 — Manuscript Preparation:** planned.
 
 ---
@@ -68,9 +68,11 @@ Neither notebook may rescue, exclude, reweight, reorient, rename, or redefine fr
 
 Explainable artificial intelligence is an explicit scientific component of the repository rather than a manuscript-only interpretation step.
 
-Phase 6 operationalizes XAI only after pharmacogenomic outcomes, evaluation partitions, and model inputs have been defined under leakage controls. Notebook 601 performs explainable predictive modeling; notebook 602 is dedicated to SHAP attribution and stability analysis; notebook 603 evaluates cross-screen replication.
+Phase 6 operationalizes XAI only after pharmacogenomic outcomes, evaluation partitions, and model inputs have been defined under leakage controls. Notebook 601 performs explainable predictive modeling; notebook 602 is dedicated to SHAP attribution, stability analysis, and biological contextualization; notebook 603 evaluates cross-screen replication.
 
-SHAP is treated as a model-attribution method. It is interpreted jointly with predictive validity, lineage structure, resampling stability, model-class sensitivity, and cross-screen evidence. SHAP values are not interpreted as causal biological effects, validated biomarkers, or therapeutic targets.
+Attribution is reported only at the resolution of features actually used by the fitted model. If a model uses consensus-program scores, SHAP is program-level. Stable attributed programs may then be mapped back to frozen gene loadings, pathways, epigenetic-regulator enrichment, tumor-side methylation context, and Phase 4B context. That mapping is biological contextualization rather than gene-level SHAP evidence. Gene-level SHAP requires a model that actually contains gene-level features under the same leakage-safe evaluation design.
+
+SHAP is treated as a model-attribution method. It is interpreted jointly with predictive validity, lineage structure, resampling stability, model-class sensitivity, biological context, and cross-screen evidence. SHAP values are not interpreted as causal biological effects, validated biomarkers, or therapeutic targets.
 
 ---
 
@@ -209,10 +211,11 @@ The current roadmap v3.2 source-of-truth documents are:
 * `docs/PROJECT_DIRECTION.md` — strategic biological objective, secondary characterization, explicit XAI role, and conservative scientific scope.
 * `docs/PROJECT_ARCHITECTURE.md` — analytical layers, dataset roles, Phase 4B placement, XAI placement, evidence integration, and lineage-aware framework design.
 * `docs/DATA_HARMONIZATION_PLAN.md` — identifier harmonization, data integration, and leakage-prevention principles.
-* `docs/MODELING_POLICY.md` — modeling boundaries, secondary molecular-context rules, leakage prevention, XAI/SHAP requirements, evidence-integration policy, and interpretation rules.
+* `docs/MODELING_POLICY.md` — modeling boundaries, secondary molecular-context rules, leakage prevention, XAI/SHAP requirements, biological-context rules, evidence-integration policy, and interpretation rules.
 * `docs/TERMINOLOGY_GUIDE.md` — approved terminology for candidate vulnerabilities, resistance-like contexts, perturbational hypotheses, and validation language.
 * `docs/workflow.md` — current roadmap v3.2 operational workflow, including completed-phase boundaries and planned handoffs.
 * `docs/decisions/004_secondary_molecular_context_characterization.md` — durable decision establishing notebooks 108, 450, and 451 and their freeze boundaries.
+* `docs/decisions/005_biological_xai_context_and_experimental_handoff.md` — durable decision defining hierarchical XAI contextualization and the notebook-904 computational-to-experimental evidence handoff.
 
 ---
 
@@ -225,6 +228,8 @@ The current roadmap v3.2 source-of-truth documents are:
 * **Current reproduction environment:** `envs/environment.yml`, `envs/python_environment_snapshot.txt`, and `envs/r_environment.json` record the current reproduction environment; `envs/README.md` distinguishes these records from historical execution evidence where it exists.
 * **Leakage prevention:** Analyses should avoid naïve pan-cancer pooling, random cross-lineage splits, post-split feature leakage, cell-line overlap leakage, platform leakage, drug-family leakage, and downstream-result feedback into frozen discovery objects.
 * **Secondary characterization discipline:** mutation and locus-level methylation-expression analyses are post-freeze contextual analyses; lineage/project structure, platform/caller provenance, purity, annotation uncertainty, and negative results remain explicit.
-* **XAI discipline:** SHAP and related attributions require valid evaluation design and are interpreted as model behavior, not biological causality.
+* **XAI discipline:** SHAP and related attributions require valid evaluation design, remain at the resolution of the actual fitted feature space, and are interpreted as model behavior rather than biological causality.
+* **Biological contextualization:** mapping a program-level attribution to genes, pathways, regulators, methylation, or Phase 4B context provides biological interpretation but does not create finer-resolution SHAP evidence.
 * **Evidence integration:** Phase 9 preserves the provenance and distinct evidentiary role of each modality rather than collapsing heterogeneous results into an opaque score.
-* **Conservative interpretation:** Results should be described as recurrent epigenetic-transcriptomic programs, secondary genomic contexts, locus-level methylation-expression associations, resistance-like pharmacogenomic contexts, putative functional vulnerabilities, explainable model attributions, perturbational hypotheses, integrated evidence, or computational associations according to the evidence level.
+* **Experimental handoff discipline:** notebook 904 may organize computational evidence for downstream experimental consideration, but it does not provide experimental validation, assay prescriptions, dose recommendations, or therapeutic recommendations.
+* **Conservative interpretation:** Results should be described as recurrent epigenetic-transcriptomic programs, secondary genomic contexts, locus-level methylation-expression associations, resistance-like pharmacogenomic contexts, putative functional vulnerabilities, explainable model attributions, biological contextualization, perturbational hypotheses, integrated evidence, computational-to-experimental handoff, or computational associations according to the evidence level.
