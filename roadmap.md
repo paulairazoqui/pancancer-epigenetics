@@ -1,10 +1,10 @@
 # Pan-Cancer Epigenetics Framework
 
-## Operational Analysis Roadmap (v3.0)
+## Operational Analysis Roadmap (v3.1)
 
 ### Project Objective
 
-Identify recurrent epigenetic-transcriptomic programs across human cancers through independent discovery in primary tumors and cancer cell models, and characterize their associated functional vulnerabilities, pharmacogenomic contexts, and perturbational hypotheses.
+Identify recurrent epigenetic-transcriptomic programs across human cancers through independent discovery in primary tumors and cancer cell models, characterize their associated functional vulnerabilities and resistance-like pharmacogenomic contexts, evaluate them with explainable predictive modeling where appropriate, generate perturbational hypotheses, and integrate convergent evidence into a conservative therapeutic-prioritization framework.
 
 ---
 
@@ -16,7 +16,9 @@ This project is designed as a computational oncology framework focused on:
 * cross-system reproducibility,
 * functional characterization,
 * pharmacogenomic association mapping,
-* perturbational hypothesis generation.
+* explainable predictive modeling and feature attribution,
+* perturbational hypothesis generation,
+* integrated evidence synthesis and candidate prioritization.
 
 The framework does **not** aim to:
 
@@ -26,7 +28,7 @@ The framework does **not** aim to:
 * claim therapeutic efficacy from in silico analyses,
 * reconstruct adaptive evolutionary trajectories.
 
-All findings should be interpreted as computational associations requiring further validation.
+All findings should be interpreted as computational associations requiring further validation. XAI methods, including SHAP, are interpretive tools for model attribution and hypothesis generation; they are not evidence of biological causality.
 
 ---
 
@@ -81,6 +83,7 @@ functional_vulnerabilities/
 pharmacogenomic_contexts/
 perturbational_hypotheses/
 validation/
+integrated_evidence/
 ```
 
 ### Scientific Results
@@ -347,11 +350,13 @@ Outputs:
 
 ---
 
-# Phase 6 — Pharmacogenomic Contexts
+# Phase 6 — Pharmacogenomic Contexts and Explainable Modeling (XAI)
 
 ## Objective
 
-Characterize resistance-like pharmacogenomic contexts associated with consensus programs.
+Characterize resistance-like pharmacogenomic contexts associated with frozen consensus programs and evaluate whether interpretable predictive models recover stable program–drug relationships across lineage-aware and cross-screen settings.
+
+This phase is the explicit XAI component of the project. Predictive modeling is used to characterize computational associations, not to construct a clinical resistance predictor.
 
 ## Primary Resources
 
@@ -363,7 +368,9 @@ Characterize resistance-like pharmacogenomic contexts associated with consensus 
 
 #### 600 — Program–Drug Associations
 
-#### 601 — Predictive Modeling
+Establish prespecified lineage-aware program–drug association families and characterize effect direction, heterogeneity, and drug-family structure before predictive modeling.
+
+#### 601 — Explainable Predictive Modeling
 
 Candidate methods:
 
@@ -371,20 +378,37 @@ Candidate methods:
 * Random Forest
 * XGBoost
 
-#### 602 — Model Interpretation
+Requirements:
 
-Methods:
+* lineage-aware train/test or grouped resampling schemes
+* explicit prevention of cell-line-overlap and drug-family leakage
+* preprocessing and feature selection fitted within training partitions
+* comparison against transparent baseline models
+* no random pan-cancer splits
 
-* SHAP
-* stability selection
-* feature attribution
+#### 602 — SHAP Attribution and Stability Analysis
+
+Primary XAI analyses:
+
+* SHAP global feature attribution
+* SHAP local attribution where scientifically useful
+* stability selection / resampling-based feature stability
+* comparison of attribution consistency across lineages, folds, and screens
+* attribution sensitivity to model class
+
+SHAP values quantify model attribution only. They must not be interpreted as causal biological effects, mechanistic proof, or validated biomarkers.
 
 #### 603 — Cross-Screen Replication
 
+Evaluate whether program–drug associations, model behavior, and interpretable feature-attribution patterns replicate across GDSC, CTRP, and PRISM where drug and model coverage permit. Drug-family and cell-line overlap must remain explicit.
+
 Outputs:
 
-* replicated associations
-* predictive-model summaries
+* replicated resistance-like pharmacogenomic associations
+* predictive-model performance summaries
+* SHAP attribution tables and plots
+* stability-selection summaries
+* cross-screen reproducibility reports
 * pharmacogenomic context maps
 
 ---
@@ -418,19 +442,6 @@ Outputs:
 
 ---
 
-# Paper 2 Milestone
-
-## Functional, Pharmacogenomic, and Perturbational Characterization of Recurrent Programs
-
-Primary deliverables:
-
-* vulnerability maps
-* pharmacogenomic contexts
-* predictive-model analyses
-* perturbational hypotheses
-
----
-
 # Phase 8 — Orthogonal Validation
 
 ## Objective
@@ -457,23 +468,97 @@ Outputs:
 
 ---
 
-# Phase 9 — Manuscript Preparation
+# Phase 9 — Integrated Evidence Synthesis and Therapeutic Prioritization
+
+## Objective
+
+Integrate the frozen evidence generated across functional-genomics, pharmacogenomic, perturbational, epigenetic-regulatory, and external-validation layers into a transparent program–vulnerability–compound evidence framework.
+
+This phase operationalizes the final integrative deliverable of the approved project without converting computational convergence into claims of validated therapeutic targets or therapeutic efficacy.
+
+### Notebook Series 900
+
+#### 900 — Target–Drug Knowledgebase Mapping
+
+Map candidate vulnerabilities and associated epigenetic regulators to known compounds and mechanisms using curated drug–target resources such as ChEMBL, DrugBank where accessible, and prespecified literature-supported annotations.
+
+#### 901 — Cross-Evidence Integration
+
+Integrate evidence from:
+
+* Phase 4 program and epigenetic-regulator characterization
+* Phase 5 CRISPR and RNAi associations
+* Phase 6 pharmacogenomic associations and XAI outputs
+* Phase 7 LINCS/CMap perturbational hypotheses
+* Phase 8 external or orthogonal support
+
+Evidence layers must remain traceable and must not be naively pooled as if they were independent measurements of the same quantity.
+
+#### 902 — Candidate Evidence Stratification
+
+Classify candidate program–vulnerability–compound relationships using prespecified multidimensional evidence criteria. Prefer explicit evidence dimensions over an opaque single composite score.
+
+Candidate dimensions may include:
+
+* functional-genomics support
+* cross-screen pharmacogenomic support
+* XAI attribution stability
+* perturbational inverse-signature support
+* target–drug knowledgebase support
+* lineage breadth and heterogeneity
+* external/orthogonal support
+* unresolved confounding or coverage limitations
+
+#### 903 — Program–Vulnerability–Compound Map
+
+Construct the final integrated evidence map linking frozen recurrent programs to putative vulnerabilities, resistance-like pharmacogenomic contexts, candidate compounds, and supporting or conflicting evidence.
+
+#### 904 — Final Candidate Catalog and Handoff
+
+Freeze the final evidence catalog and manuscript-facing handoff. Downstream manuscript preparation may summarize these results but must not retrospectively redefine the underlying Phase 4 consensus programs or earlier analytical families.
+
+Outputs:
+
+* target–drug mapping tables
+* cross-evidence matrices
+* candidate evidence strata
+* integrated program–vulnerability–compound map
+* final candidate catalog with explicit limitations
+
+---
+
+# Paper 2 Milestone
+
+## Functional, Pharmacogenomic, Explainable, Perturbational, and Integrated Characterization of Recurrent Programs
+
+Primary deliverables:
+
+* vulnerability maps
+* pharmacogenomic contexts
+* explainable predictive-model analyses and SHAP attribution
+* perturbational hypotheses
+* cross-resource replication evidence
+* integrated program–vulnerability–compound evidence map
+
+---
+
+# Phase 10 — Manuscript Preparation
 
 ## Objective
 
 Prepare publication-ready outputs and reproducibility packages.
 
-### Notebook Series 900
+### Notebook Series 1000
 
-#### 900 — Figure Assembly
+#### 1000 — Figure Assembly
 
-#### 901 — Supplementary Tables
+#### 1001 — Supplementary Tables
 
-#### 902 — Methods Documentation
+#### 1002 — Methods Documentation
 
-#### 903 — Reproducibility Package
+#### 1003 — Reproducibility Package
 
-#### 904 — Manuscript Drafting
+#### 1004 — Manuscript Drafting
 
 Outputs:
 
@@ -486,4 +571,4 @@ Outputs:
 
 # Final Deliverable
 
-A reproducible computational oncology framework for discovering recurrent epigenetic-transcriptomic programs and characterizing their functional vulnerabilities, pharmacogenomic contexts, and perturbational hypotheses across human cancers.
+A reproducible computational oncology framework for discovering recurrent epigenetic-transcriptomic programs and characterizing their functional vulnerabilities, resistance-like pharmacogenomic contexts, explainable model attributions, perturbational hypotheses, and convergent program–vulnerability–compound evidence across human cancers.
