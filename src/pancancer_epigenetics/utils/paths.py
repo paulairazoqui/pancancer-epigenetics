@@ -90,6 +90,7 @@ class Paths:
     pharmacogenomic_contexts = root / _cfg["data"]["processed"]["pharmacogenomic_contexts"]
     perturbational_hypotheses = root / _cfg["data"]["processed"]["perturbational_hypotheses"]
     validation = root / _cfg["data"]["processed"]["validation"]
+    integrated_evidence = root / _cfg["data"]["processed"]["integrated_evidence"]
 
     # manuscript-ready results
     paper1 = root / _cfg["results"]["paper1"]
