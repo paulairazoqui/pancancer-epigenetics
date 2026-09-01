@@ -11,12 +11,13 @@ data:
     chembl: data/raw/chembl
     drugbank: data/raw/drugbank
     epifactors: data/raw/epifactors
-    msigdb: data/raw/msigdb
+    msigdb: data/raw/msigdb   
   interim:
     root: data/interim
     metadata: data/interim/metadata
     expression: data/interim/expression
     methylation: data/interim/methylation
+    genomics: data/interim/genomics
     dependencies: data/interim/dependencies
     pharmacology: data/interim/pharmacology
     perturbational: data/interim/perturbational
@@ -25,6 +26,7 @@ data:
     tumor_programs: data/processed/tumor_programs
     cellline_programs: data/processed/cellline_programs
     consensus_programs: data/processed/consensus_programs
+    secondary_characterization: data/processed/secondary_characterization
     functional_vulnerabilities: data/processed/functional_vulnerabilities
     pharmacogenomic_contexts: data/processed/pharmacogenomic_contexts
     perturbational_hypotheses: data/processed/perturbational_hypotheses
