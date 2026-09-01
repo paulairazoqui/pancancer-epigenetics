@@ -1,10 +1,10 @@
 # Pan-Cancer Epigenetics Framework
 
-## Operational Analysis Roadmap (v3.1)
+## Operational Analysis Roadmap (v3.2)
 
 ### Project Objective
 
-Identify recurrent epigenetic-transcriptomic programs across human cancers through independent discovery in primary tumors and cancer cell models, characterize their associated functional vulnerabilities and resistance-like pharmacogenomic contexts, evaluate them with explainable predictive modeling where appropriate, generate perturbational hypotheses, and integrate convergent evidence into a conservative therapeutic-prioritization framework.
+Identify recurrent epigenetic-transcriptomic programs across human cancers through independent discovery in primary tumors and cancer cell models, characterize their secondary genomic and locus-level methylation-expression context, evaluate associated functional vulnerabilities and resistance-like pharmacogenomic contexts, apply explainable predictive modeling where appropriate, generate perturbational hypotheses, and integrate convergent evidence into a conservative therapeutic-prioritization framework.
 
 ---
 
@@ -14,6 +14,8 @@ This project is designed as a computational oncology framework focused on:
 
 * recurrent epigenetic-transcriptomic program discovery,
 * cross-system reproducibility,
+* secondary genomic-context characterization,
+* locus-level methylation-expression characterization,
 * functional characterization,
 * pharmacogenomic association mapping,
 * explainable predictive modeling and feature attribution,
@@ -28,7 +30,7 @@ The framework does **not** aim to:
 * claim therapeutic efficacy from in silico analyses,
 * reconstruct adaptive evolutionary trajectories.
 
-All findings should be interpreted as computational associations requiring further validation. XAI methods, including SHAP, are interpretive tools for model attribution and hypothesis generation; they are not evidence of biological causality.
+All findings should be interpreted as computational associations requiring further validation. XAI methods, including SHAP, are interpretive tools for model attribution and hypothesis generation; they are not evidence of biological causality. Secondary genomic or methylation-expression characterization is contextual evidence and cannot retrospectively redefine the frozen discovery programs.
 
 ---
 
@@ -63,6 +65,7 @@ data/interim/
 metadata/
 expression/
 methylation/
+genomics/
 dependencies/
 pharmacology/
 perturbational/
@@ -79,6 +82,7 @@ data/processed/
 tumor_programs/
 cellline_programs/
 consensus_programs/
+secondary_characterization/
 functional_vulnerabilities/
 pharmacogenomic_contexts/
 perturbational_hypotheses/
@@ -124,11 +128,11 @@ Completed.
 
 ## Status
 
-Implemented for currently required inputs; notebook **107 — DepMap RNAi Acquisition and Audit** is complete. The historical DEMETER2 RNAi input (combined Achilles, DRIVE, and Marcotte) is acquired, audited, harmonized, and frozen for downstream use; future resources remain dataset-specific.
+Implemented for inputs used through the current active analysis. Notebook **107 — DepMap RNAi Acquisition and Audit** is complete. Notebook **108 — TCGA Somatic Mutation Acquisition and Audit** is planned as the acquisition prerequisite for Phase 4B secondary genomic-context characterization.
 
 ## Objective
 
-Acquire, document, validate, and version the source datasets required by implemented analyses, with dataset-specific acquisition and auditing continuing when future phases require new resources.
+Acquire, document, validate, and version the source datasets required by implemented or prespecified downstream analyses, with dataset-specific acquisition and auditing continuing when future phases require new resources.
 
 ### Notebook Series 100
 
@@ -150,11 +154,16 @@ Acquire, document, validate, and version the source datasets required by impleme
 
 Completed the acquisition audit and deterministic identifier harmonization for the historical DEMETER2 v5 RNAi resource. The frozen handoff contains 443 models overlapping the frozen Phase 3 cohort. No fuzzy identifier rescue was used; coverage remains lineage- and screen-source-dependent.
 
+#### 108 — TCGA Somatic Mutation Acquisition and Audit
+
+Planned prerequisite for Phase 4B. A single prespecified TCGA/GDC somatic-mutation resource will be acquired and audited with explicit provenance, caller/workflow identity, case/sample mapping, coverage, duplicate handling, and compatibility with the frozen 9,965-case tumor cohort. Mutation-call resources must not be naively mixed across callers or pipelines.
+
 Outputs:
 
 * source manifests
 * download records
 * coverage summaries
+* mutation-resource audit and frozen case mapping for Phase 4B
 
 ---
 
@@ -302,6 +311,78 @@ Outputs:
 
 ---
 
+# Phase 4B — Secondary Molecular Context Characterization
+
+## Status
+
+**PLANNED.** This is a downstream characterization layer and does **not** reopen Phase 4 discovery or consensus construction.
+
+## Objective
+
+Characterize the already frozen programs using two molecular-context analyses explicitly motivated by the approved project: somatic genomic context and locus-level methylation-expression relationships.
+
+The phase is designed to be informative even when results are negative, lineage-restricted, heterogeneous, or not publication-worthy. No positive result is required for downstream progression.
+
+### Notebook Series 450
+
+#### 450 — Secondary Genomic Context Characterization
+
+Primary resource:
+
+* a single audited TCGA/GDC somatic-mutation resource from notebook 108
+
+Planned analyses:
+
+* association of frozen tumor/consensus program scores with recurrent somatic alterations;
+* lineage-aware characterization of established cancer-driver or pathway-level mutation contexts using prespecified annotations;
+* assessment of whether apparent pan-cancer associations persist after accounting for project/lineage structure;
+* optional mutation-burden summaries only if their definition and cross-project comparability are technically defensible before result inspection.
+
+Boundaries:
+
+* mutations are a secondary contextual layer, not a new discovery modality;
+* no mutation result may rescue, exclude, reweight, rename, or redefine a frozen program;
+* pooled pan-cancer mutation associations are descriptive unless supported by lineage-aware analyses;
+* absence of robust genomic association is a valid result;
+* copy-number alteration analysis is outside the prespecified scope unless separately justified before implementation.
+
+#### 451 — Locus-Level Methylation–Expression Characterization
+
+Primary resources:
+
+* frozen TCGA methylation data;
+* frozen TCGA expression data;
+* frozen tumor/consensus program definitions;
+* prespecified CpG-to-gene and promoter annotations.
+
+Planned analyses:
+
+* map relevant program-associated CpGs to genes and promoter/regulatory annotations;
+* characterize methylation-expression associations at locus/gene level;
+* explicitly evaluate inverse relationships compatible with promoter hypermethylation and reduced gene expression where annotation and coverage support the comparison;
+* account for project/lineage structure, methylation platform, tumor purity, and other prespecified applicable confounders;
+* distinguish recurrent cross-project relationships from lineage-specific or heterogeneous effects.
+
+Boundaries:
+
+* inverse methylation-expression association is compatible with, but does not establish, epigenetic regulation;
+* TCGA tumors are not labeled resistant versus sensitive for this analysis;
+* no locus-level result may be used to retrospectively redefine the frozen programs;
+* platform-specific probe coverage and annotation uncertainty must remain explicit;
+* negative or non-recurrent results are valid outputs.
+
+Outputs:
+
+* secondary genomic-context association tables
+* lineage-aware mutation-context summaries
+* locus-level CpG–gene methylation-expression association tables
+* promoter/regulatory annotation summaries
+* negative-result and limitation reports
+
+These outputs are stored under `data/processed/secondary_characterization` and may feed Phase 9 evidence synthesis as contextual evidence. Their inclusion in a manuscript is optional and determined by scientific relevance rather than by project-compliance requirements.
+
+---
+
 # Paper 1 Milestone
 
 ## Discovery and Reproducibility of Recurrent Epigenetic-Transcriptomic Programs
@@ -313,6 +394,8 @@ Primary deliverables:
 * reproducibility analyses
 * lineage robustness analyses
 * epigenetic regulator characterization
+
+Phase 4B is not required to redefine or reopen Paper 1 discovery claims. Secondary characterization may be omitted from a manuscript if it is uninformative or outside the paper's scientific focus.
 
 ---
 
@@ -472,7 +555,7 @@ Outputs:
 
 ## Objective
 
-Integrate the frozen evidence generated across functional-genomics, pharmacogenomic, perturbational, epigenetic-regulatory, and external-validation layers into a transparent program–vulnerability–compound evidence framework.
+Integrate the frozen evidence generated across secondary molecular characterization, functional-genomics, pharmacogenomic, perturbational, epigenetic-regulatory, and external-validation layers into a transparent program–vulnerability–compound evidence framework.
 
 This phase operationalizes the final integrative deliverable of the approved project without converting computational convergence into claims of validated therapeutic targets or therapeutic efficacy.
 
@@ -487,6 +570,7 @@ Map candidate vulnerabilities and associated epigenetic regulators to known comp
 Integrate evidence from:
 
 * Phase 4 program and epigenetic-regulator characterization
+* Phase 4B secondary genomic and locus-level methylation-expression context
 * Phase 5 CRISPR and RNAi associations
 * Phase 6 pharmacogenomic associations and XAI outputs
 * Phase 7 LINCS/CMap perturbational hypotheses
@@ -500,6 +584,8 @@ Classify candidate program–vulnerability–compound relationships using prespe
 
 Candidate dimensions may include:
 
+* secondary genomic context
+* locus-level methylation-expression context
 * functional-genomics support
 * cross-screen pharmacogenomic support
 * XAI attribution stability
@@ -511,7 +597,7 @@ Candidate dimensions may include:
 
 #### 903 — Program–Vulnerability–Compound Map
 
-Construct the final integrated evidence map linking frozen recurrent programs to putative vulnerabilities, resistance-like pharmacogenomic contexts, candidate compounds, and supporting or conflicting evidence.
+Construct the final integrated evidence map linking frozen recurrent programs to putative vulnerabilities, resistance-like pharmacogenomic contexts, candidate compounds, and supporting or conflicting molecular-context evidence.
 
 #### 904 — Final Candidate Catalog and Handoff
 
@@ -539,6 +625,8 @@ Primary deliverables:
 * perturbational hypotheses
 * cross-resource replication evidence
 * integrated program–vulnerability–compound evidence map
+
+Secondary genomic or locus-level methylation-expression characterization may contribute when scientifically informative but is not forced into a manuscript solely because it was performed.
 
 ---
 
@@ -571,4 +659,4 @@ Outputs:
 
 # Final Deliverable
 
-A reproducible computational oncology framework for discovering recurrent epigenetic-transcriptomic programs and characterizing their functional vulnerabilities, resistance-like pharmacogenomic contexts, explainable model attributions, perturbational hypotheses, and convergent program–vulnerability–compound evidence across human cancers.
+A reproducible computational oncology framework for discovering recurrent epigenetic-transcriptomic programs and characterizing their secondary genomic context, locus-level methylation-expression relationships, functional vulnerabilities, resistance-like pharmacogenomic contexts, explainable model attributions, perturbational hypotheses, and convergent program–vulnerability–compound evidence across human cancers.
