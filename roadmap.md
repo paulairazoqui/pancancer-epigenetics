@@ -121,7 +121,7 @@ Completed.
 
 ## Status
 
-Implemented for currently required inputs; acquisition and auditing remain open on a dataset-specific basis for future phases.
+Implemented for currently required inputs; notebook **107 — DepMap RNAi Acquisition and Audit** is complete. The historical DEMETER2 RNAi input (combined Achilles, DRIVE, and Marcotte) is acquired, audited, harmonized, and frozen for downstream use; future resources remain dataset-specific.
 
 ## Objective
 
@@ -142,6 +142,10 @@ Acquire, document, validate, and version the source datasets required by impleme
 #### 105 — TCGA Methylation Cohort Freeze
 
 #### 106 — TCGA Methylation Download Validation
+
+#### 107 — DepMap RNAi Acquisition and Audit
+
+Completed the acquisition audit and deterministic identifier harmonization for the historical DEMETER2 v5 RNAi resource. The frozen handoff contains 443 models overlapping the frozen Phase 3 cohort. No fuzzy identifier rescue was used; coverage remains lineage- and screen-source-dependent.
 
 Outputs:
 
@@ -313,7 +317,7 @@ Primary deliverables:
 
 ## Status
 
-**ACTIVE.** Notebook **500 — CRISPR Associations** is complete. Notebook **501 — RNAi Associations** is the next planned analytical notebook, contingent on acquisition, audit, and freeze of the required RNAi dependency input.
+**ACTIVE.** Notebook **500 — CRISPR Associations** remains complete/frozen. The RNAi acquisition/audit prerequisite is now complete through notebook **107**, and notebook **501 — RNAi Associations** is the next scientific notebook.
 
 ## Objective
 
@@ -322,7 +326,7 @@ Evaluate associations between consensus programs and functional dependencies.
 ## Primary Resources
 
 * DepMap CRISPR
-* DepMap RNAi
+* Historical DEMETER2 v5 RNAi (combined Achilles, DRIVE, and Marcotte)
 
 ### Notebook Series 500
 
@@ -332,7 +336,7 @@ Completed as a lineage-adjusted, hypothesis-generating functional-dependency cha
 
 #### 501 — RNAi Associations
 
-Next planned notebook once the required RNAi dependency resource has been acquired, audited, and frozen for use.
+Next scientific notebook. It may use the frozen notebook-107 handoffs, with 443 available frozen models. RNAi is an orthogonal/complementary functional-genomics layer and must not be naively pooled with CRISPR. Before inspecting results, notebook 501 must prespecify gene eligibility and its association-testing framework; the analysis must not claim independent biological validation or causal vulnerabilities.
 
 #### 502 — Integrated Vulnerability Mapping
 

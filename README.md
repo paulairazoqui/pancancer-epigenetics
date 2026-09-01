@@ -24,7 +24,7 @@ The framework emphasizes biological interpretability, data leakage prevention, r
 - **Phase 2 — Independent Tumor Discovery:** closed / frozen with 9,965 TCGA primary-tumor cases and 13 retained candidate cross-omic programs.
 - **Phase 3 — Independent Cell-Line Discovery:** closed with 713 DepMap–GDSC models; latent-program extraction was phenotype-independent and internal robustness was completed in notebook 311.
 - **Phase 4 — Cross-System Integration:** closed / frozen. Notebooks 400–404 completed cross-system comparison, consensus construction, cross-lineage robustness, epigenetic-regulator enrichment, and biological program annotation without downstream redefinition of the frozen consensus representations.
-- **Phase 5 — Functional Vulnerabilities:** active. Notebook 500 — CRISPR Associations is complete; notebook 501 — RNAi Associations is next once the required RNAi dependency input has been acquired, audited, and frozen for use.
+- **Phase 5 — Functional Vulnerabilities:** active. Notebook 500 — CRISPR Associations remains complete/frozen; the RNAi acquisition/audit prerequisite is complete, with 443 frozen models available for RNAi analysis. Notebook 501 — RNAi Associations is next.
 
 ---
 
@@ -45,7 +45,7 @@ The project is designed to generate computational associations and candidate hyp
 
 ## Repository and Notebook Structure
 
-The repository physically contains directories for Phases 0–8. Implemented notebooks currently exist for Phases 1–5, with Phase 5 implemented through notebook 500. Phase 5 remains active; the directories for Phases 6–8 remain planned placeholders. Phase 9 is part of the roadmap v3.0 architecture but does not currently have a notebook directory.
+The repository physically contains directories for Phases 0–8. Implemented notebooks currently exist for Phases 1–5, with Phase 1 notebook 107 complete and Phase 5 implemented through notebook 500. Phase 5 remains active; the directories for Phases 6–8 remain planned placeholders. Phase 9 is part of the roadmap v3.0 architecture but does not currently have a notebook directory.
 
 ```text
 ├── .github/workflows/     # Data-free continuous-integration checks
@@ -143,7 +143,7 @@ A minimal reproducibility sequence is:
 5. Run the Phase 1 notebooks to confirm source availability and raw-file auditing.
 6. Execute implemented notebooks in numerical order within the completed or active phases. Future notebooks are run only after their required inputs are available and frozen.
 
-The implemented notebook series are `100`–`106`, `200`–`206`, `300`–`311`, `400`–`404`, and `500`. The physical notebook layout currently is:
+The implemented notebook series are `100`–`107`, `200`–`206`, `300`–`311`, `400`–`404`, and `500`. The physical notebook layout currently is:
 
 ```text
 notebooks/
@@ -152,7 +152,7 @@ notebooks/
 ├── phase2_tumor_discovery_layer/
 ├── phase3_cell_line_discovery_layer/
 ├── phase4_consensus_programs/              # complete through notebook 404
-├── phase5_functional_vulnerabilities/      # active; complete through notebook 500
+├── phase5_functional_vulnerabilities/      # active; complete through notebook 500; 501 next
 ├── phase6_pharmacogenomic_contexts/        # planned placeholder
 ├── phase7_perturbational_hypotheses/       # planned placeholder
 └── phase8_orthogonal_validation/           # planned placeholder
