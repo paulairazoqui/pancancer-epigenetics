@@ -25,7 +25,7 @@ Whenever analytical uncertainty exists, our default linguistic posture must:
 2. Explicitly clarify observational and cross-sectional limitations.
 3. Preserve the defined boundary conditions of our computational models.
 
-Association does not establish causality. Model attribution does not establish causality. Stronger causal or mechanistic claims require evidence beyond this pipeline, such as suitable experimental designs and independent mechanistic support.
+Association does not establish causality. Model attribution does not establish causality. Genomic association does not establish genomic causation. Inverse methylation-expression association does not establish direct epigenetic regulation. Stronger causal or mechanistic claims require evidence beyond this pipeline, such as suitable experimental designs and independent mechanistic support.
 
 ---
 
@@ -35,7 +35,7 @@ When describing the overarching architecture of this project, contributors must 
 
 * **Approved Framework Description:**
 
-  > "A computational oncology framework oriented toward identifying recurrent epigenetic-transcriptomic programs associated with resistance-like contexts, putative functional vulnerabilities, explainable predictive-model behavior, perturbational hypotheses, and integrated evidence for candidate prioritization."
+  > "A computational oncology framework oriented toward identifying recurrent epigenetic-transcriptomic programs, characterizing their secondary molecular context, and evaluating associations with resistance-like contexts, putative functional vulnerabilities, explainable predictive-model behavior, perturbational hypotheses, and integrated evidence for candidate prioritization."
 
 * **Prohibited Framework Descriptions:**
 
@@ -51,6 +51,10 @@ When describing the overarching architecture of this project, contributors must 
 | Resistant tumors | Tumors enriched for resistance-associated programs |
 | Resistance signature | Candidate resistance-associated program |
 | Adaptive resistance state | Resistance-like or adaptive-like context, when supported by the design |
+| Mutation drives the program | Program-associated somatic genomic context |
+| Genomic driver of the program | Somatic alteration associated with program activity |
+| Promoter methylation silences the gene | Inverse promoter methylation-expression association compatible with regulatory coupling |
+| Epigenetic regulation proven by correlation | Locus-level methylation-expression association |
 | Therapeutic target | Candidate or putative vulnerability, as supported by the evidence |
 | Validated target | Candidate or putative vulnerability; validated-target terminology is outside the evidentiary scope of the current computational framework |
 | Drug repurposing candidate | Candidate compound under a perturbational hypothesis, or candidate compound supported by convergent computational evidence after Phase 9 integration |
@@ -92,19 +96,33 @@ Current framework outputs may be `candidate vulnerabilities`, `putative vulnerab
 
 Avoid `therapeutic target`, `validated target`, and `definitive vulnerability` as descriptions of current framework outputs. Do not use `prioritized candidate vulnerability` as an automatic substitute for `validated target` when specific prioritization has not been demonstrated.
 
-### 5.4 Perturbational Frameworks (LINCS / CMap)
+### 5.4 Secondary Molecular Context
+
+Phase 4B provides post-freeze characterization rather than a new discovery layer.
+
+Approved genomic terms include `secondary genomic context`, `somatic alteration associated with program activity`, `lineage-aware mutation association`, `pathway-level mutation context`, and `genomic-context heterogeneity`.
+
+A somatic mutation association does not establish that the mutation causes, drives, maintains, or is required for a program. A pan-cancer mutation association must not be described as recurrent if it is explained by lineage/project structure.
+
+Approved methylation-expression terms include `locus-level methylation-expression association`, `inverse promoter methylation-expression association`, `regulatory-context association`, and `association compatible with epigenetic regulatory coupling`.
+
+Do not describe an inverse methylation-expression association as direct silencing, causal regulation, or mechanistic mediation without appropriate evidence beyond this analysis.
+
+Negative, lineage-specific, heterogeneous, and non-recurrent Phase 4B outcomes are valid research results. `No robust recurrent association detected` is an acceptable conclusion.
+
+### 5.5 Perturbational Frameworks (LINCS / CMap)
 
 Connectivity-based signatures represent context-dependent computational association structures, not biological guarantees. Prefer `perturbational hypothesis`, `inverse-signature perturbational association`, `perturbational association`, `candidate compound under a perturbational hypothesis`, and `inverse computational association`.
 
 An inverse LINCS/CMap signature is a computational perturbational hypothesis and does not demonstrate biological reversal, therapeutic efficacy, or drug repurposing. Do not use therapeutic or treatment reversal as approved framing.
 
-### 5.5 Pan-Cancer Nomenclature
+### 5.6 Pan-Cancer Nomenclature
 
 `Pan-cancer` may name the framework and its scope. A `pan-cancer signal` or biological claim, however, requires evidence across multiple lineages and adequate control of lineage structure; the project name is not evidence that every candidate program is pan-cancer.
 
 For less broad signals, prefer `cross-lineage`, `multi-lineage`, `partially shared`, `recurrent across selected malignancies`, or `lineage-enriched` as appropriate.
 
-### 5.6 Explainable AI, Feature Attribution, and Interpretability
+### 5.7 Explainable AI, Feature Attribution, and Interpretability
 
 XAI is an explicit Phase 6 component of the project. Approved terms include `explainable predictive modeling`, `model attribution`, `SHAP attribution`, `stable model attribution`, `feature-attribution consistency`, and `attribution sensitivity`.
 
@@ -112,20 +130,21 @@ SHAP, feature importance, latent-factor inspection, and equivalent tools are int
 
 A feature with high SHAP magnitude may be described as influential **for the fitted model in the evaluated data context**. It must not be described as a biological driver solely because of SHAP. If SHAP attribution is unstable across folds, lineages, model classes, or screens, that instability is part of the result and must be reported.
 
-### 5.7 Integrated Evidence and Therapeutic Prioritization
+### 5.8 Integrated Evidence and Therapeutic Prioritization
 
 Phase 9 integrates distinct evidence dimensions into a transparent program–vulnerability–compound framework. Approved terms include `integrated evidence`, `convergent computational evidence`, `candidate evidence stratum`, `program–vulnerability–compound map`, `candidate compound supported by convergent computational evidence`, and `computational prioritization`.
 
-`Integrated evidence` does not imply that CRISPR/RNAi, pharmacogenomic association, SHAP attribution, LINCS/CMap inverse signatures, target–drug annotations, and external replication are interchangeable or statistically independent. Their evidentiary roles must remain explicit.
+`Integrated evidence` does not imply that secondary genomic context, locus-level methylation-expression association, CRISPR/RNAi, pharmacogenomic association, SHAP attribution, LINCS/CMap inverse signatures, target–drug annotations, and external replication are interchangeable or statistically independent. Their evidentiary roles must remain explicit.
 
 Avoid `validated therapeutic candidate`, `confirmed repurposing candidate`, `actionable target`, or `therapeutic recommendation` unless suitable evidence exists beyond this computational framework.
 
-### 5.8 Validation and Evidence Terminology
+### 5.9 Validation and Evidence Terminology
 
 `Validation` must always be qualified by study design and never be read as causal confirmation. Avoid ambiguous labels such as `computational validation`, `exploratory validation`, or `secondary validation` when a more precise evidence category is available.
 
 * **Internal robustness:** Within-system stability or sensitivity evidence, such as the Phase 2 notebook 206 and Phase 3 notebook 311 analyses. It is not independent validation.
 * **Cross-system reproducibility:** Supported correspondence demonstrated through Phase 4 comparison of independently discovered tumor and cell-line candidate spaces. Comparison alone does not establish cross-system reproducibility; partial and not-recoverable outcomes remain valid results. It is computational reproducibility evidence, not causal or biological validation.
+* **Secondary molecular context:** Post-freeze genomic or methylation-expression characterization of frozen programs. It is not independent validation and does not determine program eligibility.
 * **Cross-screen reproducibility:** Reproduction of pharmacogenomic associations, predictive behavior, or attribution patterns across independent or partially overlapping pharmacogenomic screens with overlap and drug-family dependence explicitly considered.
 * **Cross-dataset replication:** Replication in independent datasets or resources.
 * **Orthogonal support:** Support from biologically or technologically distinct resources, such as scRNA-seq, ATAC-seq, or other appropriate orthogonal modalities.
@@ -144,6 +163,8 @@ The following categories describe different dimensions of evidence; they are not
 | **Internally robust** | Within-system stability or sensitivity evidence. | Independent validation or external replication. |
 | **Recurrent** | Support for recurrence across relevant lineages or contexts with appropriate consideration of lineage structure and confounding. | Causality, external replication, or cross-system reproducibility. |
 | **Cross-system reproducible** | Supported correspondence demonstrated through Phase 4 comparison of independently discovered tumor and cell-line candidate spaces. | Causal or biological validation; partial correspondence or a not-recoverable result remain valid outcomes but do not permit this term. |
+| **Secondary genomic context** | A frozen program is associated with a prespecified somatic genomic feature after appropriate lineage-aware evaluation. | Genomic causation, driver status, or necessity for the program. |
+| **Regulatory-context association** | A prespecified methylation-expression relationship is observed with appropriate annotation and confounder handling. | Direct epigenetic regulation or mechanistic silencing. |
 | **Stable model attribution** | Feature attribution remains materially consistent across prespecified resampling, lineage, model, or screen sensitivity analyses as applicable. | Biological causality, mechanistic importance, or target validity. |
 | **Cross-screen reproducible** | Relevant pharmacogenomic association, model behavior, or attribution pattern is reproduced across eligible screens with overlap dependence assessed. | Clinical generalizability or independence of overlapping resources. |
 | **Cross-dataset replicated** | Replication in an independent dataset or resource. | Mechanistic proof or generalizability beyond the tested datasets. |
@@ -164,6 +185,8 @@ Software logs and manuscripts must avoid absolute declarative verbs in favor of 
 | Demonstrates definitively | Is associated with |
 | Confirms causality | Supports the hypothesis that |
 | Establishes mechanism | May indicate / Is compatible with |
+| Mutation drives program X | Mutation status is associated with program X |
+| Methylation silences gene Y | Methylation is inversely associated with expression of gene Y |
 | SHAP reveals the causal driver | SHAP attributes model predictions to |
 | Validates therapeutic effect | Describes a perturbational hypothesis or supports computational prioritization |
 
@@ -175,15 +198,15 @@ Software logs and manuscripts must avoid absolute declarative verbs in favor of 
 
 Visual and inline documentation must enforce clean separation between association, attribution, and causality.
 
-* *Approved Heading Examples:* `Candidate resistance-associated program`, `Cross-cancer recurrent program profile`, `Putative vulnerability association`, `SHAP attribution stability`, `Perturbational association profile`, `Integrated candidate evidence map`.
-* *Prohibited Heading Examples:* `Master regulator of resistance`, `Universal resistance mechanism`, `Validated adaptive state`, `Therapeutic target`, `SHAP-validated driver`.
+* *Approved Heading Examples:* `Candidate resistance-associated program`, `Cross-cancer recurrent program profile`, `Secondary genomic context`, `Locus-level methylation-expression association`, `Putative vulnerability association`, `SHAP attribution stability`, `Perturbational association profile`, `Integrated candidate evidence map`.
+* *Prohibited Heading Examples:* `Master regulator of resistance`, `Universal resistance mechanism`, `Genomic driver of program`, `Methylation-mediated silencing mechanism`, `Validated adaptive state`, `Therapeutic target`, `SHAP-validated driver`.
 
 ### 8.2 Programmatic Variables & Object Naming
 
 Whenever feasible, variable definitions, class names, and file outputs should reinforce conservative framing.
 
-* *Approved Naming Patterns:* `candidate_programs`, `recurrent_program_profiles`, `program_associations`, `resistance_like_scores`, `vulnerability_associations`, `shap_attributions`, `attribution_stability`, `perturbational_hypotheses`, `integrated_evidence`, `candidate_evidence_strata`, `association_outputs`.
-* *Prohibited Naming Patterns:* `resistance_classifier`, `therapy_predictor`, `causal_signature`, `validated_targets`, `master_regulators`, `shap_drivers`.
+* *Approved Naming Patterns:* `candidate_programs`, `recurrent_program_profiles`, `program_associations`, `secondary_genomic_context`, `methylation_expression_associations`, `resistance_like_scores`, `vulnerability_associations`, `shap_attributions`, `attribution_stability`, `perturbational_hypotheses`, `integrated_evidence`, `candidate_evidence_strata`, `association_outputs`.
+* *Prohibited Naming Patterns:* `resistance_classifier`, `therapy_predictor`, `causal_signature`, `genomic_drivers`, `epigenetic_silencing_mechanisms`, `validated_targets`, `master_regulators`, `shap_drivers`.
 
 ---
 
@@ -195,8 +218,10 @@ Any manuscript, abstract, or conference submission derived from this repository 
 2. Explicitly distinguish computational prioritization from biological or experimental validation.
 3. Formally outline the cross-sectional limitations of TCGA and the resolution boundaries inherent to bulk transcriptomics.
 4. Use resistance-like terminology consistently and distinguish it from experimentally supported adaptive or clinical resistance.
-5. Calibrate robustness, XAI, validation, reproducibility, replication, orthogonal-support, and integrated-evidence language to the evidence design.
-6. Report weak model performance, unstable attribution, negative replication, and conflicting evidence rather than filtering them from the narrative solely because they weaken a candidate story.
+5. Calibrate secondary molecular-context, robustness, XAI, validation, reproducibility, replication, orthogonal-support, and integrated-evidence language to the evidence design.
+6. Report weak model performance, unstable attribution, negative replication, absent recurrent genomic context, heterogeneous methylation-expression relationships, and conflicting evidence rather than filtering them from the narrative solely because they weaken a candidate story.
+
+Phase 4B analyses are not required to appear in a manuscript solely because they were performed.
 
 ---
 
