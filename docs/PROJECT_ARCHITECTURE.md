@@ -2,17 +2,19 @@
 
 ## Project Overview
 
-This project is a lineage-aware computational oncology framework oriented toward identifying recurrent epigenetic-transcriptomic programs associated with resistance-like contexts, functional vulnerabilities, and perturbational hypotheses.
+This project is a lineage-aware computational oncology framework oriented toward identifying recurrent epigenetic-transcriptomic programs associated with resistance-like contexts, functional vulnerabilities, explainable predictive-model behavior, perturbational hypotheses, and convergent therapeutic-prioritization evidence.
 
-It integrates public multi-omic, pharmacogenomic, dependency, and perturbational datasets while prioritizing biological interpretability, internal robustness, cross-dataset replication, leakage prevention, and conservative scientific framing. All findings are computational associations and candidate hypotheses requiring future validation.
+It integrates public multi-omic, pharmacogenomic, dependency, perturbational, and drug–target knowledgebase resources while prioritizing biological interpretability, internal robustness, cross-dataset replication, leakage prevention, transparent XAI, and conservative scientific framing. All findings are computational associations and candidate hypotheses requiring future validation.
 
-The framework does not provide clinical prediction, causal inference, adaptive-resistance reconstruction, biomarker-development, treatment-target-development, or therapeutic-efficacy claims.
+The framework does not provide clinical prediction, causal inference, adaptive-resistance reconstruction, definitive biomarker development, validated treatment-target development, or therapeutic-efficacy claims.
+
+The broader approved scientific project includes experimental validation. Experimental work is intentionally outside this repository; the computational framework produces reproducible hypotheses and evidence handoffs that can support later experimental evaluation.
 
 ---
 
 # Core Scientific Question
 
-Can independently discovered epigenetic-transcriptomic programs in tumors and cancer cell models be compared reproducibly across systems and then characterized in functional, pharmacogenomic, and perturbational contexts?
+Can independently discovered epigenetic-transcriptomic programs in tumors and cancer cell models be compared reproducibly across systems and then characterized through functional dependencies, resistance-like pharmacogenomic contexts, explainable predictive models, perturbational signatures, external evidence, and integrated program–vulnerability–compound relationships?
 
 ---
 
@@ -29,12 +31,22 @@ Can independently discovered epigenetic-transcriptomic programs in tumors and ca
           +---------------------------+---------------------------+
           |                           |                           |
           v                           v                           v
- [ Functional vulnerabilities ] [ Pharmacogenomic contexts ] [ Perturbational hypotheses ]
+ [ Functional vulnerabilities ] [ Pharmacogenomics + XAI ] [ Perturbational hypotheses ]
           Phase 5                    Phase 6                     Phase 7
+          |                           |                           |
+          +---------------------------+---------------------------+
                                       |
                                       v
                     [ Orthogonal / external validation ]
                                   Phase 8
+                                      |
+                                      v
+                [ Integrated evidence synthesis / prioritization ]
+                                  Phase 9
+                                      |
+                                      v
+                         [ Manuscript preparation ]
+                                 Phase 10
 ```
 
 The two discovery layers are analytically independent. Cross-system comparison starts only after tumor and cell-line candidate universes and their within-system robustness assessments are frozen. Scoring or projection may be useful later as an analytic operation, but it is not a cell-line discovery mechanism.
@@ -93,23 +105,39 @@ Cross-system concordance is computational evidence of reproducibility, not biolo
 
 ---
 
-# Downstream Characterization and Validation
+# Downstream Characterization, XAI, Validation, and Integration
 
 ## Phase 5 — Functional Vulnerabilities
 
-DepMap CRISPR and RNAi data are used to characterize associations between consensus or cross-system programs and dependency profiles. Outputs are putative vulnerability hypotheses, not validated interventions.
+DepMap CRISPR and historical DEMETER2 RNAi data are used to characterize associations between frozen consensus or cross-system programs and dependency profiles. Outputs are putative vulnerability hypotheses, not validated interventions.
 
-## Phase 6 — Pharmacogenomic Contexts
+## Phase 6 — Pharmacogenomic Contexts and Explainable Modeling (XAI)
 
 GDSC, CTRP, and PRISM are used to characterize baseline drug-response associations and cross-screen reproducibility. Resistance-like contexts denote relative drug insensitivity in these datasets and do not imply clinical response.
 
+This phase contains the explicit explainable-AI component of the project. Lineage-aware predictive models may use Elastic Net, Random Forest, XGBoost, or other prespecified interpretable or explainable approaches where justified. SHAP attribution and stability analyses are applied only after the evaluation design and feature space are frozen and model validity is assessed.
+
+Random pan-cancer train/test splits are prohibited. Cell-line overlap, drug-family leakage, preprocessing leakage, and post-split feature-selection leakage must be controlled. SHAP describes model attribution; it is not evidence of biological causality or therapeutic actionability.
+
 ## Phase 7 — Perturbational Hypotheses
 
-LINCS L1000 and Connectivity Map support inverse-signature analyses and perturbational hypothesis generation. They do not establish therapeutic efficacy or reversal.
+LINCS L1000 and Connectivity Map support inverse-signature analyses and perturbational hypothesis generation. They do not establish therapeutic efficacy or reversal. Compound ranking in this phase is perturbational evidence only and is not the final integrated therapeutic-prioritization step.
 
 ## Phase 8 — Orthogonal and External Validation
 
-Independent tumor cohorts, cell-model resources, single-cell data, and chromatin-context resources can provide cross-dataset replication and orthogonal support.
+Independent tumor cohorts, cell-model resources, single-cell data, and chromatin-context resources can provide cross-dataset replication and orthogonal support. This computational validation layer is distinct from experimental validation outside the repository.
+
+## Phase 9 — Integrated Evidence Synthesis and Therapeutic Prioritization
+
+Frozen evidence from Phases 4–8 is integrated into a transparent program–vulnerability–compound framework. Candidate vulnerabilities and associated epigenetic regulators may be mapped to known compounds through prespecified drug–target resources such as ChEMBL and DrugBank where accessible.
+
+Evidence dimensions remain explicit rather than being treated as interchangeable observations. Functional-genomics support, pharmacogenomic/XAI support, perturbational support, drug–target knowledgebase support, lineage heterogeneity, external replication, and unresolved limitations are retained separately before any candidate evidence stratification.
+
+The preferred output is a multidimensional evidence map and candidate catalog rather than an opaque universal score. Convergent computational evidence supports prioritization and hypothesis generation only.
+
+## Phase 10 — Manuscript Preparation
+
+Frozen outputs from the preceding phases are transformed into figures, supplementary tables, methods documentation, reproducibility packages, and manuscript drafts. Manuscript preparation must not redefine analytical objects or eligibility rules after results are known.
 
 ---
 
@@ -123,8 +151,8 @@ Programs are not assumed to be master regulators, causal explanations, clinicall
 
 # Pan-Cancer and Methodological Principles
 
-The framework is lineage-aware: tissue lineage is treated as a major confounding structure, naïve pan-cancer pooling is avoided, and random pan-cancer train/test splits are prohibited. Analyses must evaluate relevant lineage, platform, batch, proliferation, tumor-purity, and cell-model confounding.
+The framework is lineage-aware: tissue lineage is treated as a major confounding structure, naïve pan-cancer pooling is avoided, and random pan-cancer train/test splits are prohibited. Analyses must evaluate relevant lineage, platform, batch, proliferation, tumor-purity, cell-model, drug-family, and overlap confounding.
 
 Preference is given to interpretable representations, transparent models, and reproducible workflows. Feature-attribution methods, including SHAP, are exclusively interpretive or predictive-attribution tools for prioritization and hypothesis generation; they are not evidence of causality.
 
-Conservative terminology includes recurrent program, candidate program, resistance-like context, putative vulnerability, computational association, internal robustness, cross-system reproducibility, and cross-dataset replication.
+Conservative terminology includes recurrent program, candidate program, resistance-like context, putative vulnerability, computational association, explainable model attribution, perturbational hypothesis, internal robustness, cross-system reproducibility, cross-dataset replication, and integrated evidence prioritization.
