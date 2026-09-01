@@ -42,7 +42,9 @@ Somatic mutations and locus-level methylation-expression relationships are downs
 
 Explainable artificial intelligence is an explicit project objective rather than a manuscript-only interpretive add-on.
 
-XAI is operationalized in **Phase 6 — Pharmacogenomic Contexts and Explainable Modeling**, after resistance-like pharmacogenomic outcomes and evaluation partitions have been prespecified. The planned workflow includes interpretable predictive models, SHAP feature attribution, stability analysis, and attribution comparison across lineages, resampling partitions, model classes, and pharmacogenomic screens where coverage permits.
+XAI is operationalized in **Phase 6 — Pharmacogenomic Contexts and Explainable Modeling**, after resistance-like pharmacogenomic outcomes and evaluation partitions have been prespecified. The planned workflow includes interpretable predictive models, SHAP feature attribution, stability analysis, attribution comparison across lineages, resampling partitions, model classes, and pharmacogenomic screens where coverage permits, followed by biological contextualization of stable model behavior.
+
+The attribution level must match the actual model feature space. If a fitted model uses consensus-program scores, SHAP is interpreted at program level. Those attributed programs may then be contextualized using frozen gene loadings, pathway annotations, epigenetic-regulator enrichment, tumor-side methylation information, and Phase 4B molecular context. This contextualization does not convert program-level SHAP into gene-level attribution.
 
 SHAP values and other feature-attribution outputs describe how a fitted model uses its inputs. They do not demonstrate that a feature is causal, mechanistically necessary, clinically predictive, or therapeutically actionable. XAI findings must therefore be interpreted jointly with predictive validity, stability, lineage structure, and independent evidence layers.
 
@@ -179,8 +181,9 @@ Purpose:
 
 * characterize associations between frozen consensus-program activity and baseline drug-response profiles;
 * assess cross-screen reproducibility of resistance-like pharmacogenomic contexts;
-* fit lineage-aware predictive models under explicit leakage controls; and
-* use SHAP and stability analyses to characterize which model features drive reproducible predictions.
+* fit lineage-aware predictive models under explicit leakage controls;
+* use SHAP and stability analyses to characterize which model features drive reproducible predictions; and
+* map stable attributed features back to the frozen biological hierarchy without overstating the attribution resolution.
 
 Resistance-like context refers only to relative baseline drug insensitivity in pharmacogenomic datasets; it does not imply clinical treatment response. Predictive modeling is not a clinical-prediction objective, and SHAP is not causal inference.
 
@@ -223,13 +226,16 @@ Purpose:
 
 * map candidate vulnerabilities and associated regulators to known compounds through curated drug–target resources;
 * integrate secondary molecular context, functional-genomics, pharmacogenomic/XAI, perturbational, regulatory, and external-validation evidence without treating them as interchangeable measurements;
-* stratify candidate program–vulnerability–compound relationships using prespecified multidimensional criteria; and
-* freeze a final integrated evidence map for manuscript preparation and possible downstream experimental handoff.
+* stratify candidate program–vulnerability–compound relationships using prespecified multidimensional criteria;
+* freeze a final integrated evidence map for manuscript preparation; and
+* produce a structured computational-to-experimental evidence handoff for possible downstream experimental evaluation.
 
-This layer produces prioritized computational hypotheses, not validated targets or proven therapeutic strategies.
+The handoff should retain the program, vulnerability/target context, compound and mechanism annotation, expected association or perturbational direction, evidence dimensions, lineage heterogeneity, external support, conflicting or missing evidence, and major limitations. Because the broader project includes RMS and OS experimental work, sarcoma/RMS/OS relevance may be annotated only when it is directly supported by the computational data; lack of evidence must remain explicit.
+
+This layer produces prioritized computational hypotheses, not validated targets, proven therapeutic strategies, or experimental recommendations.
 
 ---
 
 ## Scientific Positioning
 
-The framework emphasizes internal robustness, cross-system reproducibility, secondary molecular characterization, explainable model behavior, cross-dataset replication, and transparent evidence synthesis while maintaining conservative interpretation. Association does not establish causality. Findings remain computational associations, model-attribution results, contextual molecular evidence, and perturbational or putative-vulnerability hypotheses requiring future validation.
+The framework emphasizes internal robustness, cross-system reproducibility, secondary molecular characterization, explainable model behavior, biological contextualization of valid model attribution, cross-dataset replication, and transparent evidence synthesis while maintaining conservative interpretation. Association does not establish causality. Findings remain computational associations, model-attribution results, contextual molecular evidence, and perturbational or putative-vulnerability hypotheses requiring future validation.
