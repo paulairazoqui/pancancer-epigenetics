@@ -1,6 +1,6 @@
-# Pan-Cancer Epigenetics: Operational Workflow (v3.0)
+# Pan-Cancer Epigenetics: Operational Workflow (v3.1)
 
-This workflow describes the operational sequence for the roadmap v3.0 framework. Provenance, release names, and canonical source filenames are maintained in `config/raw_data_registry.json`; repository paths are maintained in `config/paths.yaml`.
+This workflow describes the operational sequence for the roadmap v3.1 framework. Provenance, release names, and canonical source filenames are maintained in `config/raw_data_registry.json`; repository paths are maintained in `config/paths.yaml`.
 
 ## Phase 0 — Infrastructure and Reproducibility
 
@@ -19,7 +19,7 @@ This workflow describes the operational sequence for the roadmap v3.0 framework.
 - **Notebook series:** `100_dataset_inventory`, `101_raw_file_audit`, `102_tcga_rnaseq_cohort_freeze`, `103_tcga_rnaseq_download_validation`, `104_tcga_methylation_coverage_assessment`, `105_tcga_methylation_cohort_freeze`, `106_tcga_methylation_download_validation`, and `107_depmap_rnai_acquisition_and_audit`.
 - **Primary inputs:** source datasets, manifests, and `config/raw_data_registry.json`.
 - **Primary outputs:** audited source inventory, frozen TCGA RNA-seq and methylation cohorts, download-validation records, and coverage summaries.
-- **Handoff:** frozen, audited inputs are supplied to the independent tumor and cell-line discovery phases. Future CTRP, PRISM, LINCS, dependency, or other resources require their own acquisition and audit work when needed.
+- **Handoff:** frozen, audited inputs are supplied to the independent tumor and cell-line discovery phases. Future CTRP, PRISM, LINCS, dependency, drug–target knowledgebase, or other resources require their own acquisition and audit work when needed.
 
 ## Phase 2 — Independent Tumor Discovery
 
@@ -61,15 +61,16 @@ This workflow describes the operational sequence for the roadmap v3.0 framework.
 - **Primary outputs:** putative vulnerability-oriented dependency associations and dependency maps under `data/processed/functional_vulnerabilities`.
 - **Boundary / handoff:** notebook 500 provides computational dependency associations and putative functional-vulnerability evidence, not independent biological validation, validated targets, or causal dependencies. RNAi is an orthogonal/complementary layer and must not be naively pooled with CRISPR. Notebook 501 must prespecify gene eligibility and its association-testing framework before inspecting results; later analyses must not retrospectively redefine the frozen Phase 4 consensus representations or completed CRISPR analysis.
 
-## Phase 6 — Pharmacogenomic Contexts
+## Phase 6 — Pharmacogenomic Contexts and Explainable Modeling (XAI)
 
 **Status:** planned.
 
-- **Objective:** characterize resistance-like pharmacogenomic contexts associated with consensus programs.
-- **Notebook series:** `600`–`603`.
-- **Primary inputs:** consensus programs and pharmacogenomic data, acquired and audited for the relevant resource.
-- **Primary outputs:** computational association maps, predictive-association modeling summaries, feature-attribution and interpretive-support results, and cross-screen replication outputs in `data/processed/pharmacogenomic_contexts`.
-- **Boundary:** predictive modeling and SHAP/feature attribution are interpretive support only; they do not constitute clinical prediction or causal interpretation.
+- **Objective:** characterize resistance-like pharmacogenomic contexts associated with frozen consensus programs and perform lineage-aware explainable predictive modeling as the explicit XAI component of the project.
+- **Notebook series:** `600` Program–Drug Associations; `601` Explainable Predictive Modeling; `602` SHAP Attribution and Stability Analysis; `603` Cross-Screen Replication.
+- **Primary inputs:** consensus programs and GDSC, CTRP, and PRISM pharmacogenomic data, acquired and audited for each relevant resource.
+- **Primary outputs:** lineage-aware computational association maps, predictive-model performance summaries, SHAP attribution outputs, stability-selection summaries, attribution-sensitivity analyses, and cross-screen replication results under `data/processed/pharmacogenomic_contexts`.
+- **Modeling requirements:** random pan-cancer splits are prohibited; lineage-aware or grouped evaluation is mandatory; preprocessing and feature selection must be fitted within training partitions; cell-line-overlap and drug-family leakage must be controlled; transparent baselines must accompany more flexible models.
+- **XAI boundary:** SHAP and related feature-attribution methods explain model behavior. They do not establish causal mechanisms, validated biomarkers, therapeutic targets, or clinical prediction. XAI interpretation is only meaningful for models with adequate and transparently reported predictive validity.
 
 ## Phase 7 — Perturbational Hypotheses
 
@@ -79,7 +80,7 @@ This workflow describes the operational sequence for the roadmap v3.0 framework.
 - **Notebook series:** `700`–`703`.
 - **Primary inputs:** consensus-program signatures and perturbational resources.
 - **Primary outputs:** perturbational hypotheses, candidate compounds, and mechanism-of-action summaries in `data/processed/perturbational_hypotheses`.
-- **Boundary:** compound prioritization is limited to perturbational hypothesis generation from inverse computational associations.
+- **Boundary:** compound prioritization in this phase is limited to perturbational hypothesis generation from inverse computational associations. It is not the final cross-evidence therapeutic prioritization step.
 
 ## Phase 8 — Orthogonal Validation
 
@@ -91,11 +92,21 @@ This workflow describes the operational sequence for the roadmap v3.0 framework.
 - **Primary outputs:** validation reports, robustness assessments, and cross-resource concordance analyses in `data/processed/validation`.
 - **Boundary:** TCGA is the tumor discovery system, not an external validation cohort.
 
-## Phase 9 — Manuscript Preparation
+## Phase 9 — Integrated Evidence Synthesis and Therapeutic Prioritization
 
 **Status:** planned.
 
-- **Objective:** prepare figures, supplementary materials, methods documentation, and reproducibility packages.
-- **Notebook series:** `900`–`904`.
+- **Objective:** integrate frozen evidence from the epigenetic-regulatory, functional-genomics, pharmacogenomic/XAI, perturbational, and external-validation layers into a transparent program–vulnerability–compound evidence framework.
+- **Notebook series:** `900` Target–Drug Knowledgebase Mapping; `901` Cross-Evidence Integration; `902` Candidate Evidence Stratification; `903` Program–Vulnerability–Compound Map; `904` Final Candidate Catalog and Handoff.
+- **Primary inputs:** frozen outputs from Phases 4–8 plus prespecified drug–target knowledgebase resources such as ChEMBL and DrugBank where accessible.
+- **Primary outputs:** target–drug mappings, cross-evidence matrices, multidimensional candidate evidence strata, integrated program–vulnerability–compound maps, and a frozen manuscript-facing candidate catalog under `data/processed/integrated_evidence`.
+- **Boundary:** evidence sources remain traceable and must not be naively pooled as interchangeable evidence. Prefer explicit multidimensional evidence over an opaque single score. Convergent computational evidence supports prioritization and hypothesis generation only; it does not establish therapeutic efficacy or validated targets.
+
+## Phase 10 — Manuscript Preparation
+
+**Status:** planned.
+
+- **Objective:** prepare figures, supplementary materials, methods documentation, reproducibility packages, and manuscript drafts.
+- **Notebook series:** `1000`–`1004`.
 - **Primary inputs:** frozen analytical results from the preceding phases.
 - **Primary outputs:** manuscript-ready materials under `results/`.
