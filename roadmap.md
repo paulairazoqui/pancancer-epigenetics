@@ -403,7 +403,7 @@ Phase 4B is not required to redefine or reopen Paper 1 discovery claims. Seconda
 
 ## Status
 
-**ANALYTICAL WORKFLOW COMPLETE THROUGH NOTEBOOK 502; FORMAL ARTIFACT-REGISTRY SYNCHRONIZATION PENDING.** Notebooks **500 — CRISPR Associations**, **501 — RNAi Associations**, and **502 — Integrated Vulnerability Mapping** are complete. Formal machine-readable registration of the newly generated Phase 5 derived artifacts remains to be completed before the phase is declared repository-frozen.
+**CLOSED / FROZEN.** Notebooks **500 — CRISPR Associations**, **501 — RNAi Associations**, and **502 — Integrated Vulnerability Mapping** are complete. The Phase 5 derived artifacts are machine-readably registered with frozen identity and lineage in `config/artifact_registry.json`.
 
 ## Objective
 
