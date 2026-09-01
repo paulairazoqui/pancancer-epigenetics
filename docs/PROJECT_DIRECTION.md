@@ -4,7 +4,7 @@
 
 ## Project Vision
 
-This project is a computational oncology framework oriented toward identifying recurrent epigenetic-transcriptomic programs associated with resistance-like contexts, functional vulnerabilities, explainable predictive-model behavior, perturbational hypotheses, and convergent therapeutic-prioritization evidence.
+This project is a computational oncology framework oriented toward identifying recurrent epigenetic-transcriptomic programs associated with resistance-like contexts, secondary genomic and locus-level regulatory context, functional vulnerabilities, explainable predictive-model behavior, perturbational hypotheses, and convergent therapeutic-prioritization evidence.
 
 The framework is designed to generate biologically interpretable hypotheses and computational associations. It is not a clinical predictor, causal inference framework, adaptive-resistance reconstruction, pipeline for discovering definitive biomarkers, pipeline for validating treatment targets, or therapeutic-efficacy engine.
 
@@ -16,11 +16,13 @@ The broader approved project includes experimental validation in its title and o
 
 Do recurrent epigenetic-transcriptomic programs emerge across diverse malignancies, and are they associated with:
 
-1. resistance-like pharmacogenomic contexts,
-2. putative functional vulnerabilities,
-3. explainable and stable predictive-model attributions,
-4. perturbational signatures consistent with program suppression, and
-5. convergent program–vulnerability–compound evidence suitable for computational prioritization?
+1. secondary somatic genomic contexts,
+2. locus-level methylation-expression relationships,
+3. resistance-like pharmacogenomic contexts,
+4. putative functional vulnerabilities,
+5. explainable and stable predictive-model attributions,
+6. perturbational signatures consistent with program suppression, and
+7. convergent program–vulnerability–compound evidence suitable for computational prioritization?
 
 ---
 
@@ -31,6 +33,8 @@ The primary analytical entity of this project is the:
 > recurrent epigenetic-transcriptomic program.
 
 Programs are coordinated representations that can involve DNA methylation states, transcriptomic modules, epigenetic-regulator activity, pathway-level activity, and integrated epigenetic-transcriptional structure. They are candidate biological representations, not discrete cell states, master regulators, or causal explanations.
+
+Somatic mutations and locus-level methylation-expression relationships are downstream contextual layers used to characterize frozen programs; they do not define a second discovery universe.
 
 ---
 
@@ -51,13 +55,14 @@ The framework proceeds through the following ordered stages:
 1. independent tumor discovery;
 2. independent cell-line discovery;
 3. cross-system comparison and consensus construction;
-4. functional vulnerability characterization;
-5. pharmacogenomic context characterization and explainable predictive modeling (XAI);
-6. perturbational hypothesis generation;
-7. orthogonal or external validation; and
-8. integrated evidence synthesis and therapeutic prioritization.
+4. secondary molecular-context characterization of frozen programs;
+5. functional vulnerability characterization;
+6. pharmacogenomic context characterization and explainable predictive modeling (XAI);
+7. perturbational hypothesis generation;
+8. orthogonal or external validation; and
+9. integrated evidence synthesis and therapeutic prioritization.
 
-Tumor and cell-line discoveries are intentionally independent. Cross-system matching and consensus construction occur only after each system has produced and frozen its own candidate-program representation and internal robustness assessment.
+Tumor and cell-line discoveries are intentionally independent. Cross-system matching and consensus construction occur only after each system has produced and frozen its own candidate-program representation and internal robustness assessment. Secondary characterization occurs only after the consensus layer is frozen and cannot feed back into discovery decisions.
 
 ---
 
@@ -73,7 +78,7 @@ Primary resources:
 Purpose:
 
 * identify candidate epigenetic-transcriptomic programs in primary tumors;
-* characterize methylation-expression relationships;
+* characterize component-level methylation-expression relationships;
 * evaluate recurrence and confounding within the tumor system; and
 * establish a frozen tumor candidate universe.
 
@@ -114,6 +119,29 @@ Purpose:
 Phase 4 completed notebooks 400–404 and froze three candidate cross-system transcriptomic consensus representations with tumor-side methylation context. Cross-lineage robustness, epigenetic-regulator enrichment, and biological annotation were used for characterization only and did not retrospectively redefine, rescue, exclude, reweight, or rename the frozen consensus representations.
 
 Component indices are not assumed to be portable between systems. Scoring or projection can be used as an analytical operation downstream, but not as the mechanism of cell-line discovery. Cross-system correspondence remains computational reproducibility evidence rather than biological or causal validation.
+
+---
+
+## Layer 3B — Secondary Molecular Context Characterization
+
+**Phase 4B — planned**
+
+Primary resources:
+
+* one audited TCGA/GDC somatic-mutation resource acquired through notebook 108;
+* frozen TCGA RNA-seq and methylation data;
+* prespecified CpG-to-gene/promoter annotations.
+
+Purpose:
+
+* characterize whether frozen program activity is associated with recurrent somatic mutation contexts after accounting for lineage/project structure;
+* distinguish recurrent from lineage-specific or heterogeneous genomic associations;
+* characterize locus-level CpG-to-gene methylation-expression relationships relevant to frozen programs; and
+* evaluate inverse promoter methylation-expression relationships where annotation and coverage support the analysis.
+
+Notebook `450 — Secondary Genomic Context Characterization` treats mutations as contextual evidence rather than as a new discovery modality. Notebook `451 — Locus-Level Methylation–Expression Characterization` provides regulatory-context evidence but does not infer causal epigenetic regulation.
+
+Positive, negative, lineage-specific, heterogeneous, and non-recurrent outcomes are all valid. Phase 4B outputs cannot redefine the three frozen consensus programs and need not appear in a manuscript if they do not materially strengthen its scientific argument.
 
 ---
 
@@ -194,7 +222,7 @@ This computational validation layer is distinct from the experimental validation
 Purpose:
 
 * map candidate vulnerabilities and associated regulators to known compounds through curated drug–target resources;
-* integrate functional-genomics, pharmacogenomic/XAI, perturbational, regulatory, and external-validation evidence without treating them as interchangeable measurements;
+* integrate secondary molecular context, functional-genomics, pharmacogenomic/XAI, perturbational, regulatory, and external-validation evidence without treating them as interchangeable measurements;
 * stratify candidate program–vulnerability–compound relationships using prespecified multidimensional criteria; and
 * freeze a final integrated evidence map for manuscript preparation and possible downstream experimental handoff.
 
@@ -204,4 +232,4 @@ This layer produces prioritized computational hypotheses, not validated targets 
 
 ## Scientific Positioning
 
-The framework emphasizes internal robustness, cross-system reproducibility, explainable model behavior, cross-dataset replication, and transparent evidence synthesis while maintaining conservative interpretation. Association does not establish causality. Findings remain computational associations, model-attribution results, and perturbational or putative-vulnerability hypotheses requiring future validation.
+The framework emphasizes internal robustness, cross-system reproducibility, secondary molecular characterization, explainable model behavior, cross-dataset replication, and transparent evidence synthesis while maintaining conservative interpretation. Association does not establish causality. Findings remain computational associations, model-attribution results, contextual molecular evidence, and perturbational or putative-vulnerability hypotheses requiring future validation.
