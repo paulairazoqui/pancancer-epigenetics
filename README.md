@@ -1,16 +1,16 @@
 # pancancer-epigenetics
 
-A lineage-aware computational oncology framework for discovering recurrent epigenetic-transcriptomic programs across diverse malignancies and evaluating their computational associations with resistance-like pharmacogenomic contexts, candidate functional vulnerabilities, explainable predictive-model behavior, perturbational hypotheses, and integrated program–vulnerability–compound evidence.
+A lineage-aware computational oncology framework for discovering recurrent epigenetic-transcriptomic programs across diverse malignancies and evaluating their secondary molecular context, computational associations with resistance-like pharmacogenomic contexts, candidate functional vulnerabilities, explainable predictive-model behavior, perturbational hypotheses, and integrated program–vulnerability–compound evidence.
 
 ---
 
 ## Project Overview
 
-This repository integrates high-throughput, multi-omic, pharmacogenomic, functional dependency, perturbational transcriptomic, and drug–target knowledgebase resources to identify recurrent biological patterns across heterogeneous tumor and *in vitro* models.
+This repository integrates high-throughput multi-omic, somatic-genomic, pharmacogenomic, functional-dependency, perturbational-transcriptomic, and drug–target knowledgebase resources to identify and characterize recurrent biological patterns across heterogeneous tumor and *in vitro* models.
 
 ### Core Data Integration
 
-* **Primary tumors:** The Cancer Genome Atlas (TCGA)
+* **Primary tumors:** The Cancer Genome Atlas (TCGA) RNA-seq, DNA methylation, and planned somatic-mutation context
 * **Cancer cell models and functional genomics:** Cancer Dependency Map (DepMap) / Cancer Cell Line Encyclopedia (CCLE)
 * **Pharmacogenomics and XAI:** GDSC, CTRP, and PRISM
 * **Perturbational profiles:** LINCS L1000 / Connectivity Map (CMap)
@@ -27,6 +27,7 @@ The broader approved scientific project includes experimental validation. Experi
 - **Phase 2 — Independent Tumor Discovery:** closed / frozen with 9,965 TCGA primary-tumor cases and 13 retained candidate cross-omic programs.
 - **Phase 3 — Independent Cell-Line Discovery:** closed with 713 DepMap–GDSC models; latent-program extraction was phenotype-independent and internal robustness was completed in notebook 311.
 - **Phase 4 — Cross-System Integration:** closed / frozen. Notebooks 400–404 completed cross-system comparison, consensus construction, cross-lineage robustness, epigenetic-regulator enrichment, and biological program annotation without downstream redefinition of the frozen consensus representations.
+- **Phase 4B — Secondary Molecular Context Characterization:** planned. Notebook 450 will characterize somatic genomic context after a dataset-specific TCGA mutation audit in planned notebook 108; notebook 451 will characterize locus-level methylation-expression relationships. This layer cannot redefine frozen Phase 4 programs and may yield positive, lineage-specific, heterogeneous, or negative results.
 - **Phase 5 — Functional Vulnerabilities:** active. Notebook 500 — CRISPR Associations remains complete/frozen; the RNAi acquisition/audit prerequisite is complete, with 443 frozen models available for RNAi analysis. Notebook 501 — RNAi Associations is next.
 - **Phase 6 — Pharmacogenomic Contexts and Explainable Modeling (XAI):** planned. This is the explicit XAI layer, including lineage-aware predictive modeling, SHAP attribution, stability analysis, and cross-screen replication.
 - **Phase 7 — Perturbational Hypotheses:** planned.
@@ -38,7 +39,7 @@ The broader approved scientific project includes experimental validation. Experi
 
 ## Scientific Scope
 
-The project is designed to generate computational associations, explainable model-attribution results, and candidate hypotheses. It does **not** aim to:
+The project is designed to generate computational associations, secondary molecular-context results, explainable model-attribution results, and candidate hypotheses. It does **not** aim to:
 
 * support clinical prediction or patient-outcome prediction,
 * infer causal mechanisms from observational data,
@@ -47,7 +48,19 @@ The project is designed to generate computational associations, explainable mode
 * reconstruct longitudinal, adaptive, or clonal drug-resistance trajectories.
 
 > [!NOTE]
-> Outputs from this repository should be interpreted as computational associations, explainable model attributions, putative-vulnerability hypotheses, perturbational hypotheses, and integrated evidence for prioritization. They require downstream validation before biological or translational claims are made.
+> Outputs from this repository should be interpreted as computational associations, secondary genomic or methylation-expression context, explainable model attributions, putative-vulnerability hypotheses, perturbational hypotheses, and integrated evidence for prioritization. They require downstream validation before biological or translational claims are made.
+
+---
+
+## Secondary Molecular Context Characterization
+
+Roadmap v3.2 adds a post-freeze **Phase 4B** to close two explicit computational components of the approved project without reopening discovery.
+
+Notebook `450 — Secondary Genomic Context Characterization` will test whether frozen tumor/consensus program scores are associated with recurrent somatic mutation contexts using a single audited TCGA/GDC mutation resource. Project/lineage structure, mutation prevalence, caller/workflow provenance, and multiple testing remain explicit. Somatic mutations are contextual evidence, not a new program-discovery modality.
+
+Notebook `451 — Locus-Level Methylation–Expression Characterization` will map relevant CpGs to genes and promoter/regulatory annotations and characterize locus-level methylation-expression relationships, including inverse promoter methylation-expression patterns where supported. Such relationships are compatible with regulatory coupling but do not establish causal epigenetic regulation.
+
+Neither notebook may rescue, exclude, reweight, reorient, rename, or redefine frozen Phase 4 programs. Negative or non-recurrent results are valid, and Phase 4B findings are not required to appear in a manuscript.
 
 ---
 
@@ -63,18 +76,18 @@ SHAP is treated as a model-attribution method. It is interpreted jointly with pr
 
 ## Repository and Notebook Structure
 
-The repository physically contains directories for Phases 0–8. Implemented notebooks currently exist for Phases 1–5, with Phase 1 notebook 107 complete and Phase 5 implemented through notebook 500. Planned placeholders for the new Phase 9 and Phase 10 architecture are added as part of roadmap v3.1.
+The repository contains implemented directories through the active Phase 5 workflow and planned placeholders for downstream phases. Roadmap v3.2 additionally adds a Phase 4B characterization directory while preserving the numbering of all established downstream phases.
 
 ```text
 ├── .github/workflows/     # Data-free continuous-integration checks
 ├── config/                # Paths plus raw-data and derived-artifact registries
 ├── data/                  # Immutable raw data and reproducible derived data tiers
 │   ├── raw/               # Source-dataset folders such as depmap, gdsc, tcga, lincs
-│   ├── interim/           # Harmonized analysis-ready inputs, metadata, and QC artifacts
-│   └── processed/         # Program, vulnerability, context, hypothesis, validation, and integrated-evidence outputs
+│   ├── interim/           # Harmonized analysis-ready inputs, metadata, genomics, and QC artifacts
+│   └── processed/         # Program, secondary-characterization, vulnerability, context, validation, and integrated-evidence outputs
 ├── docs/                  # Project direction, architecture, policy, terminology, and workflow docs
 ├── envs/                  # Current reproduction-environment records and historical evidence
-├── notebooks/             # Implemented Phase 1–5 notebooks plus planned-phase placeholders
+├── notebooks/             # Implemented notebooks plus planned-phase placeholders
 ├── results/               # Manuscript-ready figures and tables by paper/supplement
 ├── src/                   # Reusable source code and path helpers
 └── tests/                 # Automated contract tests and test documentation
@@ -115,6 +128,7 @@ data/interim/
 ├── metadata/
 ├── expression/
 ├── methylation/
+├── genomics/
 ├── dependencies/
 ├── pharmacology/
 ├── perturbational/
@@ -124,6 +138,7 @@ data/processed/
 ├── tumor_programs/
 ├── cellline_programs/
 ├── consensus_programs/
+├── secondary_characterization/
 ├── functional_vulnerabilities/
 ├── pharmacogenomic_contexts/
 ├── perturbational_hypotheses/
@@ -162,20 +177,21 @@ A minimal reproducibility sequence is:
 5. Run the Phase 1 notebooks to confirm source availability and raw-file auditing.
 6. Execute implemented notebooks in numerical order within the completed or active phases. Future notebooks are run only after their required inputs are available and frozen.
 
-The implemented notebook series are `100`–`107`, `200`–`206`, `300`–`311`, `400`–`404`, and `500`. The planned roadmap v3.1 series additionally include `501`–`502`, `600`–`603`, `700`–`703`, `800`–`804`, `900`–`904`, and `1000`–`1004`.
+The implemented notebook series are `100`–`107`, `200`–`206`, `300`–`311`, `400`–`404`, and `500`. The planned roadmap v3.2 series additionally include `108`, `450`–`451`, `501`–`502`, `600`–`603`, `700`–`703`, `800`–`804`, `900`–`904`, and `1000`–`1004`.
 
 The physical notebook layout is:
 
 ```text
 notebooks/
 ├── phase0_infrastructure_and_reproducibility/
-├── phase1_data_acquisition_and_auditing/
+├── phase1_data_acquisition_and_auditing/           # implemented through 107; 108 planned
 ├── phase2_tumor_discovery_layer/
 ├── phase3_cell_line_discovery_layer/
-├── phase4_consensus_programs/                     # complete through notebook 404
-├── phase5_functional_vulnerabilities/             # active; complete through notebook 500; 501 next
-├── phase6_pharmacogenomic_contexts/               # planned; includes explicit XAI notebooks 601–602
-├── phase7_perturbational_hypotheses/              # planned
+├── phase4_consensus_programs/                      # complete through notebook 404
+├── phase4b_secondary_molecular_characterization/   # planned notebooks 450–451
+├── phase5_functional_vulnerabilities/              # active; complete through notebook 500; 501 next
+├── phase6_pharmacogenomic_contexts/                # planned; includes explicit XAI notebooks 601–602
+├── phase7_perturbational_hypotheses/               # planned
 ├── phase8_orthogonal_validation/                   # planned
 ├── phase9_integrated_evidence_and_prioritization/  # planned
 └── phase10_manuscript_preparation/                 # planned
@@ -187,15 +203,16 @@ Raw data files are expected to remain unchanged after acquisition. Derived files
 
 ## Documentation Map
 
-The current roadmap v3.1 source-of-truth documents are:
+The current roadmap v3.2 source-of-truth documents are:
 
 * `roadmap.md` — operational analysis phases, manuscript milestones, and approved repository architecture.
-* `docs/PROJECT_DIRECTION.md` — strategic biological objective, explicit XAI role, and conservative scientific scope.
-* `docs/PROJECT_ARCHITECTURE.md` — analytical layers, dataset roles, XAI placement, evidence integration, and lineage-aware framework design.
+* `docs/PROJECT_DIRECTION.md` — strategic biological objective, secondary characterization, explicit XAI role, and conservative scientific scope.
+* `docs/PROJECT_ARCHITECTURE.md` — analytical layers, dataset roles, Phase 4B placement, XAI placement, evidence integration, and lineage-aware framework design.
 * `docs/DATA_HARMONIZATION_PLAN.md` — identifier harmonization, data integration, and leakage-prevention principles.
-* `docs/MODELING_POLICY.md` — modeling boundaries, leakage prevention, XAI/SHAP requirements, evidence-integration policy, and interpretation rules.
+* `docs/MODELING_POLICY.md` — modeling boundaries, secondary molecular-context rules, leakage prevention, XAI/SHAP requirements, evidence-integration policy, and interpretation rules.
 * `docs/TERMINOLOGY_GUIDE.md` — approved terminology for candidate vulnerabilities, resistance-like contexts, perturbational hypotheses, and validation language.
-* `docs/workflow.md` — current roadmap v3.1 operational workflow, including completed-phase boundaries and planned handoffs.
+* `docs/workflow.md` — current roadmap v3.2 operational workflow, including completed-phase boundaries and planned handoffs.
+* `docs/decisions/004_secondary_molecular_context_characterization.md` — durable decision establishing notebooks 108, 450, and 451 and their freeze boundaries.
 
 ---
 
@@ -206,7 +223,8 @@ The current roadmap v3.1 source-of-truth documents are:
 * **Raw-data provenance:** `config/raw_data_registry.json` records source datasets, releases, file locations, and audit summaries; `data/interim/qc/` contains relevant tracked audit outputs.
 * **Derived-artifact lineage:** `config/artifact_registry.json` records the frozen identity and lineage of registered derived artifacts.
 * **Current reproduction environment:** `envs/environment.yml`, `envs/python_environment_snapshot.txt`, and `envs/r_environment.json` record the current reproduction environment; `envs/README.md` distinguishes these records from historical execution evidence where it exists.
-* **Leakage prevention:** Analyses should avoid naïve pan-cancer pooling, random cross-lineage splits, post-split feature leakage, cell-line overlap leakage, platform leakage, and drug-family leakage.
+* **Leakage prevention:** Analyses should avoid naïve pan-cancer pooling, random cross-lineage splits, post-split feature leakage, cell-line overlap leakage, platform leakage, drug-family leakage, and downstream-result feedback into frozen discovery objects.
+* **Secondary characterization discipline:** mutation and locus-level methylation-expression analyses are post-freeze contextual analyses; lineage/project structure, platform/caller provenance, purity, annotation uncertainty, and negative results remain explicit.
 * **XAI discipline:** SHAP and related attributions require valid evaluation design and are interpreted as model behavior, not biological causality.
 * **Evidence integration:** Phase 9 preserves the provenance and distinct evidentiary role of each modality rather than collapsing heterogeneous results into an opaque score.
-* **Conservative interpretation:** Results should be described as recurrent epigenetic-transcriptomic programs, resistance-like pharmacogenomic contexts, putative functional vulnerabilities, explainable model attributions, perturbational hypotheses, integrated evidence, or computational associations according to the evidence level.
+* **Conservative interpretation:** Results should be described as recurrent epigenetic-transcriptomic programs, secondary genomic contexts, locus-level methylation-expression associations, resistance-like pharmacogenomic contexts, putative functional vulnerabilities, explainable model attributions, perturbational hypotheses, integrated evidence, or computational associations according to the evidence level.
