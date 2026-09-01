@@ -11,7 +11,7 @@ data:
     chembl: data/raw/chembl
     drugbank: data/raw/drugbank
     epifactors: data/raw/epifactors
-    msigdb: data/raw/msigdb   
+    msigdb: data/raw/msigdb
   interim:
     root: data/interim
     metadata: data/interim/metadata
@@ -29,6 +29,7 @@ data:
     pharmacogenomic_contexts: data/processed/pharmacogenomic_contexts
     perturbational_hypotheses: data/processed/perturbational_hypotheses
     validation: data/processed/validation
+    integrated_evidence: data/processed/integrated_evidence
 
 results:
   paper1: results/paper1
