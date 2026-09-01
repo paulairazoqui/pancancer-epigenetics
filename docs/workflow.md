@@ -16,7 +16,7 @@ This workflow describes the operational sequence for the roadmap v3.0 framework.
 **Status:** implemented; notebook 107 — DepMap RNAi Acquisition and Audit is complete for the historical DEMETER2 resource. The DEMETER2 v5 input combines Achilles, DRIVE, and Marcotte and is acquired, audited, harmonized, and frozen for downstream use; future resources remain dataset-specific.
 
 - **Objective:** inventory, freeze, download, and audit source data required by the implemented analysis.
-- **Notebook series:** `100_dataset_inventory`, `101_raw_file_audit`, `102_tcga_rnaseq_cohort_freeze`, `103_tcga_rnaseq_download_validation`, `104_tcga_methylation_coverage_assessment`, `105_tcga_methylation_cohort_freeze`, and `106_tcga_methylation_download_validation`.
+- **Notebook series:** `100_dataset_inventory`, `101_raw_file_audit`, `102_tcga_rnaseq_cohort_freeze`, `103_tcga_rnaseq_download_validation`, `104_tcga_methylation_coverage_assessment`, `105_tcga_methylation_cohort_freeze`, `106_tcga_methylation_download_validation`, and `107_depmap_rnai_acquisition_and_audit`.
 - **Primary inputs:** source datasets, manifests, and `config/raw_data_registry.json`.
 - **Primary outputs:** audited source inventory, frozen TCGA RNA-seq and methylation cohorts, download-validation records, and coverage summaries.
 - **Handoff:** frozen, audited inputs are supplied to the independent tumor and cell-line discovery phases. Future CTRP, PRISM, LINCS, dependency, or other resources require their own acquisition and audit work when needed.
@@ -53,7 +53,7 @@ This workflow describes the operational sequence for the roadmap v3.0 framework.
 
 ## Phase 5 — Functional Vulnerabilities
 
-**Status:** **ACTIVE — notebooks 500 and 107 complete; notebook 501 next**.
+**Status:** **ACTIVE — notebook 500 complete/frozen; RNAi prerequisite complete through notebook 107; notebook 501 next**.
 
 - **Objective:** evaluate computational associations between consensus programs and functional dependencies.
 - **Notebook series:** `500`–`502`; notebook `500` — CRISPR Associations remains complete/frozen, and notebook `501` — RNAi Associations is next. Its acquisition/audit prerequisite is complete through notebook 107, with 443 frozen models available.
