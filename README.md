@@ -28,7 +28,7 @@ The broader approved scientific project includes experimental validation. Experi
 - **Phase 3 — Independent Cell-Line Discovery:** closed with 713 DepMap–GDSC models; latent-program extraction was phenotype-independent and internal robustness was completed in notebook 311.
 - **Phase 4 — Cross-System Integration:** closed / frozen. Notebooks 400–404 completed cross-system comparison, consensus construction, cross-lineage robustness, epigenetic-regulator enrichment, and biological program annotation without downstream redefinition of the frozen consensus representations.
 - **Phase 4B — Secondary Molecular Context Characterization:** planned. Notebook 450 will characterize somatic genomic context after a dataset-specific TCGA mutation audit in planned notebook 108; notebook 451 will characterize locus-level methylation-expression relationships. This layer cannot redefine frozen Phase 4 programs and may yield positive, lineage-specific, heterogeneous, or negative results.
-- **Phase 5 — Functional Vulnerabilities:** analytical workflow complete through notebooks 500–502. Notebook 500 characterizes CRISPR associations, notebook 501 independently characterizes RNAi associations, and notebook 502 constructs a platform-aware CRISPR–RNAi evidence map without statistical pooling, a common post-hoc coverage threshold, joint cross-platform FDR, or composite vulnerability ranking. Cross-platform concordance is complementary computational evidence rather than independent validation. Formal registry synchronization of the newly generated Phase 5 derived artifacts remains a reproducibility task before declaring the phase repository-frozen.
+- **Phase 5 — Functional Vulnerabilities:** closed / frozen. Notebooks 500–502 completed lineage-aware CRISPR characterization, independent RNAi characterization, and platform-aware CRISPR–RNAi evidence integration without statistical pooling, a common post-hoc coverage threshold, joint cross-platform FDR, or composite vulnerability ranking. Cross-platform concordance is complementary computational evidence rather than independent validation. The Phase 5 derived artifacts are registered with frozen identity and lineage in `config/artifact_registry.json`.
 - **Phase 6 — Pharmacogenomic Contexts and Explainable Modeling (XAI):** planned. This is the explicit XAI layer, including lineage-aware predictive modeling, SHAP attribution, stability analysis, hierarchical biological contextualization at the resolution supported by actual model features, and cross-screen replication.
 - **Phase 7 — Perturbational Hypotheses:** planned.
 - **Phase 8 — Orthogonal Validation:** planned.
@@ -191,7 +191,7 @@ notebooks/
 ├── phase3_cell_line_discovery_layer/
 ├── phase4_consensus_programs/                      # complete through notebook 404
 ├── phase4b_secondary_molecular_characterization/   # planned notebooks 450–451
-├── phase5_functional_vulnerabilities/              # analytical workflow complete through notebook 502
+├── phase5_functional_vulnerabilities/              # closed / frozen through notebook 502
 ├── phase6_pharmacogenomic_contexts/                # planned; includes explicit XAI notebooks 601–602
 ├── phase7_perturbational_hypotheses/               # planned
 ├── phase8_orthogonal_validation/                   # planned
