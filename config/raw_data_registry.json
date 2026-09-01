@@ -50,6 +50,42 @@
       }
     }
   },
+  "depmap_rnai_demeter2": {
+    "source_database": "DepMap",
+    "provider": "Broad Institute / DEMETER2",
+    "release": "DEMETER2 v5 (combined Achilles + DRIVE + Marcotte)",
+    "download_page_url": "https://depmap.org/portal/download/",
+    "retrieval_method": "Historical DEMETER2 RNAi resource acquired for notebook 107",
+    "provenance_mode": "file_managed",
+    "status": "acquired_and_used",
+    "canonical_dir": "data/raw/depmap",
+    "files": {
+      "D2_combined_gene_dep_scores.csv": {
+        "role": "rnai_dependency_matrix",
+        "status": "acquired_and_used",
+        "size_bytes": 160616970,
+        "sha256": "6bfe7b24ef191debccd502b7dfe61c4b0763caba3e02c6c14e521c8226bb98a7"
+      },
+      "D2_combined_CL_data.csv": {
+        "role": "rnai_cell_line_model_parameters",
+        "status": "supporting",
+        "size_bytes": 68023,
+        "sha256": "d515cbc05de2a3dc6cbdf352d44a97bb7618fc1ffb63e496aa02733f9eb6d32e"
+      },
+      "sample_info.csv": {
+        "role": "rnai_sample_metadata",
+        "status": "supporting",
+        "size_bytes": 76352,
+        "sha256": "8dcbd6da1e4858e7fa5b3910e8cf3feb1045a0c31a2e5d252eb3f2afe86dd036"
+      },
+      "README.txt": {
+        "role": "resource_readme",
+        "status": "supporting",
+        "size_bytes": 9476,
+        "sha256": "d0f6a52e68faedfa4190333317af5e82928ddce41a8df683a84c316375e87ca2"
+      }
+    }
+  },
   "gdsc": {
     "source_database": "Genomics of Drug Sensitivity in Cancer (GDSC)",
     "provider": "Cell Model Passports",

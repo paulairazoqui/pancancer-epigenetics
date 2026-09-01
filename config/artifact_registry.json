@@ -1406,6 +1406,174 @@
         }
       ]
     },
+    "phase1.107.rnai_input_inventory": {
+      "path": "data/interim/dependencies/107_rnai_input_inventory.csv",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/107_depmap_rnai_acquisition_and_audit.ipynb"
+      },
+      "shape": [
+        4,
+        5
+      ],
+      "size_bytes": 557,
+      "sha256": "ebad5b9c873b626ae5019b6517adb943f82efeb998af8cc63b2b266a0af51db8",
+      "inputs": [
+        {
+          "type": "raw_registry",
+          "ref": "/depmap_rnai_demeter2/files/D2_combined_gene_dep_scores.csv"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/depmap_rnai_demeter2/files/D2_combined_CL_data.csv"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/depmap_rnai_demeter2/files/sample_info.csv"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/depmap_rnai_demeter2/files/README.txt"
+        }
+      ]
+    },
+    "phase1.107.rnai_model_mapping": {
+      "path": "data/interim/dependencies/107_rnai_model_mapping.csv",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/107_depmap_rnai_acquisition_and_audit.ipynb"
+      },
+      "shape": [
+        712,
+        5
+      ],
+      "size_bytes": 51042,
+      "sha256": "11e0f0ca3b094ca73a194d16c8831b56af6cfe882246f7193c6650ecbe58601b",
+      "inputs": [
+        {
+          "type": "raw_registry",
+          "ref": "/depmap_rnai_demeter2/files/sample_info.csv"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/depmap/files/Model.csv"
+        }
+      ]
+    },
+    "phase1.107.rnai_frozen_model_cohort": {
+      "path": "data/interim/dependencies/107_rnai_frozen_model_cohort.csv",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/107_depmap_rnai_acquisition_and_audit.ipynb"
+      },
+      "shape": [
+        443,
+        10
+      ],
+      "size_bytes": 66854,
+      "sha256": "e37b07c4a4ad035750864b28413bd3f10e6f6293b88ae2f73bba67e5b9f84add",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.107.rnai_model_mapping"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.302.integrated_modeling_cohort"
+        }
+      ]
+    },
+    "phase1.107.rnai_gene_coverage": {
+      "path": "data/interim/dependencies/107_rnai_gene_coverage.csv",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/107_depmap_rnai_acquisition_and_audit.ipynb"
+      },
+      "shape": [
+        17309,
+        8
+      ],
+      "size_bytes": 1006194,
+      "sha256": "eebee6a29fbc3de3eab3483817d0dcca61a870d3d2d1f19ffb80d59062097365",
+      "inputs": [
+        {
+          "type": "raw_registry",
+          "ref": "/depmap_rnai_demeter2/files/D2_combined_gene_dep_scores.csv"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.107.rnai_frozen_model_cohort"
+        }
+      ]
+    },
+    "phase1.107.rnai_model_coverage": {
+      "path": "data/interim/dependencies/107_rnai_model_coverage.csv",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/107_depmap_rnai_acquisition_and_audit.ipynb"
+      },
+      "shape": [
+        443,
+        16
+      ],
+      "size_bytes": 90221,
+      "sha256": "fd2b86ea203043f789a979f595712f7667aa3cdb8ec48ad3e6aae1f4e2b0faba",
+      "inputs": [
+        {
+          "type": "raw_registry",
+          "ref": "/depmap_rnai_demeter2/files/D2_combined_gene_dep_scores.csv"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.107.rnai_frozen_model_cohort"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/depmap_rnai_demeter2/files/sample_info.csv"
+        }
+      ]
+    },
+    "phase1.107.rnai_dependency_handoff": {
+      "path": "data/interim/dependencies/107_rnai_dependency_handoff.parquet",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/107_depmap_rnai_acquisition_and_audit.ipynb"
+      },
+      "shape": [
+        17309,
+        443
+      ],
+      "size_bytes": 60598951,
+      "sha256": "1c952874be70ee7d45c4ebbc24e6274c9fb06114d995be7dc99390557f82d6b6",
+      "inputs": [
+        {
+          "type": "raw_registry",
+          "ref": "/depmap_rnai_demeter2/files/D2_combined_gene_dep_scores.csv"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.107.rnai_frozen_model_cohort"
+        }
+      ]
+    },
     "phase5.500.crispr_model_cohort": {
       "path": "data/interim/dependencies/500_crispr_model_cohort.csv",
       "phase": 5,

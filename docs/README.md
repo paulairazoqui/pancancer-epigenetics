@@ -34,7 +34,7 @@ Read phase-specific contracts and decision records before modifying or extending
 | [`NOTEBOOK_STYLE_GUIDE.md`](NOTEBOOK_STYLE_GUIDE.md) | Defines notebook implementation and documentation conventions, including short single-responsibility cells and downstream reuse of frozen upstream artifacts. |
 | [`workflow.md`](workflow.md) | Summarizes the operational handoff between phases, notebook series, inputs, outputs, and analytical boundaries. For the latest completion status, use the root README and `roadmap.md`. |
 
-## Phase 4 closure and active Phase 5 work
+## Phase 1 and active Phase 5 work
 
 Phase 2 tumor discovery is closed and frozen, Phase 3 independent cell-line discovery is closed, and Phase 4 cross-system integration is closed and frozen after completion of notebooks `400 — Cross-System Program Comparison` through `404 — Program Annotation`.
 
@@ -42,7 +42,9 @@ The frozen Phase 4 layer contains supported cross-system transcriptomic correspo
 
 The historical input contract for notebook 401 remains available at [`PHASE4_401_INPUT_CONTRACT.md`](PHASE4_401_INPUT_CONTRACT.md). It preserves the provenance and interpretation rules that governed consensus construction, including the distinction between unique RNA correspondence events, tumor structural families, and tumor cross-omic arms.
 
-Phase 5 — Functional Vulnerabilities is now active. Notebook `500 — CRISPR Associations` is complete and consumed the frozen Phase 4 consensus layer together with the audited DepMap Public 24Q4 CRISPR gene-effect resource. Its dependency associations are putative functional-vulnerability evidence only and must not be used to retrospectively redefine Phase 4 programs. Notebook `501 — RNAi Associations` is the next planned analysis, but should begin only after the required RNAi dependency input has been acquired, audited, harmonized where necessary, and frozen for use.
+Phase 1 notebook `107 — DepMap RNAi Acquisition and Audit` is complete. Its distinct historical DEMETER2 v5 RNAi resource combines Achilles, DRIVE, and Marcotte, and its audited, harmonized handoffs are frozen for downstream use. The 443-model RNAi overlap is lineage- and screen-source-dependent; no fuzzy identifier rescue was used.
+
+Phase 5 — Functional Vulnerabilities is active. Notebook `500 — CRISPR Associations` remains complete/frozen and its dependency associations are putative functional-vulnerability evidence only, not independent biological validation or causal vulnerabilities. Notebook `501 — RNAi Associations` is next and may now use the frozen notebook-107 handoffs. RNAi is an orthogonal/complementary layer and must not be naively pooled with CRISPR; notebook 501 must prespecify gene eligibility and its association-testing framework before inspecting results.
 
 Phase-specific contracts constrain only their declared scope and should not be generalized into new project-wide rules without an explicit documented decision.
 
