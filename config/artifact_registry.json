@@ -2135,6 +2135,504 @@
           "artifact_id": "phase2.201.rna_file_qc_inventory"
         }
       ]
+    },
+    "phase5.501.rnai_model_cohort": {
+      "path": "data/interim/dependencies/501_rnai_model_cohort.csv",
+      "phase": 5,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase5_functional_vulnerabilities/501_rnai_associations.ipynb"
+      },
+      "shape": [
+        443,
+        6
+      ],
+      "size_bytes": 40837,
+      "sha256": "a5b3cb053c659597652bb14d972e8921427ede0e5394c2610364dec24a71d18e",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_cellline_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.107.rnai_frozen_model_cohort"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.107.rnai_model_coverage"
+        }
+      ]
+    },
+    "phase5.501.rnai_gene_eligibility": {
+      "path": "data/interim/dependencies/501_rnai_gene_eligibility.csv",
+      "phase": 5,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase5_functional_vulnerabilities/501_rnai_associations.ipynb"
+      },
+      "shape": [
+        17309,
+        12
+      ],
+      "size_bytes": 1601331,
+      "sha256": "036485ac3da14cab260ba0c3c73494826abf74a19a1ae7a2c0ccb8cee2839ba6",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.107.rnai_gene_coverage"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.107.rnai_dependency_handoff"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_model_cohort"
+        }
+      ]
+    },
+    "phase5.501.rnai_primary_associations": {
+      "path": "data/processed/functional_vulnerabilities/501_rnai_primary_associations.csv",
+      "phase": 5,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase5_functional_vulnerabilities/501_rnai_associations.ipynb"
+      },
+      "shape": [
+        37794,
+        17
+      ],
+      "size_bytes": 9486536,
+      "sha256": "ef217bd9c8af9d2f44b87ccda3df5aa6fd2aba6b09275ef1f00b8e5016f0e3b0",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_model_cohort"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_gene_eligibility"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.107.rnai_dependency_handoff"
+        }
+      ]
+    },
+    "phase5.501.rnai_source_adjusted_sensitivity": {
+      "path": "data/processed/functional_vulnerabilities/501_rnai_source_adjusted_sensitivity.csv",
+      "phase": 5,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase5_functional_vulnerabilities/501_rnai_associations.ipynb"
+      },
+      "shape": [
+        37794,
+        17
+      ],
+      "size_bytes": 7682827,
+      "sha256": "eb012843939434a9194c4379340aac4892d5fc7f9f9de3205e244fd059c8f2d3",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_model_cohort"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_gene_eligibility"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.107.rnai_dependency_handoff"
+        }
+      ]
+    },
+    "phase5.501.rnai_coverage90_sensitivity": {
+      "path": "data/processed/functional_vulnerabilities/501_rnai_coverage90_sensitivity.csv",
+      "phase": 5,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase5_functional_vulnerabilities/501_rnai_associations.ipynb"
+      },
+      "shape": [
+        18279,
+        19
+      ],
+      "size_bytes": 4937881,
+      "sha256": "03d5a57c3f56c3916541ef066c074577d62f3c6cab1303dad9f688f3207eb166",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_model_cohort"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_gene_eligibility"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.107.rnai_dependency_handoff"
+        }
+      ]
+    },
+    "phase5.501.rnai_within_lineage_associations": {
+      "path": "data/processed/functional_vulnerabilities/501_rnai_within_lineage_associations.csv",
+      "phase": 5,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase5_functional_vulnerabilities/501_rnai_associations.ipynb"
+      },
+      "shape": [
+        16929,
+        14
+      ],
+      "size_bytes": 3016741,
+      "sha256": "70714e39a8020461c9c885437a87188d188cb44cdd0c4deba6230ce1168e13a7",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_primary_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_model_cohort"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.107.rnai_dependency_handoff"
+        }
+      ]
+    },
+    "phase5.501.rnai_primary_significant_evidence": {
+      "path": "data/processed/functional_vulnerabilities/501_rnai_primary_significant_evidence.csv",
+      "phase": 5,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase5_functional_vulnerabilities/501_rnai_associations.ipynb"
+      },
+      "shape": [
+        1686,
+        37
+      ],
+      "size_bytes": 868990,
+      "sha256": "dc0beec807b2da01c1d99028285f4b56ec61787280381e33233a3dc88674701b",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_primary_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_within_lineage_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_source_adjusted_sensitivity"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_coverage90_sensitivity"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_gene_eligibility"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.107.rnai_dependency_handoff"
+        }
+      ]
+    },
+    "phase5.501.rnai_putative_vulnerability_associations": {
+      "path": "data/processed/functional_vulnerabilities/501_rnai_putative_vulnerability_associations.csv",
+      "phase": 5,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase5_functional_vulnerabilities/501_rnai_associations.ipynb"
+      },
+      "shape": [
+        711,
+        37
+      ],
+      "size_bytes": 370463,
+      "sha256": "19905005540849772731e9db45ebd9848af704eebfbbdd36d14aef7ac99a7aee",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_primary_significant_evidence"
+        }
+      ]
+    },
+    "phase5.501.rnai_analysis_metadata": {
+      "path": "data/processed/functional_vulnerabilities/501_rnai_analysis_metadata.json",
+      "phase": 5,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase5_functional_vulnerabilities/501_rnai_associations.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 2946,
+      "sha256": "6cf37e122c0d9ecb0569f7d4d35cda528cd6381a5f5cef5a29d4d92ec1f124e4",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_cellline_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.107.rnai_dependency_handoff"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.107.rnai_frozen_model_cohort"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.107.rnai_gene_coverage"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.107.rnai_model_coverage"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_model_cohort"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_gene_eligibility"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_primary_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_primary_significant_evidence"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_putative_vulnerability_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_within_lineage_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_source_adjusted_sensitivity"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_coverage90_sensitivity"
+        }
+      ]
+    },
+    "phase5.502.cross_platform_gene_map": {
+      "path": "data/interim/dependencies/502_cross_platform_gene_map.csv",
+      "phase": 5,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase5_functional_vulnerabilities/502_integrated_vulnerability_mapping.ipynb"
+      },
+      "shape": [
+        18317,
+        9
+      ],
+      "size_bytes": 1418972,
+      "sha256": "f4a8a5e799f3a798b0d819281411c40f4006a13d4220fdb448ca81bd1467108b",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.500.crispr_gene_coverage"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_gene_eligibility"
+        }
+      ]
+    },
+    "phase5.502.integrated_vulnerability_map": {
+      "path": "data/processed/functional_vulnerabilities/502_integrated_vulnerability_map.parquet",
+      "phase": 5,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase5_functional_vulnerabilities/502_integrated_vulnerability_mapping.ipynb"
+      },
+      "shape": [
+        54951,
+        51
+      ],
+      "size_bytes": 6345739,
+      "sha256": "21bfaf035ea4669f98efd64d356bbb96b2aa6e1cf2f01926865d67e07f3f49cd",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.502.cross_platform_gene_map"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.500.crispr_primary_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.500.crispr_within_lineage_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_primary_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_within_lineage_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_source_adjusted_sensitivity"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_coverage90_sensitivity"
+        }
+      ]
+    },
+    "phase5.502.cross_platform_evidence_summary": {
+      "path": "data/processed/functional_vulnerabilities/502_cross_platform_evidence_summary.csv",
+      "phase": 5,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase5_functional_vulnerabilities/502_integrated_vulnerability_mapping.ipynb"
+      },
+      "shape": [
+        28,
+        4
+      ],
+      "size_bytes": 1495,
+      "sha256": "5596e7fc51d4432edab9076b8162fdc1ff8f462b7c5e540f484448a1b9aca3c4",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.502.integrated_vulnerability_map"
+        }
+      ]
+    },
+    "phase5.502.concordant_putative_vulnerability_associations": {
+      "path": "data/processed/functional_vulnerabilities/502_concordant_putative_vulnerability_associations.csv",
+      "phase": 5,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase5_functional_vulnerabilities/502_integrated_vulnerability_mapping.ipynb"
+      },
+      "shape": [
+        35,
+        51
+      ],
+      "size_bytes": 27202,
+      "sha256": "85df5b347c0ca0fd701676f9d87582129a6191acd50cb03645554d14bc2c3fce",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.502.integrated_vulnerability_map"
+        }
+      ]
+    },
+    "phase5.502.integrated_vulnerability_metadata": {
+      "path": "data/processed/functional_vulnerabilities/502_integrated_vulnerability_metadata.json",
+      "phase": 5,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase5_functional_vulnerabilities/502_integrated_vulnerability_mapping.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 4837,
+      "sha256": "9e1952fd14cabeafbddd7882a7b283bb5dae01ff3383c03e332de22fa4866d15",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.500.crispr_model_cohort"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.500.crispr_gene_coverage"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.500.crispr_primary_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.500.crispr_within_lineage_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_model_cohort"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_gene_eligibility"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_primary_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_within_lineage_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_source_adjusted_sensitivity"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.501.rnai_coverage90_sensitivity"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.502.cross_platform_gene_map"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.502.integrated_vulnerability_map"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.502.cross_platform_evidence_summary"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase5.502.concordant_putative_vulnerability_associations"
+        }
+      ]
     }
   }
 }
