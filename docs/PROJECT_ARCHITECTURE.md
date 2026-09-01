@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project is a lineage-aware computational oncology framework oriented toward identifying recurrent epigenetic-transcriptomic programs associated with resistance-like contexts, functional vulnerabilities, explainable predictive-model behavior, perturbational hypotheses, and convergent therapeutic-prioritization evidence.
+This project is a lineage-aware computational oncology framework oriented toward identifying recurrent epigenetic-transcriptomic programs associated with resistance-like contexts, secondary genomic and locus-level molecular context, functional vulnerabilities, explainable predictive-model behavior, perturbational hypotheses, and convergent therapeutic-prioritization evidence.
 
 It integrates public multi-omic, pharmacogenomic, dependency, perturbational, and drug–target knowledgebase resources while prioritizing biological interpretability, internal robustness, cross-dataset replication, leakage prevention, transparent XAI, and conservative scientific framing. All findings are computational associations and candidate hypotheses requiring future validation.
 
@@ -14,7 +14,7 @@ The broader approved scientific project includes experimental validation. Experi
 
 # Core Scientific Question
 
-Can independently discovered epigenetic-transcriptomic programs in tumors and cancer cell models be compared reproducibly across systems and then characterized through functional dependencies, resistance-like pharmacogenomic contexts, explainable predictive models, perturbational signatures, external evidence, and integrated program–vulnerability–compound relationships?
+Can independently discovered epigenetic-transcriptomic programs in tumors and cancer cell models be compared reproducibly across systems and then characterized through secondary genomic and locus-level methylation-expression context, functional dependencies, resistance-like pharmacogenomic contexts, explainable predictive models, perturbational signatures, external evidence, and integrated program–vulnerability–compound relationships?
 
 ---
 
@@ -27,6 +27,12 @@ Can independently discovered epigenetic-transcriptomic programs in tumors and ca
                    \                                    /
                     +-- Cross-System Comparison: Phase 4 --+
                          multiview matching / consensus
+                                      |
+                                      v
+                    [ Secondary molecular context ]
+                           Phase 4B (450–451)
+                 somatic mutations + locus-level
+                   methylation-expression context
                                       |
           +---------------------------+---------------------------+
           |                           |                           |
@@ -49,7 +55,7 @@ Can independently discovered epigenetic-transcriptomic programs in tumors and ca
                                  Phase 10
 ```
 
-The two discovery layers are analytically independent. Cross-system comparison starts only after tumor and cell-line candidate universes and their within-system robustness assessments are frozen. Scoring or projection may be useful later as an analytic operation, but it is not a cell-line discovery mechanism.
+The two discovery layers are analytically independent. Cross-system comparison starts only after tumor and cell-line candidate universes and their within-system robustness assessments are frozen. Phase 4B is a post-freeze characterization layer: its results cannot feed back into discovery or consensus eligibility. Scoring or projection may be useful later as an analytic operation, but it is not a cell-line discovery mechanism.
 
 ---
 
@@ -63,7 +69,7 @@ Primary datasets:
 Purpose:
 
 * identify candidate epigenetic-transcriptomic programs in primary tumors;
-* characterize methylation-expression relationships;
+* characterize component-level methylation-expression relationships;
 * quantify lineage-aware and lineage-independent structure; and
 * assess internal robustness before cross-system comparison.
 
@@ -105,6 +111,47 @@ Cross-system concordance is computational evidence of reproducibility, not biolo
 
 ---
 
+# Phase 4B — Secondary Molecular Context Characterization
+
+Phase 4B begins only after Phase 4 consensus representations are frozen. It addresses two explicit molecular-context questions without creating a new discovery universe.
+
+## 450 — Secondary Genomic Context Characterization
+
+Primary input:
+
+* one prespecified and audited TCGA/GDC somatic-mutation resource acquired through notebook 108.
+
+Purpose:
+
+* test whether frozen tumor/consensus program activity is associated with recurrent somatic alterations or pathway-level genomic contexts;
+* separate project/lineage-driven mutation structure from cross-lineage recurrent associations;
+* retain lineage-specific, heterogeneous, and negative findings as valid outputs.
+
+Mutation associations must be lineage-aware. Mutation resources from different callers or workflows must not be naively pooled. Mutation-burden summaries are optional and require a defensible prespecified definition. Copy-number analysis is not included automatically.
+
+## 451 — Locus-Level Methylation–Expression Characterization
+
+Primary inputs:
+
+* frozen TCGA methylation and RNA-seq data;
+* frozen program definitions;
+* prespecified CpG-to-gene and promoter/regulatory annotations.
+
+Purpose:
+
+* map relevant CpGs to genes and regulatory annotations;
+* characterize locus-level methylation-expression associations;
+* evaluate inverse promoter methylation-expression relationships compatible with epigenetic regulation where coverage and annotation permit;
+* account for lineage/project structure, methylation platform, tumor purity, and applicable technical/confounding factors.
+
+Inverse methylation-expression association is contextual evidence, not mechanistic proof. TCGA tumors are not converted into resistant/sensitive labels for this analysis.
+
+## Frozen-program boundary
+
+Phase 4B may characterize but cannot rescue, exclude, reweight, rename, reorient, or redefine any frozen Phase 4 program. Its outputs may remain unpublished if they are negative or peripheral to a manuscript. They can enter Phase 9 only as separately traceable contextual evidence.
+
+---
+
 # Downstream Characterization, XAI, Validation, and Integration
 
 ## Phase 5 — Functional Vulnerabilities
@@ -129,9 +176,9 @@ Independent tumor cohorts, cell-model resources, single-cell data, and chromatin
 
 ## Phase 9 — Integrated Evidence Synthesis and Therapeutic Prioritization
 
-Frozen evidence from Phases 4–8 is integrated into a transparent program–vulnerability–compound framework. Candidate vulnerabilities and associated epigenetic regulators may be mapped to known compounds through prespecified drug–target resources such as ChEMBL and DrugBank where accessible.
+Frozen evidence from Phase 4, Phase 4B, and Phases 5–8 is integrated into a transparent program–vulnerability–compound framework. Candidate vulnerabilities and associated epigenetic regulators may be mapped to known compounds through prespecified drug–target resources such as ChEMBL and DrugBank where accessible.
 
-Evidence dimensions remain explicit rather than being treated as interchangeable observations. Functional-genomics support, pharmacogenomic/XAI support, perturbational support, drug–target knowledgebase support, lineage heterogeneity, external replication, and unresolved limitations are retained separately before any candidate evidence stratification.
+Evidence dimensions remain explicit rather than being treated as interchangeable observations. Secondary genomic context, locus-level methylation-expression context, functional-genomics support, pharmacogenomic/XAI support, perturbational support, drug–target knowledgebase support, lineage heterogeneity, external replication, and unresolved limitations are retained separately before any candidate evidence stratification.
 
 The preferred output is a multidimensional evidence map and candidate catalog rather than an opaque universal score. Convergent computational evidence supports prioritization and hypothesis generation only.
 
@@ -143,7 +190,7 @@ Frozen outputs from the preceding phases are transformed into figures, supplemen
 
 # Central Biological Object
 
-The central entity is the recurrent epigenetic-transcriptomic program: a computationally derived, biologically interpretable representation that may include methylation patterns, transcriptomic modules, epigenetic-regulator activity, methylation-expression relationships, and pathway-associated context.
+The central entity is the recurrent epigenetic-transcriptomic program: a computationally derived, biologically interpretable representation that may include methylation patterns, transcriptomic modules, epigenetic-regulator activity, methylation-expression relationships, pathway-associated context, and secondary genomic context.
 
 Programs are not assumed to be master regulators, causal explanations, clinically actionable entities, or definitive biomarkers.
 
@@ -151,8 +198,8 @@ Programs are not assumed to be master regulators, causal explanations, clinicall
 
 # Pan-Cancer and Methodological Principles
 
-The framework is lineage-aware: tissue lineage is treated as a major confounding structure, naïve pan-cancer pooling is avoided, and random pan-cancer train/test splits are prohibited. Analyses must evaluate relevant lineage, platform, batch, proliferation, tumor-purity, cell-model, drug-family, and overlap confounding.
+The framework is lineage-aware: tissue lineage is treated as a major confounding structure, naïve pan-cancer pooling is avoided, and random pan-cancer train/test splits are prohibited. Analyses must evaluate relevant lineage, platform, batch, proliferation, tumor-purity, cell-model, drug-family, mutation-prevalence, and overlap confounding.
 
 Preference is given to interpretable representations, transparent models, and reproducible workflows. Feature-attribution methods, including SHAP, are exclusively interpretive or predictive-attribution tools for prioritization and hypothesis generation; they are not evidence of causality.
 
-Conservative terminology includes recurrent program, candidate program, resistance-like context, putative vulnerability, computational association, explainable model attribution, perturbational hypothesis, internal robustness, cross-system reproducibility, cross-dataset replication, and integrated evidence prioritization.
+Conservative terminology includes recurrent program, candidate program, resistance-like context, secondary genomic context, locus-level methylation-expression association, putative vulnerability, computational association, explainable model attribution, perturbational hypothesis, internal robustness, cross-system reproducibility, cross-dataset replication, and integrated evidence prioritization.
