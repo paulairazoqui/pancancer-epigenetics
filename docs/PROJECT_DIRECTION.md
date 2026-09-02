@@ -149,7 +149,7 @@ Positive, negative, lineage-specific, heterogeneous, and non-recurrent outcomes 
 
 ## Layer 4 — Functional Vulnerability Characterization
 
-**Phase 5 — analytical workflow complete through notebook 502; formal artifact-registry synchronization pending**
+**Phase 5 — closed and frozen**
 
 Primary resources:
 
@@ -165,7 +165,7 @@ Notebooks `500 — CRISPR Associations`, `501 — RNAi Associations`, and `502 �
 
 Cross-platform concordance is complementary computational evidence across distinct functional-genomics assays, not independent validation. Shared biological context and partially overlapping cell-line populations remain explicit, and single-platform or directionally discordant associations are retained rather than discarded or resolved through post-hoc platform preference.
 
-These associations do not establish a causal role or a validated intervention. Formal machine-readable registration of the newly generated Phase 5 derived artifacts remains to be completed before declaring the phase repository-frozen.
+These associations do not establish a causal role or a validated intervention. The Phase 5 CRISPR, RNAi, and integrated vulnerability artifacts are registered with frozen identity and lineage in `config/artifact_registry.json`.
 
 ---
 
