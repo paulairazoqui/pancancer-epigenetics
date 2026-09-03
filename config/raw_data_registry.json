@@ -189,6 +189,51 @@
             "description": "Full GDC metadata JSON for the frozen TCGA primary tumor methylation array SeSAMe beta values cohort"
           }
         }
+      },
+      "somatic_mutation_wxs_masked_maf": {
+        "provenance_mode": "manifest_managed",
+        "status": "acquired_and_used",
+        "audit_exclusion_reason": "TCGA GDC somatic mutation payload identity is governed by the frozen GDC source exports, the exact-sample operational manifest, provider file size and MD5 checksums, and notebook 108 download validation; individual payload SHA256 is not duplicated here.",
+        "release": "GDC Data Release 46.0 - 2026-08-10",
+        "canonical_dir": "config/manifests/tcga_mutation",
+        "filters": {
+          "program": "TCGA",
+          "tissue_type": "Tumor",
+          "tumor_descriptor": "Primary",
+          "data_category": "Simple Nucleotide Variation",
+          "data_type": "Masked Somatic Mutation",
+          "experimental_strategy": "WXS",
+          "workflow_type": "Aliquot Ensemble Somatic Variant Merging and Masking",
+          "access": "Open",
+          "data_format": "MAF"
+        },
+        "files": {
+          "gdc_cohort_tcga_primary_tumor_wxs_masked_somatic_mutation.tsv": {
+            "role": "cohort_export",
+            "file_url": "GDC Data Portal cohort export generated from query filters",
+            "description": "GDC cohort export for the source TCGA primary-tumor WXS masked somatic mutation query"
+          },
+          "gdc_manifest_tcga_primary_tumor_wxs_masked_somatic_mutation.txt": {
+            "role": "source_manifest",
+            "file_url": "GDC Data Portal manifest generated from query filters",
+            "description": "Source file-level manifest for the audited TCGA primary-tumor WXS masked somatic mutation resource"
+          },
+          "gdc_sample_sheet_tcga_primary_tumor_wxs_masked_somatic_mutation.tsv": {
+            "role": "sample_sheet",
+            "file_url": "GDC Data Portal sample sheet generated from query filters",
+            "description": "GDC sample sheet for the audited TCGA primary-tumor WXS masked somatic mutation resource"
+          },
+          "gdc_metadata_tcga_primary_tumor_wxs_masked_somatic_mutation.json": {
+            "role": "metadata_json",
+            "file_url": "GDC Data Portal metadata export generated from query filters",
+            "description": "Full GDC metadata JSON for the audited TCGA primary-tumor WXS masked somatic mutation resource"
+          },
+          "gdc_manifest_tcga_frozen_multiomic_exact_sample_wxs_masked_somatic_mutation.txt": {
+            "role": "frozen_primary_download_manifest",
+            "file_url": "Derived deterministically in notebook 108 from the source GDC manifest and frozen Phase 2 tumor cohort",
+            "description": "Operational manifest retaining only exact frozen tumor-sample matches for the primary mutation handoff"
+          }
+        }
       }
     },
     "external_resources": {

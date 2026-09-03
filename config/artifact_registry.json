@@ -2633,6 +2633,126 @@
           "artifact_id": "phase5.502.concordant_putative_vulnerability_associations"
         }
       ]
+    },
+    "phase1.108.primary_file_handoff": {
+      "path": "data/interim/genomics/108_tcga_somatic_mutation_primary_file_handoff.csv",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/108_tcga_somatic_mutation_acquisition_and_audit.ipynb"
+      },
+      "shape": [
+        9426,
+        16
+      ],
+      "size_bytes": 3759071,
+      "sha256": "a7269a819de58ff774b57e5d0c886f8225c81ab399f7aefc5df56686c1a3a25c",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_sample_mapping"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/somatic_mutation_wxs_masked_maf/files/gdc_manifest_tcga_primary_tumor_wxs_masked_somatic_mutation.txt"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/somatic_mutation_wxs_masked_maf/files/gdc_sample_sheet_tcga_primary_tumor_wxs_masked_somatic_mutation.tsv"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/somatic_mutation_wxs_masked_maf/files/gdc_metadata_tcga_primary_tumor_wxs_masked_somatic_mutation.json"
+        }
+      ]
+    },
+    "phase1.108.case_eligibility": {
+      "path": "data/interim/metadata/108_tcga_somatic_mutation_case_eligibility.csv",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/108_tcga_somatic_mutation_acquisition_and_audit.ipynb"
+      },
+      "shape": [
+        9965,
+        7
+      ],
+      "size_bytes": 848516,
+      "sha256": "54046035290a4e44275a577b6370ee90c0147df8da174b7a06d093b0d76017b7",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_sample_mapping"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/somatic_mutation_wxs_masked_maf/files/gdc_manifest_tcga_primary_tumor_wxs_masked_somatic_mutation.txt"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/somatic_mutation_wxs_masked_maf/files/gdc_sample_sheet_tcga_primary_tumor_wxs_masked_somatic_mutation.tsv"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/somatic_mutation_wxs_masked_maf/files/gdc_metadata_tcga_primary_tumor_wxs_masked_somatic_mutation.json"
+        }
+      ]
+    },
+    "phase1.108.download_validation": {
+      "path": "data/interim/genomics/108_tcga_somatic_mutation_download_validation.csv",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/108_tcga_somatic_mutation_acquisition_and_audit.ipynb"
+      },
+      "shape": [
+        9426,
+        10
+      ],
+      "size_bytes": 1959722,
+      "sha256": "ca21c602121a32d3c86d0a3c39bf87686f9a9204a1e23e1a0e55e2cb509127ad",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.108.primary_file_handoff"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/somatic_mutation_wxs_masked_maf/files/gdc_manifest_tcga_frozen_multiomic_exact_sample_wxs_masked_somatic_mutation.txt"
+        }
+      ]
+    },
+    "phase1.108.case_payload_status": {
+      "path": "data/interim/metadata/108_tcga_somatic_mutation_case_payload_status.csv",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/108_tcga_somatic_mutation_acquisition_and_audit.ipynb"
+      },
+      "shape": [
+        9192,
+        7
+      ],
+      "size_bytes": 384606,
+      "sha256": "0432d00895882392680688aad69226baa9503d0770a080d05abe0218d7127e30",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.108.primary_file_handoff"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.108.download_validation"
+        }
+      ]
     }
   }
 }
