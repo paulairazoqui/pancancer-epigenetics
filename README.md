@@ -10,7 +10,7 @@ This repository integrates high-throughput multi-omic, somatic-genomic, pharmaco
 
 ### Core Data Integration
 
-* **Primary tumors:** The Cancer Genome Atlas (TCGA) RNA-seq, DNA methylation, and planned somatic-mutation context
+* **Primary tumors:** The Cancer Genome Atlas (TCGA) RNA-seq, DNA methylation, and audited somatic-mutation context
 * **Cancer cell models and functional genomics:** Cancer Dependency Map (DepMap) / Cancer Cell Line Encyclopedia (CCLE)
 * **Pharmacogenomics and XAI:** GDSC, CTRP, and PRISM
 * **Perturbational profiles:** LINCS L1000 / Connectivity Map (CMap)
@@ -27,7 +27,7 @@ The broader approved scientific project includes experimental validation. Experi
 - **Phase 2 — Independent Tumor Discovery:** closed / frozen with 9,965 TCGA primary-tumor cases and 13 retained candidate cross-omic programs.
 - **Phase 3 — Independent Cell-Line Discovery:** closed with 713 DepMap–GDSC models; latent-program extraction was phenotype-independent and internal robustness was completed in notebook 311.
 - **Phase 4 — Cross-System Integration:** closed / frozen. Notebooks 400–404 completed cross-system comparison, consensus construction, cross-lineage robustness, epigenetic-regulator enrichment, and biological program annotation without downstream redefinition of the frozen consensus representations.
-- **Phase 4B — Secondary Molecular Context Characterization:** planned. Notebook 450 will characterize somatic genomic context after a dataset-specific TCGA mutation audit in planned notebook 108; notebook 451 will characterize locus-level methylation-expression relationships. This layer cannot redefine frozen Phase 4 programs and may yield positive, lineage-specific, heterogeneous, or negative results.
+- **Phase 4B — Secondary Molecular Context Characterization:** in progress. Notebook 108 — TCGA Somatic Mutation Acquisition and Audit is complete / frozen, and notebook 450 — Secondary Genomic Context Characterization is complete / frozen with its primary gene × program association handoff registered in `config/artifact_registry.json`. Notebook 451 — Locus-Level Methylation–Expression Characterization remains planned. Phase 4B cannot redefine frozen Phase 4 programs, and positive, lineage-specific, heterogeneous, or negative outcomes remain valid.
 - **Phase 5 — Functional Vulnerabilities:** closed / frozen. Notebooks 500–502 completed lineage-aware CRISPR characterization, independent RNAi characterization, and platform-aware CRISPR–RNAi evidence integration without statistical pooling, a common post-hoc coverage threshold, joint cross-platform FDR, or composite vulnerability ranking. Cross-platform concordance is complementary computational evidence rather than independent validation. The Phase 5 derived artifacts are registered with frozen identity and lineage in `config/artifact_registry.json`.
 - **Phase 6 — Pharmacogenomic Contexts and Explainable Modeling (XAI):** planned. This is the explicit XAI layer, including lineage-aware predictive modeling, SHAP attribution, stability analysis, hierarchical biological contextualization at the resolution supported by actual model features, and cross-screen replication.
 - **Phase 7 — Perturbational Hypotheses:** planned.
@@ -56,11 +56,11 @@ The project is designed to generate computational associations, secondary molecu
 
 Roadmap v3.2 adds a post-freeze **Phase 4B** to close two explicit computational components of the approved project without reopening discovery.
 
-Notebook `450 — Secondary Genomic Context Characterization` will test whether frozen tumor/consensus program scores are associated with recurrent somatic mutation contexts using a single audited TCGA/GDC mutation resource. Project/lineage structure, mutation prevalence, caller/workflow provenance, and multiple testing remain explicit. Somatic mutations are contextual evidence, not a new program-discovery modality.
+Notebook `108 — TCGA Somatic Mutation Acquisition and Audit` completed and froze the exact-sample TCGA/GDC somatic-mutation handoff used by Phase 4B. Notebook `450 — Secondary Genomic Context Characterization` then completed lineage-aware gene-level somatic-mutation characterization of the three frozen consensus tumor programs. The analysis uses a complete primary gene × program family, global FDR control, prespecified cross-project recurrence criteria, sensitivity analyses, and an exploratory focal-excluded background observed-variant-burden diagnostic. Conventional TMB is not reported because a defensible sample-comparable callable-territory denominator is unavailable. The downstream handoff is frozen in `config/artifact_registry.json`.
 
-Notebook `451 — Locus-Level Methylation–Expression Characterization` will map relevant CpGs to genes and promoter/regulatory annotations and characterize locus-level methylation-expression relationships, including inverse promoter methylation-expression patterns where supported. Such relationships are compatible with regulatory coupling but do not establish causal epigenetic regulation.
+Notebook `451 — Locus-Level Methylation–Expression Characterization` remains planned. It will map relevant CpGs to genes and promoter/regulatory annotations and characterize locus-level methylation-expression relationships, including inverse promoter methylation-expression patterns where supported. Such relationships are compatible with regulatory coupling but do not establish causal epigenetic regulation.
 
-Neither notebook may rescue, exclude, reweight, reorient, rename, or redefine frozen Phase 4 programs. Negative or non-recurrent results are valid, and Phase 4B findings are not required to appear in a manuscript.
+Neither completed nor planned Phase 4B analyses may rescue, exclude, reweight, reorient, rename, or redefine frozen Phase 4 programs. Negative or non-recurrent results are valid, and Phase 4B findings are not required to appear in a manuscript.
 
 ---
 
@@ -78,7 +78,7 @@ SHAP is treated as a model-attribution method. It is interpreted jointly with pr
 
 ## Repository and Notebook Structure
 
-The repository contains implemented directories through the Phase 5 workflow and planned placeholders for downstream phases. Roadmap v3.2 additionally adds a Phase 4B characterization directory while preserving the numbering of all established downstream phases.
+The repository contains implemented directories through the Phase 5 workflow, an active Phase 4B characterization layer, and planned placeholders for downstream phases. Roadmap v3.2 preserves the numbering of all established downstream phases.
 
 ```text
 ├── .github/workflows/     # Data-free continuous-integration checks
@@ -179,18 +179,18 @@ A minimal reproducibility sequence is:
 5. Run the Phase 1 notebooks to confirm source availability and raw-file auditing.
 6. Execute implemented notebooks in numerical order within the completed or active phases. Future notebooks are run only after their required inputs are available and frozen.
 
-The implemented notebook series are `100`–`107`, `200`–`206`, `300`–`311`, `400`–`404`, and `500`–`502`. The planned roadmap v3.2 series additionally include `108`, `450`–`451`, `600`–`603`, `700`–`703`, `800`–`804`, `900`–`904`, and `1000`–`1004`.
+The implemented notebook series are `100`–`108`, `200`–`206`, `300`–`311`, `400`–`404`, `450`, and `500`–`502`. The planned roadmap v3.2 series additionally include `451`, `600`–`603`, `700`–`703`, `800`–`804`, `900`–`904`, and `1000`–`1004`.
 
 The physical notebook layout is:
 
 ```text
 notebooks/
 ├── phase0_infrastructure_and_reproducibility/
-├── phase1_data_acquisition_and_auditing/           # implemented through 107; 108 planned
+├── phase1_data_acquisition_and_auditing/           # implemented through 108
 ├── phase2_tumor_discovery_layer/
 ├── phase3_cell_line_discovery_layer/
 ├── phase4_consensus_programs/                      # complete through notebook 404
-├── phase4b_secondary_molecular_characterization/   # planned notebooks 450–451
+├── phase4b_secondary_molecular_characterization/   # notebook 450 complete / frozen; 451 planned
 ├── phase5_functional_vulnerabilities/              # closed / frozen through notebook 502
 ├── phase6_pharmacogenomic_contexts/                # planned; includes explicit XAI notebooks 601–602
 ├── phase7_perturbational_hypotheses/               # planned
@@ -214,6 +214,7 @@ The current roadmap v3.2 source-of-truth documents are:
 * `docs/MODELING_POLICY.md` — modeling boundaries, secondary molecular-context rules, leakage prevention, XAI/SHAP requirements, biological-context rules, evidence-integration policy, and interpretation rules.
 * `docs/TERMINOLOGY_GUIDE.md` — approved terminology for candidate vulnerabilities, resistance-like contexts, perturbational hypotheses, and validation language.
 * `docs/workflow.md` — current roadmap v3.2 operational workflow, including completed-phase boundaries and planned handoffs.
+* `docs/PHASE4B_450_ANALYSIS_CONTRACT.md` — notebook-450-specific analytical contract for mutation representation, lineage-aware inference, sensitivity analyses, exploratory burden diagnostics, and downstream-use boundaries.
 * `docs/decisions/004_secondary_molecular_context_characterization.md` — durable decision establishing notebooks 108, 450, and 451 and their freeze boundaries.
 * `docs/decisions/005_biological_xai_context_and_experimental_handoff.md` — durable decision defining hierarchical XAI contextualization and the notebook-904 computational-to-experimental evidence handoff.
 

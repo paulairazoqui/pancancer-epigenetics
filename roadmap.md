@@ -128,7 +128,7 @@ Completed.
 
 ## Status
 
-Implemented for inputs used through the current active analysis. Notebook **107 — DepMap RNAi Acquisition and Audit** is complete. Notebook **108 — TCGA Somatic Mutation Acquisition and Audit** is planned as the acquisition prerequisite for Phase 4B secondary genomic-context characterization.
+Implemented for inputs used through the current active analysis. Notebooks **107 — DepMap RNAi Acquisition and Audit** and **108 — TCGA Somatic Mutation Acquisition and Audit** are complete, and their required downstream handoffs are frozen.
 
 ## Objective
 
@@ -156,14 +156,14 @@ Completed the acquisition audit and deterministic identifier harmonization for t
 
 #### 108 — TCGA Somatic Mutation Acquisition and Audit
 
-Planned prerequisite for Phase 4B. A single prespecified TCGA/GDC somatic-mutation resource will be acquired and audited with explicit provenance, caller/workflow identity, case/sample mapping, coverage, duplicate handling, and compatibility with the frozen 9,965-case tumor cohort. Mutation-call resources must not be naively mixed across callers or pipelines.
+Completed the acquisition, exact-sample mapping, download validation, schema audit, and frozen handoff for one prespecified open-access TCGA/GDC WXS masked-somatic-mutation resource. The frozen 9,965-case tumor cohort contains 9,192 cases with at least one eligible exact-sample MAF, represented by 9,426 retained MAF files. Mutation-resource availability is lineage dependent; cases without an eligible exact-sample resource are not treated as mutation-negative, and mutation-call resources are not naively mixed across callers or pipelines.
 
 Outputs:
 
-* source manifests
-* download records
-* coverage summaries
-* mutation-resource audit and frozen case mapping for Phase 4B
+* source manifests and provenance records
+* download-validation records
+* coverage and payload-status summaries
+* frozen exact-sample mutation-resource handoffs for Phase 4B
 
 ---
 
@@ -315,7 +315,7 @@ Outputs:
 
 ## Status
 
-**PLANNED.** This is a downstream characterization layer and does **not** reopen Phase 4 discovery or consensus construction.
+**IN PROGRESS.** Notebook **450 — Secondary Genomic Context Characterization** is complete / frozen; notebook **451 — Locus-Level Methylation–Expression Characterization** remains planned. This downstream characterization layer does **not** reopen Phase 4 discovery or consensus construction.
 
 ## Objective
 
@@ -329,22 +329,35 @@ The phase is designed to be informative even when results are negative, lineage-
 
 Primary resource:
 
-* a single audited TCGA/GDC somatic-mutation resource from notebook 108
+* the frozen exact-sample TCGA/GDC WXS masked-somatic-mutation handoff from notebook 108
 
-Planned analyses:
+Completed analysis:
 
-* association of frozen tumor/consensus program scores with recurrent somatic alterations;
-* lineage-aware characterization of established cancer-driver or pathway-level mutation contexts using prespecified annotations;
-* assessment of whether apparent pan-cancer associations persist after accounting for project/lineage structure;
-* optional mutation-burden summaries only if their definition and cross-project comparability are technically defensible before result inspection.
+* constructed deterministic case-level qualifying-variant states using all retained exact-sample MAFs, genomic-key deduplication, and explicit indeterminate handling for all-empty payloads;
+* defined an outcome-blind primary universe of 4,449 genes with prespecified project-level mutated/non-mutated support, yielding a complete family of 13,347 gene × program tests across the three frozen consensus programs;
+* estimated project-adjusted primary associations with HC3 uncertainty and global Benjamini–Hochberg FDR control;
+* characterized primary FDR-supported associations using within-project direction and leave-one-project-out stability under prespecified cross-cancer recurrence criteria;
+* evaluated prespecified purity, proliferation, single-MAF, and extended-`Splice_Region` sensitivities without allowing them to rescue primary associations; and
+* evaluated focal-excluded background observed-variant burden as an exploratory confounding diagnostic without treating it as conventional TMB or as a post hoc replacement for the primary model.
 
-Boundaries:
+The complete primary gene × consensus-program association family is frozen as:
+
+`data/processed/secondary_characterization/450_primary_gene_program_associations.csv`
+
+Its stable registry identifier is:
+
+`phase4b.450.primary_gene_program_associations`
+
+The notebook-specific analytical rules are documented in `docs/PHASE4B_450_ANALYSIS_CONTRACT.md`.
+
+Interpretation boundaries:
 
 * mutations are a secondary contextual layer, not a new discovery modality;
 * no mutation result may rescue, exclude, reweight, rename, or redefine a frozen program;
-* pooled pan-cancer mutation associations are descriptive unless supported by lineage-aware analyses;
-* absence of robust genomic association is a valid result;
-* copy-number alteration analysis is outside the prespecified scope unless separately justified before implementation.
+* `cross_cancer_recurrent` denotes prespecified lineage-aware reproducibility within eligible TCGA projects, not universality, causal mechanism, driver status, or gene-specific independence from broader observed mutational load;
+* conventional TMB is not reported because a defensible sample-comparable callable-territory denominator is unavailable;
+* the exploratory burden-conditioned diagnostic does not redefine primary significance, recurrence, or sensitivity stability;
+* copy-number alteration analysis remains outside the prespecified scope unless separately justified before implementation.
 
 #### 451 — Locus-Level Methylation–Expression Characterization
 
@@ -371,15 +384,14 @@ Boundaries:
 * platform-specific probe coverage and annotation uncertainty must remain explicit;
 * negative or non-recurrent results are valid outputs.
 
-Outputs:
+Current and planned outputs:
 
-* secondary genomic-context association tables
-* lineage-aware mutation-context summaries
-* locus-level CpG–gene methylation-expression association tables
-* promoter/regulatory annotation summaries
-* negative-result and limitation reports
+* frozen notebook-450 primary gene × program genomic-context association handoff
+* planned locus-level CpG–gene methylation-expression association tables
+* planned promoter/regulatory annotation summaries
+* explicit negative-result and limitation documentation where applicable
 
-These outputs are stored under `data/processed/secondary_characterization` and may feed Phase 9 evidence synthesis as contextual evidence. Their inclusion in a manuscript is optional and determined by scientific relevance rather than by project-compliance requirements.
+Phase 4B outputs are stored under `data/processed/secondary_characterization` and may feed Phase 9 evidence synthesis as separately traceable contextual evidence. Their inclusion in a manuscript is optional and determined by scientific relevance rather than by project-compliance requirements.
 
 ---
 
