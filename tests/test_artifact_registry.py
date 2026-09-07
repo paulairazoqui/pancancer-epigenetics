@@ -115,6 +115,7 @@ def test_real_registry_structure_and_frozen_outputs() -> None:
         "phase4.402.cross_lineage_robustness_summary",
         "phase4.403.epigenetic_regulator_enrichment_summary",
         "phase4.404.program_annotation_enrichment",
+        "phase4b.450.primary_gene_program_associations",
         "phase5.500.crispr_model_cohort",
         "phase5.500.crispr_gene_coverage",
         "phase5.500.crispr_primary_associations",
