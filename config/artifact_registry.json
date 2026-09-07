@@ -1574,6 +1574,48 @@
         }
       ]
     },
+    "phase4b.450.primary_gene_program_associations": {
+      "path": "data/processed/secondary_characterization/450_primary_gene_program_associations.csv",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4b_secondary_molecular_characterization/450_secondary_genomic_context_characterization.ipynb"
+      },
+      "shape": [
+        13347,
+        30
+      ],
+      "size_bytes": 3143227,
+      "sha256": "1d499f07d88a0c5feb38749d7f21c4988fabe3a35ed9ae92502fbe948061ee72",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.108.primary_file_handoff"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.108.case_eligibility"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.108.download_validation"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.108.case_payload_status"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_tumor_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.204.confounder_covariates"
+        }
+      ]
+    },    
     "phase5.500.crispr_model_cohort": {
       "path": "data/interim/dependencies/500_crispr_model_cohort.csv",
       "phase": 5,

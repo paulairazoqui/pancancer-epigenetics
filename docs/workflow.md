@@ -13,12 +13,12 @@ This workflow describes the operational sequence for the roadmap v3.2 framework.
 
 ## Phase 1 — Data Acquisition and Auditing
 
-**Status:** implemented for currently used inputs; notebook 107 — DepMap RNAi Acquisition and Audit is complete, and notebook 108 — TCGA Somatic Mutation Acquisition and Audit is planned as the acquisition prerequisite for Phase 4B.
+**Status:** implemented for currently used inputs; notebooks 107 — DepMap RNAi Acquisition and Audit and 108 — TCGA Somatic Mutation Acquisition and Audit are complete, with their required downstream handoffs frozen.
 
 - **Objective:** inventory, freeze, download, and audit source data required by the implemented or prespecified analysis.
-- **Notebook series:** `100_dataset_inventory`, `101_raw_file_audit`, `102_tcga_rnaseq_cohort_freeze`, `103_tcga_rnaseq_download_validation`, `104_tcga_methylation_coverage_assessment`, `105_tcga_methylation_cohort_freeze`, `106_tcga_methylation_download_validation`, `107_depmap_rnai_acquisition_and_audit`, and planned `108_tcga_somatic_mutation_acquisition_and_audit`.
+- **Notebook series:** `100_dataset_inventory`, `101_raw_file_audit`, `102_tcga_rnaseq_cohort_freeze`, `103_tcga_rnaseq_download_validation`, `104_tcga_methylation_coverage_assessment`, `105_tcga_methylation_cohort_freeze`, `106_tcga_methylation_download_validation`, `107_depmap_rnai_acquisition_and_audit`, and `108_tcga_somatic_mutation_acquisition_and_audit`.
 - **Primary inputs:** source datasets, manifests, and `config/raw_data_registry.json`.
-- **Primary outputs:** audited source inventory, frozen TCGA RNA-seq and methylation cohorts, download-validation records, RNAi handoffs, coverage summaries, and—after notebook 108—a frozen somatic-mutation resource mapping compatible with the 9,965-case TCGA cohort.
+- **Primary outputs:** audited source inventory, frozen TCGA RNA-seq and methylation cohorts, download-validation records, RNAi handoffs, coverage summaries, and the frozen exact-sample TCGA/GDC somatic-mutation resource mapping used by notebook 450.
 - **Boundary / handoff:** mutation resources require one prespecified caller/workflow identity and explicit case/sample mapping; mutation calls from different pipelines must not be naively combined. Future CTRP, PRISM, LINCS, drug–target knowledgebase, or other resources require their own acquisition and audit work when needed.
 
 ## Phase 2 — Independent Tumor Discovery
@@ -53,13 +53,13 @@ This workflow describes the operational sequence for the roadmap v3.2 framework.
 
 ## Phase 4B — Secondary Molecular Context Characterization
 
-**Status:** planned.
+**Status:** **IN PROGRESS — notebook 450 complete / frozen; notebook 451 planned**.
 
 - **Objective:** characterize frozen program representations through somatic genomic context and locus-level methylation-expression relationships without reopening discovery.
-- **Notebook series:** `450` Secondary Genomic Context Characterization; `451` Locus-Level Methylation–Expression Characterization.
-- **Primary inputs:** frozen Phase 4 programs; the audited TCGA/GDC somatic-mutation handoff from planned notebook 108; frozen TCGA methylation and RNA-seq data; prespecified CpG-to-gene and promoter/regulatory annotations.
-- **Primary outputs:** lineage-aware mutation-context association tables, pathway-level genomic-context summaries, locus-level CpG–gene methylation-expression associations, promoter/regulatory summaries, and explicit negative-result/limitation reports under `data/processed/secondary_characterization`.
-- **Genomic boundary:** mutation analyses are secondary characterization. Pan-cancer associations must be evaluated against project/lineage structure. Mutation-burden analyses are optional and require a defensible prespecified definition. Copy-number analysis is outside this block unless separately justified before implementation.
+- **Notebook series:** `450` Secondary Genomic Context Characterization — complete / frozen; `451` Locus-Level Methylation–Expression Characterization — planned.
+- **Primary inputs:** frozen Phase 4 programs; the audited and frozen TCGA/GDC somatic-mutation handoff from notebook 108; frozen TCGA methylation and RNA-seq data; and prespecified CpG-to-gene and promoter/regulatory annotations for notebook 451.
+- **Primary outputs:** notebook 450 publishes the frozen `450_primary_gene_program_associations.csv` handoff containing the complete primary gene × consensus-program family, primary inference, lineage-aware recurrence characterization, prespecified sensitivity stability, and exploratory focal-excluded background observed-variant-burden diagnostics. Notebook 451 is expected to add locus-level CpG–gene methylation-expression and promoter/regulatory summaries under `data/processed/secondary_characterization` if supported by the planned analysis.
+- **Genomic boundary:** notebook 450 uses somatic mutations as secondary characterization, not rediscovery. Primary inference is project-adjusted and recurrence requires prespecified cross-project directional and leave-one-project-out support. Conventional TMB is not reported because a defensible sample-comparable callable-territory denominator is unavailable. The focal-excluded background observed-variant-burden analysis is exploratory and does not redefine primary significance, recurrence, or sensitivity stability. Copy-number analysis remains outside this block unless separately justified before implementation.
 - **Methylation-expression boundary:** inverse promoter methylation-expression associations may be described as compatible with epigenetic regulation but not as mechanistic proof. TCGA tumors are not assigned resistant/sensitive labels for this analysis. Platform coverage, annotation uncertainty, purity, and other applicable confounders remain explicit.
 - **Freeze boundary:** Phase 4B cannot modify frozen Phase 4 objects. Positive, negative, lineage-specific, heterogeneous, or non-recurrent outcomes are all valid. Publication is optional; the analysis may remain a documented project result if it does not strengthen a manuscript.
 
@@ -114,7 +114,7 @@ This workflow describes the operational sequence for the roadmap v3.2 framework.
 
 - **Objective:** integrate frozen evidence from secondary molecular characterization, epigenetic-regulatory, functional-genomics, pharmacogenomic/XAI, perturbational, and external-validation layers into a transparent program–vulnerability–compound evidence framework.
 - **Notebook series:** `900` Target–Drug Knowledgebase Mapping; `901` Cross-Evidence Integration; `902` Candidate Evidence Stratification; `903` Program–Vulnerability–Compound Map; `904` Final Candidate Catalog and Handoff.
-- **Primary inputs:** frozen outputs from Phase 4, Phase 4B, and Phases 5–8 plus prespecified drug–target knowledgebase resources such as ChEMBL and DrugBank where accessible.
+- **Primary inputs:** frozen outputs from Phase 4, available frozen Phase 4B outputs, and Phases 5–8 plus prespecified drug–target knowledgebase resources such as ChEMBL and DrugBank where accessible.
 - **Primary outputs:** target–drug mappings, cross-evidence matrices, multidimensional candidate evidence strata, integrated program–vulnerability–compound maps, a frozen manuscript-facing candidate catalog, and a structured computational-to-experimental handoff under `data/processed/integrated_evidence`.
 - **Experimental-handoff requirement:** notebook 904 should preserve, for each retained candidate relationship where information exists, the frozen program identity, putative vulnerability or target context, candidate compound and mechanism/target annotation, expected association or perturbational direction, functional-genomics support, pharmacogenomic support, XAI attribution/stability context, perturbational support, target–drug support, secondary molecular context, lineage breadth/heterogeneity, external or orthogonal support, unresolved limitations, and a concise computational rationale for possible downstream experimental evaluation. Sarcoma, RMS, or OS relevance may be annotated when the available datasets directly support it; absence of such evidence must remain explicit rather than inferred.
 - **Boundary:** evidence sources remain traceable and must not be naively pooled as interchangeable evidence. Prefer explicit multidimensional evidence over an opaque single score. Convergent computational evidence supports prioritization and hypothesis generation only; it does not establish therapeutic efficacy or validated targets. The handoff is not a therapeutic recommendation, assay prescription, dosing recommendation, or substitute for experimental design.
