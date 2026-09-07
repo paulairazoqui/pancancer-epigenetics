@@ -233,8 +233,8 @@ A prespecified sensitivity analysis extends the qualifying definition by adding:
 This sensitivity is used only to characterize stability of primary
 associations.
 
-It cannot replace the primary qualifying-variant definition because it produces
-more favorable results.
+It cannot replace the primary qualifying-variant definition on the basis of
+whether it produces more favorable statistical results.
 
 ---
 
@@ -771,7 +771,7 @@ formal interface.
 
 ## Downstream-use boundary
 
-Downstream notebooks may consume the frozen notebook-450 output as secondary
+Downstream notebooks may consume the persisted notebook-450 output as secondary
 genomic-context evidence.
 
 They must preserve the distinction between:
