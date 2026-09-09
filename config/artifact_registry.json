@@ -3079,7 +3079,7 @@
       },
       "shape": null,
       "size_bytes": 7210,
-      "sha256": "ad25cec8944878b024696f1369403aa46e9d701e53a2f0839e399127f4b926f3",
+      "sha256": "68f286136bb27dc828a1232cb77d1aabf5128238a545b4fee0f74859822a745e",
       "inputs": [
         {
           "type": "artifact",
