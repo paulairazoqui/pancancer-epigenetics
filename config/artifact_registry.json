@@ -1615,7 +1615,7 @@
           "artifact_id": "phase2.204.confounder_covariates"
         }
       ]
-    },    
+    },
     "phase5.500.crispr_model_cohort": {
       "path": "data/interim/dependencies/500_crispr_model_cohort.csv",
       "phase": 5,
@@ -2793,6 +2793,269 @@
         {
           "type": "artifact",
           "artifact_id": "phase1.108.download_validation"
+        }
+      ]
+    },
+    "phase4b.451.cpg_gene_annotation_eligibility": {
+      "path": "data/processed/secondary_characterization/451_cpg_gene_annotation_eligibility.csv",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4b_secondary_molecular_characterization/451_locus_level_methylation_expression_characterization.ipynb"
+      },
+      "shape": [
+        343,
+        29
+      ],
+      "size_bytes": 162912,
+      "sha256": "513c2823a8473cb7bf02c9a2277818bbd65d4becac5805c6cf7f917f72a541d5",
+      "inputs": [
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/external_resources/sesame_hm450_hg38_annotation"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_probe_mapping"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.rna_program_discovery_expression"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.methylation_candidate_probe_loadings"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_program_catalog"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_tumor_arm_context"
+        }
+      ]
+    },
+    "phase4b.451.primary_cpg_gene_associations": {
+      "path": "data/processed/secondary_characterization/451_primary_cpg_gene_associations.csv",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4b_secondary_molecular_characterization/451_locus_level_methylation_expression_characterization.ipynb"
+      },
+      "shape": [
+        311,
+        43
+      ],
+      "size_bytes": 204287,
+      "sha256": "c2220412fe5b8b6899efb031101e60adae8869b7742dff365a60682e4682495f",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4b.451.cpg_gene_annotation_eligibility"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_sample_mapping"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_hm450_methylation_betas"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.rna_program_discovery_expression"
+        }
+      ]
+    },
+    "phase4b.451.within_project_cpg_gene_associations": {
+      "path": "data/processed/secondary_characterization/451_within_project_cpg_gene_associations.csv",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4b_secondary_molecular_characterization/451_locus_level_methylation_expression_characterization.ipynb"
+      },
+      "shape": [
+        9248,
+        5
+      ],
+      "size_bytes": 573457,
+      "sha256": "acd02ed587481ebb8d30ed1f2dad31d65635172bd2d156fbbbb1de311dab2f94",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4b.451.primary_cpg_gene_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_sample_mapping"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_hm450_methylation_betas"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.rna_program_discovery_expression"
+        }
+      ]
+    },
+    "phase4b.451.leave_one_project_out_associations": {
+      "path": "data/processed/secondary_characterization/451_leave_one_project_out_associations.csv",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4b_secondary_molecular_characterization/451_locus_level_methylation_expression_characterization.ipynb"
+      },
+      "shape": [
+        9248,
+        6
+      ],
+      "size_bytes": 641527,
+      "sha256": "84b594d32aa02480aeaf6c043d99d89d83799559acf469d97054e56c545fecb3",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4b.451.primary_cpg_gene_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_sample_mapping"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_hm450_methylation_betas"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.rna_program_discovery_expression"
+        }
+      ]
+    },
+    "phase4b.451.association_sensitivities": {
+      "path": "data/processed/secondary_characterization/451_association_sensitivities.csv",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4b_secondary_molecular_characterization/451_locus_level_methylation_expression_characterization.ipynb"
+      },
+      "shape": [
+        972,
+        11
+      ],
+      "size_bytes": 151512,
+      "sha256": "af51a22eed52f6b015426adc6bbb26c5a1a90c72a86415d33b3e778211c04861",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4b.451.primary_cpg_gene_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_sample_mapping"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_hm450_methylation_betas"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_hm27_methylation_betas"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.204.confounder_covariates"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.205.rna_program_discovery_expression"
+        }
+      ]
+    },
+    "phase4b.451.locus_level_methylation_expression_evidence": {
+      "path": "data/processed/secondary_characterization/451_locus_level_methylation_expression_evidence.csv",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4b_secondary_molecular_characterization/451_locus_level_methylation_expression_characterization.ipynb"
+      },
+      "shape": [
+        311,
+        52
+      ],
+      "size_bytes": 218341,
+      "sha256": "43c3ec14101e5e6f65016badd8f5975aff6214b032fb3966aa8ba1346cd9bd06",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4b.451.cpg_gene_annotation_eligibility"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4b.451.primary_cpg_gene_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4b.451.within_project_cpg_gene_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4b.451.leave_one_project_out_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4b.451.association_sensitivities"
+        }
+      ]
+    },
+    "phase4b.451.analysis_metadata": {
+      "path": "data/processed/secondary_characterization/451_analysis_metadata.json",
+      "phase": 4,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase4b_secondary_molecular_characterization/451_locus_level_methylation_expression_characterization.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 6691,
+      "sha256": "79bd4bfaa779e8d117089f273e1c95a31c77a315aaef40f37d02098f0b23474c",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4b.451.cpg_gene_annotation_eligibility"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4b.451.primary_cpg_gene_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4b.451.within_project_cpg_gene_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4b.451.leave_one_project_out_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4b.451.association_sensitivities"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4b.451.locus_level_methylation_expression_evidence"
         }
       ]
     }

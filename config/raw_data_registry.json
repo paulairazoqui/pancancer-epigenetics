@@ -420,6 +420,60 @@
             "sha256": "9063f2e39e4175736163e8ec3799287adb6376af4e221f4377f25f610219c44b"
           }
         }
+      },
+      "sesame_hm450_hg38_annotation": {
+        "provenance_mode": "file_managed",
+        "source_database": "Bioconductor",
+        "provider": "SeSAMe / sesameData",
+        "release": "Bioconductor 3.23",
+        "package": "sesameData",
+        "package_version": "1.30.0",
+        "platform": "HM450",
+        "genome_build": "hg38",
+        "status": "acquired_and_used",
+        "retrieval_date": "2026-09-08",
+        "canonical_dir": "data/raw/tcga/annotations/sesame_hm450_hg38",
+        "resources": {
+          "HM450.address": {
+            "ehid": "EH7317",
+            "version": "1.13.1",
+            "source_version": "2022-01-23"
+          },
+          "genomeInfo.hg38": {
+            "ehid": "EH8558",
+            "version": "1.21.1",
+            "source_version": "2024-01-11"
+          }
+        },
+        "derivation": {
+          "script": "scripts/phase4b/export_sesamedata_hm450_hg38_annotation.R",
+          "promoter_method": "GenomicRanges::promoters",
+          "promoter_upstream_bp": 1500,
+          "promoter_downstream_bp": 1500,
+          "overlap_strand_policy": "ignore.strand=TRUE",
+          "gene_annotation_scope": "protein_coding",
+          "cpg_identifier_rule": "^cg[0-9]{8}$"
+        },
+        "files": {
+          "sesame_hm450_hg38_cpg_annotation_coverage.csv": {
+            "role": "cpg_annotation_coverage",
+            "status": "acquired_and_used",
+            "size_bytes": 38862313,
+            "sha256": "abcb074a7a24d67482208979bd1a722540b15180e77c62b1dab1b46de51a41e8"
+          },
+          "sesame_hm450_hg38_cpg_gene_regulatory_annotation.csv": {
+            "role": "cpg_gene_regulatory_annotation",
+            "status": "acquired_and_used",
+            "size_bytes": 96590760,
+            "sha256": "9f503c381dd5c74b5d6cac7f327383d278de5f124a7ecc5240536e189f9c95b1"
+          },
+          "sesame_hm450_hg38_annotation_metadata.csv": {
+            "role": "annotation_derivation_metadata",
+            "status": "acquired_and_used",
+            "size_bytes": 1593,
+            "sha256": "e66f34da5456541fe18ccd3174284b2a56139b8c70cbf3764f4a201136f08fbf"
+          }
+        }
       }
     }
   },
