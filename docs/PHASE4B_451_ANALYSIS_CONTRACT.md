@@ -1382,3 +1382,51 @@ It does not establish that:
 
 Any mechanistic or therapeutic interpretation requires evidence beyond this
 computational association framework.
+
+---
+
+# Execution freeze record
+
+This section records the annotation authority that was ultimately frozen for
+notebook 451 execution. It is an execution-provenance addendum and does not
+modify the prespecified analytical rules defined above.
+
+The primary CpG biological annotation authority used for notebook 451 was:
+
+- provider/framework: Bioconductor / SeSAMe / `sesameData`;
+- Bioconductor release: 3.23;
+- `sesameData` version: 1.30.0;
+- methylation platform: Illumina HumanMethylation450;
+- genome build: hg38;
+- R version: 4.6.1.
+
+The deterministic annotation derivation is implemented in:
+
+`scripts/phase4b/export_sesamedata_hm450_hg38_annotation.R`
+
+The frozen annotation resource and its file identities are provenance-tracked
+under:
+
+`config/raw_data_registry.json`
+
+at:
+
+`/tcga/external_resources/sesame_hm450_hg38_annotation`
+
+The derivation used the versioned SeSAMe HM450 address resource and hg38 genome
+resource recorded in the raw-data registry. Protein-coding CpG–gene mappings
+and regulatory context were generated deterministically before notebook-451
+locus-level association results were inspected.
+
+Promoter-associated status was defined from the frozen hg38 transcript
+annotation using a 1,500-bp upstream and 1,500-bp downstream promoter window.
+Transcript overlap was retained separately and must not be interpreted as a
+general gene-body annotation.
+
+No annotation resource, genome build, CpG-to-gene mapping rule, promoter rule,
+or identifier-rescue policy was changed on the basis of notebook-451
+methylation–expression association results.
+
+This addendum records the realized execution state only. The original
+prespecified contract above remains unchanged as the historical record of the
+analysis plan.

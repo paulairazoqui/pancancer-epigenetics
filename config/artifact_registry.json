@@ -2807,10 +2807,10 @@
       },
       "shape": [
         343,
-        29
+        33
       ],
-      "size_bytes": 162912,
-      "sha256": "513c2823a8473cb7bf02c9a2277818bbd65d4becac5805c6cf7f917f72a541d5",
+      "size_bytes": 357389,
+      "sha256": "3033a909d713b6da0f80c0fc28bc0e895b295825ce3fc5e42ecdd3d9c6a474ba",
       "inputs": [
         {
           "type": "raw_registry",
@@ -2849,10 +2849,10 @@
       },
       "shape": [
         311,
-        43
+        59
       ],
-      "size_bytes": 204287,
-      "sha256": "c2220412fe5b8b6899efb031101e60adae8869b7742dff365a60682e4682495f",
+      "size_bytes": 653815,
+      "sha256": "29f885c52a5235a3fd150bd1c1525cc7e2ed8dea1a84b4f133070beba3e4891c",
       "inputs": [
         {
           "type": "artifact",
@@ -2993,10 +2993,10 @@
       },
       "shape": [
         311,
-        52
+        68
       ],
-      "size_bytes": 218341,
-      "sha256": "43c3ec14101e5e6f65016badd8f5975aff6214b032fb3966aa8ba1346cd9bd06",
+      "size_bytes": 667869,
+      "sha256": "c32b1314751e74b03e1de12c9729be2f4fc6e4886c8ed6d61f137b471f98546d",
       "inputs": [
         {
           "type": "artifact",
@@ -3030,8 +3030,8 @@
         "path": "notebooks/phase4b_secondary_molecular_characterization/451_locus_level_methylation_expression_characterization.ipynb"
       },
       "shape": null,
-      "size_bytes": 6691,
-      "sha256": "79bd4bfaa779e8d117089f273e1c95a31c77a315aaef40f37d02098f0b23474c",
+      "size_bytes": 7210,
+      "sha256": "cc9a87af0d278da304d944d1aa111ffcc4649f4bcf7cc7e18439a1ad7234b61c",
       "inputs": [
         {
           "type": "artifact",
@@ -3056,6 +3056,54 @@
         {
           "type": "artifact",
           "artifact_id": "phase4b.451.locus_level_methylation_expression_evidence"
+        }
+      ]
+    },
+    "phase2.205.rna_program_discovery_gene_metadata": {
+      "path": "data/interim/expression/tcga_primary_tumor_rnaseq_program_discovery_filtered_gene_metadata.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/205_tcga_epigenetic_transcriptomic_program_discovery.ipynb"
+      },
+      "shape": [
+        18123,
+        7
+      ],
+      "size_bytes": 1312693,
+      "sha256": "e0cd2feb28f980923b2df744b1903a3d7bd364309ce768731610db8194e3337e",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_rna_counts"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_rna_feature_index"
+        }
+      ]
+    },
+    "phase2.205.rna_program_discovery_sample_metadata": {
+      "path": "data/interim/expression/tcga_primary_tumor_rnaseq_program_discovery_sample_metadata.csv",
+      "phase": 2,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase2_tumor_discovery_layer/205_tcga_epigenetic_transcriptomic_program_discovery.ipynb"
+      },
+      "shape": [
+        9965,
+        5
+      ],
+      "size_bytes": 762869,
+      "sha256": "04e33010d8df780c1af066618b687437244226817f05a0f598fe46fd7c2bb3be",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase2.203.final_sample_mapping"
         }
       ]
     }
