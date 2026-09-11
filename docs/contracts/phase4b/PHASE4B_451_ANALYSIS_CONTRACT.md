@@ -1,5 +1,14 @@
 # Notebook 451 Analysis Contract
 
+## Lifecycle / execution closure
+
+This analytical contract was prespecified before inferential result inspection.
+Execution is complete, and notebook 451 and its seven registered
+`phase4b.451.*` outputs are frozen. The prospective sections below are retained
+unchanged as historical methodological provenance; realized artifact identity
+and lineage are represented by the analysis metadata and
+`config/artifact_registry.json`.
+
 ## Status
 
 Planned / prespecified before result inspection.
@@ -1116,6 +1125,11 @@ Null results remain a valid Phase 4B handoff.
 
 # Planned primary outputs
 
+> **Retrospective fulfillment note:** Execution is complete. The realized
+> output identities and provenance are frozen in the notebook-451 analysis
+> metadata and artifact registry; the prospective list below is retained
+> unchanged as the historical plan.
+
 Notebook 451 should produce machine-readable outputs under:
 
 `data/processed/secondary_characterization/`
@@ -1253,6 +1267,10 @@ The metadata should record:
 
 # Artifact registration
 
+> **Retrospective fulfillment note:** The seven realized notebook-451 outputs
+> are registered under the `phase4b.451.*` namespace. The prospective
+> registration rules below are retained unchanged as historical provenance.
+
 After notebook 451 is completed and all outputs are validated, stable derived
 artifacts required downstream must be registered in:
 
@@ -1341,6 +1359,10 @@ None of these levels establishes biological causality.
 ---
 
 # Analytical closure criteria
+
+> **Retrospective fulfillment note:** These criteria have been fulfilled for
+> the frozen notebook-451 outputs. The original criteria remain below as the
+> prospective analytical record.
 
 Notebook 451 is considered analytically complete when:
 

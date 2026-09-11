@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "scope": "r_4_3_1_bioconductor_3_18_reproduction_requirements",
+  "historical_execution_claim": false,
+  "supported_scripts": [
+    "scripts/r/205_tcga_rnaseq_tmm_logcpm.R",
+    "scripts/r/export_hm450_probe_annotation.R"
+  ],
+  "r_version": "4.3.1",
+  "bioconductor_version": "3.18",
+  "required_packages": {
+    "edgeR": {
+      "version": "4.0.16"
+    },
+    "rhdf5": {
+      "version": "2.46.1"
+    },
+    "minfi": {
+      "version": "1.48.0"
+    },
+    "IlluminaHumanMethylation450kanno.ilmn12.hg19": {
+      "version": "0.6.1"
+    }
+  },
+  "historical_execution_evidence": {
+    "path": "envs/historical/phase2_205_tmm_session_info.txt",
+    "scope": "historical execution evidence for notebook 205 only"
+  }
+}

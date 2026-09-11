@@ -126,7 +126,7 @@ Component indices are not assumed to be portable between systems. Scoring or pro
 
 ## Layer 3B — Secondary Molecular Context Characterization
 
-**Phase 4B — planned**
+**Phase 4B — closed / frozen**
 
 Primary resources:
 
@@ -141,7 +141,7 @@ Purpose:
 * characterize locus-level CpG-to-gene methylation-expression relationships relevant to frozen programs; and
 * evaluate inverse promoter methylation-expression relationships where annotation and coverage support the analysis.
 
-Notebook `450 — Secondary Genomic Context Characterization` treats mutations as contextual evidence rather than as a new discovery modality. Notebook `451 — Locus-Level Methylation–Expression Characterization` provides regulatory-context evidence but does not infer causal epigenetic regulation.
+Notebooks `450 — Secondary Genomic Context Characterization` and `451 — Locus-Level Methylation–Expression Characterization` are complete / frozen. Notebook 450 treats mutations as contextual evidence rather than as a new discovery modality; notebook 451 provides locus-level methylation-expression context but does not infer causal epigenetic regulation or assign TCGA resistance/sensitivity labels.
 
 Positive, negative, lineage-specific, heterogeneous, and non-recurrent outcomes are all valid. Phase 4B outputs cannot redefine the three frozen consensus programs and need not appear in a manuscript if they do not materially strengthen its scientific argument.
 
@@ -171,7 +171,7 @@ These associations do not establish a causal role or a validated intervention. T
 
 ## Layer 5 — Pharmacogenomic Context Characterization and XAI
 
-**Phase 6 — planned**
+**Phase 6 — planned / not started**
 
 Primary resources:
 
