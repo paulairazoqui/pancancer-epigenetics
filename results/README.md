@@ -1,6 +1,6 @@
 # results
 
-Publication-ready outputs are organized by manuscript according to roadmap v3.0.
+Publication-ready outputs are organized by manuscript according to roadmap v3.2.
 
 ```text
 results/

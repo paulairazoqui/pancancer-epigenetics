@@ -107,6 +107,23 @@ Before switching from Python to R, state the specific methodological advantage.
 Do not introduce cross-language complexity without a corresponding analytical
 benefit.
 
+## 3.3 Artifact publication at notebook closure
+
+Existing closed notebooks whose artifacts were registered externally or
+manually remain valid because the version-controlled registry records frozen
+identity and lineage. Notebook 451 represents the stronger current pattern in
+which persistence, validation, provenance construction, and registration are
+coupled during notebook closure.
+
+From Phase 6 onward, prefer this closure sequence:
+
+persist outputs → validate outputs → construct/finalize provenance → register
+artifacts → validate registry.
+
+This is an execution and reproducibility convention, not a scientific
+inference rule. Do not retrofit registry-publication cells into closed
+notebooks solely to make their chronology uniform.
+
 
 ## 4. Manual work versus Codex
 

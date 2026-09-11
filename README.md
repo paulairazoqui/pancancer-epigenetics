@@ -27,9 +27,9 @@ The broader approved scientific project includes experimental validation. Experi
 - **Phase 2 — Independent Tumor Discovery:** closed / frozen with 9,965 TCGA primary-tumor cases and 13 retained candidate cross-omic programs.
 - **Phase 3 — Independent Cell-Line Discovery:** closed with 713 DepMap–GDSC models; latent-program extraction was phenotype-independent and internal robustness was completed in notebook 311.
 - **Phase 4 — Cross-System Integration:** closed / frozen. Notebooks 400–404 completed cross-system comparison, consensus construction, cross-lineage robustness, epigenetic-regulator enrichment, and biological program annotation without downstream redefinition of the frozen consensus representations.
-- **Phase 4B — Secondary Molecular Context Characterization:** in progress. Notebook 108 — TCGA Somatic Mutation Acquisition and Audit is complete / frozen, and notebook 450 — Secondary Genomic Context Characterization is complete / frozen with its primary gene × program association handoff registered in `config/artifact_registry.json`. Notebook 451 — Locus-Level Methylation–Expression Characterization remains planned. Phase 4B cannot redefine frozen Phase 4 programs, and positive, lineage-specific, heterogeneous, or negative outcomes remain valid.
+- **Phase 4B — Secondary Molecular Context Characterization:** closed / frozen. Notebooks 450 — Secondary Genomic Context Characterization and 451 — Locus-Level Methylation–Expression Characterization are complete / frozen; their registered handoffs are recorded in `config/artifact_registry.json`. Phase 4B cannot redefine frozen Phase 4 programs, and positive, lineage-specific, heterogeneous, or negative outcomes remain valid.
 - **Phase 5 — Functional Vulnerabilities:** closed / frozen. Notebooks 500–502 completed lineage-aware CRISPR characterization, independent RNAi characterization, and platform-aware CRISPR–RNAi evidence integration without statistical pooling, a common post-hoc coverage threshold, joint cross-platform FDR, or composite vulnerability ranking. Cross-platform concordance is complementary computational evidence rather than independent validation. The Phase 5 derived artifacts are registered with frozen identity and lineage in `config/artifact_registry.json`.
-- **Phase 6 — Pharmacogenomic Contexts and Explainable Modeling (XAI):** planned. This is the explicit XAI layer, including lineage-aware predictive modeling, SHAP attribution, stability analysis, hierarchical biological contextualization at the resolution supported by actual model features, and cross-screen replication.
+- **Phase 6 — Pharmacogenomic Contexts and Explainable Modeling (XAI):** planned / not started. This is the explicit XAI layer, including lineage-aware predictive modeling, SHAP attribution, stability analysis, hierarchical biological contextualization at the resolution supported by actual model features, and cross-screen replication.
 - **Phase 7 — Perturbational Hypotheses:** planned.
 - **Phase 8 — Orthogonal Validation:** planned.
 - **Phase 9 — Integrated Evidence Synthesis and Therapeutic Prioritization:** planned, including a structured computational-to-experimental evidence handoff in notebook 904.
@@ -58,7 +58,7 @@ Roadmap v3.2 adds a post-freeze **Phase 4B** to close two explicit computational
 
 Notebook `108 — TCGA Somatic Mutation Acquisition and Audit` completed and froze the exact-sample TCGA/GDC somatic-mutation handoff used by Phase 4B. Notebook `450 — Secondary Genomic Context Characterization` then completed lineage-aware gene-level somatic-mutation characterization of the three frozen consensus tumor programs. The analysis uses a complete primary gene × program family, global FDR control, prespecified cross-project recurrence criteria, sensitivity analyses, and an exploratory focal-excluded background observed-variant-burden diagnostic. Conventional TMB is not reported because a defensible sample-comparable callable-territory denominator is unavailable. The downstream handoff is frozen in `config/artifact_registry.json`.
 
-Notebook `451 — Locus-Level Methylation–Expression Characterization` remains planned. It will map relevant CpGs to genes and promoter/regulatory annotations and characterize locus-level methylation-expression relationships, including inverse promoter methylation-expression patterns where supported. Such relationships are compatible with regulatory coupling but do not establish causal epigenetic regulation.
+Notebook `451 — Locus-Level Methylation–Expression Characterization` completed and froze the CpG–gene annotation/eligibility, primary association, within-project, leave-one-project-out, sensitivity, locus-level evidence, and analysis-metadata artifacts under `data/processed/secondary_characterization/`. These seven `phase4b.451.*` artifacts are registered with frozen identity and lineage. Methylation-expression associations are contextual computational evidence; inverse promoter-associated patterns are compatible with regulatory coupling but do not establish causal epigenetic regulation. TCGA tumors are not assigned resistance/sensitivity labels.
 
 Neither completed nor planned Phase 4B analyses may rescue, exclude, reweight, reorient, rename, or redefine frozen Phase 4 programs. Negative or non-recurrent results are valid, and Phase 4B findings are not required to appear in a manuscript.
 
@@ -78,7 +78,7 @@ SHAP is treated as a model-attribution method. It is interpreted jointly with pr
 
 ## Repository and Notebook Structure
 
-The repository contains implemented directories through the Phase 5 workflow, an active Phase 4B characterization layer, and planned placeholders for downstream phases. Roadmap v3.2 preserves the numbering of all established downstream phases.
+The repository contains implemented notebooks through the closed Phase 4B and Phase 5 workflows, with planned placeholders for downstream phases. Roadmap v3.2 preserves the numbering of all established downstream phases.
 
 ```text
 ├── .github/workflows/     # Data-free continuous-integration checks
@@ -158,6 +158,8 @@ The current captured reproduction environment uses **Python 3.11.8**.
 
 `requirements.txt` is the direct dependency contract with exact pins, and `envs/environment.yml` represents the same contract. `envs/python_environment_snapshot.txt` records the complete captured Python environment, including transitive packages. These current reproduction records do not establish that every historical analysis ran under exactly the same software environment; see `envs/README.md` for scope and historical execution evidence.
 
+Python `>=3.11` is the package minimum; Python 3.11.8 is the captured and tested reproduction target. On Linux/macOS, activate the environment with `source .venv/bin/activate` after `python3.11 -m venv .venv`. Launch Jupyter only from this activated environment and select its Python 3.11.8 kernel; do not normalize notebook kernel metadata merely to reproduce the workflow.
+
 Create a local Python virtual environment using `venv`, activate it, and then install the project dependencies. From the repository root:
 
 ```powershell
@@ -177,9 +179,9 @@ A minimal reproducibility sequence is:
 3. Install the dependencies from `requirements.txt` and install the repository package in editable mode with `python -m pip install -e .`.
 4. Download or place raw datasets into the appropriate `data/raw/<source>/` folders according to `config/raw_data_registry.json`.
 5. Run the Phase 1 notebooks to confirm source availability and raw-file auditing.
-6. Execute implemented notebooks in numerical order within the completed or active phases. Future notebooks are run only after their required inputs are available and frozen.
+6. Execute implemented notebooks in numerical order within the completed phases. Future notebooks are run only after their required inputs are available and frozen.
 
-The implemented notebook series are `100`–`108`, `200`–`206`, `300`–`311`, `400`–`404`, `450`, and `500`–`502`. The planned roadmap v3.2 series additionally include `451`, `600`–`603`, `700`–`703`, `800`–`804`, `900`–`904`, and `1000`–`1004`.
+The implemented notebook series are `100`–`108`, `200`–`206`, `300`–`311`, `400`–`404`, `450`–`451`, and `500`–`502`. The planned roadmap v3.2 series additionally include `600`–`603`, `700`–`703`, `800`–`804`, `900`–`904`, and `1000`–`1004`.
 
 The physical notebook layout is:
 
@@ -190,7 +192,7 @@ notebooks/
 ├── phase2_tumor_discovery_layer/
 ├── phase3_cell_line_discovery_layer/
 ├── phase4_consensus_programs/                      # complete through notebook 404
-├── phase4b_secondary_molecular_characterization/   # notebook 450 complete / frozen; 451 planned
+├── phase4b_secondary_molecular_characterization/   # closed / frozen through notebook 451
 ├── phase5_functional_vulnerabilities/              # closed / frozen through notebook 502
 ├── phase6_pharmacogenomic_contexts/                # planned; includes explicit XAI notebooks 601–602
 ├── phase7_perturbational_hypotheses/               # planned
@@ -214,7 +216,7 @@ The current roadmap v3.2 source-of-truth documents are:
 * `docs/MODELING_POLICY.md` — modeling boundaries, secondary molecular-context rules, leakage prevention, XAI/SHAP requirements, biological-context rules, evidence-integration policy, and interpretation rules.
 * `docs/TERMINOLOGY_GUIDE.md` — approved terminology for candidate vulnerabilities, resistance-like contexts, perturbational hypotheses, and validation language.
 * `docs/workflow.md` — current roadmap v3.2 operational workflow, including completed-phase boundaries and planned handoffs.
-* `docs/PHASE4B_450_ANALYSIS_CONTRACT.md` — notebook-450-specific analytical contract for mutation representation, lineage-aware inference, sensitivity analyses, exploratory burden diagnostics, and downstream-use boundaries.
+* `docs/contracts/` — prospective analysis contracts, organized by phase; see its README for lifecycle rules.
 * `docs/decisions/004_secondary_molecular_context_characterization.md` — durable decision establishing notebooks 108, 450, and 451 and their freeze boundaries.
 * `docs/decisions/005_biological_xai_context_and_experimental_handoff.md` — durable decision defining hierarchical XAI contextualization and the notebook-904 computational-to-experimental evidence handoff.
 
@@ -226,7 +228,7 @@ The current roadmap v3.2 source-of-truth documents are:
 * **Deterministic derived data:** Outputs in `data/interim/` and `data/processed/` should be reproducible from raw source files using version-controlled code, notebooks, and environment definitions.
 * **Raw-data provenance:** `config/raw_data_registry.json` records source datasets, releases, file locations, and audit summaries; `data/interim/qc/` contains relevant tracked audit outputs.
 * **Derived-artifact lineage:** `config/artifact_registry.json` records the frozen identity and lineage of registered derived artifacts.
-* **Current reproduction environment:** `envs/environment.yml`, `envs/python_environment_snapshot.txt`, and `envs/r_environment.json` record the current reproduction environment; `envs/README.md` distinguishes these records from historical execution evidence where it exists.
+* **Current reproduction environment:** `envs/environment.yml`, `envs/python_environment_snapshot.txt`, and the scoped R records under `envs/` record reproduction requirements; `envs/README.md` distinguishes them from historical execution evidence where it exists.
 * **Leakage prevention:** Analyses should avoid naïve pan-cancer pooling, random cross-lineage splits, post-split feature leakage, cell-line overlap leakage, platform leakage, drug-family leakage, and downstream-result feedback into frozen discovery objects.
 * **Secondary characterization discipline:** mutation and locus-level methylation-expression analyses are post-freeze contextual analyses; lineage/project structure, platform/caller provenance, purity, annotation uncertainty, and negative results remain explicit.
 * **XAI discipline:** SHAP and related attributions require valid evaluation design, remain at the resolution of the actual fitted feature space, and are interpreted as model behavior rather than biological causality.

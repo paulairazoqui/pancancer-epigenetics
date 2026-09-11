@@ -315,7 +315,7 @@ Outputs:
 
 ## Status
 
-**IN PROGRESS.** Notebook **450 — Secondary Genomic Context Characterization** is complete / frozen; notebook **451 — Locus-Level Methylation–Expression Characterization** remains planned. This downstream characterization layer does **not** reopen Phase 4 discovery or consensus construction.
+**CLOSED / FROZEN.** Notebooks **450 — Secondary Genomic Context Characterization** and **451 — Locus-Level Methylation–Expression Characterization** are complete / frozen. This downstream characterization layer does **not** reopen Phase 4 discovery or consensus construction.
 
 ## Objective
 
@@ -348,7 +348,7 @@ Its stable registry identifier is:
 
 `phase4b.450.primary_gene_program_associations`
 
-The notebook-specific analytical rules are documented in `docs/PHASE4B_450_ANALYSIS_CONTRACT.md`.
+The notebook-specific analytical rules are documented in `docs/contracts/phase4b/PHASE4B_450_ANALYSIS_CONTRACT.md`.
 
 Interpretation boundaries:
 
@@ -368,7 +368,7 @@ Primary resources:
 * frozen tumor/consensus program definitions;
 * prespecified CpG-to-gene and promoter annotations.
 
-Planned analyses:
+Completed analysis:
 
 * map relevant program-associated CpGs to genes and promoter/regulatory annotations;
 * characterize methylation-expression associations at locus/gene level;
@@ -384,12 +384,11 @@ Boundaries:
 * platform-specific probe coverage and annotation uncertainty must remain explicit;
 * negative or non-recurrent results are valid outputs.
 
-Current and planned outputs:
+Frozen outputs:
 
-* frozen notebook-450 primary gene × program genomic-context association handoff
-* planned locus-level CpG–gene methylation-expression association tables
-* planned promoter/regulatory annotation summaries
-* explicit negative-result and limitation documentation where applicable
+* frozen notebook-450 primary gene × program genomic-context association handoff;
+* frozen notebook-451 CpG–gene annotation/eligibility, primary association, within-project, leave-one-project-out, sensitivity, locus-level evidence, and analysis-metadata artifacts; and
+* explicit limitation documentation where applicable.
 
 Phase 4B outputs are stored under `data/processed/secondary_characterization` and may feed Phase 9 evidence synthesis as separately traceable contextual evidence. Their inclusion in a manuscript is optional and determined by scientific relevance rather than by project-compliance requirements.
 
@@ -455,6 +454,10 @@ Outputs:
 ---
 
 # Phase 6 — Pharmacogenomic Contexts and Explainable Modeling (XAI)
+
+## Status
+
+**PLANNED / NOT STARTED.**
 
 ## Objective
 

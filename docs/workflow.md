@@ -53,12 +53,12 @@ This workflow describes the operational sequence for the roadmap v3.2 framework.
 
 ## Phase 4B — Secondary Molecular Context Characterization
 
-**Status:** **IN PROGRESS — notebook 450 complete / frozen; notebook 451 planned**.
+**Status:** **CLOSED / FROZEN — notebooks 450–451 complete**.
 
 - **Objective:** characterize frozen program representations through somatic genomic context and locus-level methylation-expression relationships without reopening discovery.
-- **Notebook series:** `450` Secondary Genomic Context Characterization — complete / frozen; `451` Locus-Level Methylation–Expression Characterization — planned.
+- **Notebook series:** `450` Secondary Genomic Context Characterization — complete / frozen; `451` Locus-Level Methylation–Expression Characterization — complete / frozen.
 - **Primary inputs:** frozen Phase 4 programs; the audited and frozen TCGA/GDC somatic-mutation handoff from notebook 108; frozen TCGA methylation and RNA-seq data; and prespecified CpG-to-gene and promoter/regulatory annotations for notebook 451.
-- **Primary outputs:** notebook 450 publishes the frozen `450_primary_gene_program_associations.csv` handoff containing the complete primary gene × consensus-program family, primary inference, lineage-aware recurrence characterization, prespecified sensitivity stability, and exploratory focal-excluded background observed-variant-burden diagnostics. Notebook 451 is expected to add locus-level CpG–gene methylation-expression and promoter/regulatory summaries under `data/processed/secondary_characterization` if supported by the planned analysis.
+- **Primary outputs:** notebook 450 publishes the frozen `450_primary_gene_program_associations.csv` handoff containing the complete primary gene × consensus-program family, primary inference, lineage-aware recurrence characterization, prespecified sensitivity stability, and exploratory focal-excluded background observed-variant-burden diagnostics. Notebook 451 publishes frozen CpG–gene annotation/eligibility, primary, within-project, leave-one-project-out, sensitivity, locus-level evidence, and analysis-metadata artifacts; all seven are registered as `phase4b.451.*` artifacts.
 - **Genomic boundary:** notebook 450 uses somatic mutations as secondary characterization, not rediscovery. Primary inference is project-adjusted and recurrence requires prespecified cross-project directional and leave-one-project-out support. Conventional TMB is not reported because a defensible sample-comparable callable-territory denominator is unavailable. The focal-excluded background observed-variant-burden analysis is exploratory and does not redefine primary significance, recurrence, or sensitivity stability. Copy-number analysis remains outside this block unless separately justified before implementation.
 - **Methylation-expression boundary:** inverse promoter methylation-expression associations may be described as compatible with epigenetic regulation but not as mechanistic proof. TCGA tumors are not assigned resistant/sensitive labels for this analysis. Platform coverage, annotation uncertainty, purity, and other applicable confounders remain explicit.
 - **Freeze boundary:** Phase 4B cannot modify frozen Phase 4 objects. Positive, negative, lineage-specific, heterogeneous, or non-recurrent outcomes are all valid. Publication is optional; the analysis may remain a documented project result if it does not strengthen a manuscript.
@@ -78,7 +78,7 @@ This workflow describes the operational sequence for the roadmap v3.2 framework.
 
 ## Phase 6 — Pharmacogenomic Contexts and Explainable Modeling (XAI)
 
-**Status:** planned.
+**Status:** planned / not started.
 
 - **Objective:** characterize resistance-like pharmacogenomic contexts associated with frozen consensus programs and perform lineage-aware explainable predictive modeling as the explicit XAI component of the project.
 - **Notebook series:** `600` Program–Drug Associations; `601` Explainable Predictive Modeling; `602` SHAP Attribution and Stability Analysis; `603` Cross-Screen Replication.

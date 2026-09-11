@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "scope": "phase4b_notebook_451_annotation_export_reproduction_requirements",
+  "historical_execution_claim": false,
+  "supported_script": "scripts/phase4b/export_sesamedata_hm450_hg38_annotation.R",
+  "r_version": "4.6.1",
+  "bioconductor_version": "3.23",
+  "required_packages": {
+    "BiocManager": {},
+    "sesameData": {
+      "version": "1.30.0"
+    },
+    "ExperimentHub": {},
+    "GenomeInfoDb": {},
+    "GenomicRanges": {},
+    "S4Vectors": {},
+    "BiocGenerics": {}
+  }
+}

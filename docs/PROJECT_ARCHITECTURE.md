@@ -61,6 +61,17 @@ Can independently discovered epigenetic-transcriptomic programs in tumors and ca
 
 The two discovery layers are analytically independent. Cross-system comparison starts only after tumor and cell-line candidate universes and their within-system robustness assessments are frozen. Phase 4B is a post-freeze characterization layer: its results cannot feed back into discovery or consensus eligibility. Scoring or projection may be useful later as an analytic operation, but it is not a cell-line discovery mechanism.
 
+## Artifact-registry namespace semantics
+
+Artifact-ID phase/notebook prefixes identify the producing or organizational
+notebook namespace; they do not require every input to originate from a
+numerically earlier phase. A later-added acquisition or audit notebook may
+intentionally consume an already frozen downstream cohort definition to make a
+resource-specific handoff, without reopening or redefining that cohort. This
+applies to the stable `phase1.107.rnai_frozen_model_cohort`,
+`phase1.108.primary_file_handoff`, and `phase1.108.case_eligibility` identities
+and their recorded dependencies.
+
 ---
 
 # Phase 2 — Tumor Epigenetic-Transcriptomic Discovery

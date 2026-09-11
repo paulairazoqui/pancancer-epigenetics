@@ -1,6 +1,6 @@
 # data
 
-Data directories follow roadmap v3.0.
+Data directories follow roadmap v3.2.
 
 - `raw/`: immutable source datasets, organized by source dataset.
 - `interim/`: harmonized and analysis-ready inputs for downstream notebooks.
