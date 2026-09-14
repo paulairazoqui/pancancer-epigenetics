@@ -104,18 +104,68 @@
     }
   },
   "ctrp": {
-    "source_database": null,
-    "release": null,
-    "download_page_url": null,
-    "status": "planned",
-    "files": {}
+    "source_database": "Cancer Therapeutics Response Portal (CTRP)",
+    "provider": "NCI CTD² / Broad Institute",
+    "release": "CTRPv2.0 2015 ExpandedDataset",
+    "provenance_mode": "file_managed",
+    "canonical_dir": "data/raw/ctrp",
+    "files": {
+      "CTRPv2.0_2015_ctd2_ExpandedDataset.zip": {
+        "role": "primary_pharmacogenomic_archive",
+        "status": "acquired_and_used",
+        "size_bytes": 342737645,
+        "sha256": "8f62b3b5ed70cfd367cf52ce0a99884dd0a674d1a8c301474b707648689bdee3"
+      },
+      "PSet_CTRPv2.rds": {
+        "role": "secondary_harmonized_pharmacoset",
+        "status": "acquired_not_used",
+        "source_database": "PharmacoGx / ORCESTRA",
+        "doi": "10.5281/zenodo.7826870",
+        "size_bytes": 40707609,
+        "sha256": "95c74304c08912f69d5e35e2863c1fe248cd0cbd21ade282a5e4e45200ee442e"
+      }
+    },
+    "download_page_url": "https://ctd2-data.nci.nih.gov/Public/Broad/CTRPv2.0_2015_ctd2_ExpandedDataset/"
   },
   "prism": {
-    "source_database": null,
-    "release": null,
-    "download_page_url": null,
-    "status": "planned",
-    "files": {}
+    "source_database": "DepMap PRISM Repurposing",
+    "provider": "Broad Institute / DepMap",
+    "release": "PRISM Repurposing 19Q4 Secondary Screen",
+    "provenance_mode": "file_managed",
+    "canonical_dir": "data/raw/prism",
+    "files": {
+      "secondary-screen-readme.txt": {
+        "role": "resource_readme",
+        "status": "supporting",
+        "size_bytes": 7647,
+        "sha256": "ed453e2bbaecff26cf923d8a69290f2c18fd7488d5a7d6903821980e6d49c99d"
+      },
+      "secondary-screen-cell-line-info.csv": {
+        "role": "cell_line_metadata",
+        "status": "acquired_and_used",
+        "size_bytes": 40979,
+        "sha256": "b93436b5f4bcf5fd14589697be4ca8f99ffd99d639223080380bc514c3718d27"
+      },
+      "secondary-screen-dose-response-curve-parameters.csv": {
+        "role": "dose_response_curve_parameters",
+        "status": "acquired_and_used",
+        "size_bytes": 264340589,
+        "sha256": "88d1013506e0cd6f191a51c5f3fdd3fb2be54f8afb4e19a5d1f8538e81fbfec8"
+      },
+      "secondary-screen-replicate-collapsed-treatment-info.csv": {
+        "role": "replicate_collapsed_treatment_metadata",
+        "status": "acquired_and_used",
+        "size_bytes": 3788355,
+        "sha256": "9d0d1fb4faa87a63cd84965ec5e2b55a9df5680520a41b029abb679cfd4384f7"
+      },
+      "secondary-screen-replicate-collapsed-logfold-change.csv": {
+        "role": "replicate_collapsed_logfold_change",
+        "status": "supporting",
+        "size_bytes": 91620551,
+        "sha256": "a358beb9efbc96b3d777cbb0212e4cd724080f17970d241627ccd17855d21939"
+      }
+    },
+    "download_page_url": "https://depmap.org/portal/data_page/?release=PRISM+Repurposing+19Q4&tab=allData"
   },
   "tcga": {
     "source_database": "Genomic Data Commons (GDC)",

@@ -175,18 +175,59 @@ def test_actual_registry_management_modes_and_statuses() -> None:
     assert registry["gdsc"]["provenance_mode"] == "file_managed"
     assert registry["epifactors"]["provenance_mode"] == "file_managed"
     assert registry["msigdb"]["provenance_mode"] == "file_managed"
-    assert registry["ctrp"]["status"] == "planned"
+    assert registry["ctrp"]["provenance_mode"] == "file_managed"
+    assert registry["prism"]["provenance_mode"] == "file_managed"
 
-    files = enumerate_file_managed_files(registry, root=Path("/not/the/raw/data"))
+    files = enumerate_file_managed_files(
+        registry,
+        root=Path("/not/the/raw/data"),
+    )
     paths = {record["relative_path"] for record in files}
+
     assert "data/raw/tcga/confounders/41467_2013_BFncomms3612_MOESM489_ESM.xlsx" in paths
     assert not any("star_counts" in path or "methylation" in path for path in paths)
     assert any(path.startswith("data/raw/depmap/") for path in paths)
     assert any(path.startswith("data/raw/gdsc/") for path in paths)
     assert any(path.startswith("data/raw/epifactors/") for path in paths)
     assert any(path.startswith("data/raw/msigdb/") for path in paths)
-    assert registry["ctrp"]["status"] == "planned"
-    assert registry["prism"]["status"] == "planned"
+    assert any(path.startswith("data/raw/ctrp/") for path in paths)
+    assert any(path.startswith("data/raw/prism/") for path in paths)
+
+    assert (
+        registry["ctrp"]["files"]["CTRPv2.0_2015_ctd2_ExpandedDataset.zip"]["status"]
+        == "acquired_and_used"
+    )
+    assert (
+        registry["ctrp"]["files"]["PSet_CTRPv2.rds"]["status"]
+        == "acquired_not_used"
+    )
+
+    assert (
+        registry["prism"]["files"]["secondary-screen-readme.txt"]["status"]
+        == "supporting"
+    )
+    assert (
+        registry["prism"]["files"]["secondary-screen-cell-line-info.csv"]["status"]
+        == "acquired_and_used"
+    )
+    assert (
+        registry["prism"]["files"][
+            "secondary-screen-dose-response-curve-parameters.csv"
+        ]["status"]
+        == "acquired_and_used"
+    )
+    assert (
+        registry["prism"]["files"][
+            "secondary-screen-replicate-collapsed-treatment-info.csv"
+        ]["status"]
+        == "acquired_and_used"
+    )
+    assert (
+        registry["prism"]["files"][
+            "secondary-screen-replicate-collapsed-logfold-change.csv"
+        ]["status"]
+        == "supporting"
+    )
 
 
 def test_resolve_canonical_file_path_uses_registry_filename(tmp_path: Path) -> None:
