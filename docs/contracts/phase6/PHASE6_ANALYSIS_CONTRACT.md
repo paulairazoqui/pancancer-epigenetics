@@ -1010,22 +1010,38 @@ FDR criterion must be reported transparently rather than silently removed.
 The primary lineage-robustness procedure is frozen as
 leave-one-supported-lineage-out refitting.
 
-The exact descriptive summaries used to characterize those refits remain to be
-frozen before inspection of leave-one-lineage-out results.
+The exact descriptive summaries were frozen after the primary GDSC association
+family had been executed, but before any leave-one-lineage-out refit result was
+inspected.
 
-Those summaries may characterize:
+This timing does not alter the already frozen primary model, multiplicity
+family, coefficients, p-values, q-values, or FDR-controlled association set.
 
-- coefficient-direction stability;
-- coefficient-range or dispersion across refits;
-- sensitivity to omission of individual supported lineages; and
-- whether the pooled estimate appears disproportionately dependent on one
-  lineage.
+For every primary GDSC drug-program association, one refit is performed after
+omitting each supported lineage in turn.
 
-They must remain sensitivity and heterogeneity descriptors.
+The leave-one-lineage-out analysis is descriptive and does not define a second
+inferential family.
 
-They must not define an alternative significance route, modify the primary
-Benjamini-Hochberg family, or rescue an association that fails primary
-multiplicity control.
+For each primary association, the following summaries are retained:
+
+- number of leave-one-lineage-out refits;
+- minimum leave-one-lineage-out coefficient;
+- maximum leave-one-lineage-out coefficient;
+- median leave-one-lineage-out coefficient;
+- fraction of refits retaining the same coefficient sign as the primary model;
+- whether any leave-one-lineage-out refit reverses coefficient sign;
+- maximum absolute coefficient change relative to the primary estimate; and
+- identity of the omitted lineage producing the largest absolute coefficient
+  change.
+
+No leave-one-lineage-out p-value or q-value is used as an alternative
+significance criterion.
+
+No minimum sign-concordance fraction or maximum coefficient-change threshold is
+used to rescue, reject, or reclassify the primary FDR-controlled association.
+
+These summaries characterize sensitivity to lineage composition only.
 
 ---
 
