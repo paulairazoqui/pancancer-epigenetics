@@ -20,9 +20,17 @@ That prerequisite stage was limited to:
 - technically motivated response-metric selection; and
 - repeated-experiment structure in CTRP.
 
-No program–drug association coefficient, p-value, q-value, predictive-model
-performance result, SHAP value, feature ranking, or cross-screen replication
-result was inspected before the decisions frozen below were established.
+No program–drug association coefficient, p-value, or q-value was inspected
+before the primary notebook-600 eligibility, model, response-handling, and
+multiplicity decisions were frozen.
+
+Additional notebook-600 sensitivity and descriptive characterization rules
+that were frozen after execution of the primary GDSC association family are
+timestamped explicitly in their corresponding sections. Those later rules
+were established before inspection of the results to which they apply.
+
+No predictive-model performance result, SHAP value, feature ranking, or
+cross-screen replication result has yet been inspected.
 
 The prerequisite characterization must therefore not be represented as having
 been preregistered before all Phase 6 data inspection. Its role was narrower:
@@ -45,7 +53,11 @@ The authoritative executable records will be:
 
 ## Status
 
-Planned / partially frozen before Phase 6 inferential result inspection.
+In progress. Notebook 600 primary GDSC inference has been executed under its
+frozen specification. Notebook 600 sensitivity/descriptive characterization
+is being completed. Notebook 601 predictive modeling, notebook 602 attribution,
+and notebook 603 cross-screen replication remain pending prospective freeze
+before inspection of their corresponding results.
 
 This document defines the analytical decisions governing:
 
@@ -930,6 +942,11 @@ the primary association model is:
 
 The model is fitted by ordinary least squares using HC3
 heteroskedasticity-robust standard errors.
+
+The executable implementation uses two-sided t-based inference with residual
+degrees of freedom (`use_t=True`) for HC3 coefficient tests and reports 95%
+confidence intervals. This implementation detail was fixed before inspection
+of the primary association results.
 
 Only models belonging to drug-specific supported lineages under the frozen
 `20 / 3 / 100` eligibility rule contribute to the corresponding model.
