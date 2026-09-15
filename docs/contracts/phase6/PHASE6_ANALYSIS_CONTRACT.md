@@ -775,14 +775,11 @@ It is not evidence for or against a program–drug relationship.
 
 ---
 
-# Decisions pending before notebook 600 inferential execution
+# Notebook 600 frozen inferential specification
 
-The following items remain:
-
-**PENDING FREEZE BEFORE NOTEBOOK 600 INFERENTIAL EXECUTION**
-
-They must be resolved without inspecting program–drug association estimates,
-p-values, q-values, rankings, or favorable drug/program patterns.
+The following notebook-600 rules were frozen before inspection of program–drug
+association estimates, p-values, q-values, rankings, or favorable drug/program
+patterns.
 
 ## Drug-level estimability and lineage-support rule
 
@@ -1008,40 +1005,27 @@ FDR criterion must be reported transparently rather than silently removed.
 
 ---
 
-## Lineage heterogeneity framework
+## Additional lineage-heterogeneity characterization
 
-The exact prespecified method for evaluating lineage heterogeneity remains to
-be frozen.
+The primary lineage-robustness procedure is frozen as
+leave-one-supported-lineage-out refitting.
 
-The final rule must distinguish:
+The exact descriptive summaries used to characterize those refits remain to be
+frozen before inspection of leave-one-lineage-out results.
 
-- pooled association;
-- lineage-specific association;
-- directional consistency;
-- lineage breadth; and
-- evidence that a pooled result is driven predominantly by one lineage.
+Those summaries may characterize:
 
-Per-lineage significance must not be treated as necessary evidence of
-cross-lineage recurrence unless that requirement is prospectively frozen.
+- coefficient-direction stability;
+- coefficient-range or dispersion across refits;
+- sensitivity to omission of individual supported lineages; and
+- whether the pooled estimate appears disproportionately dependent on one
+  lineage.
 
----
+They must remain sensitivity and heterogeneity descriptors.
 
-## Primary multiplicity family
-
-The notebook-600 multiple-testing family remains to be frozen.
-
-The contract must define before inference:
-
-- which drugs enter the family;
-- whether GDSC developmental/internal tests and external-screen tests form
-  separate inferential families;
-- how the three frozen consensus programs enter the family;
-- the FDR method;
-- the support threshold; and
-- which sensitivity or contextual analyses remain outside the primary family.
-
-Inferential families must not be subdivided post hoc according to favorable
-program, drug class, screen, direction, lineage, or mechanism.
+They must not define an alternative significance route, modify the primary
+Benjamini-Hochberg family, or rescue an association that fails primary
+multiplicity control.
 
 ---
 
@@ -1050,8 +1034,9 @@ program, drug class, screen, direction, lineage, or mechanism.
 Proliferation remains a recognized potential cell-line confounder.
 
 Before primary notebook-600 inference, the available frozen upstream Phase 3
-artifacts were reviewed for a previously defined proliferation representation
-with defensible coverage of the relevant Phase 6 model universe.
+artifact set was reviewed for a previously defined proliferation
+representation with defensible coverage of the relevant Phase 6 model
+universe.
 
 No such frozen cell-line proliferation covariate was identified.
 
@@ -1067,6 +1052,8 @@ limitation of the Phase 6 pharmacogenomic association analysis.
 
 This limitation must not be interpreted as evidence that proliferation is
 irrelevant to the observed associations.
+
+---
 
 # Decisions pending before notebook 601 predictive modeling
 
