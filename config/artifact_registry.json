@@ -3162,6 +3162,341 @@
           "artifact_id": "phase2.203.final_sample_mapping"
         }
       ]
+    },
+    "phase6.600.program_score_universe": {
+      "path": "data/processed/pharmacogenomic_contexts/600_program_score_universe.parquet",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/600_program_drug_associations.ipynb"
+      },
+      "shape": [
+        981,
+        6
+      ],
+      "size_bytes": 38838,
+      "sha256": "1ce2cba61373d601dfad1a0c188550645ceda1c1a94dfa2ef3b5a480a47da1f8",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_cellline_scores"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_gene_weights"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.303.harmonized_expression"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/depmap/files/Model.csv"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/depmap/files/OmicsExpressionProteinCodingGenesTPMLogp1.csv"
+        }
+      ]
+    },
+    "phase6.600.ctrp_model_crosswalk": {
+      "path": "data/processed/pharmacogenomic_contexts/600_ctrp_model_crosswalk.csv",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/600_program_drug_associations.ipynb"
+      },
+      "shape": [
+        821,
+        7
+      ],
+      "size_bytes": 83078,
+      "sha256": "3e9530416fc9294af4e0ef52ab6cbcac384002e2013a39994d15e4909f8692b3",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.program_score_universe"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/ctrp/files/CTRPv2.0_2015_ctd2_ExpandedDataset.zip"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/depmap/files/Model.csv"
+        }
+      ]
+    },
+    "phase6.600.cross_resource_compound_catalog": {
+      "path": "data/processed/pharmacogenomic_contexts/600_cross_resource_exact_compound_catalog.csv",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/600_program_drug_associations.ipynb"
+      },
+      "shape": [
+        228,
+        16
+      ],
+      "size_bytes": 21746,
+      "sha256": "ab3b5f12893224f2d0273ef234b2bb8c5cc13143fe4fb23a1c983d9493158734",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.program_score_universe"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/gdsc/files/GDSC2_fitted_dose_response_27Oct23.xlsx"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/ctrp/files/CTRPv2.0_2015_ctd2_ExpandedDataset.zip"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/prism/files/secondary-screen-dose-response-curve-parameters.csv"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/prism/files/secondary-screen-replicate-collapsed-treatment-info.csv"
+        }
+      ]
+    },
+    "phase6.600.drug_eligibility": {
+      "path": "data/processed/pharmacogenomic_contexts/600_drug_eligibility.csv",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/600_program_drug_associations.ipynb"
+      },
+      "shape": [
+        1037,
+        6
+      ],
+      "size_bytes": 47011,
+      "sha256": "a4fee84775de46c0d7ef5ae510972c167effe2cee072edf99b85e1bf355ff2ff",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.program_score_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.ctrp_model_crosswalk"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.cross_resource_compound_catalog"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/gdsc/files/GDSC2_fitted_dose_response_27Oct23.xlsx"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/ctrp/files/CTRPv2.0_2015_ctd2_ExpandedDataset.zip"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/prism/files/secondary-screen-dose-response-curve-parameters.csv"
+        }
+      ]
+    },
+    "phase6.600.gdsc_analysis_universe": {
+      "path": "data/processed/pharmacogenomic_contexts/600_gdsc_analysis_universe.parquet",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/600_program_drug_associations.ipynb"
+      },
+      "shape": [
+        136176,
+        7
+      ],
+      "size_bytes": 1430223,
+      "sha256": "00954d16b2082f3d660a9bf4f58947f5175aa3483667d1cb70162dd90749504b",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.program_score_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.drug_eligibility"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.302.integrated_modeling_cohort"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/gdsc/files/GDSC2_fitted_dose_response_27Oct23.xlsx"
+        }
+      ]
+    },
+    "phase6.600.ctrp_analysis_universe": {
+      "path": "data/processed/pharmacogenomic_contexts/600_ctrp_analysis_universe.parquet",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/600_program_drug_associations.ipynb"
+      },
+      "shape": [
+        302310,
+        8
+      ],
+      "size_bytes": 1096011,
+      "sha256": "a1c92ef3c99f3651f8013196ecbe64896e17f946e2733c7135d54031f8daf353",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.program_score_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.ctrp_model_crosswalk"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.drug_eligibility"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/ctrp/files/CTRPv2.0_2015_ctd2_ExpandedDataset.zip"
+        }
+      ]
+    },
+    "phase6.600.prism_analysis_universe": {
+      "path": "data/processed/pharmacogenomic_contexts/600_prism_analysis_universe.parquet",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/600_program_drug_associations.ipynb"
+      },
+      "shape": [
+        65736,
+        9
+      ],
+      "size_bytes": 703400,
+      "sha256": "f27a5fa4c9d7674d7efec7e9e22a0aab1334b512e1c73e1bf1afb38b7667c168",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.program_score_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.cross_resource_compound_catalog"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.drug_eligibility"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/prism/files/secondary-screen-cell-line-info.csv"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/prism/files/secondary-screen-dose-response-curve-parameters.csv"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/prism/files/secondary-screen-replicate-collapsed-treatment-info.csv"
+        }
+      ]
+    },
+    "phase6.600.gdsc_program_drug_associations": {
+      "path": "data/processed/pharmacogenomic_contexts/600_gdsc_program_drug_associations.parquet",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/600_program_drug_associations.ipynb"
+      },
+      "shape": [
+        843,
+        30
+      ],
+      "size_bytes": 118162,
+      "sha256": "44bebf416698a02f07889a6c07a430eabba53f15e6887b77e4695301443a2524",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.gdsc_analysis_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.program_score_universe"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/gdsc/files/GDSC2_fitted_dose_response_27Oct23.xlsx"
+        }
+      ]
+    },
+    "phase6.600.analysis_metadata": {
+      "path": "data/processed/pharmacogenomic_contexts/600_program_drug_association_metadata.json",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/600_program_drug_associations.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 6223,
+      "sha256": "030bcf6000272aa6df44f2321c2a5c098cbb7a1bb4923f58deb3d0f5272aea94",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.program_score_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.ctrp_model_crosswalk"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.cross_resource_compound_catalog"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.drug_eligibility"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.gdsc_analysis_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.ctrp_analysis_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.prism_analysis_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.gdsc_program_drug_associations"
+        }
+      ]
     }
   }
 }
