@@ -56,10 +56,11 @@ The authoritative executable records will be:
 In progress. Notebook 600 has been completed under its frozen specifications,
 including primary GDSC inference and the subsequently frozen lineage-sensitivity
 and descriptive characterization, with stable handoff persistence, round-trip
-validation, and artifact registration completed. Notebook 601 predictive
-modeling, notebook 602 attribution, and notebook 603 cross-screen replication
-remain pending prospective freeze before inspection of their corresponding
-results.
+validation, and artifact registration completed. Notebook 601 predictive-modeling
+specification is now prospectively frozen before model-performance inspection;
+notebook 601 execution remains pending. Notebook 602 attribution and notebook 603
+cross-screen replication remain pending prospective freeze before inspection of
+their corresponding results.
 
 This document defines the analytical decisions governing:
 
