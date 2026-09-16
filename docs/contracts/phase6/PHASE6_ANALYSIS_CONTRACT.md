@@ -1090,34 +1090,509 @@ irrelevant to the observed associations.
 
 ---
 
-# Decisions pending before notebook 601 predictive modeling
+# Frozen notebook 601 predictive-modeling specification
 
-The following items are:
+The following notebook-601 decisions are:
 
-**PENDING FREEZE BEFORE NOTEBOOK 601 MODEL-PERFORMANCE INSPECTION**
+**FROZEN BEFORE NOTEBOOK 601 MODEL-PERFORMANCE INSPECTION**
 
-They must include, at minimum:
+These rules were finalized after completion of notebook 600 and before inspection of any notebook-601 predictive-performance result.
 
-- exact prediction target;
-- eligible compound universe;
-- feature universe;
-- lineage-aware resampling structure;
-- drug-family leakage controls;
-- cell-line-overlap controls;
-- preprocessing boundaries;
-- hyperparameter-tuning structure;
-- primary baseline model;
-- primary predictive model or model family;
+Notebook 601 evaluates whether the three frozen Phase 4 consensus transcriptomic program scores provide reproducible predictive information about GDSC drug response beyond transparent lineage-aware baselines.
+
+The objective is not to maximize predictive performance.
+
+The primary question is:
+
+> For a known GDSC drug and a previously unseen cell-line model belonging to a lineage already represented for that drug, do the three frozen consensus transcriptomic program scores provide incremental predictive information about `LN_IC50` beyond lineage alone?
+
+The primary evaluation therefore concerns within-supported-lineage generalization to previously unseen cell-line models.
+
+It does not establish:
+
+- prediction for clinically treated patients;
+- prediction of acquired or longitudinal drug resistance;
+- prediction for previously unseen drugs;
+- prediction for previously unseen drug families;
+- generalization to completely unseen lineages as the primary estimand;
+- therapeutic efficacy;
+- causal drug-response mechanisms; or
+- clinical predictiveness.
+
+---
+
+## Developmental resource and prediction target
+
+Notebook 601 uses GDSC exclusively for model development and internal predictive evaluation.
+
+The prediction target is the frozen notebook-600 GDSC primary response:
+
+`LN_IC50`
+
+with:
+
+`higher value = more resistance-like`
+
+The response remains continuous and is modeled on its frozen native GDSC scale.
+
+Notebook 601 must not:
+
+- dichotomize `LN_IC50` into resistant versus sensitive classes;
+- redefine the response according to notebook-600 association results;
+- select an alternative GDSC response metric according to predictive performance; or
+- transform the target using CTRP or PRISM information.
+
+GDSC remains developmental/internal evidence and must not be described as independent validation.
+
+---
+
+## Primary compound universe
+
+The primary notebook-601 compound universe consists of the:
+
+`281`
+
+GDSC drugs already declared eligible in notebook 600 under the frozen `20 / 3 / 100` coverage and lineage-support rule.
+
+Eligibility is therefore inherited from the frozen notebook-600 technical universe and is not redefined according to predictive performance.
+
+Notebook 601 must not restrict the primary modeling universe according to:
+
+- notebook-600 association p-values;
+- notebook-600 q-values;
+- membership in the notebook-600 FDR-controlled association set;
+- effect direction or magnitude;
+- leave-one-lineage-out behavior from notebook 600;
+- drug target;
+- pathway annotation;
+- pharmacological attractiveness;
+- Phase 5 functional-vulnerability evidence;
+- CTRP or PRISM coverage; or
+- external-screen behavior.
+
+In particular, the 222 GDSC drugs with at least one notebook-600 FDR association do not define the notebook-601 primary modeling universe.
+
+The frozen notebook-600 GDSC association-result artifact must not be used to select notebook-601 compounds, features, models, thresholds, or resampling rules.
+
+---
+
+## Predictive-model architecture
+
+Notebook 601 uses one independent predictive analysis per eligible GDSC drug.
+
+No primary model pools different drugs into a shared drug-by-cell-line prediction model.
+
+No model parameter, fitted response relationship, or learned drug representation is shared across drugs.
+
+This architecture is chosen because the primary scientific question concerns whether the frozen transcriptomic programs add predictive information for a known drug, rather than whether a model can learn transferable representations across compounds.
+
+The primary architecture therefore does not claim generalization to previously unseen drugs.
+
+---
+
+## Frozen feature universe
+
+The primary predictive feature universe is restricted to the three frozen Phase 4 consensus transcriptomic program scores:
+
+- `CONSENSUS_TX_01`;
+- `CONSENSUS_TX_02`; and
+- `CONSENSUS_TX_03`.
+
+All three program scores enter the primary predictive model jointly.
+
+No program may be:
+
+- removed because it performs poorly;
+- selected because it performed favorably in notebook 600;
+- reweighted according to GDSC response;
+- reoriented;
+- re-standardized within a drug-specific subset; or
+- replaced by a downstream-derived representation.
+
+No genome-wide or transcriptome-wide feature space is part of the primary notebook-601 analysis.
+
+Gene-level expression features are not introduced merely to obtain gene-level SHAP attribution.
+
+If notebook 602 later attributes the frozen primary model, the resulting SHAP attribution is therefore program-level.
+
+Frozen gene weights and biological annotations may subsequently provide hierarchical biological contextualization, but they do not become gene-level model attribution.
+
+---
+
+## Primary baseline model
+
+For each eligible GDSC drug, the primary transparent baseline is:
+
+`LN_IC50 ~ C(OncotreeLineage)`
+
+using only the drug-specific supported lineages inherited from notebook 600.
+
+This baseline represents predictable drug-response structure attributable to lineage membership without using the frozen consensus program scores.
+
+An intercept-only predictor may be retained as a descriptive no-information reference but is not the primary scientific comparator.
+
+---
+
+## Primary predictive model
+
+For each eligible GDSC drug, the primary predictive model is:
+
+`LN_IC50 ~ C(OncotreeLineage) + CONSENSUS_TX_01 + CONSENSUS_TX_02 + CONSENSUS_TX_03`
+
+The model is linear and contains:
+
+- one intercept;
+- lineage representation;
+- the three frozen consensus program scores; and
+- no interaction terms.
+
+No nonlinear transformation, interaction search, automated feature selection, Random Forest, gradient boosting, XGBoost, neural network, or other higher-complexity model family is part of the primary notebook-601 analysis.
+
+The primary model family is fixed prospectively and is not selected according to observed cross-validation performance.
+
+---
+
+## Primary generalization target
+
+The primary evaluation target is:
+
+> prediction for a previously unseen cell-line model from a lineage already represented in the training data for the same known drug.
+
+This estimand must remain explicit when interpreting notebook-601 performance.
+
+The primary evaluation does not establish performance for a completely unseen lineage.
+
+Generalization to an unseen lineage is assessed separately only as a secondary stress test defined below.
+
+---
+
+## Primary lineage-aware resampling
+
+Primary model evaluation uses:
+
+`5-fold lineage-stratified cross-validation × 5 repeats`
+
+independently for each eligible GDSC drug.
+
+For each drug:
+
+- only models belonging to the frozen drug-specific supported lineages contribute;
+- fold assignment is stratified by `OncotreeLineage`;
+- every supported lineage is represented across the five folds;
+- each `ModelID` belongs to exactly one test fold per repeat;
+- the same `ModelID` cannot occur in both training and test partitions within a fold;
+- baseline and program models use exactly the same folds;
+- response values are not used to define fold membership; and
+- no random pan-cancer train/test split is permitted.
+
+The notebook-600 requirement of at least 20 response-covered models per supported lineage ensures that the five-fold primary design is technically feasible for every retained lineage.
+
+Performance is calculated from the complete set of out-of-fold predictions generated within each repeat.
+
+Fold-specific `R²` values are not averaged to define the primary repeat-level `R²`.
+
+Instead, all held-out predictions from the five folds of one repeat are concatenated and evaluated jointly against their corresponding observed values.
+
+The five resulting repeat-level performance estimates are then summarized prospectively as defined below.
+
+---
+
+## Randomness and reproducibility
+
+The fixed notebook-601 random seed is:
+
+`601`
+
+The five repeated lineage-stratified partitions are generated deterministically from this frozen seed.
+
+The seed must not be changed according to whether particular partitions produce more favorable predictive performance.
+
+Input ordering must be deterministic before resampling.
+
+---
+
+## Preprocessing boundaries
+
+Notebook 601 preserves the frozen consensus-program score scale.
+
+The primary analysis performs no:
+
+- external or combined re-standardization;
+- drug-specific program-score re-standardization;
+- outcome-informed scaling;
+- imputation;
+- PCA;
+- feature selection;
+- feature screening; or
+- response-informed transformation.
+
+Any categorical encoding required for lineage is fitted within the corresponding training partition.
+
+No transformation estimated from a held-out fold may contribute to the fitted training model.
+
+Unexpected missing program scores, duplicate analytical units, or incompatible frozen handoff structure must trigger diagnostic review rather than an improvised imputation, deduplication, or replacement rule.
+
+---
+
+## Hyperparameter tuning
+
+The primary notebook-601 model has no tuned hyperparameters.
+
+No nested hyperparameter search is therefore required for the primary analysis.
+
+The absence of tuning is intentional and preserves a low-dimensional, transparent model directly aligned with the frozen scientific question.
+
+Alternative model families must not be introduced after inspecting primary predictive performance in order to improve notebook-601 results.
+
+Any later alternative-model analysis would require separate prospective definition and explicit exploratory or sensitivity labeling.
+
+---
+
+## Primary predictive-performance metric
+
+The primary metric is incremental out-of-fold explained variance relative to the lineage-only baseline:
+
+`delta_R2 = R2_program_model - R2_lineage_baseline`
+
+For each repeat:
+
+- `R2_lineage_baseline` is calculated from the concatenated out-of-fold lineage-baseline predictions;
+- `R2_program_model` is calculated from the concatenated out-of-fold primary-model predictions; and
+- `delta_R2` is their difference.
+
+The primary drug-level incremental-performance summary is:
+
+`median(delta_R2 across 5 repeats)`
+
+This metric directly addresses whether the frozen consensus programs add predictive information beyond lineage.
+
+---
+
+## Supporting predictive-performance metrics
+
+The following supporting out-of-fold metrics are reported for both the lineage baseline and the full program model:
+
+- `R²`;
+- root mean squared error (`RMSE`); and
+- mean absolute error (`MAE`).
+
+Relative RMSE reduction may also be reported descriptively.
+
+The primary model is not selected according to whichever supporting metric appears most favorable.
+
+Performance differences across drugs must not be treated as biologically equivalent solely because their numerical values are similar.
+
+---
+
+## Model-selection rule
+
+There is no post-performance model-family selection in the primary notebook-601 analysis.
+
+The lineage-only baseline and the lineage-plus-three-program primary model are fixed before performance inspection.
+
+No drug-specific choice between multiple model families is permitted.
+
+No drug is promoted merely because it ranks highly relative to other drugs.
+
+Notebook 601 uses absolute prospectively defined predictive-validity criteria rather than selecting the best-performing fixed number or percentile of compounds.
+
+---
+
+## Drug-family leakage control
+
+The primary notebook-601 architecture prevents cross-drug parameter sharing by fitting every eligible drug independently.
+
+Therefore:
+
+- response measurements from one drug do not train the predictive model for another drug;
+- related compounds do not share fitted parameters;
+- `PUTATIVE_TARGET` and `PATHWAY_NAME` do not define leakage groups for the primary model;
+- pharmacological family annotations do not enter the prediction model; and
+- no drug-family grouping is used to rescue or prioritize predictive results.
+
+Because drug-specific performance estimates may nevertheless be correlated across related compounds or shared cell-line populations, the 281 drug-level analyses must not be interpreted as 281 independent biological replications.
+
+Any future explicit drug-family analysis would require a separately frozen family-identity authority and prospective analytical rule.
+
+---
+
+## Cell-line-overlap control
+
+The same cell-line model may have GDSC response measurements for multiple drugs.
+
+This does not create within-model train/test leakage in the primary architecture because each drug is fitted independently and no parameters are shared across drugs.
+
+Within every drug and every repeat:
+
+- each `ModelID` appears in exactly one held-out fold;
+- no `ModelID` appears simultaneously in the training and test set for the same fitted model; and
+- baseline and full models use the same cell-line partitions.
+
+Cross-drug dependence created by repeated use of the same biological models remains an explicit limitation when summarizing the collection of drug-level results.
+
+---
+
+## External-screen isolation
+
+CTRP and PRISM remain sealed external pharmacogenomic resources during notebook 601 model development and internal evaluation.
+
+Notebook 601 must not inspect CTRP or PRISM association or predictive-performance outcomes in order to choose:
+
+- compounds;
+- features;
+- model family;
+- hyperparameters;
 - performance metrics;
-- model-selection rule;
-- external-screen isolation;
-- random seeds where applicable; and
-- criteria defining inadequate predictive validity.
+- predictive-validity thresholds;
+- resampling structure; or
+- interpretation rules.
 
-No external replication screen may influence choices intended to be evaluated
-on that same screen.
+CTRP and PRISM outcomes are reserved for notebook 603 cross-screen replication under separately frozen rules.
 
-Random pan-cancer train/test splits are prohibited.
+Their notebook-600 technical interfaces may remain registered and available for provenance, but their response outcomes must not inform notebook-601 modeling decisions.
+
+---
+
+## Phase 5 isolation
+
+Phase 5 functional-vulnerability results do not enter notebook 601 as:
+
+- features;
+- drug-selection criteria;
+- model-selection criteria;
+- predictive-validity thresholds; or
+- rescue evidence.
+
+Notebook 601 therefore remains analytically separated from downstream vulnerability-based therapeutic prioritization.
+
+---
+
+## Secondary unseen-lineage stress test
+
+Generalization to a completely unseen lineage is not the primary notebook-601 estimand.
+
+A prospectively defined secondary stress test uses leave-one-supported-lineage-out evaluation.
+
+For each eligible drug and each supported lineage:
+
+1. all models from one lineage are held out;
+2. models from all remaining supported lineages form the training set;
+3. the held-out lineage is never represented during fitting.
+
+Because a lineage-specific categorical effect cannot be estimated for a lineage absent from training, the secondary stress-test comparator is:
+
+`LN_IC50 ~ 1`
+
+and the corresponding program model is:
+
+`LN_IC50 ~ CONSENSUS_TX_01 + CONSENSUS_TX_02 + CONSENSUS_TX_03`
+
+No lineage indicator is included in either secondary stress-test model.
+
+This analysis asks whether the frozen transcriptomic programs retain any predictive transportability to a lineage absent from training.
+
+It is a secondary robustness characterization only.
+
+It must not:
+
+- replace the primary lineage-stratified evaluation;
+- determine primary model selection;
+- rescue a model that fails the primary predictive-validity criteria;
+- redefine the primary generalization target; or
+- be used to select favorable drugs for subsequent analysis.
+
+---
+
+## Predictive-validity gate for subsequent SHAP interpretation
+
+Notebook 602 model attribution is not justified solely because a model can be fitted.
+
+For a GDSC drug to have adequate internal predictive validity for primary program-level SHAP interpretation, all of the following prospectively frozen criteria must be satisfied:
+
+1. median out-of-fold full-model performance across the five repeats:
+
+   `median R2_program >= 0.05`
+
+2. median incremental out-of-fold performance across the five repeats:
+
+   `median delta_R2 >= 0.02`
+
+3. positive incremental performance in at least four of the five repeats:
+
+   `delta_R2 > 0 in >= 4 of 5 repeats`
+
+These thresholds are operational predictive-validity criteria.
+
+They are not universal statistical or biological significance thresholds.
+
+The first criterion requires the complete fitted model to demonstrate non-trivial out-of-fold predictive validity.
+
+The second requires the frozen consensus programs to provide non-trivial incremental predictive information beyond lineage.
+
+The third requires that the incremental improvement not depend on a single favorable repeated partition.
+
+The five repeats are not treated as statistically independent observations, and the `4 of 5` requirement is not interpreted as a formal hypothesis test.
+
+No p-value or multiplicity-adjusted significance test is used as the primary predictive-validity gate.
+
+---
+
+## Predictive-validity outcome categories
+
+Failure of the SHAP-eligibility gate is retained as a valid notebook-601 result.
+
+Where useful for transparent interpretation, failure may be characterized descriptively according to its reason, including:
+
+- inadequate overall predictive validity;
+- inadequate incremental program contribution;
+- unstable incremental predictive improvement; or
+- combinations of these conditions.
+
+These categories must not be used to create alternative post hoc promotion routes.
+
+A drug failing the frozen gate must not be rescued because of:
+
+- notebook-600 FDR association;
+- biological interest;
+- drug target or pathway;
+- Phase 5 evidence;
+- external literature;
+- CTRP or PRISM behavior; or
+- favorable SHAP appearance.
+
+Passing the gate does not establish biological importance, mechanism, causality, external reproducibility, clinical predictiveness, or therapeutic relevance.
+
+It establishes only sufficient internal predictive validity to justify primary interpretation of fitted-model behavior in notebook 602.
+
+The exact notebook-602 attribution procedure, background/reference handling, attribution aggregation, stability analysis, and lineage-consistency rules remain subject to their own prospective freeze before SHAP results are inspected.
+
+---
+
+## Proliferation and unresolved confounding
+
+Notebook 601 inherits the notebook-600 conclusion that no previously frozen and methodologically defensible proliferation representation with appropriate coverage is available for this Phase 6 model universe.
+
+No new proliferation proxy is constructed post hoc solely to improve predictive robustness or reduce this limitation.
+
+Residual proliferation confounding therefore remains explicit.
+
+Other unresolved cell-line biological or technical confounders must likewise be reported rather than improvised after predictive results are known.
+
+---
+
+## Negative-result policy for notebook 601
+
+Notebook 601 remains scientifically complete if:
+
+- most or all drugs have low out-of-fold predictive performance;
+- lineage alone explains most predictable response structure;
+- the three frozen programs add little incremental information;
+- incremental improvement is unstable across repeated lineage-aware partitions;
+- unseen-lineage transportability is weak;
+- few or no drugs satisfy the predictive-validity gate for notebook 602; or
+- no primary program-level SHAP interpretation is ultimately justified.
+
+No feature space, model family, threshold, resampling rule, or compound universe may be relaxed after predictive-performance inspection in order to ensure that notebook 602 produces favorable attribution results.
 
 ---
 
