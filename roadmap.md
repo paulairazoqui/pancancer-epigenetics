@@ -457,7 +457,7 @@ Outputs:
 
 ## Status
 
-**PLANNED / NOT STARTED.**
+**IN PROGRESS. Notebooks 600 and 601 are complete under frozen specifications; notebooks 602 and 603 remain pending prospective design/freeze before their corresponding results are inspected.**
 
 ## Objective
 
@@ -475,52 +475,44 @@ This phase is the explicit XAI component of the project. Predictive modeling is 
 
 #### 600 — Program–Drug Associations
 
-Establish prespecified lineage-aware program–drug association families and characterize effect direction, heterogeneity, and drug-family structure before predictive modeling.
+Completed under prospectively frozen primary GDSC association rules. The developmental/internal GDSC family comprised 281 eligible drugs × 3 frozen consensus programs = 843 lineage-adjusted association tests with joint Benjamini–Hochberg FDR control. Stable score, mapping, eligibility, resource-specific analysis-universe, association, and metadata handoffs are registered in `config/artifact_registry.json`. CTRP and PRISM remain external cross-screen resources rather than sources for retrospective GDSC model selection.
 
 #### 601 — Explainable Predictive Modeling
 
-Candidate methods:
+Completed under a prospectively frozen low-dimensional predictive specification:
 
-* Elastic Net
-* Random Forest
-* XGBoost
+* one independent model per each of the 281 eligible GDSC drugs;
+* lineage-only baseline `LN_IC50 ~ C(OncotreeLineage)`;
+* fixed program model `LN_IC50 ~ C(OncotreeLineage) + CONSENSUS_TX_01 + CONSENSUS_TX_02 + CONSENSUS_TX_03`;
+* `5-fold lineage-stratified cross-validation × 5 repeats` with deterministic seed `601` and identical held-out partitions for baseline and program models;
+* primary incremental metric `delta_R2 = R2_program - R2_lineage`, summarized by the median across repeats;
+* no model-family search, feature selection, hyperparameter tuning, response redefinition, or post-performance compound rescue; and
+* CTRP, PRISM, and Phase 5 outcomes excluded from predictive-model selection and threshold definition.
 
-Requirements:
+Under the prospectively frozen predictive-validity gate, 125 of 281 drugs satisfy all criteria for subsequent primary program-level SHAP interpretation. This establishes internal attribution eligibility only; it does not establish biological importance, mechanism, external reproducibility, clinical predictiveness, or therapeutic relevance.
 
-* lineage-aware train/test or grouped resampling schemes
-* explicit prevention of cell-line-overlap and drug-family leakage
-* preprocessing and feature selection fitted within training partitions
-* comparison against transparent baseline models
-* no random pan-cancer splits
+The secondary leave-one-supported-lineage-out stress test was completed for 2,961 drug × held-out-lineage evaluations. Relative improvement over its training-derived intercept-only comparator was frequently positive, but absolute unseen-lineage predictive performance was weak overall. This stress test remains descriptive and cannot rescue or exclude drugs from the primary attribution gate.
+
+Stable notebook-601 partitions, repeat-level performance, LOLO performance, drug-level results, and analysis metadata are registered as `phase6.601.*` artifacts.
 
 #### 602 — SHAP Attribution and Stability Analysis
 
-Primary XAI analyses:
+**Pending prospective design/freeze before attribution inspection.** Notebook 602 must not begin SHAP result inspection until its attribution contract defines the eligible fitted models, leakage-safe attribution sample/reference structure, background/reference handling, aggregation, stability analysis, lineage-consistency characterization, and any prospectively justified model-class sensitivity.
 
-* SHAP global feature attribution
-* SHAP local attribution where scientifically useful
-* stability selection / resampling-based feature stability
-* comparison of attribution consistency across lineages, folds, and screens
-* attribution sensitivity to model class
-* hierarchical biological contextualization of stable attributions using frozen upstream biological representations
-
-Attribution must remain at the resolution of the actual model feature space. If the fitted model uses consensus-program scores, SHAP is program-level attribution. A stable attributed program may then be mapped to its frozen gene loadings/member genes, Phase 4 pathways and biological annotations, epigenetic-regulator enrichment, tumor-side methylation context, and Phase 4B locus-level or genomic context where informative. This downstream mapping is biological contextualization, not additional SHAP evidence. Gene-level SHAP may be reported only for models that actually contain gene-level features under the same leakage-safe evaluation design.
+Because the frozen notebook-601 primary model uses the three consensus-program scores as features, primary attribution of that model is program-level. A stable attributed program may then be mapped to its frozen gene loadings/member genes, Phase 4 pathways and biological annotations, epigenetic-regulator enrichment, tumor-side methylation context, and Phase 4B locus-level or genomic context where informative. This downstream mapping is biological contextualization, not additional SHAP evidence. Gene-level SHAP may be reported only for a separately prospectively defined model that actually contains gene-level features under a leakage-safe evaluation design.
 
 SHAP values quantify model attribution only. They must not be interpreted as causal biological effects, mechanistic proof, or validated biomarkers.
 
 #### 603 — Cross-Screen Replication
 
-Evaluate whether program–drug associations, model behavior, and interpretable feature-attribution patterns replicate across GDSC, CTRP, and PRISM where drug and model coverage permit. Drug-family and cell-line overlap must remain explicit.
+**Pending prospective design/freeze before replication-result inspection.** Notebook 603 will evaluate cross-screen evidence across GDSC, CTRP, and PRISM only under a separately frozen exact-compound, response-handling, overlap-aware, and multiplicity framework. Drug-family and cell-line overlap must remain explicit, and external screens must not be used retrospectively to tune notebook-601 models or notebook-602 attribution rules.
 
-Outputs:
+Current/future Phase 6 outputs include:
 
-* replicated resistance-like pharmacogenomic associations
-* predictive-model performance summaries
-* SHAP attribution tables and plots
-* stability-selection summaries
-* hierarchical biological-context tables for supported model attributions
-* cross-screen reproducibility reports
-* pharmacogenomic context maps
+* frozen GDSC program–drug association results and Phase 6 resource handoffs from notebook 600;
+* frozen lineage-aware predictive-performance summaries and attribution-eligibility handoffs from notebook 601;
+* SHAP attribution, stability, and hierarchical biological-context outputs only after notebook 602 is prospectively frozen and executed; and
+* cross-screen reproducibility outputs only after notebook 603 is prospectively frozen and executed.
 
 ---
 

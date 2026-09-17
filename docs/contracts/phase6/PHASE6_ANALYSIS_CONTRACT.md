@@ -2,12 +2,15 @@
 
 ## Lifecycle / execution status
 
-This analytical contract is being established before inspection of Phase 6
-program–drug association results, predictive-model performance, SHAP
-attributions, or cross-screen replication results.
+This contract was established prospectively across staged Phase 6 decision
+points. Notebook-600 and notebook-601 specifications were frozen before
+inspection of the corresponding inferential or predictive-performance results.
+The sections below preserve those historical prospective decisions. Notebook
+602 attribution and notebook 603 cross-screen replication remain pending
+prospective freeze before inspection of their corresponding results.
 
-Notebook `600 — Program–Drug Associations` has already performed a restricted
-prerequisite characterization stage before creation of this contract.
+Notebook `600 — Program–Drug Associations` performed a restricted prerequisite
+characterization stage before creation of this contract.
 
 That prerequisite stage was limited to:
 
@@ -29,8 +32,9 @@ that were frozen after execution of the primary GDSC association family are
 timestamped explicitly in their corresponding sections. Those later rules
 were established before inspection of the results to which they apply.
 
-No predictive-model performance result, SHAP value, feature ranking, or
-cross-screen replication result has yet been inspected.
+Notebook-601 predictive-model performance was inspected only after the
+predictive specification below had been frozen. No SHAP value, SHAP feature
+ranking, or CTRP/PRISM cross-screen replication result has yet been inspected.
 
 The prerequisite characterization must therefore not be represented as having
 been preregistered before all Phase 6 data inspection. Its role was narrower:
@@ -53,14 +57,52 @@ The authoritative executable records will be:
 
 ## Status
 
-In progress. Notebook 600 has been completed under its frozen specifications,
-including primary GDSC inference and the subsequently frozen lineage-sensitivity
-and descriptive characterization, with stable handoff persistence, round-trip
-validation, and artifact registration completed. Notebook 601 predictive-modeling
-specification is now prospectively frozen before model-performance inspection;
-notebook 601 execution remains pending. Notebook 602 attribution and notebook 603
-cross-screen replication remain pending prospective freeze before inspection of
-their corresponding results.
+In progress. Notebook 600 and notebook 601 are complete under their frozen
+specifications, with stable downstream-required handoffs persisted, validated,
+and registered. Notebook 601 evaluated all 281 frozen GDSC-eligible drugs; 125
+satisfy the prospectively frozen predictive-validity gate for subsequent
+primary program-level SHAP interpretation. This gate establishes internal
+attribution eligibility only.
+
+Notebook 602 attribution has not yet been prospectively frozen or executed, and
+no SHAP attribution result has been inspected. Notebook 603 cross-screen
+replication remains pending prospective freeze, and CTRP/PRISM replication
+outcomes have not been inspected for downstream replication decisions.
+
+## Notebook 601 execution update — 2026-09-17
+
+Notebook 601 has now been executed under the frozen predictive specification
+preserved below.
+
+- all 281 frozen eligible GDSC drugs were evaluated;
+- median drug-level out-of-fold `R²` was `0.231` for lineage-only models and
+  `0.244` for lineage-plus-program models;
+- median drug-level incremental performance was `delta_R2 = 0.016`;
+- 125 of 281 drugs satisfied all three frozen predictive-validity criteria;
+- the secondary unseen-lineage stress test comprised 2,961
+  `drug × held-out lineage` evaluations;
+- median drug-level unseen-lineage program-model `R²` was `-0.088`;
+- median drug-level unseen-lineage `delta_R2` relative to the training-derived
+  intercept-only comparator was `0.157`; and
+- the median fraction of held-out lineages with positive `delta_R2` was `0.727`.
+
+The unseen-lineage stress test remains secondary and descriptive. Its results
+do not rescue or exclude drugs from the primary notebook-602 attribution gate.
+
+The following stable notebook-601 artifacts are registered:
+
+- `phase6.601.primary_cv_partitions`;
+- `phase6.601.primary_repeat_performance`;
+- `phase6.601.lolo_performance`;
+- `phase6.601.drug_level_results`; and
+- `phase6.601.analysis_metadata`.
+
+No notebook-601 model family, feature universe, threshold, resampling rule,
+compound universe, or predictive-validity gate was changed after
+predictive-performance inspection.
+
+This execution update does not freeze any notebook-602 attribution decision.
+The notebook-602 section below remains fully pending prospective freeze.
 
 This document defines the analytical decisions governing:
 
@@ -503,7 +545,7 @@ The following screens represented cross-resource compounds during prerequisite
 characterization:
 
 - `HTS002`;
-- `MTS006`; and
+- `MTS006`;
 - `MTS010`.
 
 `MTS005` did not contribute coverage to the cross-resource exact-compound
