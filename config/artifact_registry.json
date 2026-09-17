@@ -3497,6 +3497,145 @@
           "artifact_id": "phase6.600.gdsc_program_drug_associations"
         }
       ]
+    },
+    "phase6.601.primary_cv_partitions": {
+      "path": "data/processed/pharmacogenomic_contexts/601_primary_cv_partitions.parquet",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/601_explainable_predictive_modeling.ipynb"
+      },
+      "shape": [
+        680880,
+        4
+      ],
+      "size_bytes": 838062,
+      "sha256": "ccaf0aecae5b5a6b3e43b871ec9028a852038ab174677725f1db0f0d3aa5941d",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.gdsc_analysis_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.drug_eligibility"
+        }
+      ]
+    },
+    "phase6.601.primary_repeat_performance": {
+      "path": "data/processed/pharmacogenomic_contexts/601_primary_repeat_performance.csv",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/601_explainable_predictive_modeling.ipynb"
+      },
+      "shape": [
+        1405,
+        9
+      ],
+      "size_bytes": 201442,
+      "sha256": "37d0bb623fbdf8100e2ecdd56bf60d2d1de70e76ee80a9a6bfd1eb9345fcb4dd",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.gdsc_analysis_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.program_score_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.601.primary_cv_partitions"
+        }
+      ]
+    },
+    "phase6.601.lolo_performance": {
+      "path": "data/processed/pharmacogenomic_contexts/601_lolo_performance.csv",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/601_explainable_predictive_modeling.ipynb"
+      },
+      "shape": [
+        2961,
+        11
+      ],
+      "size_bytes": 471594,
+      "sha256": "f8fd0f1d99d4b5b88c52845ede19a5c39e6b2eb8c084e23e234e7e1ea66c6f44",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.gdsc_analysis_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.program_score_universe"
+        }
+      ]
+    },
+    "phase6.601.drug_level_results": {
+      "path": "data/processed/pharmacogenomic_contexts/601_drug_level_results.csv",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/601_explainable_predictive_modeling.ipynb"
+      },
+      "shape": [
+        281,
+        24
+      ],
+      "size_bytes": 100059,
+      "sha256": "1ee129347eef574519fe61e0bf19381da4d6c731f3934bb1c1406256005122f6",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.601.primary_repeat_performance"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.601.lolo_performance"
+        }
+      ]
+    },
+    "phase6.601.analysis_metadata": {
+      "path": "data/processed/pharmacogenomic_contexts/601_analysis_metadata.json",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/601_explainable_predictive_modeling.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 2373,
+      "sha256": "851ffdc809e64d9ef409a21c680a6eb86971b39f80b4a0b25b22f33ad522d51d",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.601.primary_cv_partitions"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.601.primary_repeat_performance"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.601.lolo_performance"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.601.drug_level_results"
+        }
+      ]
     }
   }
 }
