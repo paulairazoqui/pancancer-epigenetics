@@ -6,8 +6,9 @@ This contract was established prospectively across staged Phase 6 decision
 points. Notebook-600 and notebook-601 specifications were frozen before
 inspection of the corresponding inferential or predictive-performance results.
 The sections below preserve those historical prospective decisions. Notebook
-602 attribution and notebook 603 cross-screen replication remain pending
-prospective freeze before inspection of their corresponding results.
+602 attribution has now also been prospectively frozen before attribution
+inspection. Notebook 603 cross-screen replication remains pending prospective
+freeze before inspection of its corresponding results.
 
 Notebook `600 — Program–Drug Associations` performed a restricted prerequisite
 characterization stage before creation of this contract.
@@ -64,8 +65,8 @@ satisfy the prospectively frozen predictive-validity gate for subsequent
 primary program-level SHAP interpretation. This gate establishes internal
 attribution eligibility only.
 
-Notebook 602 attribution has not yet been prospectively frozen or executed, and
-no SHAP attribution result has been inspected. Notebook 603 cross-screen
+Notebook 602 attribution is prospectively frozen but has not yet been executed,
+and no SHAP attribution result has been inspected. Notebook 603 cross-screen
 replication remains pending prospective freeze, and CTRP/PRISM replication
 outcomes have not been inspected for downstream replication decisions.
 
@@ -110,8 +111,10 @@ No notebook-601 model family, feature universe, threshold, resampling rule,
 compound universe, or predictive-validity gate was changed after
 predictive-performance inspection.
 
-This execution update does not freeze any notebook-602 attribution decision.
-The notebook-602 section below remains fully pending prospective freeze.
+This notebook-601 execution update did not itself freeze notebook-602
+attribution decisions. Those decisions were subsequently frozen prospectively
+on 2026-09-21 in the notebook-602 section below, before any notebook-602 SHAP
+attribution result was inspected.
 
 This document defines the analytical decisions governing:
 
@@ -1648,38 +1651,768 @@ No feature space, model family, threshold, resampling rule, or compound universe
 
 ---
 
-# Decisions pending before notebook 602 SHAP analysis
+# Notebook 602 — SHAP Attribution and Stability Analysis
 
-The following items are:
+## Prospective freeze status — 2026-09-21
 
-**PENDING FREEZE BEFORE NOTEBOOK 602 ATTRIBUTION INSPECTION**
+**FROZEN BEFORE NOTEBOOK-602 ATTRIBUTION INSPECTION**
 
-SHAP analysis may proceed only after the corresponding predictive model has a
-frozen target, feature space, evaluation structure, and adequately reported
-predictive validity.
+No notebook-602 SHAP attribution result had been inspected when this
+specification was frozen.
 
-The attribution contract must define:
+Notebook 602 consumes the frozen notebook-601 predictive-model handoffs. It
+does not refit, reconstruct, retune, or replace notebook-601 predictive models.
 
-- which fitted models are eligible for attribution;
-- whether attribution is calculated on held-out, out-of-fold, or other
-  leakage-safe predictions;
-- SHAP background/reference handling;
-- attribution aggregation;
-- attribution-stability analysis;
-- lineage-consistency characterization; and
-- model-class sensitivity where applicable.
+## Scientific objective
 
-If the fitted model uses the three consensus-program scores as features, SHAP
-attribution is program-level.
+Notebook 602 asks:
 
-Frozen gene weights may be used for downstream biological contextualization.
+> Among the GDSC drug-specific models that satisfied the prospectively frozen
+> notebook-601 predictive-validity gate, how do the three frozen consensus
+> transcriptomic programs contribute to held-out model predictions, and how
+> stable and lineage-consistent are those contributions under the same repeated
+> lineage-aware evaluation structure used in notebook 601?
 
-They must not be transformed into gene-level SHAP values unless genes were
-actual fitted-model features.
+Notebook 602 characterizes fitted-model behavior.
 
-SHAP explains fitted-model behavior.
+It does not establish:
 
-It does not establish causality or mechanism.
+- causal biological effects;
+- causal mechanisms of drug response;
+- acquired or longitudinal drug resistance;
+- therapeutic efficacy;
+- validated biomarkers;
+- validated therapeutic targets;
+- gene-level attribution when genes were not fitted-model features;
+- clinical predictiveness;
+- external cross-screen reproducibility; or
+- therapeutic reversal.
+
+The term `resistance-like` retains the Phase 6 definition of relative baseline
+pharmacogenomic insensitivity in preclinical cell-line screens.
+
+## Frozen upstream handoffs
+
+Notebook 602 consumes the following frozen notebook-601 artifacts:
+
+- `phase6.601.primary_oof_predictions`;
+- `phase6.601.primary_program_fold_parameters`;
+- `phase6.601.primary_program_fold_lineage_effects`;
+- `phase6.601.drug_level_results`; and, for provenance where required,
+- `phase6.601.primary_cv_partitions`;
+- `phase6.601.primary_repeat_performance`; and
+- `phase6.601.analysis_metadata`.
+
+Notebook 602 must not refit the notebook-601 predictive models.
+
+Notebook 602 must not regenerate the notebook-601 cross-validation partitions.
+
+Notebook 602 must not recompute notebook-601 performance in order to redefine
+predictive eligibility.
+
+The persisted notebook-601 fitted-state handoffs are authoritative for
+notebook-602 attribution.
+
+Downstream analyses consume required frozen upstream analytical objects rather
+than repeating upstream fitting or transformations to recover objects already
+produced by the upstream notebook.
+
+## Primary attribution cohort
+
+The notebook-602 primary attribution cohort is determined exclusively from:
+
+`phase6.601.drug_level_results`
+
+A drug is eligible only when:
+
+`shap_eligible == True`
+
+under the prospectively frozen notebook-601 predictive-validity criteria.
+
+The realized notebook-602 primary attribution cohort therefore contains:
+
+`125 GDSC drugs`
+
+from the original 281 notebook-601 eligible drugs.
+
+The remaining 156 drugs do not receive primary notebook-602 SHAP attribution.
+
+They must not be rescued into the attribution cohort because of:
+
+- notebook-600 association significance;
+- favorable pharmacogenomic effect direction;
+- notebook-601 LOLO behavior;
+- drug target or pathway;
+- Phase 5 functional-vulnerability evidence;
+- biological plausibility;
+- literature interest;
+- CTRP or PRISM coverage;
+- subsequent attribution appearance; or
+- any downstream evidence.
+
+Notebook-601 LOLO results remain secondary descriptive evidence and have no
+role in notebook-602 attribution eligibility.
+
+## Model being attributed
+
+Notebook 602 attributes exactly the primary program model fitted and evaluated
+in notebook 601:
+
+`LN_IC50 ~ C(OncotreeLineage) + CONSENSUS_TX_01 + CONSENSUS_TX_02 + CONSENSUS_TX_03`
+
+The attributed model therefore contains:
+
+- one categorical lineage term;
+- `CONSENSUS_TX_01`;
+- `CONSENSUS_TX_02`;
+- `CONSENSUS_TX_03`; and
+- an intercept.
+
+No alternative model is fitted in notebook 602.
+
+Notebook 602 does not introduce:
+
+- regularized regression;
+- nonlinear terms;
+- program × lineage interactions;
+- Random Forest;
+- gradient boosting;
+- XGBoost;
+- neural networks;
+- additional omics features;
+- individual genes;
+- alternative program subsets; or
+- any model-family search.
+
+The existing Phase 6 item concerning model-class sensitivity is resolved for
+the primary notebook-602 analysis as:
+
+`not applicable`
+
+Notebook 602 explains the behavior of the already frozen notebook-601 linear
+model rather than comparing candidate model families.
+
+## Attribution sample
+
+Primary attribution is calculated exclusively for the persisted out-of-fold
+predictions generated in notebook 601.
+
+For each eligible drug and each of the five notebook-601 repeats, every
+eligible `ModelID` contributes exactly one held-out attribution vector.
+
+For a given drug-model pair, notebook 602 may therefore contain up to five
+attribution vectors corresponding to the five repeated out-of-fold
+evaluations.
+
+These repeated vectors arise from overlapping resampling schemes.
+
+They are not five independent biological observations.
+
+Training-set attribution is not used as primary evidence.
+
+A model fitted on the complete drug-specific dataset is not introduced.
+
+## Attribution definition
+
+Notebook 602 uses exact interventional linear SHAP for the frozen
+notebook-601 additive model.
+
+The mathematical definition, rather than a specific software API, is
+authoritative.
+
+For one persisted fold-specific fitted model:
+
+`f(x, l) = alpha + g(l) + beta_1 x_1 + beta_2 x_2 + beta_3 x_3`
+
+where:
+
+- `l` is `OncotreeLineage`;
+- `g(l)` is the fitted lineage contribution;
+- `x_1`, `x_2`, and `x_3` are the three frozen consensus-program scores;
+- `beta_1`, `beta_2`, and `beta_3` are the persisted fold-specific
+  program coefficients; and
+- `alpha` is the persisted fold-specific intercept.
+
+For each program `p`, notebook 601 has persisted the corresponding
+training-fold mean:
+
+`mu_p`
+
+The held-out attribution for that program is:
+
+`phi_p = beta_p × (x_p - mu_p)`
+
+The categorical lineage term is represented as one grouped lineage
+contribution rather than as individually interpreted one-hot dummy features.
+
+Let:
+
+`g_bar = E_training[g(OncotreeLineage)]`
+
+using the persisted empirical training-fold lineage frequencies.
+
+The grouped lineage attribution is:
+
+`phi_lineage = g(l) - g_bar`
+
+The fold-specific expected prediction is:
+
+`expected_value = alpha + g_bar + Σ_p beta_p mu_p`
+
+and every persisted held-out program-model prediction must satisfy:
+
+`prediction_program = expected_value + phi_lineage + phi_TX01 + phi_TX02 + phi_TX03`
+
+to numerical precision.
+
+The term `interventional` refers to attribution semantics.
+
+It does not imply a biological intervention or causal effect.
+
+## Attribution reconstruction validation
+
+Before attribution summaries are interpreted, notebook 602 must validate the
+downstream transformation from frozen notebook-601 state.
+
+For every eligible OOF row:
+
+1. the row must map to exactly one persisted fold-parameter record;
+2. the row must map to exactly one persisted lineage-effect record;
+3. all three required program scores must be present;
+4. all required fitted coefficients and training references must be finite; and
+5. the additive attribution decomposition must reproduce the persisted
+   notebook-601 `prediction_program` to numerical precision.
+
+This is a notebook-602 transformation check.
+
+It does not refit or re-evaluate notebook 601.
+
+Failure of this check must halt attribution and trigger implementation
+diagnosis.
+
+Predictive-model parameters, upstream folds, eligibility, or attribution
+definitions must not be altered to force agreement.
+
+## Attribution resolution
+
+The explanatory model is represented by four attribution components:
+
+- `lineage`;
+- `CONSENSUS_TX_01`;
+- `CONSENSUS_TX_02`; and
+- `CONSENSUS_TX_03`.
+
+Primary biological interpretation is restricted to the three consensus
+transcriptomic programs.
+
+The lineage block is retained as a contextual component of model behavior.
+
+Individual one-hot lineage coefficients are not treated as candidate
+biological features.
+
+The grouped lineage formulation prevents the arbitrary one-hot reference
+category from becoming an interpretive biological unit.
+
+Because the fitted model contains no program × lineage interactions,
+lineage-stratified attribution summaries must not be described as estimated
+lineage-specific program effects.
+
+## Local interpretation
+
+For one held-out model:
+
+`phi_program > 0`
+
+means that the observed program score moves the fitted prediction toward higher
+`LN_IC50` relative to the corresponding training-fold reference.
+
+Within the Phase 6 response convention, this is a contribution toward a more
+resistance-like predicted pharmacogenomic context.
+
+`phi_program < 0`
+
+means that the program feature moves the fitted prediction toward lower
+`LN_IC50` relative to that reference.
+
+These are local fitted-model statements.
+
+They do not imply that experimentally increasing or decreasing the biological
+program would causally modify drug response.
+
+## Primary attribution magnitude
+
+For each:
+
+`drug × repeat × program`
+
+all five held-out folds are concatenated so that each eligible cell-line model
+contributes exactly once within that repeat.
+
+The primary program-attribution magnitude is:
+
+`mean_abs_SHAP = mean(|phi_program|)`
+
+across the complete OOF set for that repeat.
+
+The primary drug × program summary is:
+
+`median_repeat_mean_abs_SHAP`
+
+defined as the median of the five repeat-level `mean_abs_SHAP` values.
+
+This rule:
+
+- remains in native prediction units of `LN_IC50`;
+- gives every model equal contribution within a repeat;
+- avoids treating folds as separate inferential units;
+- aligns the repeat-level analytical structure with notebook 601; and
+- measures contribution magnitude without cancellation of positive and
+  negative local values.
+
+A supporting robust distributional statistic additionally reports:
+
+`median(|phi_program|)`
+
+within each repeat.
+
+This supporting statistic does not replace the primary `mean_abs_SHAP`.
+
+No fixed attribution threshold is applied.
+
+## Program-block and lineage-block attribution
+
+As a supporting characterization of model behavior, notebook 602 may define:
+
+`phi_program_block = phi_TX01 + phi_TX02 + phi_TX03`
+
+and compare:
+
+`mean(|phi_program_block|)`
+
+with:
+
+`mean(|phi_lineage|)`
+
+within each repeat.
+
+This comparison describes prediction-space attribution magnitude.
+
+It does not decompose `R²`.
+
+It must not replace notebook-601 `delta_R2` as the measure of incremental
+predictive information beyond lineage.
+
+## Direction of fitted program relationships
+
+Global fitted-model direction is characterized using the program coefficients
+already persisted by notebook 601.
+
+For every:
+
+`drug × repeat × fold × program`
+
+the persisted program coefficient is used without refitting.
+
+For each drug × program, coefficient summaries are:
+
+- median coefficient across the 25 fitted fold models;
+- interquartile range across the 25 fitted coefficients;
+- fraction of the 25 coefficients that are positive; and
+- fraction of the 25 coefficients that are negative.
+
+These 25 estimates come from overlapping cross-validation fits.
+
+They are not independent biological replicates.
+
+They must not be used to construct conventional confidence intervals or
+p-values based on an independence assumption.
+
+The fitted coefficient, rather than mean signed SHAP, is the primary global
+direction descriptor.
+
+Signed SHAP remains a local contribution relative to the fold-specific
+reference.
+
+Notebook-600 association direction is a separate evidence dimension and is not
+substituted for notebook-601 predictive-model direction.
+
+## Attribution stability
+
+Attribution stability is treated as continuous descriptive evidence.
+
+Notebook 602 does not introduce a second binary eligibility gate after the
+notebook-601 predictive-validity gate.
+
+For each drug × program, magnitude stability is characterized by:
+
+- the five repeat-level `mean_abs_SHAP` values;
+- their median;
+- their interquartile range;
+- their minimum and maximum; and
+- the identity of the highest-attribution program within each repeat.
+
+Coefficient stability is characterized separately using the persisted 25
+fold-specific coefficients:
+
+- median coefficient;
+- coefficient interquartile range;
+- fraction positive; and
+- fraction negative.
+
+Magnitude stability and direction stability remain separate evidence
+dimensions.
+
+They are not combined into a composite score.
+
+No p-value is calculated across repeats.
+
+No formal confidence interval treats repeated folds as independent samples.
+
+Pairwise correlation of SHAP vectors across repeats is not used as a primary
+stability metric because, in this additive linear model, same-program SHAP
+values are affine transformations of the same frozen program score and may
+therefore appear highly correlated even when fitted coefficients or attribution
+magnitude vary materially.
+
+No threshold defines an attribution as formally `stable` or `unstable`.
+
+Weak or heterogeneous stability remains directly reportable.
+
+## Lineage-consistency characterization
+
+Lineage consistency is evaluated from the existing OOF attributions.
+
+No lineage-specific models are fitted.
+
+No new program × lineage interaction is introduced.
+
+For each:
+
+`drug × repeat × lineage × program`
+
+notebook 602 calculates:
+
+`lineage_mean_abs_SHAP`
+
+as the mean absolute held-out attribution among models belonging to that
+lineage.
+
+For each:
+
+`drug × repeat × program`
+
+two summaries are retained.
+
+The pooled summary is:
+
+`pooled_mean_abs_SHAP`
+
+which weights lineages according to the number of models represented for that
+drug.
+
+The lineage-balanced summary is:
+
+`lineage_balanced_mean_abs_SHAP`
+
+defined as the unweighted arithmetic mean of the lineage-specific
+`lineage_mean_abs_SHAP` values.
+
+Each represented lineage therefore contributes equal weight to the
+lineage-balanced summary.
+
+Across the five repeats, both quantities are summarized by their median.
+
+For each drug × lineage × program, the lineage-specific attribution magnitude
+is summarized across repeats by its median.
+
+A supporting lineage-composition diagnostic records:
+
+`pooled_minus_lineage_balanced`
+
+to quantify the extent to which the observed drug-specific cell-line
+composition affects the global attribution summary.
+
+No threshold is applied to this difference.
+
+Notebook 602 may additionally report the number or fraction of represented
+lineages in which each program has the largest lineage-specific attribution
+magnitude.
+
+These summaries characterize distribution of model attribution across known
+lineages.
+
+They do not establish:
+
+- a lineage-specific program coefficient;
+- a program × lineage interaction;
+- lineage-specific causality; or
+- pan-cancer universality.
+
+## No LOLO attribution branch
+
+The notebook-601 leave-one-supported-lineage-out analysis remains a secondary
+predictive stress test.
+
+Notebook 602 does not calculate a separate primary SHAP analysis for the LOLO
+models.
+
+Those models use a different predictive specification and address a different
+generalization estimand.
+
+LOLO behavior cannot rescue, exclude, promote, or downgrade a notebook-602
+attribution.
+
+## No new inferential SHAP family
+
+Notebook 602 does not treat SHAP values as independent statistical
+observations.
+
+No new p-value or multiple-testing family is introduced for:
+
+- SHAP magnitude;
+- signed SHAP;
+- coefficient stability;
+- repeat stability;
+- lineage-balanced attribution;
+- lineage heterogeneity; or
+- program dominance.
+
+No SHAP significance threshold is introduced.
+
+Weak, small, heterogeneous, or unstable attribution is a valid result.
+
+## No model-class sensitivity analysis
+
+The notebook-601 primary model family was frozen prospectively and evaluated
+before notebook-602 attribution.
+
+Notebook 602 does not add another model family solely to test whether a more
+favorable attribution pattern can be obtained.
+
+The existing Phase 6 item:
+
+`model-class sensitivity where applicable`
+
+is resolved for the primary notebook-602 analysis as:
+
+`not applicable`
+
+because notebook 602 explains the behavior of the already frozen notebook-601
+linear model rather than comparing candidate model families.
+
+Any future nonlinear or alternative-model XAI analysis would require a
+separately declared analytical objective and could not replace notebook-602
+primary attribution evidence.
+
+## Biological contextualization
+
+Notebook 602 includes hierarchical biological contextualization under ADR 005.
+
+Program-level attribution may be linked to frozen upstream context including,
+where applicable:
+
+- `phase4.401.consensus_transcriptomic_program_catalog`;
+- `phase4.401.consensus_transcriptomic_gene_weights`;
+- `phase4.401.consensus_tumor_arm_context`;
+- `phase4.403.epigenetic_regulator_enrichment_summary`;
+- `phase4.403.epigenetic_regulator_gene_context`;
+- `phase4.404.program_annotation_enrichment`;
+- `phase4b.450.primary_gene_program_associations`; and
+- `phase4b.451.locus_level_methylation_expression_evidence`.
+
+The contextual hierarchy may include:
+
+1. attributed consensus program;
+2. frozen transcriptomic gene weights or member genes;
+3. frozen pathway and biological annotations;
+4. frozen epigenetic-regulator enrichment;
+5. tumor-side methylation context; and
+6. Phase 4B secondary genomic or locus-level methylation-expression context.
+
+These layers provide biological context for a program-level model attribution.
+
+They do not create finer-resolution SHAP evidence.
+
+Notebook 602 must not:
+
+- redistribute program SHAP values across genes;
+- describe constituent genes as having gene-level SHAP values;
+- modify frozen program weights;
+- select genes according to favorable pharmacogenomic behavior;
+- change attribution eligibility;
+- reorient a program;
+- rename a program according to drug-response behavior; or
+- use biological annotations to rescue weak attribution.
+
+Where possible, the biological-context representation should be constructed
+once for each of the three frozen consensus programs and reused consistently
+across drugs rather than selectively assembled for favorable results.
+
+## Evidence isolation
+
+CTRP and PRISM pharmacogenomic outcomes remain sealed during notebook 602.
+
+They must not inform:
+
+- attribution eligibility;
+- attribution reference definitions;
+- aggregation rules;
+- stability rules;
+- lineage-consistency definitions;
+- model interpretation thresholds; or
+- biological-context selection.
+
+External cross-screen pharmacogenomic evaluation remains reserved for notebook
+603.
+
+Notebook-600 association statistics do not determine notebook-602 eligibility,
+aggregation, stability rules, or attribution interpretation.
+
+Phase 5 functional-vulnerability results do not select notebook-602 drugs or
+programs and do not modify attribution rules.
+
+Functional-genomic evidence, pharmacogenomic association evidence, predictive
+validity, model attribution, biological contextualization, and cross-screen
+replication remain separately traceable evidence dimensions.
+
+## Prohibited notebook-602 analyses and interpretations
+
+Notebook 602 must not:
+
+- refit notebook-601 predictive models;
+- regenerate notebook-601 cross-validation partitions;
+- change the notebook-601 predictive-validity gate;
+- attribute the 156 drugs that failed the frozen primary gate as part of the
+  primary analysis;
+- add gene-level features;
+- fit program × lineage interactions;
+- introduce another predictive model family;
+- change SHAP reference handling after result inspection;
+- create a post hoc SHAP stability threshold;
+- select favorable drugs according to SHAP magnitude;
+- rank compounds as therapeutic candidates from SHAP;
+- redistribute program attribution to constituent genes;
+- interpret individual lineage dummy coefficients as biological candidate
+  features;
+- interpret lineage-stratified attribution as an estimated interaction;
+- use CTRP or PRISM outcomes to tune interpretation;
+- use Phase 5 evidence to rescue weak attribution;
+- interpret SHAP as causality;
+- interpret interventional attribution terminology as biological intervention;
+- equate attribution stability with mechanism;
+- infer validated targets;
+- infer therapeutic efficacy;
+- infer clinical resistance; or
+- infer longitudinal adaptive resistance.
+
+## Negative-result policy for notebook 602
+
+Notebook 602 remains scientifically complete if:
+
+- one or more consensus programs have low attribution magnitude;
+- attribution magnitude varies across repeats;
+- fitted coefficients vary substantially across folds;
+- fitted coefficient direction changes across folds;
+- no program consistently has the largest attribution;
+- pooled and lineage-balanced summaries differ materially;
+- attribution is concentrated in particular lineages;
+- lineage-specific attribution patterns disagree;
+- the lineage component dominates prediction-space attribution;
+- hierarchical biological context is incomplete or conflicting; or
+- no simple biologically coherent attribution pattern emerges.
+
+No eligibility rule, reference definition, aggregation rule, stability metric,
+lineage-consistency rule, or contextualization rule may be changed after
+attribution inspection in order to produce a more favorable result.
+
+## Planned stable notebook-602 outputs
+
+The downstream-required notebook-602 interfaces are planned as:
+
+- `phase6.602.oof_program_attributions`;
+- `phase6.602.repeat_program_attribution`;
+- `phase6.602.lineage_program_attribution`;
+- `phase6.602.drug_program_attribution_summary`;
+- `phase6.602.program_biological_context`; and
+- `phase6.602.analysis_metadata`.
+
+`phase6.602.oof_program_attributions` will contain at minimum:
+
+- `DRUG_ID`;
+- `ModelID`;
+- `OncotreeLineage`;
+- repeat;
+- fold;
+- persisted `prediction_program`;
+- attribution `expected_value`;
+- `phi_lineage`;
+- `phi_CONSENSUS_TX_01`;
+- `phi_CONSENSUS_TX_02`; and
+- `phi_CONSENSUS_TX_03`.
+
+`phase6.602.drug_program_attribution_summary` is expected to contain one row
+per:
+
+`125 drugs × 3 programs = 375 drug-program combinations`
+
+with the frozen magnitude, repeat-stability, coefficient-direction, and
+lineage-consistency summaries.
+
+`phase6.602.program_biological_context` will link the three frozen programs to
+the prespecified frozen biological-context layers used in notebook 602.
+
+`phase6.602.analysis_metadata` will record the exact attribution definition,
+eligible cohort, upstream artifact identities, reference handling, additive
+reconstruction checks, aggregation rules, stability rules, lineage-consistency
+rules, biological-context sources, evidence-isolation status, output
+identities, and interpretation limitations.
+
+Raw notebook-601 fitted coefficients and lineage effects are not duplicated as
+new notebook-602 artifacts.
+
+Notebook 602 consumes their frozen notebook-601 representations.
+
+Intermediate notebook-602 diagnostics need not be registered unless they
+become stable downstream interfaces.
+
+## Notebook-602 analytical closure criteria
+
+Notebook 602 is complete when:
+
+1. the primary cohort is derived directly from the frozen notebook-601
+   `shap_eligible` field;
+2. no predictive model is refitted;
+3. no notebook-601 fold is regenerated;
+4. each eligible OOF row maps uniquely to its persisted fitted-state records;
+5. exact held-out attribution is calculated under the frozen mathematical
+   definition;
+6. the attribution decomposition reproduces persisted notebook-601 predictions
+   to numerical precision;
+7. primary attribution magnitude is summarized according to the frozen
+   repeat-level aggregation rule;
+8. coefficient direction and stability are summarized from persisted
+   notebook-601 model parameters;
+9. lineage-stratified and lineage-balanced attribution summaries are completed
+   without new lineage-specific fitting;
+10. no second attribution-eligibility or SHAP-stability gate is introduced;
+11. biological contextualization preserves program-level attribution
+    resolution;
+12. CTRP and PRISM outcomes remain sealed for attribution decisions;
+13. weak, negative, heterogeneous, and unstable attribution patterns remain
+    represented;
+14. stable downstream outputs are persisted and validated;
+15. notebook-602 metadata and provenance are finalized; and
+16. downstream-required notebook-602 artifacts are registered with frozen
+    identity.
+
+Completion does not require:
+
+- large SHAP magnitude;
+- stable coefficient direction;
+- one dominant program;
+- lineage consistency;
+- a biologically simple interpretation; or
+- favorable downstream therapeutic context.
 
 ---
 

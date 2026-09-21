@@ -457,7 +457,7 @@ Outputs:
 
 ## Status
 
-**IN PROGRESS. Notebooks 600 and 601 are complete under frozen specifications; notebooks 602 and 603 remain pending prospective design/freeze before their corresponding results are inspected.**
+**IN PROGRESS. Notebooks 600 and 601 are complete under frozen specifications; notebook 602 has a prospectively frozen attribution specification and remains pending execution; notebook 603 remains pending prospective design/freeze.**
 
 ## Objective
 
@@ -497,7 +497,7 @@ Stable notebook-601 partitions, out-of-fold predictions, fold-specific primary-m
 
 #### 602 — SHAP Attribution and Stability Analysis
 
-**Pending prospective design/freeze before attribution inspection.** Notebook 602 must not begin SHAP result inspection until its attribution contract defines the eligible fitted models, leakage-safe attribution sample/reference structure, background/reference handling, aggregation, stability analysis, lineage-consistency characterization, and any prospectively justified model-class sensitivity.
+**Prospectively frozen on 2026-09-21; execution pending.** Notebook 602 will attribute only the 125 notebook-601 `shap_eligible` GDSC drug models using the persisted out-of-fold predictions and fitted-state handoffs, with no downstream refitting. Exact interventional linear SHAP, repeat-level magnitude aggregation, continuous stability characterization, and pooled-versus-lineage-balanced attribution rules are frozen before attribution inspection.
 
 Because the frozen notebook-601 primary model uses the three consensus-program scores as features, primary attribution of that model is program-level. A stable attributed program may then be mapped to its frozen gene loadings/member genes, Phase 4 pathways and biological annotations, epigenetic-regulator enrichment, tumor-side methylation context, and Phase 4B locus-level or genomic context where informative. This downstream mapping is biological contextualization, not additional SHAP evidence. Gene-level SHAP may be reported only for a separately prospectively defined model that actually contains gene-level features under a leakage-safe evaluation design.
 
@@ -511,7 +511,7 @@ Current/future Phase 6 outputs include:
 
 * frozen GDSC program–drug association results and Phase 6 resource handoffs from notebook 600;
 * frozen lineage-aware predictive-performance summaries and attribution-eligibility handoffs from notebook 601;
-* SHAP attribution, stability, and hierarchical biological-context outputs only after notebook 602 is prospectively frozen and executed; and
+* SHAP attribution, stability, and hierarchical biological-context outputs after execution of the prospectively frozen notebook-602 specification; and
 * cross-screen reproducibility outputs only after notebook 603 is prospectively frozen and executed.
 
 ---
