@@ -3542,15 +3542,7 @@
       "inputs": [
         {
           "type": "artifact",
-          "artifact_id": "phase6.600.gdsc_analysis_universe"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase6.600.program_score_universe"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase6.601.primary_cv_partitions"
+          "artifact_id": "phase6.601.primary_oof_predictions"
         }
       ]
     },
@@ -3616,12 +3608,24 @@
         "path": "notebooks/phase6_pharmacogenomic_contexts/601_explainable_predictive_modeling.ipynb"
       },
       "shape": null,
-      "size_bytes": 2373,
-      "sha256": "851ffdc809e64d9ef409a21c680a6eb86971b39f80b4a0b25b22f33ad522d51d",
+      "size_bytes": 3330,
+      "sha256": "9377729df1423eee7f916273c4621935fb2d5fd6bc0055da322b406c03dfda2f",
       "inputs": [
         {
           "type": "artifact",
           "artifact_id": "phase6.601.primary_cv_partitions"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.601.primary_oof_predictions"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.601.primary_program_fold_parameters"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.601.primary_program_fold_lineage_effects"
         },
         {
           "type": "artifact",
@@ -3634,6 +3638,96 @@
         {
           "type": "artifact",
           "artifact_id": "phase6.601.drug_level_results"
+        }
+      ]
+    },
+    "phase6.601.primary_oof_predictions": {
+      "path": "data/processed/pharmacogenomic_contexts/601_primary_oof_predictions.parquet",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/601_explainable_predictive_modeling.ipynb"
+      },
+      "shape": [
+        680880,
+        11
+      ],
+      "size_bytes": 12722683,
+      "sha256": "6e6e5a6138dfcc55d61ffe0791843c110425ef98f718ab457628494a31403556",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.gdsc_analysis_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.program_score_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.601.primary_cv_partitions"
+        }
+      ]
+    },
+    "phase6.601.primary_program_fold_parameters": {
+      "path": "data/processed/pharmacogenomic_contexts/601_primary_program_fold_parameters.parquet",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/601_explainable_predictive_modeling.ipynb"
+      },
+      "shape": [
+        7025,
+        15
+      ],
+      "size_bytes": 437090,
+      "sha256": "d273bc2fc819e3521fe924c28d5106c3d85a186d088ea5e208872e2b5ff9c8cc",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.gdsc_analysis_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.program_score_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.601.primary_cv_partitions"
+        }
+      ]
+    },
+    "phase6.601.primary_program_fold_lineage_effects": {
+      "path": "data/processed/pharmacogenomic_contexts/601_primary_program_fold_lineage_effects.parquet",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/601_explainable_predictive_modeling.ipynb"
+      },
+      "shape": [
+        74025,
+        8
+      ],
+      "size_bytes": 749643,
+      "sha256": "77850676d62e710693accf7262764bf877e36c157e49d886f3db340728fb81a4",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.gdsc_analysis_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.program_score_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.601.primary_cv_partitions"
         }
       ]
     }
