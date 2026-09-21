@@ -92,10 +92,19 @@ do not rescue or exclude drugs from the primary notebook-602 attribution gate.
 The following stable notebook-601 artifacts are registered:
 
 - `phase6.601.primary_cv_partitions`;
+- `phase6.601.primary_oof_predictions`;
+- `phase6.601.primary_program_fold_parameters`;
+- `phase6.601.primary_program_fold_lineage_effects`;
 - `phase6.601.primary_repeat_performance`;
 - `phase6.601.lolo_performance`;
 - `phase6.601.drug_level_results`; and
 - `phase6.601.analysis_metadata`.
+
+The out-of-fold prediction and fitted-state handoffs preserve the already
+executed primary program-model state required for downstream notebook-602
+attribution without downstream refitting. Their addition did not alter the
+registered identities of the pre-existing CV-partition, repeat-performance,
+LOLO-performance, or drug-level-result artifacts.
 
 No notebook-601 model family, feature universe, threshold, resampling rule,
 compound universe, or predictive-validity gate was changed after

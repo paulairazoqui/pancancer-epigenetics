@@ -493,7 +493,7 @@ Under the prospectively frozen predictive-validity gate, 125 of 281 drugs satisf
 
 The secondary leave-one-supported-lineage-out stress test was completed for 2,961 drug × held-out-lineage evaluations. Relative improvement over its training-derived intercept-only comparator was frequently positive, but absolute unseen-lineage predictive performance was weak overall. This stress test remains descriptive and cannot rescue or exclude drugs from the primary attribution gate.
 
-Stable notebook-601 partitions, repeat-level performance, LOLO performance, drug-level results, and analysis metadata are registered as `phase6.601.*` artifacts.
+Stable notebook-601 partitions, out-of-fold predictions, fold-specific primary-model parameters, fold-level lineage effects, repeat-level performance, LOLO performance, drug-level results, and analysis metadata are registered as `phase6.601.*` artifacts. The fitted-state handoffs preserve the already executed primary models for downstream attribution without refitting.
 
 #### 602 — SHAP Attribution and Stability Analysis
 
