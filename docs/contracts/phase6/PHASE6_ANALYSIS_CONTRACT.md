@@ -2416,6 +2416,77 @@ Completion does not require:
 
 ---
 
+
+## Retrospective execution addendum — notebook 602
+
+**Execution completed on 2026-09-21 under the prospectively frozen specification above.**
+
+This addendum records realized execution and results. It does not rewrite the
+prospective notebook-602 rules as though they were defined after result
+inspection.
+
+The realized primary attribution cohort contained the 125 GDSC drugs with
+`shap_eligible == True` in the frozen notebook-601 drug-level handoff. No
+notebook-601 model was refitted and no cross-validation partition was
+regenerated.
+
+Exact held-out linear SHAP reconstructed the persisted notebook-601
+`prediction_program` values for all eligible OOF rows to numerical precision.
+The maximum absolute reconstruction error was
+`2.6645352591003757e-15`.
+
+The realized primary attribution summaries showed:
+
+- median drug-level `median_repeat_mean_abs_shap` of approximately `0.200`
+  for `CONSENSUS_TX_01`, `0.281` for `CONSENSUS_TX_02`, and `0.140`
+  for `CONSENSUS_TX_03`;
+- the same highest-attribution program across all five repeats for 123/125
+  drugs, comprising 38 drugs for `CONSENSUS_TX_01`, 78 for
+  `CONSENSUS_TX_02`, and 7 for `CONSENSUS_TX_03`;
+- complete coefficient-direction consistency across all 25 persisted fitted
+  models for every drug under `CONSENSUS_TX_02` (112 consistently negative
+  and 13 consistently positive), with more mixed direction for
+  `CONSENSUS_TX_01` and `CONSENSUS_TX_03`;
+- median repeat-level mean absolute program-block attribution of approximately
+  `0.411` compared with `0.345` for grouped lineage attribution;
+- program-block attribution exceeding lineage attribution in all five repeats
+  for 75/125 drugs, while lineage attribution was at least as large in all
+  five repeats for 46/125 drugs; and
+- only 4/125 drugs changing highest-attribution program after replacing pooled
+  attribution with equal-lineage-weighted attribution.
+
+These quantities characterize fitted-model behavior within the internally
+eligible GDSC cohort. They do not establish biological causality, mechanism,
+therapeutic efficacy, clinical resistance prediction, validated biomarkers,
+validated targets, or external cross-screen reproducibility.
+
+The biological-context layer was constructed once for each frozen consensus
+program from the prespecified Phase 4 and Phase 4B sources. No program SHAP
+value was redistributed to genes and no downstream biological annotation was
+treated as gene-level attribution.
+
+The supporting program-block versus lineage comparison became a stable
+downstream interface after execution because it is used directly in the
+scientific interpretation and may be consumed by Phase 9 or Phase 10 without
+recomputing notebook 602. This retrospective interface addition does not alter
+the prospectively frozen eligibility, attribution, aggregation, stability, or
+lineage-consistency rules.
+
+The realized stable notebook-602 interfaces are:
+
+- `phase6.602.oof_program_attributions`;
+- `phase6.602.repeat_program_attribution`;
+- `phase6.602.lineage_program_attribution`;
+- `phase6.602.drug_program_attribution_summary`;
+- `phase6.602.drug_block_attribution_summary`;
+- `phase6.602.program_biological_context`; and
+- `phase6.602.analysis_metadata`.
+
+CTRP and PRISM pharmacogenomic outcomes remained sealed throughout notebook
+602. Cross-screen replication remains reserved for notebook 603 under a
+separately prospectively frozen design.
+
+
 # Decisions pending before notebook 603 cross-screen replication
 
 The following items are:

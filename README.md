@@ -29,7 +29,7 @@ The broader approved scientific project includes experimental validation. Experi
 - **Phase 4 — Cross-System Integration:** closed / frozen. Notebooks 400–404 completed cross-system comparison, consensus construction, cross-lineage robustness, epigenetic-regulator enrichment, and biological program annotation without downstream redefinition of the frozen consensus representations.
 - **Phase 4B — Secondary Molecular Context Characterization:** closed / frozen. Notebooks 450 — Secondary Genomic Context Characterization and 451 — Locus-Level Methylation–Expression Characterization are complete / frozen; their registered handoffs are recorded in `config/artifact_registry.json`. Phase 4B cannot redefine frozen Phase 4 programs, and positive, lineage-specific, heterogeneous, or negative outcomes remain valid.
 - **Phase 5 — Functional Vulnerabilities:** closed / frozen. Notebooks 500–502 completed lineage-aware CRISPR characterization, independent RNAi characterization, and platform-aware CRISPR–RNAi evidence integration without statistical pooling, a common post-hoc coverage threshold, joint cross-platform FDR, or composite vulnerability ranking. Cross-platform concordance is complementary computational evidence rather than independent validation. The Phase 5 derived artifacts are registered with frozen identity and lineage in `config/artifact_registry.json`.
-- **Phase 6 — Pharmacogenomic Contexts and Explainable Modeling (XAI):** in progress. Notebooks 600 — Program–Drug Associations and 601 — Explainable Predictive Modeling are complete under prospectively frozen specifications, with stable outputs registered in `config/artifact_registry.json`. Notebook 601 evaluated all 281 frozen eligible GDSC drugs using repeated lineage-stratified out-of-fold evaluation; 125 satisfy the frozen internal predictive-validity gate for subsequent primary program-level SHAP interpretation. This gate establishes attribution eligibility only, not biological importance, external reproducibility, clinical predictiveness, or therapeutic relevance. Notebook 602 attribution was prospectively frozen on 2026-09-21 and remains pending execution; no SHAP attribution result has been inspected. Notebook 603 cross-screen replication remains pending prospective design/freeze.
+- **Phase 6 — Pharmacogenomic Contexts and Explainable Modeling (XAI):** in progress. Notebooks 600 — Program–Drug Associations, 601 — Explainable Predictive Modeling, and 602 — SHAP Attribution and Stability Analysis are complete under frozen specifications, with their stable handoffs registered in `config/artifact_registry.json`. Notebook 601 evaluated all 281 frozen eligible GDSC drugs using repeated lineage-stratified out-of-fold evaluation; 125 satisfied the frozen internal predictive-validity gate and entered notebook 602 attribution. Notebook 602 used persisted held-out fitted state without refitting, reconstructed predictions to numerical precision, and found structured but heterogeneous program-level attribution: `CONSENSUS_TX_02` had the highest median drug-level attribution, while lineage remained an important prediction-space component for a substantial subset of drugs. These results are internal GDSC model-attribution evidence, not mechanism, external reproducibility, clinical predictiveness, or therapeutic relevance. Notebook 603 cross-screen replication remains pending prospective design/freeze.
 - **Phase 7 — Perturbational Hypotheses:** planned.
 - **Phase 8 — Orthogonal Validation:** planned.
 - **Phase 9 — Integrated Evidence Synthesis and Therapeutic Prioritization:** planned, including a structured computational-to-experimental evidence handoff in notebook 904.
@@ -68,7 +68,7 @@ Neither completed nor planned Phase 4B analyses may rescue, exclude, reweight, r
 
 Explainable artificial intelligence is an explicit scientific component of the repository rather than a manuscript-only interpretation step.
 
-Phase 6 operationalizes XAI only after pharmacogenomic outcomes, evaluation partitions, and model inputs have been defined under leakage controls. Notebook 601 is complete: it evaluated the three frozen consensus program scores jointly in a transparent lineage-adjusted linear model using a prospectively frozen `5-fold lineage-stratified cross-validation × 5 repeats` design and an absolute predictive-validity gate. Notebook 602 now has a prospectively frozen attribution specification and remains pending execution; it is dedicated to program-level SHAP attribution, stability analysis, lineage-consistency characterization, and biological contextualization. Notebook 603 remains pending prospective cross-screen replication design/freeze.
+Phase 6 operationalizes XAI only after pharmacogenomic outcomes, evaluation partitions, and model inputs have been defined under leakage controls. Notebook 601 is complete: it evaluated the three frozen consensus program scores jointly in a transparent lineage-adjusted linear model using a prospectively frozen `5-fold lineage-stratified cross-validation × 5 repeats` design and an absolute predictive-validity gate. Notebook 602 is also complete under its prospectively frozen attribution specification: it used exact held-out linear SHAP from persisted notebook-601 fitted state, characterized repeat stability and lineage-balanced attribution without refitting, and linked program-level attribution to frozen Phase 4/4B biological context without creating gene-level SHAP. Notebook 603 remains pending prospective cross-screen replication design/freeze.
 
 Attribution is reported only at the resolution of features actually used by the fitted model. Because the frozen notebook-601 primary model uses consensus-program scores, any primary SHAP attribution of that model in notebook 602 is program-level. Stable attributed programs may then be mapped back to frozen gene loadings, pathways, epigenetic-regulator enrichment, tumor-side methylation context, and Phase 4B context. That mapping is biological contextualization rather than gene-level SHAP evidence. Gene-level SHAP requires a model that actually contains gene-level features under the same leakage-safe evaluation design.
 
@@ -78,7 +78,7 @@ SHAP is treated as a model-attribution method. It is interpreted jointly with pr
 
 ## Repository and Notebook Structure
 
-The repository contains implemented notebooks through Phase 6 notebook 601, with planned placeholders for downstream notebooks and phases. Roadmap v3.2 preserves the numbering of all established downstream phases.
+The repository contains implemented notebooks through Phase 6 notebook 602, with planned placeholders for downstream notebooks and phases. Roadmap v3.2 preserves the numbering of all established downstream phases.
 
 ```text
 ├── .github/workflows/     # Data-free continuous-integration checks
@@ -181,7 +181,7 @@ A minimal reproducibility sequence is:
 5. Run the Phase 1 notebooks to confirm source availability and raw-file auditing.
 6. Execute implemented notebooks in numerical order within the completed phases. Future notebooks are run only after their required inputs are available and frozen.
 
-The implemented notebook series are `100`–`108`, `200`–`206`, `300`–`311`, `400`–`404`, `450`–`451`, `500`–`502`, and `600`–`601`. The remaining planned roadmap v3.2 series include `602`–`603`, `700`–`703`, `800`–`804`, `900`–`904`, and `1000`–`1004`.
+The implemented notebook series are `100`–`108`, `200`–`206`, `300`–`311`, `400`–`404`, `450`–`451`, `500`–`502`, and `600`–`602`. The remaining planned roadmap v3.2 series include `603`, `700`–`703`, `800`–`804`, `900`–`904`, and `1000`–`1004`.
 
 The physical notebook layout is:
 
@@ -194,7 +194,7 @@ notebooks/
 ├── phase4_consensus_programs/                      # complete through notebook 404
 ├── phase4b_secondary_molecular_characterization/   # closed / frozen through notebook 451
 ├── phase5_functional_vulnerabilities/              # closed / frozen through notebook 502
-├── phase6_pharmacogenomic_contexts/                # in progress; notebooks 600–601 complete, 602–603 pending
+├── phase6_pharmacogenomic_contexts/                # in progress; notebooks 600–602 complete, 603 pending
 ├── phase7_perturbational_hypotheses/               # planned
 ├── phase8_orthogonal_validation/                   # planned
 ├── phase9_integrated_evidence_and_prioritization/  # planned

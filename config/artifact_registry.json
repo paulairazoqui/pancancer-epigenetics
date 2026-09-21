@@ -3730,6 +3730,237 @@
           "artifact_id": "phase6.601.primary_cv_partitions"
         }
       ]
+    },
+    "phase6.602.oof_program_attributions": {
+      "path": "data/processed/pharmacogenomic_contexts/602_oof_program_attributions.parquet",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/602_shap_attribution_and_stability_analysis.ipynb"
+      },
+      "shape": [
+        298195,
+        11
+      ],
+      "size_bytes": 11966988,
+      "sha256": "9a27139c6ff288309cdf0afb27b54516bee2c5271e06c38a6abd11bbbf0efb6c",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.601.primary_oof_predictions"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.601.primary_program_fold_parameters"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.601.primary_program_fold_lineage_effects"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.601.drug_level_results"
+        }
+      ]
+    },
+    "phase6.602.repeat_program_attribution": {
+      "path": "data/processed/pharmacogenomic_contexts/602_repeat_program_attribution.csv",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/602_shap_attribution_and_stability_analysis.ipynb"
+      },
+      "shape": [
+        1875,
+        10
+      ],
+      "size_bytes": 219782,
+      "sha256": "79a886bb4de1363175ad3d24704b1eeebdb7bfaeb89116fa4f146e083b038e69",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.602.oof_program_attributions"
+        }
+      ]
+    },
+    "phase6.602.lineage_program_attribution": {
+      "path": "data/processed/pharmacogenomic_contexts/602_lineage_program_attribution.csv",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/602_shap_attribution_and_stability_analysis.ipynb"
+      },
+      "shape": [
+        3918,
+        5
+      ],
+      "size_bytes": 210343,
+      "sha256": "68f03097901ccb145cca6d37232842933347648becba288e7c90aaa166b5c056",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.602.oof_program_attributions"
+        }
+      ]
+    },
+    "phase6.602.drug_program_attribution_summary": {
+      "path": "data/processed/pharmacogenomic_contexts/602_drug_program_attribution_summary.csv",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/602_shap_attribution_and_stability_analysis.ipynb"
+      },
+      "shape": [
+        375,
+        23
+      ],
+      "size_bytes": 123095,
+      "sha256": "d942a5e6178365faee912c369b145e159bf32bb2504a18bcfcf1216598bb1e59",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.602.repeat_program_attribution"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.602.lineage_program_attribution"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.601.primary_program_fold_parameters"
+        }
+      ]
+    },
+    "phase6.602.drug_block_attribution_summary": {
+      "path": "data/processed/pharmacogenomic_contexts/602_drug_block_attribution_summary.csv",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/602_shap_attribution_and_stability_analysis.ipynb"
+      },
+      "shape": [
+        125,
+        6
+      ],
+      "size_bytes": 9048,
+      "sha256": "63ed277d1a2339ff3af2f9ffdf3e59b833df9d658428e8d25c6026e2643ccaf8",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.602.oof_program_attributions"
+        }
+      ]
+    },
+    "phase6.602.program_biological_context": {
+      "path": "data/processed/pharmacogenomic_contexts/602_program_biological_context.csv",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/602_shap_attribution_and_stability_analysis.ipynb"
+      },
+      "shape": [
+        3,
+        38
+      ],
+      "size_bytes": 2871,
+      "sha256": "835b65385098abceb43e41f36a9e3bfd58f71536b28f53029f7d065745f06fff",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_program_catalog"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_gene_weights"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_tumor_arm_context"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.403.epigenetic_regulator_enrichment_summary"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.403.epigenetic_regulator_gene_context"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.404.program_annotation_enrichment"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4b.450.primary_gene_program_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4b.451.locus_level_methylation_expression_evidence"
+        }
+      ]
+    },
+    "phase6.602.analysis_metadata": {
+      "path": "data/processed/pharmacogenomic_contexts/602_analysis_metadata.json",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/602_shap_attribution_and_stability_analysis.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 10411,
+      "sha256": "23c5d0cc138a893c91a50d3e0d3090ed6029acb265b501af608c99304895f6a9",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.602.oof_program_attributions"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.602.repeat_program_attribution"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.602.lineage_program_attribution"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.602.drug_program_attribution_summary"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.602.drug_block_attribution_summary"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.602.program_biological_context"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.601.primary_cv_partitions"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.601.primary_repeat_performance"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.601.analysis_metadata"
+        }
+      ]
     }
   }
 }
