@@ -457,7 +457,7 @@ Outputs:
 
 ## Status
 
-**IN PROGRESS. Notebooks 600 and 601 are complete under frozen specifications; notebook 602 has a prospectively frozen attribution specification and remains pending execution; notebook 603 remains pending prospective design/freeze.**
+**IN PROGRESS. Notebooks 600, 601, and 602 are complete under frozen specifications; notebook 603 remains pending prospective design/freeze.**
 
 ## Objective
 
@@ -497,7 +497,7 @@ Stable notebook-601 partitions, out-of-fold predictions, fold-specific primary-m
 
 #### 602 — SHAP Attribution and Stability Analysis
 
-**Prospectively frozen on 2026-09-21; execution pending.** Notebook 602 will attribute only the 125 notebook-601 `shap_eligible` GDSC drug models using the persisted out-of-fold predictions and fitted-state handoffs, with no downstream refitting. Exact interventional linear SHAP, repeat-level magnitude aggregation, continuous stability characterization, and pooled-versus-lineage-balanced attribution rules are frozen before attribution inspection.
+**Completed under the specification prospectively frozen on 2026-09-21.** Notebook 602 attributed only the 125 notebook-601 `shap_eligible` GDSC drug models using persisted out-of-fold predictions and fitted-state handoffs, with no downstream refitting. Exact interventional linear SHAP reconstructed the persisted predictions to numerical precision. `CONSENSUS_TX_02` had the highest median drug-level attribution across the internally eligible cohort; attribution magnitude was resampling-stable, dominant-program identity changed for only 4/125 drugs after equal-lineage weighting, and the combined program block exceeded lineage attribution in all five repeats for 75/125 drugs while lineage remained at least as large in all five repeats for 46/125. These are internal model-attribution results and do not establish mechanism, causal drug response, therapeutic relevance, or external reproducibility.
 
 Because the frozen notebook-601 primary model uses the three consensus-program scores as features, primary attribution of that model is program-level. A stable attributed program may then be mapped to its frozen gene loadings/member genes, Phase 4 pathways and biological annotations, epigenetic-regulator enrichment, tumor-side methylation context, and Phase 4B locus-level or genomic context where informative. This downstream mapping is biological contextualization, not additional SHAP evidence. Gene-level SHAP may be reported only for a separately prospectively defined model that actually contains gene-level features under a leakage-safe evaluation design.
 
@@ -511,7 +511,7 @@ Current/future Phase 6 outputs include:
 
 * frozen GDSC program–drug association results and Phase 6 resource handoffs from notebook 600;
 * frozen lineage-aware predictive-performance summaries and attribution-eligibility handoffs from notebook 601;
-* SHAP attribution, stability, and hierarchical biological-context outputs after execution of the prospectively frozen notebook-602 specification; and
+* frozen notebook-602 SHAP attribution, stability, lineage-consistency, program-block, and hierarchical biological-context outputs; and
 * cross-screen reproducibility outputs only after notebook 603 is prospectively frozen and executed.
 
 ---
