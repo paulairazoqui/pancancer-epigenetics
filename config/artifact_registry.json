@@ -4015,10 +4015,10 @@
       },
       "shape": [
         444,
-        42
+        47
       ],
-      "size_bytes": 48152,
-      "sha256": "13b0f6297571eb08aada34760b93830304dad820dccfb615c75f17f9b26865d4",
+      "size_bytes": 295077,
+      "sha256": "c5a9dc7e50097e764a72ae99c5895521fa0476ef27c78312a82cd17146edf29e",
       "inputs": [
         {
           "type": "artifact",
@@ -4146,8 +4146,8 @@
         "path": "notebooks/phase6_pharmacogenomic_contexts/603_cross_screen_replication.ipynb"
       },
       "shape": null,
-      "size_bytes": 1946,
-      "sha256": "0022252ffc6628c2fb5f18574bb7d220e0fd801f685d3e62e2c993fcef1db37c",
+      "size_bytes": 3477,
+      "sha256": "5478bce827e50b6322842ff7875a158c844ffa707cd37cb16bcd48a438f826d4",
       "inputs": [
         {
           "type": "artifact",
