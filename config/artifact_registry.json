@@ -3961,6 +3961,215 @@
           "artifact_id": "phase6.601.analysis_metadata"
         }
       ]
+    },
+    "phase6.603.replication_hypothesis_manifest": {
+      "path": "data/processed/pharmacogenomic_contexts/603_replication_hypothesis_manifest.parquet",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/603_cross_screen_replication.ipynb"
+      },
+      "shape": [
+        676,
+        39
+      ],
+      "size_bytes": 52145,
+      "sha256": "53d8ed9c1ecbe711219c93393b15168f2b335c9d35856ba20301a40f0a83d7dd",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.gdsc_program_drug_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.cross_resource_compound_catalog"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.drug_eligibility"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.gdsc_analysis_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.ctrp_analysis_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.prism_analysis_universe"
+        }
+      ]
+    },
+    "phase6.603.cell_line_overlap_manifest": {
+      "path": "data/processed/pharmacogenomic_contexts/603_cell_line_overlap_manifest.parquet",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/603_cross_screen_replication.ipynb"
+      },
+      "shape": [
+        444,
+        47
+      ],
+      "size_bytes": 295077,
+      "sha256": "c5a9dc7e50097e764a72ae99c5895521fa0476ef27c78312a82cd17146edf29e",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.603.replication_hypothesis_manifest"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.program_score_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.gdsc_analysis_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.ctrp_analysis_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.prism_analysis_universe"
+        }
+      ]
+    },
+    "phase6.603.primary_external_associations": {
+      "path": "data/processed/pharmacogenomic_contexts/603_primary_external_associations.parquet",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/603_cross_screen_replication.ipynb"
+      },
+      "shape": [
+        177,
+        24
+      ],
+      "size_bytes": 32761,
+      "sha256": "16695576f9613c8e60af68ebcbc0e0f5b44ec42c9a9b883788fea3d502097e85",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.603.replication_hypothesis_manifest"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.program_score_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.ctrp_analysis_universe"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.600.prism_analysis_universe"
+        }
+      ]
+    },
+    "phase6.603.nonoverlap_external_associations": {
+      "path": "data/processed/pharmacogenomic_contexts/603_nonoverlap_external_associations.parquet",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/603_cross_screen_replication.ipynb"
+      },
+      "shape": [
+        76,
+        27
+      ],
+      "size_bytes": 24296,
+      "sha256": "0680129342553f4101a3fc0dabc31847068ca9409fae1731297b9cc15dd0baef",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.603.primary_external_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.603.replication_hypothesis_manifest"
+        }
+      ]
+    },
+    "phase6.603.replication_summary": {
+      "path": "data/processed/pharmacogenomic_contexts/603_replication_summary.parquet",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/603_cross_screen_replication.ipynb"
+      },
+      "shape": [
+        676,
+        55
+      ],
+      "size_bytes": 76355,
+      "sha256": "4c3303d674883d6c2935f806497b265d8bc7102e2f91f8d84a4ff80587f2b5b5",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.603.primary_external_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.603.nonoverlap_external_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.601.drug_level_results"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.602.drug_program_attribution_summary"
+        }
+      ]
+    },
+    "phase6.603.analysis_metadata": {
+      "path": "data/processed/pharmacogenomic_contexts/603_analysis_metadata.json",
+      "phase": 6,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase6_pharmacogenomic_contexts/603_cross_screen_replication.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 3477,
+      "sha256": "5478bce827e50b6322842ff7875a158c844ffa707cd37cb16bcd48a438f826d4",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.603.replication_hypothesis_manifest"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.603.cell_line_overlap_manifest"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.603.primary_external_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.603.nonoverlap_external_associations"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase6.603.replication_summary"
+        }
+      ]
     }
   }
 }
