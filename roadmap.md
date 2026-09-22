@@ -457,7 +457,7 @@ Outputs:
 
 ## Status
 
-**IN PROGRESS. Notebooks 600, 601, and 602 are complete under frozen specifications; notebook 603 remains pending prospective design/freeze.**
+**IN PROGRESS. Notebooks 600, 601, and 602 are complete under frozen specifications; notebook 603 is prospectively frozen and pending implementation/execution.**
 
 ## Objective
 
@@ -505,14 +505,14 @@ SHAP values quantify model attribution only. They must not be interpreted as cau
 
 #### 603 — Cross-Screen Replication
 
-**Pending prospective design/freeze before replication-result inspection.** Notebook 603 will evaluate cross-screen evidence across GDSC, CTRP, and PRISM only under a separately frozen exact-compound, response-handling, overlap-aware, and multiplicity framework. Drug-family and cell-line overlap must remain explicit, and external screens must not be used retrospectively to tune notebook-601 models or notebook-602 attribution rules.
+**Prospectively frozen on 2026-09-22 before replication-result inspection; implementation/execution pending.** Notebook 603 will evaluate only the frozen notebook-600 GDSC FDR-controlled program–drug association hypotheses that have eligible exact-compound representation in CTRP and/or PRISM. The frozen design preserves resource-specific response metrics, lineage-adjusted HC3 models, separate screen-specific multiplicity families, explicit direction concordance, full-screen versus non-overlapping-model analyses, cell-line overlap accounting, and separation of not-evaluable hypotheses from tested non-replications. Drug-family/mechanism relationships remain contextual rather than exact replication, and notebook-601/602 evidence cannot define or rescue primary replication.
 
 Current/future Phase 6 outputs include:
 
 * frozen GDSC program–drug association results and Phase 6 resource handoffs from notebook 600;
 * frozen lineage-aware predictive-performance summaries and attribution-eligibility handoffs from notebook 601;
 * frozen notebook-602 SHAP attribution, stability, lineage-consistency, program-block, and hierarchical biological-context outputs; and
-* cross-screen reproducibility outputs only after notebook 603 is prospectively frozen and executed.
+* cross-screen reproducibility outputs only after notebook 603 is executed under its frozen prospective specification.
 
 ---
 
