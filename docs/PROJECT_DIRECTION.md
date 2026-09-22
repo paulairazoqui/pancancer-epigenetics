@@ -171,7 +171,7 @@ These associations do not establish a causal role or a validated intervention. T
 
 ## Layer 5 — Pharmacogenomic Context Characterization and XAI
 
-**Phase 6 — in progress. Notebooks 600–602 complete under frozen specifications; notebook 603 prospectively frozen on 2026-09-22 and pending implementation/execution.**
+**Phase 6 — complete under frozen specifications. Notebooks 600–603 are implemented and executed; notebook 603 followed the cross-screen replication specification frozen on 2026-09-22 before CTRP/PRISM result inspection.**
 
 Primary resources:
 
@@ -187,7 +187,7 @@ Purpose:
 * use SHAP and stability analyses to characterize which model features drive reproducible predictions; and
 * map stable attributed features back to the frozen biological hierarchy without overstating the attribution resolution.
 
-Resistance-like context refers only to relative baseline drug insensitivity in pharmacogenomic datasets; it does not imply clinical treatment response. Predictive modeling is not a clinical-prediction objective, and SHAP is not causal inference. Notebook 603 cross-screen replication is governed by the prospectively frozen Phase 6 analysis contract: exact-compound matching, resource-specific response handling, screen-specific multiplicity, explicit cell-line overlap, and separation of not-evaluable hypotheses from tested non-replications are fixed before CTRP/PRISM replication-result inspection.
+Resistance-like context refers only to relative baseline drug insensitivity in pharmacogenomic datasets; it does not imply clinical treatment response. Predictive modeling is not a clinical-prediction objective, and SHAP is not causal inference. Notebook 603 followed the prospectively frozen Phase 6 analysis contract: exact-compound matching, resource-specific response handling, screen-specific multiplicity, explicit cell-line overlap, and separation of not-evaluable hypotheses from tested non-replications were fixed before CTRP/PRISM replication-result inspection. The completed analysis identified 33/79 CTRP and 4/98 PRISM screen-level replications among primary evaluable hypotheses, with 4 CTRP non-overlap corroborations and no hypothesis replicated in both external screens.
 
 ---
 
