@@ -6,9 +6,10 @@ This contract was established prospectively across staged Phase 6 decision
 points. Notebook-600 and notebook-601 specifications were frozen before
 inspection of the corresponding inferential or predictive-performance results.
 The sections below preserve those historical prospective decisions. Notebook
-602 attribution has now also been prospectively frozen before attribution
-inspection. Notebook 603 cross-screen replication remains pending prospective
-freeze before inspection of its corresponding results.
+602 attribution was prospectively frozen before attribution inspection and has
+since been executed under that frozen specification. Notebook 603 cross-screen
+replication is prospectively frozen below before inspection of any CTRP or
+PRISM replication result.
 
 Notebook `600 — Program–Drug Associations` performed a restricted prerequisite
 characterization stage before creation of this contract.
@@ -33,9 +34,11 @@ that were frozen after execution of the primary GDSC association family are
 timestamped explicitly in their corresponding sections. Those later rules
 were established before inspection of the results to which they apply.
 
-Notebook-601 predictive-model performance was inspected only after the
-predictive specification below had been frozen. No SHAP value, SHAP feature
-ranking, or CTRP/PRISM cross-screen replication result has yet been inspected.
+Notebook-601 predictive-model performance and notebook-602 attribution results
+were inspected only after their corresponding specifications had been frozen.
+No CTRP or PRISM cross-screen replication coefficient, p-value, q-value,
+direction-concordance result, or replication status had been inspected when
+the notebook-603 specification below was frozen.
 
 The prerequisite characterization must therefore not be represented as having
 been preregistered before all Phase 6 data inspection. Its role was narrower:
@@ -58,17 +61,18 @@ The authoritative executable records will be:
 
 ## Status
 
-In progress. Notebook 600 and notebook 601 are complete under their frozen
+In progress. Notebooks 600, 601, and 602 are complete under frozen
 specifications, with stable downstream-required handoffs persisted, validated,
 and registered. Notebook 601 evaluated all 281 frozen GDSC-eligible drugs; 125
-satisfy the prospectively frozen predictive-validity gate for subsequent
-primary program-level SHAP interpretation. This gate establishes internal
+satisfied the prospectively frozen predictive-validity gate and entered the
+primary notebook-602 attribution analysis. This gate established internal
 attribution eligibility only.
 
-Notebook 602 attribution is prospectively frozen but has not yet been executed,
-and no SHAP attribution result has been inspected. Notebook 603 cross-screen
-replication remains pending prospective freeze, and CTRP/PRISM replication
-outcomes have not been inspected for downstream replication decisions.
+Notebook 602 has been executed under its prospectively frozen attribution
+specification, and its stable outputs are registered. Notebook 603
+cross-screen replication is now prospectively frozen under the specification
+below. CTRP and PRISM replication outcomes remain uninspected at the time of
+this freeze.
 
 ## Notebook 601 execution update — 2026-09-17
 
@@ -2487,35 +2491,778 @@ CTRP and PRISM pharmacogenomic outcomes remained sealed throughout notebook
 separately prospectively frozen design.
 
 
-# Decisions pending before notebook 603 cross-screen replication
+# Notebook 603 — Cross-Screen Replication
 
-The following items are:
+## Prospective freeze status — 2026-09-22
 
-**PENDING FREEZE BEFORE NOTEBOOK 603 REPLICATION-RESULT INSPECTION**
+**FROZEN BEFORE NOTEBOOK-603 REPLICATION-RESULT INSPECTION**
 
-The final cross-screen replication framework must define:
+No CTRP or PRISM program-drug association coefficient, p-value, q-value,
+direction-concordance result, standardized effect comparison, overlap-specific
+result, or replication status had been inspected when this specification was
+frozen.
 
-- exact-compound replication eligibility;
-- resource-specific primary response representation;
-- same-model overlap handling;
-- non-overlapping-model analysis;
-- treatment of insufficient non-overlap coverage;
-- direction-concordance rule;
-- effect-size comparison;
-- screen-specific multiplicity;
-- exact versus drug-family replication terminology; and
-- handling of failed, heterogeneous, or unavailable replication.
+Notebook 603 consumes frozen Phase 6 handoffs and performs only the new
+cross-screen calculations required by the replication question. It does not
+recompute or reopen upstream QC, model identity harmonization, compound
+identity harmonization, program-score projection, primary response
+construction, primary PRISM screen assignment, GDSC association fitting,
+notebook-601 predictive modeling, or notebook-602 attribution.
 
-Exact cross-screen replication must use the frozen exact-compound identity
-framework unless an additional identity authority is prospectively introduced
-before replication results are inspected.
+## Scientific objective
 
-Related compounds from the same drug family are contextual pharmacological
-analogues, not exact replication.
+Notebook 603 asks:
 
-Because CTRP and PRISM may share cell lines with GDSC and with each other,
-cross-screen agreement on overlapping models must not automatically be
-presented as independent cell-level replication.
+> Among the developmental/internal GDSC program-drug associations that passed
+> the prospectively frozen notebook-600 FDR criterion, do the same frozen
+> consensus programs show directionally concordant association with the same
+> exact compounds in CTRP and/or PRISM where frozen compound, model, screen,
+> lineage, and response coverage permit defensible comparison?
+
+Cross-screen replication in notebook 603 refers to replication of the
+notebook-600 program-drug association estimand.
+
+Notebook 603 does not:
+
+- retrain or externally transport the notebook-601 GDSC predictive models;
+- refit notebook-601 models on CTRP or PRISM as an alternative validation
+  route;
+- calculate external SHAP values;
+- use notebook-602 attribution to define the replication hypothesis universe;
+- establish independent biological validation;
+- establish clinical drug resistance;
+- establish therapeutic efficacy;
+- establish causal drug-response mechanisms; or
+- establish validated biomarkers or therapeutic targets.
+
+Any future external predictive-transportability or external-XAI analysis would
+require a separately prospectively defined objective and could not replace the
+primary notebook-603 replication evidence.
+
+## Authoritative upstream handoffs and no-recomputation boundary
+
+Notebook 603 uses the frozen notebook-600 interfaces as the authoritative
+technical and inferential inputs:
+
+- `phase6.600.program_score_universe`;
+- `phase6.600.ctrp_model_crosswalk`;
+- `phase6.600.cross_resource_compound_catalog`;
+- `phase6.600.drug_eligibility`;
+- `phase6.600.gdsc_analysis_universe`;
+- `phase6.600.ctrp_analysis_universe`;
+- `phase6.600.prism_analysis_universe`;
+- `phase6.600.gdsc_program_drug_associations`; and
+- `phase6.600.analysis_metadata`.
+
+These objects already encode the upstream decisions required for notebook 603,
+including:
+
+- the 981-model frozen/projected program-score universe;
+- deterministic CTRP-to-DepMap model mapping;
+- frozen exact-compound identity mapping;
+- native resource compound identifiers;
+- the frozen `20 / 3 / 100` full-screen eligibility rule;
+- the primary CTRP model-compound response representation;
+- the primary PRISM screen assignment;
+- the primary resource-specific response metrics; and
+- the completed GDSC developmental/internal association family.
+
+Notebook 603 must load and preserve these objects rather than regenerate
+equivalent classifications from raw data.
+
+Local verification of registered file identity, schema compatibility, unique
+join keys, or a new merge/transformation introduced by notebook 603 is allowed
+and required where relevant.
+
+Generic re-auditing of already frozen upstream QC or harmonization is not part
+of notebook 603.
+
+## Primary replication hypothesis universe
+
+The primary notebook-603 hypothesis universe is derived directly from the
+frozen:
+
+`phase6.600.gdsc_program_drug_associations`
+
+artifact.
+
+A GDSC `drug × consensus program` association enters the replication
+hypothesis universe only when it belongs to the notebook-600 FDR-controlled
+developmental/internal association set:
+
+`q_GDSC < 0.05`
+
+under the frozen joint GDSC family.
+
+The GDSC coefficient and its sign are consumed directly from the frozen
+notebook-600 result.
+
+No GDSC association model is refitted in notebook 603.
+
+The primary replication hypothesis universe must not be expanded, restricted,
+or reweighted according to:
+
+- notebook-601 predictive performance;
+- notebook-601 `shap_eligible` status;
+- notebook-602 SHAP magnitude;
+- notebook-602 program dominance;
+- notebook-602 coefficient stability;
+- notebook-602 lineage-balanced attribution;
+- drug target;
+- mechanism of action;
+- drug family;
+- Phase 5 vulnerability evidence;
+- external literature; or
+- observed CTRP or PRISM behavior.
+
+## Exact-compound replication eligibility
+
+Primary cross-screen replication uses only exact-compound links already present
+in the frozen:
+
+`phase6.600.cross_resource_compound_catalog`
+
+under the one-to-one normalized-name rule defined above.
+
+Notebook 603 does not:
+
+- rebuild normalized compound names;
+- introduce synonym dictionaries;
+- use fuzzy matching;
+- use target or mechanism-of-action matching;
+- use drug-family membership to create an exact match;
+- manually rescue ambiguous normalized-name keys; or
+- alter a compound match according to replication results.
+
+A same-target, same-mechanism, or same-family compound is contextual
+pharmacological evidence only.
+
+It is not exact-compound replication.
+
+## Resource roles and frozen response representations
+
+Resource roles remain:
+
+| Resource | Notebook-603 role |
+| --- | --- |
+| GDSC | developmental/internal reference |
+| CTRP | external cross-screen replication |
+| PRISM | external cross-screen replication |
+
+The response representations remain exactly those frozen upstream:
+
+- GDSC: `LN_IC50`, higher = more resistance-like;
+- CTRP: `area_under_curve`, higher = more resistance-like; and
+- PRISM: `auc`, higher = more resistance-like.
+
+The common direction convention permits sign comparison.
+
+It does not make the native numerical scales interchangeable.
+
+Notebook 603 must consume the frozen CTRP model-compound response representation
+from notebook 600 rather than re-aggregate repeated experiments.
+
+Notebook 603 must consume the frozen PRISM primary-screen representation rather
+than reselect a screen.
+
+## Primary external analytical set
+
+For a replication hypothesis in one external screen, the primary analytical
+set is the corresponding frozen notebook-600 external analysis universe for
+that exact compound after applying the frozen full-screen eligibility state.
+
+The primary full-screen analysis therefore uses all external models already
+eligible under the frozen notebook-600 rules for that compound.
+
+The frozen notebook-600 full-screen eligibility rule remains:
+
+- at least 20 response-covered models per supported lineage;
+- at least 3 supported lineages; and
+- at least 100 models across supported lineages.
+
+Notebook 603 does not tighten or relax that full-screen rule according to
+replication results.
+
+Failure of frozen full-screen eligibility means that the hypothesis is not
+evaluable in that resource.
+
+It is not a failed biological replication.
+
+## Primary external association model
+
+For each evaluable external `exact compound × consensus program` hypothesis,
+the primary model is:
+
+`response ~ program_score + C(OncotreeLineage)`
+
+using ordinary least squares with HC3 heteroskedasticity-robust standard
+errors and two-sided t-based inference with residual degrees of freedom,
+matching the notebook-600 inferential implementation.
+
+The three consensus programs remain separate hypotheses rather than being
+entered jointly.
+
+No interaction term, nonlinear transformation, response redefinition,
+data-driven covariate addition, or program-score re-standardization is
+introduced.
+
+The primary external coefficient is interpreted on the native response scale
+of the corresponding screen.
+
+A positive coefficient indicates association with a more resistance-like
+baseline pharmacogenomic context in that screen.
+
+A negative coefficient indicates association with a more sensitivity-like
+baseline pharmacogenomic context in that screen.
+
+## Primary screen-specific multiplicity
+
+CTRP and PRISM define separate primary external multiplicity families.
+
+Before external coefficients are inspected, family membership is determined
+only from:
+
+1. membership in the frozen GDSC FDR-controlled hypothesis universe;
+2. frozen exact-compound availability in the corresponding external resource;
+3. frozen unique PRISM primary-screen status where applicable; and
+4. frozen full-screen external eligibility.
+
+Benjamini-Hochberg FDR correction is applied jointly across all evaluable
+primary hypotheses within CTRP.
+
+A separate Benjamini-Hochberg FDR correction is applied jointly across all
+evaluable primary hypotheses within PRISM.
+
+No pooled CTRP-plus-PRISM FDR family is constructed.
+
+No drug-specific, program-specific, target-specific, or family-specific
+multiplicity correction is substituted after result inspection.
+
+## Exact screen-level replication rule
+
+A hypothesis is classified as:
+
+`SCREEN_REPLICATED`
+
+in an external resource only when both conditions are satisfied:
+
+1. `q_external < 0.05`; and
+2. `sign(beta_external) == sign(beta_GDSC)`.
+
+External coefficient tests remain two-sided.
+
+The GDSC direction is used only as the prespecified concordance reference and
+does not convert the external hypothesis test into a one-sided test.
+
+No minimum native or standardized effect-size threshold is required for
+replication.
+
+A nominal external p-value, favorable effect magnitude, biological interest,
+drug target, drug family, notebook-601 performance, or notebook-602 attribution
+cannot rescue a hypothesis that fails the screen-level replication rule.
+
+## Cross-screen effect-size characterization
+
+Native coefficients and HC3 confidence intervals remain the primary effect
+representation within each resource.
+
+Because GDSC `LN_IC50`, CTRP AUC, and PRISM AUC use different native scales,
+their raw coefficients must not be compared as though they were numerically
+exchangeable.
+
+For descriptive cross-screen comparison, notebook 603 additionally reports:
+
+`beta_standardized = beta_native × SD(program_score) / SD(response)`
+
+using the exact analytical set contributing to the corresponding fitted model.
+
+This standardized coefficient is descriptive.
+
+It does not:
+
+- replace the native coefficient;
+- define replication;
+- create a minimum effect-size gate;
+- justify pooling response values across screens; or
+- support a cross-screen meta-analysis.
+
+## Cell-line overlap manifest
+
+Cell-line overlap is an explicit notebook-603 analytical object.
+
+For every evaluable or potentially evaluable exact-compound replication
+hypothesis, notebook 603 records the actual `ModelID` sets contributing to:
+
+- the frozen GDSC primary association;
+- the frozen CTRP full-screen analytical set, where applicable; and
+- the frozen PRISM full-screen analytical set, where applicable.
+
+The overlap manifest records, where applicable:
+
+- GDSC–CTRP shared-model count and fraction;
+- GDSC–PRISM shared-model count and fraction;
+- CTRP–PRISM shared-model count and fraction;
+- three-way GDSC–CTRP–PRISM shared-model count and fraction;
+- external models not represented in the corresponding GDSC analytical set;
+- represented lineage counts; and
+- score-origin composition as descriptive provenance.
+
+Cross-screen replication obtained in a full external screen may therefore
+include biological models also represented in GDSC.
+
+Such a result is external cross-screen pharmacogenomic replication.
+
+It must not automatically be described as independent cell-level validation.
+
+## Primary full-screen versus non-overlapping-model analysis
+
+The primary external replication analysis uses the complete frozen eligible
+external analytical set.
+
+A prespecified secondary analysis evaluates external models not used in the
+corresponding frozen GDSC association.
+
+For a given external hypothesis:
+
+`external_nonoverlap = external_primary_ModelID - GDSC_primary_ModelID`
+
+The non-overlapping-model subset is a new notebook-603 analytical object and
+therefore requires a new local estimability check.
+
+The same frozen support rule is applied without modification:
+
+- at least 20 models per supported lineage;
+- at least 3 supported lineages; and
+- at least 100 models across supported lineages.
+
+If this rule is not satisfied after removing GDSC-overlapping models, the
+hypothesis receives:
+
+`INSUFFICIENT_NONOVERLAP_COVERAGE`
+
+for the non-overlap analysis.
+
+This status is not a failed replication.
+
+## Non-overlapping-model inferential family
+
+For each external screen, all GDSC-FDR hypotheses that remain eligible after
+the prespecified non-overlap restriction form a separate non-overlap
+inferential family.
+
+Benjamini-Hochberg correction is applied separately to:
+
+- the CTRP non-overlap family; and
+- the PRISM non-overlap family.
+
+Family membership is defined before non-overlap association results are
+inspected.
+
+The non-overlap analysis uses the same external association model and
+direction convention as the primary full-screen analysis.
+
+A primary screen-level replication may additionally receive:
+
+`NONOVERLAP_MODEL_CORROBORATION`
+
+when the corresponding non-overlap result satisfies:
+
+1. `q_nonoverlap < 0.05`; and
+2. `sign(beta_nonoverlap) == sign(beta_GDSC)`.
+
+The correct scientific wording is:
+
+`cross-screen replication supported in non-overlapping cell-line models`
+
+or equivalent.
+
+It must not be described as fully independent biological validation.
+
+A favorable non-overlap result cannot rescue a hypothesis that failed the
+primary full-screen replication rule.
+
+Primary full-screen and non-overlap results remain separately traceable.
+
+## Shared-model diagnostic
+
+The models shared between GDSC and an external screen are retained as a
+diagnostic object.
+
+If the shared-only subset independently satisfies the same `20 / 3 / 100`
+support rule, notebook 603 may fit the same lineage-adjusted association model
+to characterize:
+
+- coefficient direction;
+- native coefficient magnitude; and
+- standardized coefficient magnitude.
+
+Shared-only results are descriptive.
+
+They receive no separate replication status and do not enter an additional
+multiplicity family.
+
+If shared-only support is insufficient, only coverage and composition are
+reported.
+
+The shared-only diagnostic cannot rescue or invalidate the primary result.
+
+## Lineage-composition diagnostic
+
+Differences in supported-lineage composition across screens may contribute to
+cross-screen heterogeneity even after categorical lineage adjustment.
+
+Notebook 603 therefore records the supported-lineage intersection between
+GDSC and each external screen for every replication hypothesis.
+
+As a prespecified descriptive sensitivity, the external analysis may be
+restricted to lineages supported in both the GDSC reference analysis and the
+external screen.
+
+The same `20 / 3 / 100` support rule is applied to the resulting external
+subset.
+
+Where estimable, this diagnostic reports native and standardized coefficients
+and direction only.
+
+It does not define a separate replication route, does not receive a separate
+FDR-based replication label, and cannot rescue or invalidate the primary
+full-screen result.
+
+## CTRP repeated-experiment sensitivity
+
+The notebook-600 prespecified CTRP sensitivity using:
+
+`n_experiments == 1`
+
+is retained.
+
+For every primary CTRP hypothesis that remains estimable after this
+restriction, notebook 603 may report the resulting coefficient direction and
+effect magnitude as a sensitivity to the frozen median aggregation of repeated
+experiments.
+
+This sensitivity does not define an alternative significance or replication
+route.
+
+No hypothesis is promoted because the single-experiment sensitivity is more
+favorable than the primary CTRP analysis.
+
+## PRISM ambiguous-screen context
+
+The frozen PRISM primary-screen hierarchy remains authoritative.
+
+Compounds assigned:
+
+`AMBIGUOUS_NONREDO`
+
+remain outside the primary PRISM replication family.
+
+If screen-specific results for such compounds are examined later, they must be
+labeled contextual or sensitivity evidence and must preserve the individual
+screen identity.
+
+No screen may be selected retrospectively according to the most favorable
+association result.
+
+## Replication-status taxonomy
+
+Notebook 603 keeps evaluation availability separate from statistical
+replication.
+
+At the `GDSC hypothesis × external resource` level, statuses include, as
+applicable:
+
+- `NOT_EVALUABLE_NO_EXACT_MATCH`;
+- `NOT_EVALUABLE_PRIMARY_SCREEN`;
+- `NOT_EVALUABLE_COVERAGE`;
+- `TESTED_DIRECTION_CONCORDANT_NOT_FDR`;
+- `TESTED_DIRECTION_DISCORDANT`; and
+- `SCREEN_REPLICATED`.
+
+The underlying coefficient, p-value, q-value, direction, eligibility fields,
+and coverage fields remain available and must not be replaced by the status
+label.
+
+A direction-discordant result remains scientifically informative whether or
+not its external p-value is small.
+
+Not-evaluable hypotheses remain distinct from tested non-replications.
+
+## Dual external-screen support
+
+For an exact-compound hypothesis evaluable in both CTRP and PRISM:
+
+`REPLICATED_IN_BOTH_EXTERNAL_SCREENS`
+
+may be reported only when the hypothesis satisfies `SCREEN_REPLICATED` in
+both external resources.
+
+This state represents support across two external pharmacogenomic screens.
+
+It must not be described as two independent biological replications because:
+
+- CTRP and PRISM may share cell-line models;
+- both use the same frozen molecular program representation; and
+- other upstream dependencies may remain shared.
+
+Pairwise and three-way model overlap remain visible in the integrated summary.
+
+## Coverage and denominator policy
+
+Notebook 603 reports coverage separately from replication.
+
+At minimum, summaries distinguish:
+
+1. the number of frozen GDSC FDR-controlled hypotheses;
+2. the number with an exact compound match in each external resource;
+3. the number with a valid primary external screen where applicable;
+4. the number satisfying frozen full-screen eligibility;
+5. the number satisfying non-overlap eligibility; and
+6. the number meeting the frozen replication rule among evaluable hypotheses.
+
+Not-evaluable hypotheses are not counted as replication failures.
+
+Replication fractions must state their denominator explicitly.
+
+For dual-screen summaries, the relevant denominator is the set of hypotheses
+evaluable in both external screens unless another denominator is clearly
+identified.
+
+## Drug-family and mechanism boundary
+
+Drug-family, target, and mechanism-of-action relationships do not define
+primary replication.
+
+Notebook 603 must not create a new result-driven pharmacological family
+ontology to rescue or aggregate exact-compound results.
+
+Where already frozen or provider-supplied family/target/mechanism annotations
+are available, they may be attached after primary replication statuses are
+determined as contextual metadata.
+
+Multiple exact compounds from one pharmacological family remain separate
+exact-compound results.
+
+They must not be narrated as fully independent pharmacological confirmations
+without acknowledging shared family or target structure.
+
+Family- or mechanism-level concordance belongs to contextual evidence and may
+be integrated later in Phase 9.
+
+## Isolation from notebook 601 and notebook 602 during primary replication
+
+Notebook-601 and notebook-602 results do not participate in:
+
+- replication-hypothesis selection;
+- exact-compound eligibility;
+- external-screen eligibility;
+- primary external model specification;
+- direction-concordance definition;
+- effect-size thresholds;
+- multiplicity-family membership;
+- non-overlap eligibility; or
+- replication-status assignment.
+
+The primary notebook-603 replication outputs must be finalized before
+notebook-601 predictive-validity and notebook-602 attribution summaries are
+joined for downstream contextual interpretation.
+
+After replication statuses are frozen, notebook 603 may append separately
+traceable context including, where useful:
+
+- notebook-601 predictive validity;
+- `shap_eligible` status;
+- notebook-602 program-attribution magnitude;
+- coefficient-direction stability;
+- lineage-balanced attribution; and
+- program-block versus lineage attribution.
+
+These fields are contextual evidence only.
+
+They do not retrospectively alter replication.
+
+## Residual confounding
+
+Notebook 603 inherits the notebook-600 conclusion that no previously frozen
+proliferation representation with appropriate coverage is available for the
+Phase 6 pharmacogenomic model universe.
+
+Notebook 603 does not construct a new post hoc proliferation proxy solely to
+improve cross-screen concordance.
+
+Residual proliferation and other unresolved cell-line biological or technical
+confounding remain explicit limitations.
+
+Platform-specific assay differences and response-scale differences are also
+retained as limitations rather than removed through naive pooling.
+
+## Notebook-603 local QA boundary
+
+Notebook 603 performs QA only for new local risks introduced by its own
+transformations.
+
+Required local checks include:
+
+- local files resolve to the registered frozen artifact identities before use;
+- required schemas and join keys are compatible;
+- each replication-manifest row maps to at most one exact external compound
+  identity under the frozen crosswalk;
+- no external association is executed outside the frozen replication manifest;
+- each analytical `ModelID` contributes at most once to the corresponding
+  primary model-compound unit;
+- shared and non-overlap model sets are disjoint;
+- their union reconstructs the corresponding full external model set;
+- overlap counts are internally consistent across pairwise and three-way
+  summaries;
+- non-overlap eligibility is derived only after the prespecified model
+  exclusion;
+- each BH correction receives exactly its prospectively declared family; and
+- not-evaluable hypotheses are excluded from inferential denominators without
+  disappearing from the reporting universe.
+
+Notebook 603 must not repeat generic upstream QC merely as defensive
+boilerplate.
+
+An actual identity mismatch, schema incompatibility, duplicate analytical
+unit, or impossible join must halt the relevant execution path and trigger
+diagnosis rather than an improvised rescue.
+
+## Replication hypothesis manifest
+
+Before fitting any CTRP or PRISM association, notebook 603 must materialize a
+deterministic replication hypothesis manifest.
+
+For each frozen GDSC FDR-controlled `drug × program` hypothesis and each
+external resource, the manifest records at minimum:
+
+- GDSC native drug identifier;
+- exact cross-resource compound key;
+- external native compound identifier where available;
+- consensus program identifier;
+- frozen GDSC coefficient and direction;
+- frozen GDSC q-value;
+- external resource;
+- frozen PRISM primary-screen assignment where applicable;
+- frozen full-screen eligibility;
+- full-screen model and supported-lineage counts;
+- exact-match/evaluability status;
+- shared-model counts;
+- external-nonoverlap counts; and
+- provenance to the frozen upstream artifact identities.
+
+The manifest is frozen before any external association coefficient is
+calculated.
+
+External results must not change its hypothesis membership.
+
+## Negative-result policy for notebook 603
+
+Notebook 603 remains scientifically complete if:
+
+- few GDSC hypotheses have exact-compound coverage externally;
+- one external resource provides substantially less coverage than another;
+- many non-overlap subsets fail the support rule;
+- external coefficients are small;
+- external directions disagree with GDSC;
+- direction is concordant but external FDR is not satisfied;
+- CTRP and PRISM disagree;
+- apparent full-screen replication weakens after removal of overlapping models;
+- shared-model diagnostics suggest substantial dependence on overlap;
+- lineage-composition diagnostics are heterogeneous;
+- repeated-experiment sensitivity differs from the primary CTRP result;
+- no hypothesis replicates in both external screens; or
+- notebook-601/notebook-602 context does not align with cross-screen
+  replication.
+
+No mapping rule, eligibility rule, model, direction criterion, multiplicity
+family, overlap definition, or replication threshold may be changed after
+external-result inspection to create more favorable replication.
+
+## Planned stable notebook-603 outputs
+
+The downstream-required notebook-603 interfaces are planned as:
+
+- `phase6.603.replication_hypothesis_manifest`;
+- `phase6.603.cell_line_overlap_manifest`;
+- `phase6.603.primary_external_associations`;
+- `phase6.603.nonoverlap_external_associations`;
+- `phase6.603.replication_summary`; and
+- `phase6.603.analysis_metadata`.
+
+The primary external-association artifact should preserve, at minimum:
+
+- GDSC hypothesis identity;
+- external resource;
+- external native compound identifier;
+- program identifier;
+- primary screen where applicable;
+- number of analyzed models;
+- number of supported lineages;
+- native coefficient;
+- HC3 standard error;
+- confidence interval;
+- p-value;
+- screen-specific q-value;
+- standardized coefficient;
+- GDSC direction;
+- external direction;
+- direction-concordance flag; and
+- screen-level replication status.
+
+The non-overlap artifact should preserve the corresponding restricted-model
+coverage, coefficient, inference, q-value, direction, and corroboration status
+without overwriting the primary full-screen result.
+
+The integrated replication summary should preserve not-evaluable, failed,
+discordant, single-screen, dual-screen, and non-overlap-supported states rather
+than retaining only favorable hypotheses.
+
+Notebook-601 and notebook-602 context, if appended after primary replication
+freeze, must remain identifiable as separate evidence columns rather than being
+collapsed into a composite score.
+
+## Notebook-603 analytical closure criteria
+
+Notebook 603 is complete when:
+
+1. all required upstream inputs are consumed from frozen registered artifacts
+   rather than silently reconstructed;
+2. the replication hypothesis manifest is frozen before external association
+   fitting;
+3. the primary hypothesis universe is derived only from the frozen GDSC
+   FDR-controlled association set;
+4. exact-compound matching uses only the frozen one-to-one cross-resource
+   catalog;
+5. frozen CTRP and PRISM response handling is preserved;
+6. frozen full-screen external eligibility is preserved;
+7. all evaluable external primary associations are fitted under the frozen
+   lineage-adjusted HC3 model;
+8. CTRP and PRISM primary multiplicity families are corrected separately as
+   specified;
+9. screen-level replication requires both external FDR and GDSC-concordant
+   direction;
+10. native and standardized effects are retained without naive cross-screen
+    pooling;
+11. cell-line overlap is explicitly quantified;
+12. non-overlap analysis is executed under the same support rule with separate
+    prospectively defined multiplicity families;
+13. favorable non-overlap results do not rescue failed primary replication;
+14. shared-model and lineage-composition diagnostics remain descriptive;
+15. drug-family or mechanism context does not redefine exact replication;
+16. notebook-601 and notebook-602 results remain isolated from primary
+    replication decisions;
+17. not-evaluable hypotheses remain explicit and are not counted as biological
+    failures;
+18. weak, null, discordant, heterogeneous, and unavailable external evidence
+    remains represented;
+19. stable notebook-603 outputs are persisted and validated;
+20. notebook-603 provenance and analysis metadata are finalized; and
+21. downstream-required notebook-603 artifacts are registered with frozen
+    identity.
+
+Completion does not require successful external replication, dual-screen
+support, non-overlap corroboration, or a favorable relationship with
+notebook-601/notebook-602 evidence.
 
 ---
 
