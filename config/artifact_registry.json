@@ -4170,6 +4170,220 @@
           "artifact_id": "phase6.603.replication_summary"
         }
       ]
+    },
+    "phase1.110.raw_input_inventory": {
+      "path": "data/interim/perturbational/110_lincs_raw_input_inventory.csv",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/110_lincs_cmap_acquisition_and_audit.ipynb"
+      },
+      "shape": [
+        8,
+        4
+      ],
+      "size_bytes": 1037,
+      "sha256": "e8aee7b9908e648d62f585bfd927b51862d9e7b5071f6f899ee0bf8b8c94f3df",
+      "inputs": [
+        {
+          "type": "raw_registry",
+          "ref": "/lincs/files/cellinfo_beta.txt"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/lincs/files/compoundinfo_beta.txt"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/lincs/files/geneinfo_beta.txt"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/lincs/files/instinfo_beta.txt"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/lincs/files/level5_beta_trt_cp_n720216x12328.gctx"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/lincs/files/LINCS2020 Release Metadata Field Definitions.xlsx"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/lincs/files/README.txt"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/lincs/files/siginfo_beta.txt"
+        }
+      ]
+    },
+    "phase1.110.program_representation_fidelity": {
+      "path": "data/interim/perturbational/110_lincs_program_representation_fidelity.csv",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/110_lincs_cmap_acquisition_and_audit.ipynb"
+      },
+      "shape": [
+        3,
+        19
+      ],
+      "size_bytes": 1603,
+      "sha256": "bb51a17c2990e3e3a28f7b971537f77373b432ca02afb8e06a1041c0209583bc",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_gene_weights"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/lincs/files/geneinfo_beta.txt"
+        }
+      ]
+    },
+    "phase1.110.bing_gene_handoff": {
+      "path": "data/interim/perturbational/110_lincs_bing_consensus_gene_handoff.csv",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/110_lincs_cmap_acquisition_and_audit.ipynb"
+      },
+      "shape": [
+        4485,
+        14
+      ],
+      "size_bytes": 635633,
+      "sha256": "d3e189fdb9cfea9d821ea6be5a0f8f2abec1d88a488d0d30c81ae1b37dc30796",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_gene_weights"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/lincs/files/geneinfo_beta.txt"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/lincs/files/level5_beta_trt_cp_n720216x12328.gctx"
+        }
+      ]
+    },
+    "phase1.110.landmark_gene_handoff": {
+      "path": "data/interim/perturbational/110_lincs_landmark_consensus_gene_handoff.csv",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/110_lincs_cmap_acquisition_and_audit.ipynb"
+      },
+      "shape": [
+        270,
+        14
+      ],
+      "size_bytes": 36818,
+      "sha256": "cc27bc8e8a23fd85c9ff00076bfb180fad727f072a5808c24d819de052f85ef2",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_gene_weights"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/lincs/files/geneinfo_beta.txt"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/lincs/files/level5_beta_trt_cp_n720216x12328.gctx"
+        }
+      ]
+    },
+    "phase1.110.primary_signature_handoff": {
+      "path": "data/interim/perturbational/110_lincs_primary_signature_handoff.parquet",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/110_lincs_cmap_acquisition_and_audit.ipynb"
+      },
+      "shape": [
+        362036,
+        20
+      ],
+      "size_bytes": 9785388,
+      "sha256": "c8afd04e3f3b77b7188031e6cb519d9867d75cdbec65da7e7550540dfe3a9ffb",
+      "inputs": [
+        {
+          "type": "raw_registry",
+          "ref": "/lincs/files/siginfo_beta.txt"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/lincs/files/cellinfo_beta.txt"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/lincs/files/level5_beta_trt_cp_n720216x12328.gctx"
+        }
+      ]
+    },
+    "phase1.110.primary_perturbagen_coverage": {
+      "path": "data/interim/perturbational/110_lincs_primary_perturbagen_coverage.csv",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/110_lincs_cmap_acquisition_and_audit.ipynb"
+      },
+      "shape": [
+        7914,
+        4
+      ],
+      "size_bytes": 176460,
+      "sha256": "de15b4f01900355d982b7ced38882a040db37f8c26cd3ae6fb35e3c62855bfe1",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.110.primary_signature_handoff"
+        }
+      ]
+    },
+    "phase1.110.primary_compound_annotation": {
+      "path": "data/interim/perturbational/110_lincs_primary_compound_annotation_handoff.csv",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/110_lincs_cmap_acquisition_and_audit.ipynb"
+      },
+      "shape": [
+        12189,
+        7
+      ],
+      "size_bytes": 1559359,
+      "sha256": "4f939dcc7b80920a1aec29d47e061512fe60d6f3b6d0ffcedb6af0b33b7db155",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.110.primary_perturbagen_coverage"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/lincs/files/compoundinfo_beta.txt"
+        }
+      ]
     }
   }
 }

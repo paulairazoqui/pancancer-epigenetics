@@ -528,11 +528,62 @@
     }
   },
   "lincs": {
-    "source_database": null,
-    "release": null,
-    "download_page_url": null,
-    "status": "planned",
-    "files": {}
+    "source_database": "Connectivity Map (CMap) / LINCS",
+    "provider": "Broad Institute",
+    "release": "Expanded CMap LINCS Resource 2020 Beta",
+    "provenance_mode": "file_managed",
+    "canonical_dir": "data/raw/lincs",
+    "files": {
+      "cellinfo_beta.txt": {
+        "role": "cell_line_metadata",
+        "status": "acquired_and_used",
+        "size_bytes": 37979,
+        "sha256": "d26a08f7f290f6a94bff593cdea4dcfc3fe17177e05593cd381cb65aebc63fc2"
+      },
+      "compoundinfo_beta.txt": {
+        "role": "compound_metadata",
+        "status": "acquired_and_used",
+        "size_bytes": 4631014,
+        "sha256": "a71fca6de41dcc46a5063858be7e04155f3c09832c8b3fb35814f03db8d9fdff"
+      },
+      "geneinfo_beta.txt": {
+        "role": "gene_metadata",
+        "status": "acquired_and_used",
+        "size_bytes": 1141389,
+        "sha256": "e739d06bad42ff9285c00b778e65d8999425062a3375cc7e7cdab0e7154490b5"
+      },
+      "instinfo_beta.txt": {
+        "role": "instance_metadata",
+        "status": "acquired_and_used",
+        "size_bytes": 674838120,
+        "sha256": "2676189e8ea4a4cfdafc6c7e1b9f1776f4459ebfe4f79f6a736c3f3a732d3249"
+      },
+      "level5_beta_trt_cp_n720216x12328.gctx": {
+        "role": "level5_compound_signatures",
+        "status": "acquired_and_used",
+        "size_bytes": 35518405386,
+        "sha256": "fbb04a94d8aa8a4fa6daf01f7d94dcd938fb9b7937730f81bfba3d8d0f1472a8"
+      },
+      "LINCS2020 Release Metadata Field Definitions.xlsx": {
+        "role": "metadata_field_definitions",
+        "status": "supporting",
+        "size_bytes": 40461,
+        "sha256": "15ab6e651de14334e632d90e140ba3060f157d94681e4e8b8c0f7db353e7115e"
+      },
+      "README.txt": {
+        "role": "resource_readme",
+        "status": "supporting",
+        "size_bytes": 2200,
+        "sha256": "d6e9bbb485950550999f0c882bf9a5640ccb3028896219a4c8bd1849649b41d1"
+      },
+      "siginfo_beta.txt": {
+        "role": "signature_metadata",
+        "status": "acquired_and_used",
+        "size_bytes": 465242319,
+        "sha256": "1a38d7ea2a804be79804af4a27aff9f2537af8f13d3c8af1fdc1fef780f40201"
+      }
+    },
+    "download_page_url": "https://clue.io/data/project/5fb7d248c1f885001161d6c8"
   },
   "cell_model_passports": {
     "source_database": null,
