@@ -212,8 +212,9 @@ causal mechanism, therapeutic efficacy, or therapeutic reversal.
 ## Purpose
 
 Phase 7 evaluates whether perturbational signatures in the audited LINCS/CMap
-resource show inverse computational association with the three frozen Phase 4
-cross-system consensus transcriptomic programs.
+resource show computational opposition to the prospectively oriented
+resistance-like-associated poles of the three frozen Phase 4 cross-system
+consensus transcriptomic programs.
 
 The phase is designed to generate conservative perturbational hypotheses while
 preserving:
@@ -241,8 +242,8 @@ Phase 7 addresses the following general questions:
 > prospectively oriented resistance-like-associated pole of a frozen
 > cross-system consensus transcriptomic program?
 
-> Are those inverse associations more extreme than expected under a
-> prospectively specified conditional pseudo-program null?
+> Are those resistance-like-oriented oppositions more extreme than expected
+> under a prospectively specified conditional pseudo-program null?
 
 > Are the primary results stable to prespecified perturbational,
 > representation, lineage-composition, and competitive-null sensitivities?
@@ -265,10 +266,12 @@ Phase 7 does not establish:
 - external validation from subsets of the same LINCS/CMap perturbational
   ecosystem.
 
-A negative primary connectivity score may be described as an
-`inverse computational association`.
+A negative resistance-like-oriented primary connectivity score may be
+described as computational opposition to the upstream
+resistance-like-associated pole.
 
-It must not be described as therapeutic reversal.
+It must not be described as therapeutic reversal, causal reversal, or evidence
+that the frozen positive Phase 4 pole itself encoded resistance.
 
 ---
 
@@ -369,7 +372,12 @@ For each frozen program:
 - 1,495 are represented in BING; and
 - 90 are landmark genes.
 
-The 1,495-gene BING representation is the primary query representation.
+The 1,495-gene BING representation is the primary query representation. It
+contains 90 landmark genes and 1,405 best-inferred genes per frozen program.
+
+Outcome-blind algebraic fidelity of this projection supports representation
+choice but does not biologically validate each inferred gene or eliminate
+platform-specific limitations.
 
 The landmark-only representation is a prespecified sensitivity and must not
 replace or rescue the BING primary analysis.
@@ -537,6 +545,11 @@ C[j] = median over evaluable lineages l of C[j,l]
 
 Each evaluable lineage therefore contributes one lineage-level summary,
 regardless of the number of represented cell lines.
+
+This equal-lineage aggregation balances represented lineages within a
+perturbagen. It does not force every perturbagen to share the same set of
+lineages and does not eliminate upstream lineage dependence of the frozen
+programs.
 
 Primary outputs must preserve at minimum:
 
@@ -727,15 +740,15 @@ in sensitivity metadata.
 
 Exactly 10,000 competitive pseudo-program draws are generated.
 
-For an observed negative-tail score, the descriptive competitive-null quantity
-is:
+For an observed negative resistance-like-oriented score, the descriptive
+competitive-null quantity is:
 
 ```text
 competitive_null_tail_fraction = (g + 1) / 10001
 ```
 
-where `g` is the number of competitive-null scores less than or equal to the
-observed score.
+where `g` is the number of competitive-null resistance-like-oriented scores
+less than or equal to the observed resistance-like-oriented score.
 
 This quantity is not named a p-value, receives no BH/BY correction, has no
 PASS/FAIL threshold, and cannot create, replace, redefine, or rescue primary
