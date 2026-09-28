@@ -31,12 +31,21 @@ having prospectively frozen decisions that were not yet made at that time.
 The scientific decisions in this contract were frozen after review of the
 outcome-blind notebook-110 handoff and before Phase 7 connectivity execution.
 
-Some implementation parameters remain explicitly marked:
+A prospective operational-freeze addendum was established on 2026-09-28,
+before inspection of any Phase 7 connectivity result. That addendum freezes the
+query-null stratification, permutation coupling, competitive-null role,
+sequential Monte Carlo family and exceedance target, random-number generator,
+numerical policy, CMap-style sensitivity, perturbational diagnostics, artifact
+interfaces, and validation policy described below.
 
-`PENDING FREEZE BEFORE CONNECTIVITY EXECUTION`
+The only primary inferential simulation parameter intentionally left unresolved
+after this operational package is the final `Bmax`. Its candidate ladder and
+selection rule are frozen, but the final value must be selected prospectively
+after an outcome-blind computational benchmark under a resource envelope that
+is itself frozen before the benchmark is run.
 
-Those parameters must be finalized prospectively, without inspection of Phase 7
-connectivity results, before the corresponding inferential execution begins.
+No observed program–perturbagen connectivity, ranking, p-value, q-value, or
+compound result may be inspected before that final `Bmax` freeze.
 
 Once Phase 7 connectivity execution begins, primary program representation,
 connectivity definition, analytical hierarchy, empirical-null family,
@@ -59,9 +68,10 @@ Scientific design frozen prospectively.
 
 Phase 7 analytical execution has not begun.
 
-Operational parameters explicitly marked `PENDING FREEZE BEFORE CONNECTIVITY
-EXECUTION` remain unresolved and must be finalized before the corresponding
-connectivity or inferential results are inspected.
+The 2026-09-28 operational package is prospectively frozen. The final primary
+Monte Carlo `Bmax` remains pending an outcome-blind benchmark under a
+prospectively fixed resource envelope. Notebook 701 primary inferential
+execution remains blocked until that final value is recorded.
 
 This contract defines the analytical decisions governing:
 
@@ -75,6 +85,64 @@ This contract defines the analytical decisions governing:
 - perturbagen and chemical-structure handling;
 - compound-level prioritization boundaries; and
 - mechanism-of-action aggregation.
+
+---
+
+## Operational freeze addendum — 2026-09-28
+
+This addendum was established before inspection of any Phase 7 connectivity
+result.
+
+It prospectively freezes the following operational decisions:
+
+1. gene-level perturbational dispersion is the unscaled median absolute
+   deviation (MAD) across the 362,036 frozen primary Level 5 signatures;
+2. null strata are defined as LINCS feature space
+   (`landmark` versus `best inferred`) × deterministic MAD decile;
+3. the primary conditional null has no arbitrary minimum query-gene count per
+   stratum;
+4. primary-null permutations are coupled across the three frozen consensus
+   programs by permuting each gene's complete three-program signed-weight vector
+   jointly within stratum;
+5. the competitive pseudo-program null is a descriptive robustness analysis
+   restricted prospectively to hypotheses with primary
+   `q_global <= 0.05`; it uses 10,000 fixed pseudo-program draws and cannot
+   create or rescue primary support;
+6. primary Monte Carlo inference uses the truncated Besag–Clifford sequential
+   procedure with exceedance target `h = 20`;
+7. the candidate maximum-draw ladder is
+   `500000 -> 250000 -> 100000`; the largest candidate satisfying the frozen
+   resource envelope will be selected before observed connectivity is
+   inspected;
+8. randomization uses NumPy `PCG64DXSM` with
+   `SeedSequence(entropy=701, spawn_key=(namespace, replicate_id))`, where
+   namespace `1` is the primary conditional null and namespace `2` is the
+   competitive-null sensitivity; `replicate_id` is zero-based;
+9. source GCTX values may remain stored/read as `float32`, while dot products,
+   norms, cosine scores, WTCS calculations, medians, and inferential
+   aggregations are evaluated in `float64`;
+10. primary null extremeness is defined by
+    `null_score <= observed_score` for the one-sided negative tail;
+11. primary Monte Carlo outputs are termed
+    `conditional randomization p-values` and are interpreted only relative to
+    the prospectively specified conditional pseudo-program null;
+12. the CMap-style sensitivity uses fixed 150-gene up and 150-gene down sets
+    selected by frozen Phase 4 BING weights, then treats membership as
+    directional but unweighted and reports raw WTCS only;
+13. perturbational amplitude/reproducibility context uses the provider-defined
+    LINCS `tas`, `ss_ngene`, and `cc_q75` fields; no project-defined BING
+    RMS metric is added;
+14. proliferation/stress diagnostics use only the five prospectively frozen
+    Hallmark sets and a transparent mean signed Level 5 z-score over available
+    BING genes;
+15. stable Phase 7 artifact namespaces and roles are frozen below, while
+    transient null batches and matrix chunks are not registry artifacts; and
+16. structural identities are validated exactly, whereas floating-point
+    algorithms are validated against small independent `float64` reference
+    implementations using method-specific tolerances.
+
+This addendum does not change the scientific estimand or reopen any frozen
+upstream object.
 
 ---
 
@@ -403,13 +471,47 @@ At minimum the stratification must preserve:
 - LINCS feature space, distinguishing landmark from best-inferred genes; and
 - a prospectively frozen measure of gene-level perturbational dispersion.
 
-The exact perturbational-dispersion statistic, binning rule, tie handling,
-minimum stratum-size handling, and any cross-program coupling of permutation
-indices are:
+Perturbational dispersion is defined for every BING gene as the unscaled
+median absolute deviation across the 362,036 frozen primary Level 5 signatures:
 
-`PENDING FREEZE BEFORE CONNECTIVITY EXECUTION`
+```text
+MAD[g] = median_s( abs(z[s,g] - median_s(z[s,g])) )
+```
 
-These rules must be frozen before any primary connectivity result is inspected.
+MAD is used only as an outcome-blind nuisance-matching quantity.
+
+Genes are first separated by LINCS feature space:
+
+- landmark; and
+- best inferred.
+
+Within each feature space, all BING genes are ordered deterministically by:
+
+1. ascending MAD; then
+2. ascending `gene_id`.
+
+The ordered genes are divided into 10 deterministic groups whose sizes differ
+by at most one. These groups are the MAD deciles used for null stratification.
+This rank-based construction avoids data-dependent handling of duplicated
+quantile boundaries.
+
+The primary conditional null imposes no arbitrary minimum number of query genes
+per stratum. If a stratum contains only one query gene, that gene's weight
+vector remains fixed for that stratum in that null replicate.
+
+The three frozen program weights associated with one gene are treated as one
+three-component signed-weight vector. Within each
+`feature_space × MAD_decile` stratum, the same permutation of gene rows is
+applied jointly to all three programs.
+
+Thus the primary null preserves:
+
+- exact query gene membership;
+- exact feature-space composition;
+- exact per-program signed-weight multisets;
+- cross-program weight geometry;
+- stratum-level perturbational-dispersion composition; and
+- the observed perturbational data and their gene-gene correlation structure.
 
 No stratum definition may be tuned according to p-values, compound rankings,
 or favorable connectivity.
@@ -428,20 +530,47 @@ conditional null:
 > Is the observed inverse association also unusual relative to technically
 > comparable pseudo-programs with different gene membership?
 
-The competitive sensitivity must preserve, prospectively and as closely as
-defined before execution:
+The competitive sensitivity is restricted prospectively to
+`program × pert_id` hypotheses satisfying the primary global criterion
+`q_global <= 0.05`.
+
+For each program, pseudo-program membership is sampled from the broader BING
+space after excluding the program's real 1,495-gene BING support.
+
+Replacement genes must match the query requirement within the same:
+
+`feature_space × MAD_decile`
+
+and are sampled without replacement within each pseudo-program.
+
+The competitive sensitivity preserves:
 
 - query size;
-- signed-weight distribution;
+- the complete signed-weight multiset;
 - landmark / best-inferred composition; and
-- perturbational-dispersion matching.
+- MAD-decile composition.
 
-Its exact matching, resampling, and Monte Carlo specification is:
+If a stratum has fewer eligible background genes than required replacements,
+it is merged deterministically with the adjacent MAD decile in the same feature
+space whose median MAD is closest. If both adjacent bins are equally close, the
+lower-numbered bin is selected. Merging is repeated only until sufficient
+background genes exist.
 
-`PENDING FREEZE BEFORE CONNECTIVITY EXECUTION`
+Exactly 10,000 competitive pseudo-program draws are generated.
 
-The competitive null cannot replace, redefine, or rescue the primary
-conditional-null inference.
+For an observed negative-tail score, the descriptive competitive-null quantity
+is:
+
+```text
+competitive_null_tail_fraction = (g + 1) / 10001
+```
+
+where `g` is the number of competitive-null scores less than or equal to the
+observed score.
+
+This quantity is not named a p-value, receives no BH/BY correction, has no
+PASS/FAIL threshold, and cannot create, replace, redefine, or rescue primary
+support.
 
 ---
 
@@ -465,13 +594,72 @@ The procedure must satisfy all of the following:
 - no tail extrapolation or alternate parametric approximation may be introduced
   after result inspection.
 
-The exact sequential algorithm parameters, including exceedance target,
-maximum null draws, batch size, seed schedule, and implementation details are:
+Primary inference uses the truncated Besag–Clifford sequential Monte Carlo
+procedure with exceedance target:
 
-`PENDING FREEZE BEFORE CONNECTIVITY EXECUTION`
+`h = 20`
 
-These parameters must be selected through an outcome-blind computational
-benchmark and frozen before connectivity-result inspection.
+For each primary hypothesis, a null draw is counted as at least as extreme when:
+
+```text
+null_score <= observed_score
+```
+
+If the twentieth exceedance is reached after `L` null draws before
+`Bmax`, the conditional randomization p-value is:
+
+```text
+p_conditional = 20 / L
+```
+
+If `Bmax` is reached with `g < 20` exceedances:
+
+```text
+p_conditional = (g + 1) / (Bmax + 1)
+```
+
+A p-value of zero is not permitted.
+
+The candidate `Bmax` ladder is frozen as:
+
+```text
+500000 -> 250000 -> 100000
+```
+
+Notebook 700 must run an outcome-blind computational benchmark using the same
+matrix access pattern and null-scoring operations but synthetic/permuted query
+weights that do not reveal observed program–perturbagen connectivity.
+
+Before that benchmark is run, the execution resource envelope must itself be
+frozen. The final `Bmax` is the largest candidate in the frozen ladder that
+satisfies that resource envelope. The selected value must be recorded in this
+contract before any observed primary connectivity result is inspected.
+
+Randomization uses NumPy `PCG64DXSM` with:
+
+```text
+SeedSequence(entropy=701, spawn_key=(namespace, replicate_id))
+```
+
+where:
+
+- namespace `1` = primary conditional null;
+- namespace `2` = competitive-null sensitivity; and
+- `replicate_id` is zero-based.
+
+The generator stream for a replicate must therefore be independent of batch
+size or execution partitioning.
+
+The exact NumPy/environment versions used for execution must be persisted in
+analysis metadata.
+
+Source GCTX values may remain stored/read as `float32`. Dot products, norms,
+cosines, WTCS calculations, medians, empirical-null aggregations, and p-value
+calculations must use `float64`.
+
+Batch size is an engineering parameter and may change to fit memory provided
+that it does not change random streams, analytical membership, or validated
+numeric outputs.
 
 Computational inconvenience is not a valid reason to alter the null after
 results are observed.
@@ -559,14 +747,45 @@ It must not be described as a reproduction of the complete CLUE/CMap
 normalization or tau pipeline unless that full procedure is explicitly
 implemented and validated.
 
-The exact rank-based enrichment formula and deterministic tie handling are:
+Frozen Phase 4 weights are used only to select membership in the two query
+arms.
 
-`PENDING FREEZE BEFORE CONNECTIVITY EXECUTION`
+For each program:
 
-Only one prospectively frozen implementation will be used.
+- the 150 genes with the largest positive frozen BING weights form the up arm;
+- the 150 genes with the most negative frozen BING weights form the down arm;
+- ties at the selection boundary are resolved by ascending `gene_id`; and
+- after selection, query membership is directional but unweighted.
 
-Multiple gene-count cutoffs or alternate enrichment statistics must not be
-screened and then selected according to favorable results.
+Each Level 5 signature is ranked across all 10,174 BING genes by:
+
+1. descending signature z-score; then
+2. ascending `gene_id`.
+
+For one query arm `S`, the raw enrichment score is the signed maximum
+absolute deviation of a weighted running-sum statistic. A hit contributes
+`abs(z)` normalized by the total `abs(z)` over genes in `S`; a miss
+contributes `1 / (N - |S|)`. If multiple positions share the same maximum
+absolute deviation, the earliest rank position is used.
+
+Let the resulting arm scores be `ES_up` and `ES_down`. Raw WTCS is:
+
+```text
+WTCS = (ES_up - ES_down) / 2
+       if ES_up and ES_down have opposite signs
+WTCS = 0
+       otherwise
+```
+
+If the hit-weight denominator for an arm is exactly zero, that signature's
+CMap-style sensitivity score is marked not evaluable rather than rescued by an
+alternate statistic.
+
+Only raw WTCS is used.
+
+No normalized connectivity score (NCS), tau transformation, alternate
+gene-count cutoff, or alternate enrichment statistic may be introduced as a
+result-dependent replacement.
 
 ---
 
@@ -577,16 +796,19 @@ using those diagnostics as primary exclusion gates.
 
 ## Perturbational amplitude
 
-Available LINCS activity-related quantities such as:
+Perturbational activity/reproducibility context is restricted to the
+provider-defined LINCS quantities:
 
-- `tas`; and
-- `ss_ngene`
+- `tas`;
+- `ss_ngene`; and
+- `cc_q75`.
 
-may be reported together with a prospectively defined transcriptomic-amplitude
-summary.
+No project-defined BING RMS or other ad hoc global-amplitude metric is added.
 
-These measures must be described as perturbational activity/amplitude
-diagnostics.
+These fields are summarized through the same condition → dose/time → cell-line
+→ lineage hierarchy when perturbagen-level context is required.
+
+They must be described as perturbational activity/reproducibility diagnostics.
 
 They are not direct cytotoxicity measurements.
 
@@ -604,6 +826,22 @@ The prospectively defined stress-context panel is limited to:
 - `HALLMARK_P53_PATHWAY`;
 - `HALLMARK_APOPTOSIS`; and
 - `HALLMARK_UNFOLDED_PROTEIN_RESPONSE`.
+
+For each Hallmark diagnostic and Level 5 signature, the diagnostic score is the
+mean signed Level 5 z-score across Hallmark genes represented in BING.
+
+The implementation must retain:
+
+- total Hallmark gene count;
+- BING-represented Hallmark gene count;
+- BING coverage fraction; and
+- overlap with each frozen consensus-program support.
+
+Diagnostic scores are summarized through the same experimental and
+lineage-aware hierarchy used for perturbagen context.
+
+No Hallmark p-value, enrichment FDR, or diagnostic PASS/FAIL threshold is part
+of Phase 7.
 
 No additional stress pathway may be introduced because it explains a favorable
 or unfavorable observed compound.
@@ -975,22 +1213,49 @@ From Phase 6 onward, the preferred notebook-closure sequence applies:
 persist outputs → validate outputs → finalize provenance → register artifacts →
 validate registry.
 
-Exact artifact identifiers and schemas are:
+The stable Phase 7 artifact identifiers are frozen as follows.
 
-`PENDING FREEZE BEFORE CONNECTIVITY EXECUTION`
+Notebook 700:
 
-They should be finalized before implementation creates the corresponding stable
-downstream interfaces.
+- `phase7.700.program_query_definitions`;
+- `phase7.700.null_stratification_manifest`; and
+- `phase7.700.analysis_metadata`.
 
-At minimum, stable Phase 7 handoffs are expected to cover:
+Notebook 701:
+
+- `phase7.701.lineage_connectivity`;
+- `phase7.701.primary_perturbagen_connectivity`;
+- `phase7.701.sensitivity_connectivity`;
+- `phase7.701.perturbational_context_diagnostics`; and
+- `phase7.701.analysis_metadata`.
+
+Notebook 702:
+
+- `phase7.702.perturbagen_structure_map`;
+- `phase7.702.structure_connectivity_summary`;
+- `phase7.702.perturbational_hypothesis_catalog`; and
+- `phase7.702.analysis_metadata`.
+
+Notebook 703:
+
+- `phase7.703.mechanism_annotation_map`;
+- `phase7.703.mechanism_summary`; and
+- `phase7.703.analysis_metadata`.
+
+Their exact column-level schemas and data types must be frozen locally before
+each notebook first persists the corresponding stable interface. Schema
+finalization may clarify representation but must not alter analytical
+membership, inferential status, eligibility, null construction, or rescue
+rules.
+
+At minimum, these stable handoffs must preserve:
 
 - query definitions and query metadata;
 - null-stratification metadata;
-- primary perturbagen-level connectivity results;
-- lineage-level connectivity summaries;
-- empirical-null inference metadata;
-- prespecified sensitivity summaries;
-- proliferation/stress/amplitude diagnostic summaries;
+- lineage-level and perturbagen-level connectivity;
+- conditional-randomization inference metadata;
+- prespecified sensitivity results;
+- provider-defined activity/reproducibility and Hallmark diagnostic context;
 - exact-structure reconciliation;
 - compound/structure-level perturbational summaries;
 - target/MoA mappings and mechanism summaries; and
@@ -1001,35 +1266,59 @@ because they were computed.
 
 ---
 
-# Operational freeze required before notebook 701 inference
+# Remaining operational freeze before notebook 701 inference
 
-Before the first primary connectivity result is inspected, a prospective
-operational addendum to this contract must freeze at minimum:
+The 2026-09-28 addendum resolves the operational package required for query
+construction, null stratification, sensitivity definition, randomization
+family, diagnostics, artifact naming, and deterministic validation.
 
-1. exact perturbational-dispersion statistic used for null stratification;
-2. dispersion-bin construction and tie handling;
-3. minimum-stratum handling;
-4. whether primary-null permutations are coupled across programs;
-5. competitive-null gene-matching and replacement rules;
-6. exact sequential Monte Carlo procedure;
-7. exceedance/stopping parameter;
-8. maximum null draws;
-9. deterministic seed schedule;
-10. batch and numerical-precision policy where analytically relevant;
-11. empirical p-value estimator;
-12. exact CMap-style rank-enrichment statistic and tie handling;
-13. any transcriptomic-amplitude summary beyond frozen LINCS metadata fields;
-14. exact diagnostic-score implementation;
-15. stable artifact identifiers and required schemas; and
-16. local validation tolerances needed to confirm deterministic
-    implementation.
+Notebook 701 primary inferential execution remains blocked until the following
+final simulation item is prospectively resolved:
 
-These decisions must be made without inspection of Phase 7 connectivity
-results.
+1. freeze the computational resource envelope before benchmarking;
+2. execute the outcome-blind benchmark under that envelope;
+3. select the largest feasible `Bmax` from
+   `{500000, 250000, 100000}`; and
+4. record the selected `Bmax`, benchmark environment, and resource envelope in
+   this contract before observed connectivity is inspected.
 
-If a technical benchmark demonstrates that a proposed implementation is
-infeasible, the replacement rule must be selected and documented before result
+No candidate outside that frozen ladder may be substituted after result
 inspection.
+
+## Deterministic implementation validation
+
+Structural objects must match exactly, including:
+
+- program and perturbagen identifiers;
+- query membership;
+- gene ordering keys;
+- MAD-decile assignments;
+- permutation replicate identifiers;
+- RNG entropy, namespace, and spawn keys;
+- lineage membership;
+- chemical mappings; and
+- expected row counts.
+
+For small independent `float64` reference calculations, cosine, WTCS, and
+hierarchical aggregation implementations must reproduce reference values using:
+
+```text
+rtol = 1e-10
+atol = 1e-12
+```
+
+These tolerances apply to the reference checks rather than serving as a
+universal tolerance for every persisted object.
+
+Primary cosine scores must remain within their theoretical interval
+`[-1, 1]` up to numerical tolerance.
+
+WTCS query membership and ranking order must be exact after the frozen
+tie-breaking rules are applied.
+
+A failed deterministic or numerical validation must halt the relevant
+execution path and trigger diagnosis. Validation tolerances must not be relaxed
+after observing favorable or unfavorable scientific results.
 
 ---
 
@@ -1037,8 +1326,8 @@ inspection.
 
 Phase 7 will be considered analytically complete when:
 
-1. all items marked `PENDING FREEZE BEFORE CONNECTIVITY EXECUTION` have been
-   prospectively resolved;
+1. the resource envelope and final primary `Bmax` have been prospectively
+   frozen before observed connectivity inspection;
 2. all required Phase 7 inputs are consumed from frozen registered upstream
    artifacts rather than silently reconstructed;
 3. the continuous signed weighted BING query representations are persisted and
