@@ -267,20 +267,15 @@ Phase 7 must not:
 
 # Primary connectivity definition
 
-For perturbational signature (s) and frozen program (p), the primary
+For perturbational signature `s` and frozen program `p`, the primary
 connectivity score is the signed cosine similarity over the program's frozen
-BING support (G_p):
+BING support `G_p`:
 
-[
-C_{s,p}
-=
-rac{
-sum_{g in G_p} w_{p,g} z_{s,g}
-}{
-sqrt{sum_{g in G_p} w_{p,g}^{2}}
-sqrt{sum_{g in G_p} z_{s,g}^{2}}
-}
-]
+```text
+C[s,p] =
+    sum_g(w[p,g] * z[s,g])
+    / (sqrt(sum_g(w[p,g]^2)) * sqrt(sum_g(z[s,g]^2)))
+```
 
 where:
 
@@ -334,21 +329,17 @@ may be selected according to favorable connectivity.
 After the frozen notebook-110 hierarchy produces one score per
 `pert_id × cell line`, the primary cross-cell aggregation is lineage-aware.
 
-For perturbagen (j) and lineage (l):
+For perturbagen `j` and lineage `l`:
 
-[
-C_{j,l}
-=
-operatorname{median}_{c in l}(C_{j,c})
-]
+```text
+C[j,l] = median over cell lines c in lineage l of C[j,c]
+```
 
 The final primary perturbagen score is:
 
-[
-C_j
-=
-operatorname{median}_{l}(C_{j,l})
-]
+```text
+C[j] = median over evaluable lineages l of C[j,l]
+```
 
 Each evaluable lineage therefore contributes one lineage-level summary,
 regardless of the number of represented cell lines.
@@ -491,11 +482,9 @@ results are observed.
 
 The primary hypothesis family contains:
 
-[
-3 	ext{ programs} 	imes 7{,}914 	ext{ perturbagens}
-=
-23{,}742 	ext{ hypotheses}
-]
+```text
+3 programs × 7,914 perturbagens = 23,742 hypotheses
+```
 
 Each hypothesis tests the prespecified negative-tail inverse-association
 question for one frozen program and one frozen primary perturbagen.
