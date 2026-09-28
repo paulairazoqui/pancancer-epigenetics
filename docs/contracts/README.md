@@ -17,3 +17,7 @@ controls, replication or rescue rules, or related methodological choices.
 
 - [`phase4/`](phase4/) contains Phase 4 contracts.
 - [`phase4b/`](phase4b/) contains Phase 4B contracts.
+- [`phase6/`](phase6/) contains the Phase 6 pharmacogenomic/XAI analysis
+  contract.
+- [`phase7/`](phase7/) contains the Phase 7 perturbational-hypothesis analysis
+  contract.
