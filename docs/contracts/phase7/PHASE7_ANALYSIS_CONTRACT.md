@@ -38,6 +38,17 @@ sequential Monte Carlo family and exceedance target, random-number generator,
 numerical policy, CMap-style sensitivity, perturbational diagnostics, artifact
 interfaces, and validation policy described below.
 
+A second prospective methodological amendment was established on 2026-09-28
+after an independent adversarial audit and before inspection of any Phase 7
+connectivity result. It clarifies the resistance-like orientation used for
+Phase 7 inference, the conditional-null assumption and interpretation,
+direction/evaluability handling, dependence-robust multiplicity control,
+sequential Monte Carlo boundary behavior, deterministic RNG consumption,
+chemical-identity edge cases, MoA deduplication, scientific result states, and
+benchmark requirements. Historical wording from the earlier addendum is
+retained for chronology where practical; the later amendment governs wherever
+the two differ.
+
 The only primary inferential simulation parameter intentionally left unresolved
 after this operational package is the final `Bmax`. Its candidate ladder and
 selection rule are frozen, but the final value must be selected prospectively
@@ -68,10 +79,12 @@ Scientific design frozen prospectively.
 
 Phase 7 analytical execution has not begun.
 
-The 2026-09-28 operational package is prospectively frozen. The final primary
-Monte Carlo `Bmax` remains pending an outcome-blind benchmark under a
-prospectively fixed resource envelope. Notebook 701 primary inferential
-execution remains blocked until that final value is recorded.
+The 2026-09-28 operational package and post-audit methodological amendment are
+prospectively frozen. The final primary Monte Carlo `Bmax` remains pending an
+outcome-blind benchmark under a prospectively fixed resource envelope. Notebook
+700 may begin the outcome-blind preparatory and benchmark work specified here.
+Notebook 701 primary inferential execution remains blocked until the resource
+envelope, benchmark, and final `Bmax` are recorded.
 
 This contract defines the analytical decisions governing:
 
@@ -106,7 +119,7 @@ It prospectively freezes the following operational decisions:
    jointly within stratum;
 5. the competitive pseudo-program null is a descriptive robustness analysis
    restricted prospectively to hypotheses with primary
-   `q_global <= 0.05`; it uses 10,000 fixed pseudo-program draws and cannot
+   `q_BY_global <= 0.05`; it uses 10,000 fixed pseudo-program draws and cannot
    create or rescue primary support;
 6. primary Monte Carlo inference uses the truncated Besag–Clifford sequential
    procedure with exceedance target `h = 20`;
@@ -144,6 +157,56 @@ It prospectively freezes the following operational decisions:
 This addendum does not change the scientific estimand or reopen any frozen
 upstream object.
 
+Specific clauses concerning multiplicity, RNG consumption, direction, and
+interpretation are superseded by the later post-audit amendment below.
+
+---
+
+## Post-audit methodological amendment — 2026-09-28
+
+This amendment was established after an independent adversarial review of the
+frozen Phase 7 contract and before inspection of any Phase 7 perturbational
+connectivity result.
+
+It does not reopen the frozen Phase 4 program weights or the notebook-110
+perturbational universe. It prospectively resolves additional inferential and
+operational ambiguities identified during review.
+
+The governing changes are:
+
+1. Phase 7 preserves the frozen Phase 4 program orientation but separately
+   derives a fixed `resistance_like_orientation_multiplier` from frozen
+   upstream Phase 3/4 evidence before LINCS connectivity is inspected;
+2. primary inferential direction is defined on the resulting
+   resistance-like-oriented connectivity, not on the arbitrary positive pole of
+   the Phase 4 consensus representation;
+3. the conditional randomization test is explicitly interpreted under a
+   working within-stratum exchangeability assumption for gene-to-weight-vector
+   assignment; MAD matching does not prove that assumption;
+4. non-inverse and not-evaluable hypotheses remain in the complete 23,742-test
+   family with multiplicity input equal to 1;
+5. global Benjamini–Yekutieli adjustment at `q_BY <= 0.05` is the primary
+   inferential gate; global BH is retained as nominal exploratory context;
+6. the Besag–Clifford branch `p = h/L` applies whenever the twentieth
+   exceedance is reached, including exactly at `L = Bmax`; the
+   `(g + 1)/(Bmax + 1)` branch applies only when `g < h`;
+7. permutation draws are sampled with replacement from the allowed permutation
+   space; repeated and identity permutations are permitted;
+8. random streams are assigned at namespace × replicate × stratum level so that
+   batching, parallelism, or the current active-hypothesis set cannot alter a
+   pseudo-program replicate;
+9. chemical reconciliation cannot bridge incompatible full InChIKeys through a
+   fallback SMILES and unknown structures cannot collapse into one shared
+   chemical entity;
+10. MoA summaries receive one descriptive contribution per exact structure,
+    after preserving within-structure `pert_id` heterogeneity; and
+11. scientific statuses, inferential fields, benchmark outputs, and provenance
+    requirements are frozen before connectivity inspection.
+
+The amendment narrows interpretation where needed. It does not convert
+conditional randomization support into evidence of a universal biological null,
+causal mechanism, therapeutic efficacy, or therapeutic reversal.
+
 ---
 
 ## Purpose
@@ -174,8 +237,9 @@ not-evaluable results are all valid Phase 7 outcomes.
 
 Phase 7 addresses the following general questions:
 
-> Do perturbational signatures show inverse computational association with a
-> frozen cross-system consensus transcriptomic program?
+> Do perturbational signatures show computational opposition to the
+> prospectively oriented resistance-like-associated pole of a frozen
+> cross-system consensus transcriptomic program?
 
 > Are those inverse associations more extreme than expected under a
 > prospectively specified conditional pseudo-program null?
@@ -333,35 +397,97 @@ Phase 7 must not:
 
 ---
 
+## Resistance-like orientation for Phase 7 inference
+
+Notebook 401 explicitly states that consensus score direction is anchored to
+the tumor RNA component and does not itself encode a resistance-like
+direction.
+
+Phase 7 therefore preserves the frozen Phase 4 weights exactly but defines one
+additional program-level orientation multiplier from frozen upstream evidence,
+before any LINCS connectivity result is inspected.
+
+For consensus program `p`:
+
+```text
+resistance_like_orientation_multiplier[p]
+    = sign(
+        phase4_orientation_multiplier[p]
+        * phase3_311_lineage_adjusted_rho[source_cell_line_program[p]]
+      )
+```
+
+The authoritative frozen source is
+`phase3.311.program_robustness_summary`, together with the Phase 4
+`orientation_multiplier` used to align the cell-line program to the tumor RNA
+axis.
+
+The resulting multipliers are:
+
+| Consensus program | Phase 3 source | Phase 4 orientation multiplier | Frozen lineage-adjusted rho | Phase 3 robustness context | resistance-like multiplier |
+|---|---|---:|---:|---|---:|
+| `CONSENSUS_TX_01` | `ICA_PROGRAM_09` | +1 | -0.038606 | `CONTEXT_SENSITIVE_CANDIDATE` | -1 |
+| `CONSENSUS_TX_02` | `ICA_PROGRAM_29` | -1 | -0.097379 | `ROBUSTNESS_SUPPORTED_CANDIDATE` | +1 |
+| `CONSENSUS_TX_03` | `ICA_PROGRAM_13` | -1 | -0.136528 | `ROBUSTNESS_SUPPORTED_CANDIDATE` | +1 |
+
+These values orient Phase 7 inference only. They do not alter, overwrite, or
+re-publish the frozen Phase 4 gene weights.
+
+The TX01 resistance-like association is explicitly context-sensitive and
+attenuated after lineage adjustment. That limitation must propagate to any
+Phase 7 interpretation involving TX01.
+
+The resistance-like orientation is derived from internal post-selection Phase 3
+association evidence. It is not independent validation and does not convert the
+program into a clinical resistance biomarker.
+
+---
+
 # Primary connectivity definition
 
-For perturbational signature `s` and frozen program `p`, the primary
+For perturbational signature `s` and frozen program `p`, the raw
 connectivity score is the signed cosine similarity over the program's frozen
 BING support `G_p`:
 
 ```text
-C[s,p] =
+C_raw[s,p] =
     sum_g(w[p,g] * z[s,g])
     / (sqrt(sum_g(w[p,g]^2)) * sqrt(sum_g(z[s,g]^2)))
 ```
 
 where:
 
-- (w_{p,g}) is the frozen Phase 4 signed program weight; and
-- (z_{s,g}) is the Level 5 perturbational signature value.
+- `w[p,g]` is the frozen Phase 4 signed program weight; and
+- `z[s,g]` is the Level 5 perturbational signature value.
 
-Genes outside the frozen program support do not enter the primary cosine
-denominator.
+Genes outside the frozen program support do not enter the cosine denominator.
 
-The primary inferential direction is negative.
+The Phase 7 primary inferential score is:
 
-More-negative scores indicate stronger inverse computational association.
+```text
+C_RL[s,p] =
+    resistance_like_orientation_multiplier[p] * C_raw[s,p]
+```
 
-Positive scores remain valid observed data but do not support the primary
-inverse-association hypothesis.
+The same fixed multiplier is propagated to condition-, cell-line-, lineage-,
+and perturbagen-level summaries.
 
-No post hoc transformation, recentering, rank selection, or alternate
-normalization may replace the primary cosine according to observed results.
+A more-negative `C_RL` indicates stronger computational opposition to the
+upstream resistance-like-associated pole.
+
+For `CONSENSUS_TX_01`, because its multiplier is -1, a positive raw cosine
+corresponds to negative resistance-like-oriented connectivity. For
+`CONSENSUS_TX_02` and `CONSENSUS_TX_03`, raw and resistance-like-oriented
+signs are the same.
+
+Both `C_raw` and `C_RL` must be retained in stable outputs.
+
+Neither score establishes therapeutic reversal, efficacy, causal reversal, or
+clinical resistance modification.
+
+No post hoc transformation, reorientation, recentering, rank selection, or
+alternate normalization may replace these prospectively frozen definitions
+according to observed LINCS results.
 
 ---
 
@@ -418,7 +544,8 @@ Primary outputs must preserve at minimum:
 - the number of evaluable lineages;
 - the number of evaluable cell lines;
 - inter-lineage dispersion; and
-- the fraction of evaluable lineages with negative connectivity.
+- the fraction of evaluable lineages with negative resistance-like-oriented
+  connectivity.
 
 These quantities provide breadth and heterogeneity context.
 
@@ -447,16 +574,30 @@ For each frozen program, the primary null:
 - randomizes the correspondence between genes and signed weights within
   prospectively defined gene strata.
 
-The purpose of the primary null is to test whether the observed signed/weighted
-configuration of the independently frozen program shows a more extreme inverse
-association than comparable configurations on the same gene support.
+The purpose of the primary null is to test whether, conditional on the frozen
+gene support, strata, observed perturbational matrix, and signed-weight-vector
+multiset, the observed gene-to-weight assignment produces a more extreme
+negative resistance-like-oriented connectivity than assignments allowed by the
+prospectively specified randomization mechanism.
 
-This is a conditional null.
+The working null assumption is within-stratum exchangeability of the assignment
+of complete three-program signed-weight vectors to genes.
+
+The `feature_space × MAD_decile` matching improves comparability but does not
+prove this exchangeability assumption and does not control every possible
+coexpression, pathway, or perturbational-covariance property.
+
+Keeping the LINCS matrix fixed preserves its observed gene-gene covariance
+matrix, but permutation generally changes the relationship between program
+weights and that covariance structure. The contract must not claim otherwise.
+
+Accordingly, this is a conditional assignment-specificity null.
 
 It is not a universal null of "no biological relationship."
 
-The resulting empirical p-value must be interpreted only relative to the
-prospectively specified randomization mechanism.
+A conditional randomization p-value therefore quantifies extremeness under this
+specific assignment model. It must not be interpreted as the probability that
+no biological association exists.
 
 ---
 
@@ -491,7 +632,15 @@ Within each feature space, all BING genes are ordered deterministically by:
 2. ascending `gene_id`.
 
 The ordered genes are divided into 10 deterministic groups whose sizes differ
-by at most one. These groups are the MAD deciles used for null stratification.
+by at most one. If the feature-space gene count is not divisible by 10, the
+earliest deciles in ascending decile order receive one additional gene until
+the remainder is exhausted. These groups are the MAD deciles used for null
+stratification.
+
+MAD must be computed over the complete frozen primary signature universe as
+specified above. A median of independently computed chunk-level MAD values is
+not equivalent and is prohibited.
+
 This rank-based construction avoids data-dependent handling of duplicated
 quantile boundaries.
 
@@ -511,7 +660,18 @@ Thus the primary null preserves:
 - exact per-program signed-weight multisets;
 - cross-program weight geometry;
 - stratum-level perturbational-dispersion composition; and
-- the observed perturbational data and their gene-gene correlation structure.
+- the observed perturbational matrix.
+
+It does not generally preserve the relationship between program weights and the
+matrix covariance structure.
+
+Notebook 700 must report, for each program and stratum:
+
+- total BING genes;
+- query genes;
+- effectively permutable query genes;
+- degenerate one-gene strata, if any; and
+- the number of distinct positions available to the permutation generator.
 
 No stratum definition may be tuned according to p-values, compound rankings,
 or favorable connectivity.
@@ -532,7 +692,7 @@ conditional null:
 
 The competitive sensitivity is restricted prospectively to
 `program × pert_id` hypotheses satisfying the primary global criterion
-`q_global <= 0.05`.
+`q_BY_global <= 0.05`.
 
 For each program, pseudo-program membership is sampled from the broader BING
 space after excluding the program's real 1,495-gene BING support.
@@ -553,8 +713,17 @@ The competitive sensitivity preserves:
 If a stratum has fewer eligible background genes than required replacements,
 it is merged deterministically with the adjacent MAD decile in the same feature
 space whose median MAD is closest. If both adjacent bins are equally close, the
-lower-numbered bin is selected. Merging is repeated only until sufficient
-background genes exist.
+lower-numbered bin is selected.
+
+After every merge, both the required query-gene demand and eligible background
+pool are recomputed on the union before any further merge decision. Merging is
+repeated only until sufficient background genes exist.
+
+Within each final matched block, background genes are sampled without
+replacement inside a pseudo-program. Signed-weight vectors are assigned
+one-to-one using the deterministic query-gene order followed by the
+pseudo-program RNG draw order. Merged blocks and their sizes must be persisted
+in sensitivity metadata.
 
 Exactly 10,000 competitive pseudo-program draws are generated.
 
@@ -574,81 +743,141 @@ support.
 
 ---
 
+# Primary evaluability and directional gate
+
+Program-level frozen query weights must be finite and have non-zero norm.
+Failure of either condition is an implementation/input error that halts the
+analysis rather than creating a scientific not-evaluable result.
+
+A Level 5 signature score is evaluable only when all values required for the
+program support are finite and the perturbational-vector norm over that support
+is strictly greater than zero.
+
+No silent `nanmedian`, imputation, or denominator shrinkage is permitted.
+
+If individual signature scores are non-evaluable, the frozen aggregation
+hierarchy may proceed using only explicitly evaluable units, while retaining
+counts of every loss.
+
+A `program × pert_id` primary hypothesis remains scientifically evaluable only
+if, after these losses and after the frozen hierarchy is applied, it still has
+at least:
+
+- 5 unique evaluable tumor cell lines; and
+- 4 unique evaluable annotated lineages.
+
+If either coverage requirement is no longer satisfied:
+
+- `evaluability_status = NOT_EVALUABLE`;
+- the raw conditional p-value is absent;
+- `p_for_multiplicity = 1`; and
+- the hypothesis remains one of the 23,742 members of the global family.
+
+For an otherwise evaluable hypothesis with final
+`C_RL >= 0`, the observed direction does not support the prespecified inverse
+alternative. In that case:
+
+- `directional_status = NON_INVERSE`;
+- no Monte Carlo sampling is required;
+- `p_conditional = 1`; and
+- `p_for_multiplicity = 1`.
+
+Only evaluable hypotheses with `C_RL < 0` enter sequential Monte Carlo
+sampling.
+
+This directional gate is prospectively fixed and must not be changed according
+to the number of discoveries it produces.
+
+---
+
 # Monte Carlo inference
 
-Primary empirical p-values are one-sided for the negative tail.
+Primary conditional randomization p-values are one-sided for the negative
+resistance-like-oriented tail.
 
-Monte Carlo inference must use a formal prospectively specified sequential
-procedure rather than informal early stopping.
-
-The procedure must satisfy all of the following:
-
-- random-number generation is deterministic and reproducible;
-- seeds are frozen before execution;
-- stopping rules are frozen before execution;
-- p-values are never reported as zero solely because no sampled null replicate
-  exceeded the observed statistic;
-- the same analytical hierarchy and lineage aggregation are applied to observed
-  and null program scores;
-- stopping must not depend on observed BH/q-value outcomes; and
-- no tail extrapolation or alternate parametric approximation may be introduced
-  after result inspection.
-
-Primary inference uses the truncated Besag–Clifford sequential Monte Carlo
-procedure with exceedance target:
+Monte Carlo inference uses the truncated Besag–Clifford sequential procedure
+with exceedance target:
 
 `h = 20`
 
-For each primary hypothesis, a null draw is counted as at least as extreme when:
+For each evaluable inverse hypothesis, a null replicate is counted as at least
+as extreme when:
 
 ```text
-null_score <= observed_score
+C_RL_null <= C_RL_observed
 ```
 
-If the twentieth exceedance is reached after `L` null draws before
-`Bmax`, the conditional randomization p-value is:
+Let `L` be the exact number of completed null replicates at stopping and
+`g` the number of exceedances among those `L` replicates.
+
+If the twentieth exceedance is reached at any `L <= Bmax`, including exactly
+at `L = Bmax`:
 
 ```text
 p_conditional = 20 / L
 ```
 
-If `Bmax` is reached with `g < 20` exceedances:
+If `Bmax` is reached with `g < 20`:
 
 ```text
 p_conditional = (g + 1) / (Bmax + 1)
 ```
 
+The `(g + 1)/(Bmax + 1)` branch must not be used when `g = 20`.
+
 A p-value of zero is not permitted.
 
-The candidate `Bmax` ladder is frozen as:
+Permutation replicates are sampled independently with replacement from the
+allowed within-stratum permutation space. Repeated permutations and identity
+permutations are permitted.
+
+A pseudo-program replicate is defined globally before any hypothesis-specific
+stopping decision. The same replicate must be used for every still-active
+hypothesis to which it applies.
+
+Batching is computational only. If the twentieth exceedance occurs inside a
+batch, `L` is the exact replicate index of that exceedance. The end of the
+batch must never replace that stopping position.
+
+No stopping criterion based on provisional BY values, BH values, rankings,
+compound identities, or result favorability is permitted.
+
+The candidate `Bmax` ladder remains:
 
 ```text
 500000 -> 250000 -> 100000
 ```
 
-Notebook 700 must run an outcome-blind computational benchmark using the same
-matrix access pattern and null-scoring operations but synthetic/permuted query
-weights that do not reveal observed program–perturbagen connectivity.
-
-Before that benchmark is run, the execution resource envelope must itself be
-frozen. The final `Bmax` is the largest candidate in the frozen ladder that
-satisfies that resource envelope. The selected value must be recorded in this
-contract before any observed primary connectivity result is inspected.
-
-Randomization uses NumPy `PCG64DXSM` with:
+Randomization uses NumPy `PCG64DXSM` with independent deterministic
+substreams:
 
 ```text
-SeedSequence(entropy=701, spawn_key=(namespace, replicate_id))
+SeedSequence(
+    entropy=701,
+    spawn_key=(namespace, replicate_id, stratum_id)
+)
 ```
 
 where:
 
 - namespace `1` = primary conditional null;
-- namespace `2` = competitive-null sensitivity; and
-- `replicate_id` is zero-based.
+- namespace `2` = competitive-null sensitivity;
+- namespace `3` = outcome-blind computational benchmark;
+- `replicate_id` is zero-based; and
+- `stratum_id` is the deterministic integer ID assigned after sorting first by
+  feature space and then by MAD decile.
 
-The generator stream for a replicate must therefore be independent of batch
-size or execution partitioning.
+Gene order, feature-space order, stratum order, program order, replicate order,
+and the mapping from random integers to permutations must be frozen in Notebook
+700 metadata before observed connectivity is computed.
+
+Random streams must not depend on:
+
+- batch size;
+- thread count;
+- parallel execution order;
+- the number of hypotheses that remain active; or
+- observed scientific results.
 
 The exact NumPy/environment versions used for execution must be persisted in
 analysis metadata.
@@ -657,12 +886,12 @@ Source GCTX values may remain stored/read as `float32`. Dot products, norms,
 cosines, WTCS calculations, medians, empirical-null aggregations, and p-value
 calculations must use `float64`.
 
-Batch size is an engineering parameter and may change to fit memory provided
-that it does not change random streams, analytical membership, or validated
-numeric outputs.
+Batch size remains an engineering parameter only if deterministic validation
+confirms identical replicate identities, exceedance indicators, stopping
+positions, and final outputs.
 
-Computational inconvenience is not a valid reason to alter the null after
-results are observed.
+Computational inconvenience is not a valid reason to alter the null or stopping
+rule after observed results are inspected.
 
 ---
 
@@ -674,29 +903,52 @@ The primary hypothesis family contains:
 3 programs × 7,914 perturbagens = 23,742 hypotheses
 ```
 
-Each hypothesis tests the prespecified negative-tail inverse-association
-question for one frozen program and one frozen primary perturbagen.
+Every frozen `program × pert_id` pair remains in this family regardless of
+direction or evaluability.
 
-Primary multiplicity control is global Benjamini–Hochberg FDR across all
-23,742 primary empirical p-values.
+The multiplicity input is:
 
-The primary significance threshold is:
+```text
+p_for_multiplicity =
+    p_conditional, if evaluable and C_RL < 0
+    1,             otherwise
+```
 
-`q_global <= 0.05`
+The primary inferential multiplicity procedure is global
+Benjamini–Yekutieli adjustment across all 23,742
+`p_for_multiplicity` values.
 
-Program-specific BH-adjusted values may be reported as descriptive/sensitivity
-context.
+The primary support criterion is:
 
-They do not rescue a hypothesis that fails the global primary family.
+```text
+q_BY_global <= 0.05
+```
 
-A global Benjamini–Yekutieli correction may be reported as a conservative
-dependence sensitivity.
+BY is used because the dependence structure among the 23,742 hypotheses is
+complex and no independence or PRDS condition is claimed for these p-values.
 
-It does not replace the primary BH family and cannot create additional primary
-support.
+The dependence-robust FDR interpretation remains conditional on the marginal
+validity of the conditional randomization p-values under the explicitly stated
+working exchangeability null.
 
-The analysis must not claim that BH guarantees exact 5% FDR under arbitrary
-dependence.
+Global Benjamini–Hochberg adjusted values are retained as nominal exploratory
+context:
+
+`q_BH_global`
+
+BH values do not define primary support and cannot rescue a hypothesis that
+fails the BY gate.
+
+Program-specific BH or BY summaries may be reported descriptively. They do not
+replace the global family.
+
+The analysis must not claim that BY repairs an invalid scientific null. It only
+addresses multiple-testing dependence conditional on valid marginal p-values.
+
+The finite Monte Carlo resolution associated with the final `Bmax` must be
+reported together with the BY procedure. A lack of primary support caused in
+part by discrete p-value resolution remains a valid negative/limited outcome
+and must not trigger a post hoc change of multiplicity method.
 
 ---
 
@@ -711,8 +963,8 @@ from primary inference:
 - pooled-cell-line aggregation without equal-lineage weighting;
 - fixed CMap-style up/down query;
 - competitive matched pseudo-program null;
-- program-specific BH summaries; and
-- global BY multiplicity sensitivity.
+- global BH nominal exploratory summaries; and
+- program-specific BH/BY descriptive summaries.
 
 Sensitivity analyses may evaluate:
 
@@ -912,12 +1164,32 @@ Notebook 702 must preserve the primary notebook-701 `pert_id` results and
 reconcile chemical redundancy without selecting the most favorable
 experimental representation.
 
-The primary exact-structure grouping rule is:
+The exact-structure reconciliation hierarchy is:
 
-1. exact full usable InChIKey when available;
-2. exact canonical SMILES as fallback when a usable InChIKey is unavailable;
-3. literal `restricted` is treated as unavailable identity information; and
-4. `cmap_name` is never used to merge chemical entities.
+1. when a usable full InChIKey exists, exact full InChIKey defines the primary
+   exact-structure group;
+2. when full InChIKey is unavailable but canonical SMILES is usable, exact
+   canonical SMILES may provide fallback grouping;
+3. a SMILES-only entity may be attached to an existing full-InChIKey group only
+   when that canonical SMILES maps unambiguously to exactly one full-InChIKey
+   group in the frozen primary annotation universe;
+4. a canonical SMILES must never bridge two incompatible full InChIKeys into one
+   exact-structure group;
+5. if one SMILES corresponds to multiple full InChIKeys, SMILES-only rows remain
+   explicitly unresolved rather than forcing a merge;
+6. literal `restricted` is unavailable identity information;
+7. `cmap_name` is never used to merge chemical entities; and
+8. entities lacking both usable full InChIKey and usable canonical SMILES are
+   not collapsed together. Each remains an explicitly unknown structure tied to
+   its own `pert_id`.
+
+If a frozen `pert_id` unexpectedly maps to more than one usable full InChIKey,
+Notebook 702 must halt reconciliation for that `pert_id` and emit an identity
+conflict rather than choosing one identifier.
+
+When a full InChIKey and canonical SMILES disagree with mappings elsewhere, the
+full InChIKey remains authoritative for primary exact-structure identity and the
+conflict is preserved as metadata.
 
 The first 14-character InChIKey connectivity block may be retained as a
 `shared_connectivity` diagnostic flag.
@@ -925,17 +1197,26 @@ The first 14-character InChIKey connectivity block may be retained as a
 It is not the primary exact-structure identity and must not automatically
 collapse stereochemically or otherwise distinct full InChIKeys.
 
-When several `pert_id` values map to one exact structure:
+For each exact structure and program, the descriptive structure-level
+connectivity is the median of the contributing `pert_id` resistance-like-
+oriented connectivity values.
 
-- all perturbagen-level results remain visible;
-- no best `pert_id` is selected;
-- within-structure heterogeneity remains explicit; and
-- those `pert_id` values must not be described as independent pharmacological
-  replications.
+The structure summary must also retain:
 
-Notebook 702 may summarize compound/structure-level context, but it must not
-create a post hoc significance route that rescues failed perturbagen-level
-primary inference.
+- all contributing `pert_id` values;
+- number of contributing `pert_id` values;
+- minimum and maximum perturbagen-level connectivity;
+- IQR when estimable;
+- direction concordance; and
+- all contributing primary inferential statuses.
+
+No best `pert_id` may be selected.
+
+Multiple `pert_id` values representing the same exact structure must not be
+described as independent pharmacological replications.
+
+Notebook 702 may summarize chemical context, but it must not create a post hoc
+significance route that rescues failed perturbagen-level primary inference.
 
 ---
 
@@ -957,6 +1238,14 @@ It must not:
   representations of the same exact structure; or
 - describe a prioritized compound as therapeutically validated.
 
+Notebook 702 must emit a complete catalog rather than select only visually or
+scientifically "interesting" hits.
+
+The catalog's primary scientific status is inherited from notebook 701
+(`q_BY_global <= 0.05` versus not primary-supported). Any display ordering must
+be deterministic and declared in metadata; ordering does not create an
+additional evidence tier.
+
 Final cross-evidence therapeutic prioritization belongs to Phase 9.
 
 ---
@@ -964,22 +1253,38 @@ Final cross-evidence therapeutic prioritization belongs to Phase 9.
 # Notebook 703 mechanism-of-action aggregation
 
 Mechanism-of-action aggregation must preserve the many-to-many mapping between
-perturbagens, structures, targets, and MoA annotations.
+perturbagens, exact structures, targets, and MoA annotations.
 
-Within an MoA summary, repeated rows or multiple `pert_id` values representing
-the same exact chemical structure must not inflate the number of independent
-chemical entities.
+Annotation relations must be deduplicated before summary construction.
 
-Mechanism summaries should retain at minimum:
+A target × MoA Cartesian product generated by table joins must not be
+interpreted as evidence that every target is causally linked to every MoA.
+
+Mechanism-level descriptive summaries are constructed in two stages:
+
+1. summarize each exact structure once per program using the frozen
+   structure-level summary from notebook 702; then
+2. allow each unique exact structure to contribute at most once to a given MoA
+   summary for that program.
+
+Multiple `pert_id` values representing one exact structure therefore cannot
+inflate mechanism-level chemical support.
+
+Mechanism summaries must retain at minimum:
 
 - `n_unique_structures`;
 - `n_pert_ids`;
 - contributing exact structures;
 - contributing perturbagen identifiers;
-- connectivity distribution;
-- median connectivity;
-- dispersion/heterogeneity; and
-- direction concordance.
+- structure-level median connectivity distribution;
+- median across unique structures;
+- dispersion/heterogeneity across structures;
+- direction concordance across structures; and
+- within-structure heterogeneity metadata inherited from notebook 702.
+
+Entities with unresolved/unknown exact structure may retain MoA annotations as
+perturbagen-level descriptive metadata but must not be counted automatically as
+chemically independent support.
 
 A singleton mechanism annotation remains a valid descriptive annotation but is
 not equivalent to a pattern observed across multiple chemically distinct
@@ -1067,7 +1372,8 @@ It must not create a mechanism-level rescue route.
 Phase 7 must not:
 
 - redefine frozen Phase 4 programs using LINCS results;
-- change program orientation according to perturbational direction;
+- change frozen Phase 4 program weights or the prospectively frozen
+  resistance-like orientation according to perturbational direction;
 - select genes according to favorable connectivity;
 - select best signatures, doses, times, cell lines, or lineages;
 - pool lineages naïvely as though LINCS cell-line composition were biologically
@@ -1109,7 +1415,8 @@ Phase 7 remains scientifically complete if:
 - the CMap-style sensitivity is discordant with continuous weighted cosine;
 - the competitive-null sensitivity is less favorable than the primary
   conditional null;
-- global BY sensitivity retains few or no findings;
+- global BY primary inference retains few or no findings even when nominal
+  global BH context is less conservative;
 - strong inverse associations occur in broad stress-like transcriptional
   contexts;
 - exact chemical structures show heterogeneous results across `pert_id`
@@ -1165,10 +1472,10 @@ LINCS/CMap internal subsets are not Phase 8 external validation.
 
 Phase 7 may support statements such as:
 
-- a perturbagen shows a negative computational connectivity with a frozen
-  consensus program;
-- that inverse association is or is not extreme under the prespecified
-  conditional empirical null;
+- a perturbagen shows computational opposition to the prospectively oriented
+  resistance-like-associated pole of a frozen consensus program;
+- that opposition is or is not extreme under the prespecified conditional
+  assignment-specific randomization null;
 - an association is broad or heterogeneous across represented lineages;
 - a primary result is stable or unstable to prespecified representation or
   perturbational sensitivities;
@@ -1191,7 +1498,8 @@ Phase 7 does not support statements that:
 
 Perturbational association remains distinct from causal mechanism.
 
-Empirical-null extremeness remains distinct from therapeutic efficacy.
+Conditional-randomization extremeness remains distinct from therapeutic
+efficacy and from proof of a universal biological null.
 
 Mechanism annotation remains distinct from mechanism validation.
 
@@ -1218,7 +1526,8 @@ The stable Phase 7 artifact identifiers are frozen as follows.
 Notebook 700:
 
 - `phase7.700.program_query_definitions`;
-- `phase7.700.null_stratification_manifest`; and
+- `phase7.700.null_stratification_manifest`;
+- `phase7.700.benchmark_report`; and
 - `phase7.700.analysis_metadata`.
 
 Notebook 701:
@@ -1242,11 +1551,41 @@ Notebook 703:
 - `phase7.703.mechanism_summary`; and
 - `phase7.703.analysis_metadata`.
 
-Their exact column-level schemas and data types must be frozen locally before
-each notebook first persists the corresponding stable interface. Schema
-finalization may clarify representation but must not alter analytical
-membership, inferential status, eligibility, null construction, or rescue
-rules.
+Physical column order and storage dtypes may be finalized locally before first
+persistence, but scientific fields and states that affect interpretation are
+already frozen by this contract and must not be invented after connectivity is
+observed.
+
+At minimum, `phase7.700.program_query_definitions` must retain program ID,
+source cell-line program, Phase 4 orientation multiplier, frozen Phase 3
+lineage-adjusted rho, Phase 3 robustness category,
+`resistance_like_orientation_multiplier`, query gene identity, and frozen
+weight.
+
+At minimum, `phase7.701.primary_perturbagen_connectivity` must retain:
+
+- `program_id` and `pert_id`;
+- `C_raw` and `C_RL`;
+- `resistance_like_orientation_multiplier`;
+- signature, condition, cell-line, and lineage evaluability counts;
+- `evaluability_status` and `directional_status`;
+- lineage dispersion and fraction of negative `C_RL`;
+- `p_conditional`;
+- `p_for_multiplicity`;
+- `mc_L`, `mc_g`, `mc_stop_reason`, and final `Bmax`;
+- `q_BY_global` and `q_BH_global`; and
+- `primary_support_status`.
+
+Required primary support states are:
+
+- `PRIMARY_BY_SUPPORTED`;
+- `INVERSE_NOT_BY_SUPPORTED`;
+- `NON_INVERSE`; and
+- `NOT_EVALUABLE`.
+
+Notebook-701 analysis metadata must retain RNG entropy, namespace/stratum
+mapping, software/environment versions, input artifact hashes, benchmark/final
+`Bmax` provenance, and the exact null/multiplicity specification version.
 
 At minimum, these stable handoffs must preserve:
 
@@ -1268,36 +1607,91 @@ because they were computed.
 
 # Remaining operational freeze before notebook 701 inference
 
-The 2026-09-28 addendum resolves the operational package required for query
-construction, null stratification, sensitivity definition, randomization
-family, diagnostics, artifact naming, and deterministic validation.
+Notebook 700 is authorized to begin outcome-blind preparatory work.
 
-Notebook 701 primary inferential execution remains blocked until the following
-final simulation item is prospectively resolved:
+Notebook 701 observed primary connectivity remains blocked until the final
+simulation budget is prospectively resolved.
 
-1. freeze the computational resource envelope before benchmarking;
-2. execute the outcome-blind benchmark under that envelope;
-3. select the largest feasible `Bmax` from
-   `{500000, 250000, 100000}`; and
-4. record the selected `Bmax`, benchmark environment, and resource envelope in
-   this contract before observed connectivity is inspected.
+Before any benchmark timing is measured, Notebook 700 must persist the
+benchmark resource envelope containing at minimum:
 
-No candidate outside that frozen ladder may be substituted after result
-inspection.
+- execution-host identifier;
+- CPU model and logical/physical core count;
+- GPU model and usable VRAM, if used;
+- physical RAM and maximum RAM allowed for the benchmark;
+- BLAS/threading configuration;
+- maximum benchmark/projection wall-clock budget;
+- temporary-storage allowance;
+- checkpoint/restart policy; and
+- exact software/environment versions.
+
+Those values may reflect the available execution host, but they must be written
+before timing results are produced.
+
+The benchmark must use namespace `3` and must not compute or expose observed
+program–perturbagen connectivity for the real frozen programs.
+
+It must measure or conservatively project the actual execution path, including:
+
+- GCTX access and I/O;
+- null permutation generation;
+- score calculation;
+- signature → condition → dose/time → cell-line → lineage → perturbagen
+  aggregation;
+- exceedance counting;
+- active-hypothesis bookkeeping;
+- checkpoint I/O; and
+- peak memory.
+
+At minimum, benchmark cases must include:
+
+1. a maximum-active-set case in which all 23,742 hypotheses remain active over
+   the measured benchmark block;
+2. prespecified reduced-active-set cases to verify expected scaling; and
+3. restart/checkpoint validation.
+
+The final `Bmax` is the largest value in the frozen ladder:
+
+```text
+500000 -> 250000 -> 100000
+```
+
+whose conservative projected execution satisfies the pre-written resource
+envelope.
+
+If no candidate satisfies the envelope, Notebook 701 remains blocked. The
+response is to improve implementation or change computational resources while
+preserving the frozen scientific procedure, not to invent a smaller unplanned
+`Bmax` or inspect observed connectivity.
+
+The benchmark report must record candidate-specific projected runtime, peak
+memory, I/O assumptions, and the corresponding minimum attainable Monte Carlo
+p-value.
+
+The finite resolution of the selected `Bmax`, including its consequences for
+the global BY gate, must be explicitly accepted and recorded before notebook
+701 begins.
 
 ## Deterministic implementation validation
 
 Structural objects must match exactly, including:
 
 - program and perturbagen identifiers;
+- resistance-like orientation multipliers;
 - query membership;
 - gene ordering keys;
 - MAD-decile assignments;
+- deterministic remainder allocation to deciles;
 - permutation replicate identifiers;
-- RNG entropy, namespace, and spawn keys;
+- RNG entropy, namespace, replicate and stratum spawn keys;
 - lineage membership;
 - chemical mappings; and
 - expected row counts.
+
+Reference tests must verify not only approximate score agreement but exact
+exceedance indicators, exact `g`, exact `L`, and exact stop reason for
+constructed boundary cases, including the twentieth exceedance occurring
+exactly at `Bmax`.
 
 For small independent `float64` reference calculations, cosine, WTCS, and
 hierarchical aggregation implementations must reproduce reference values using:
@@ -1307,8 +1701,8 @@ rtol = 1e-10
 atol = 1e-12
 ```
 
-These tolerances apply to the reference checks rather than serving as a
-universal tolerance for every persisted object.
+These tolerances apply to score reference checks and do not permit ambiguity in
+discrete exceedance/stopping decisions.
 
 Primary cosine scores must remain within their theoretical interval
 `[-1, 1]` up to numerical tolerance.
@@ -1326,15 +1720,15 @@ after observing favorable or unfavorable scientific results.
 
 Phase 7 will be considered analytically complete when:
 
-1. the resource envelope and final primary `Bmax` have been prospectively
-   frozen before observed connectivity inspection;
+1. the resource envelope, benchmark report, and final primary `Bmax` have
+   been prospectively frozen before observed connectivity inspection;
 2. all required Phase 7 inputs are consumed from frozen registered upstream
    artifacts rather than silently reconstructed;
 3. the continuous signed weighted BING query representations are persisted and
    validated;
 4. landmark and fixed CMap-style sensitivity queries are frozen before
    connectivity-result inspection;
-5. primary signature-level cosine connectivity is calculated exactly as
+5. raw and resistance-like-oriented connectivity are calculated exactly as
    specified;
 6. the frozen signature → condition → dose/time → cell-line hierarchy is
    preserved;
@@ -1343,7 +1737,8 @@ Phase 7 will be considered analytically complete when:
    stratification and Monte Carlo rules;
 9. all 23,742 primary hypotheses are represented, including null and
    not-evaluable states where applicable;
-10. global BH FDR is applied exactly as prespecified;
+10. global BY FDR is applied as the primary inferential multiplicity procedure
+    and global BH is retained only as nominal exploratory context;
 11. sensitivities remain separate and do not rescue primary inference;
 12. proliferation/stress/amplitude diagnostics remain contextual and do not
     redefine eligibility;
