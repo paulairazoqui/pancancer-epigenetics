@@ -887,8 +887,10 @@ where:
   feature space and then by MAD decile.
 
 Gene order, feature-space order, stratum order, program order, replicate order,
-and the mapping from random integers to permutations must be frozen in Notebook
-700 metadata before observed connectivity is computed.
+and the deterministic mapping from each independently seeded NumPy generator to
+its within-stratum uniform permutation must be frozen in Notebook 700 metadata
+before observed connectivity is computed. The governing implementation uses
+NumPy `Generator.permutation` as prospectively amended on 2026-09-29.
 
 Random streams must not depend on:
 
