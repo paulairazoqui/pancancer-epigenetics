@@ -49,14 +49,15 @@ benchmark requirements. Historical wording from the earlier addendum is
 retained for chronology where practical; the later amendment governs wherever
 the two differ.
 
-The only primary inferential simulation parameter intentionally left unresolved
-after this operational package is the final `Bmax`. Its candidate ladder and
-selection rule are frozen, but the final value must be selected prospectively
-after an outcome-blind computational benchmark under a resource envelope that
-is itself frozen before the benchmark is run.
+The final primary inferential simulation budget was resolved prospectively on
+2026-09-29 after the outcome-blind Notebook 700 benchmark and before inspection
+of any observed program–perturbagen connectivity, ranking, p-value, q-value, or
+compound result. The governing final value is `Bmax = 5,058,108`, selected by
+the statistical-resolution rule documented in the third amendment below.
 
-No observed program–perturbagen connectivity, ranking, p-value, q-value, or
-compound result may be inspected before that final `Bmax` freeze.
+The original 24-hour projected-runtime ceiling and the historical
+`500000 -> 250000 -> 100000` candidate ladder are retained as audit history
+but no longer govern the final simulation budget.
 
 Once Phase 7 connectivity execution begins, primary program representation,
 connectivity definition, analytical hierarchy, empirical-null family,
@@ -80,11 +81,11 @@ Scientific design frozen prospectively.
 Phase 7 analytical execution has not begun.
 
 The 2026-09-28 operational package and post-audit methodological amendment are
-prospectively frozen. The final primary Monte Carlo `Bmax` remains pending an
-outcome-blind benchmark under a prospectively fixed resource envelope. Notebook
-700 may begin the outcome-blind preparatory and benchmark work specified here.
-Notebook 701 primary inferential execution remains blocked until the resource
-envelope, benchmark, and final `Bmax` are recorded.
+prospectively frozen. The 2026-09-29 outcome-blind computational amendment
+prospectively freezes the final primary Monte Carlo budget at
+`Bmax = 5,058,108` before inspection of observed connectivity. Notebook 701
+primary inferential execution becomes authorized only after Notebook 700 has
+persisted, registered, and passed QA for its four stable handoff artifacts.
 
 This contract defines the analytical decisions governing:
 
@@ -123,10 +124,11 @@ It prospectively freezes the following operational decisions:
    create or rescue primary support;
 6. primary Monte Carlo inference uses the truncated Besag–Clifford sequential
    procedure with exceedance target `h = 20`;
-7. the candidate maximum-draw ladder is
-   `500000 -> 250000 -> 100000`; the largest candidate satisfying the frozen
-   resource envelope will be selected before observed connectivity is
-   inspected;
+7. the historical candidate maximum-draw ladder was
+   `500000 -> 250000 -> 100000`; this operational rule is superseded by the
+   2026-09-29 prospective computational amendment, which fixes
+   `Bmax = 5,058,108` using a statistical-resolution criterion before observed
+   connectivity is inspected;
 8. randomization uses NumPy `PCG64DXSM` with
    `SeedSequence(entropy=701, spawn_key=(namespace, replicate_id))`, where
    namespace `1` is the primary conditional null and namespace `2` is the
@@ -855,11 +857,15 @@ batch must never replace that stopping position.
 No stopping criterion based on provisional BY values, BH values, rankings,
 compound identities, or result favorability is permitted.
 
-The candidate `Bmax` ladder remains:
+The final prospectively frozen simulation budget is:
 
 ```text
-500000 -> 250000 -> 100000
+Bmax = 5,058,108
 ```
+
+This value is governed by the 2026-09-29 computational-resolution amendment.
+The earlier `500000 -> 250000 -> 100000` ladder is retained only as historical
+benchmark context and no longer governs execution.
 
 Randomization uses NumPy `PCG64DXSM` with independent deterministic
 substreams:
@@ -1663,27 +1669,28 @@ At minimum, benchmark cases must include:
 2. prespecified reduced-active-set cases to verify expected scaling; and
 3. restart/checkpoint validation.
 
-The final `Bmax` is the largest value in the frozen ladder:
+The historical benchmark initially evaluated the frozen operational ladder
+`500000 -> 250000 -> 100000` against the pre-written resource envelope.
+Those projections remain part of the benchmark record.
 
-```text
-500000 -> 250000 -> 100000
-```
+Before observed connectivity was inspected, the 2026-09-29 prospective
+computational-resolution amendment superseded the runtime-based selection rule.
+The governing final value is `Bmax = 5,058,108`, chosen by the BY rank-1
+Monte Carlo resolution criterion specified above.
 
-whose conservative projected execution satisfies the pre-written resource
-envelope.
+The original 24-hour ceiling is therefore retained as an operational planning
+target rather than an inferential eligibility gate. Computational
+implementation may be optimized, batched, checkpointed, resumed, or moved to a
+different execution host only if the frozen scientific procedure and
+deterministic RNG mapping remain unchanged.
 
-If no candidate satisfies the envelope, Notebook 701 remains blocked. The
-response is to improve implementation or change computational resources while
-preserving the frozen scientific procedure, not to invent a smaller unplanned
-`Bmax` or inspect observed connectivity.
+The benchmark report must retain the historical candidate-specific projected
+runtime, peak memory, I/O assumptions, and corresponding Monte Carlo resolution,
+together with the superseding final statistical-resolution decision.
 
-The benchmark report must record candidate-specific projected runtime, peak
-memory, I/O assumptions, and the corresponding minimum attainable Monte Carlo
-p-value.
-
-The finite resolution of the selected `Bmax`, including its consequences for
-the global BY gate, must be explicitly accepted and recorded before notebook
-701 begins.
+The finite resolution of `Bmax = 5,058,108`, including its relationship to
+the global BY rank-1 threshold, must be explicitly recorded before Notebook 701
+begins.
 
 ## Deterministic implementation validation
 
