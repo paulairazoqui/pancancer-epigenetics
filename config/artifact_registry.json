@@ -4384,6 +4384,128 @@
           "ref": "/lincs/files/compoundinfo_beta.txt"
         }
       ]
+    },
+    "phase7.700.program_query_definitions": {
+      "path": "data/processed/perturbational_hypotheses/700_program_query_definitions.csv",
+      "phase": 7,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase7_perturbational_hypotheses/700_program_signature_construction.ipynb"
+      },
+      "shape": [
+        4485,
+        16
+      ],
+      "size_bytes": 714179,
+      "sha256": "9ac087b48e0a6c62597671c1cccff5f72e5c21c13cb3b7321d5ae14b89091656",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_program_catalog"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_gene_weights"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.311.program_robustness_summary"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.110.bing_gene_handoff"
+        }
+      ]
+    },
+    "phase7.700.null_stratification_manifest": {
+      "path": "data/processed/perturbational_hypotheses/700_null_stratification_manifest.csv",
+      "phase": 7,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase7_perturbational_hypotheses/700_program_signature_construction.ipynb"
+      },
+      "shape": [
+        10174,
+        11
+      ],
+      "size_bytes": 882767,
+      "sha256": "355fb778cd6b24f7ce012d5ae59480fcd2b98b51d46ae7cdf3d87315954ed30a",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.700.program_query_definitions"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.110.primary_signature_handoff"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.110.raw_input_inventory"
+        }
+      ]
+    },
+    "phase7.700.benchmark_report": {
+      "path": "data/processed/perturbational_hypotheses/700_benchmark_report.json",
+      "phase": 7,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase7_perturbational_hypotheses/700_program_signature_construction.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 13077,
+      "sha256": "be7930d5cc2f116babab12d60abf2d467655a05c0707c6e854dc34b229fe7967",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.700.program_query_definitions"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.700.null_stratification_manifest"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.110.primary_signature_handoff"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.110.primary_perturbagen_coverage"
+        }
+      ]
+    },
+    "phase7.700.analysis_metadata": {
+      "path": "data/processed/perturbational_hypotheses/700_analysis_metadata.json",
+      "phase": 7,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase7_perturbational_hypotheses/700_program_signature_construction.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 3616,
+      "sha256": "b2e1b59d56f495f97370a2dd769448cdf9bf525846b0793819b86d2973392cad",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.700.program_query_definitions"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.700.null_stratification_manifest"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.700.benchmark_report"
+        }
+      ]
     }
   }
 }
