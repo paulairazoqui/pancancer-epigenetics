@@ -4669,6 +4669,127 @@
           "artifact_id": "phase7.701.perturbational_context_diagnostics"
         }
       ]
+    },
+    "phase7.702.perturbagen_structure_map": {
+      "path": "data/processed/perturbational_hypotheses/702_perturbagen_structure_map.csv",
+      "phase": 7,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase7_perturbational_hypotheses/702_compound_prioritization.ipynb"
+      },
+      "shape": [
+        7914,
+        15
+      ],
+      "size_bytes": 1885376,
+      "sha256": "66377c8b37c2fd09bdd9de3edc9045153af65c7882770d8fee15927636ef9ffd",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.110.primary_compound_annotation"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.701.primary_perturbagen_connectivity"
+        }
+      ]
+    },
+    "phase7.702.structure_connectivity_summary": {
+      "path": "data/processed/perturbational_hypotheses/702_structure_connectivity_summary.csv",
+      "phase": 7,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase7_perturbational_hypotheses/702_compound_prioritization.ipynb"
+      },
+      "shape": [
+        23631,
+        23
+      ],
+      "size_bytes": 8684641,
+      "sha256": "ef41354bd158f7613535c5e8ebec73abe2b965ef9047dbf3a7863199f0463708",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.702.perturbagen_structure_map"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.701.primary_perturbagen_connectivity"
+        }
+      ]
+    },
+    "phase7.702.perturbational_hypothesis_catalog": {
+      "path": "data/processed/perturbational_hypotheses/702_perturbational_hypothesis_catalog.parquet",
+      "phase": 7,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase7_perturbational_hypotheses/702_compound_prioritization.ipynb"
+      },
+      "shape": [
+        23742,
+        72
+      ],
+      "size_bytes": 5224473,
+      "sha256": "a17595f9cc634838da6a367012293bfc0576a2a99286dfd15d20be7933a79cb8",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.701.primary_perturbagen_connectivity"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.701.sensitivity_connectivity"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.701.perturbational_context_diagnostics"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.702.perturbagen_structure_map"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.702.structure_connectivity_summary"
+        }
+      ]
+    },
+    "phase7.702.analysis_metadata": {
+      "path": "data/processed/perturbational_hypotheses/702_analysis_metadata.json",
+      "phase": 7,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase7_perturbational_hypotheses/702_compound_prioritization.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 5311,
+      "sha256": "6c06134cb6d57a4ec5ae015b62faa78e380e5acec4433bb5a74f73567f063364",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.701.analysis_metadata"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.702.perturbagen_structure_map"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.702.structure_connectivity_summary"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.702.perturbational_hypothesis_catalog"
+        }
+      ]
     }
   }
 }
