@@ -4384,6 +4384,291 @@
           "ref": "/lincs/files/compoundinfo_beta.txt"
         }
       ]
+    },
+    "phase7.700.program_query_definitions": {
+      "path": "data/processed/perturbational_hypotheses/700_program_query_definitions.csv",
+      "phase": 7,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase7_perturbational_hypotheses/700_program_signature_construction.ipynb"
+      },
+      "shape": [
+        4485,
+        16
+      ],
+      "size_bytes": 714179,
+      "sha256": "9ac087b48e0a6c62597671c1cccff5f72e5c21c13cb3b7321d5ae14b89091656",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_program_catalog"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase4.401.consensus_transcriptomic_gene_weights"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.311.program_robustness_summary"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.110.bing_gene_handoff"
+        }
+      ]
+    },
+    "phase7.700.null_stratification_manifest": {
+      "path": "data/processed/perturbational_hypotheses/700_null_stratification_manifest.csv",
+      "phase": 7,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase7_perturbational_hypotheses/700_program_signature_construction.ipynb"
+      },
+      "shape": [
+        10174,
+        11
+      ],
+      "size_bytes": 882767,
+      "sha256": "355fb778cd6b24f7ce012d5ae59480fcd2b98b51d46ae7cdf3d87315954ed30a",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.700.program_query_definitions"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.110.primary_signature_handoff"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.110.raw_input_inventory"
+        }
+      ]
+    },
+    "phase7.700.benchmark_report": {
+      "path": "data/processed/perturbational_hypotheses/700_benchmark_report.json",
+      "phase": 7,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase7_perturbational_hypotheses/700_program_signature_construction.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 13077,
+      "sha256": "be7930d5cc2f116babab12d60abf2d467655a05c0707c6e854dc34b229fe7967",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.700.program_query_definitions"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.700.null_stratification_manifest"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.110.primary_signature_handoff"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.110.primary_perturbagen_coverage"
+        }
+      ]
+    },
+    "phase7.700.analysis_metadata": {
+      "path": "data/processed/perturbational_hypotheses/700_analysis_metadata.json",
+      "phase": 7,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase7_perturbational_hypotheses/700_program_signature_construction.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 3616,
+      "sha256": "b2e1b59d56f495f97370a2dd769448cdf9bf525846b0793819b86d2973392cad",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.700.program_query_definitions"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.700.null_stratification_manifest"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.700.benchmark_report"
+        }
+      ]
+    },
+    "phase7.701.lineage_connectivity": {
+      "path": "data/processed/perturbational_hypotheses/701_lineage_connectivity.parquet",
+      "phase": 7,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase7_perturbational_hypotheses/701_connectivity_analysis.ipynb"
+      },
+      "shape": [
+        167481,
+        8
+      ],
+      "size_bytes": 4173358,
+      "sha256": "c9e85a997bc44f286b554f16a2772ff57bd724994a7eac6e7cb1b55c9548e733",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.700.program_query_definitions"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.110.primary_signature_handoff"
+        }
+      ]
+    },
+    "phase7.701.primary_perturbagen_connectivity": {
+      "path": "data/processed/perturbational_hypotheses/701_primary_perturbagen_connectivity.csv",
+      "phase": 7,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase7_perturbational_hypotheses/701_connectivity_analysis.ipynb"
+      },
+      "shape": [
+        23742,
+        29
+      ],
+      "size_bytes": 7068897,
+      "sha256": "aeb9567419eb13cbc3858a182f9d54a58aaa66961492c384687e6232479bdd47",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.701.lineage_connectivity"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.700.null_stratification_manifest"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.700.benchmark_report"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.700.analysis_metadata"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.110.primary_signature_handoff"
+        }
+      ]
+    },
+    "phase7.701.sensitivity_connectivity": {
+      "path": "data/processed/perturbational_hypotheses/701_sensitivity_connectivity.parquet",
+      "phase": 7,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase7_perturbational_hypotheses/701_connectivity_analysis.ipynb"
+      },
+      "shape": [
+        98229,
+        18
+      ],
+      "size_bytes": 1671820,
+      "sha256": "eeb0b5f2c8762a8c4feafc04696eaef2e0ad62a2f5688be585eb4c79944c6421",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.701.primary_perturbagen_connectivity"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.700.program_query_definitions"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.700.null_stratification_manifest"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.110.landmark_gene_handoff"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.110.primary_signature_handoff"
+        }
+      ]
+    },
+    "phase7.701.perturbational_context_diagnostics": {
+      "path": "data/processed/perturbational_hypotheses/701_perturbational_context_diagnostics.parquet",
+      "phase": 7,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase7_perturbational_hypotheses/701_connectivity_analysis.ipynb"
+      },
+      "shape": [
+        63312,
+        7
+      ],
+      "size_bytes": 856437,
+      "sha256": "6172be8bccd5661e1945354c7f42e3eb5ef4f46a319648fc8a807f7fda3077e7",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.110.primary_signature_handoff"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.700.program_query_definitions"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/msigdb/files/h.all.v2026.1.Hs.symbols.gmt"
+        }
+      ]
+    },
+    "phase7.701.analysis_metadata": {
+      "path": "data/processed/perturbational_hypotheses/701_analysis_metadata.json",
+      "phase": 7,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase7_perturbational_hypotheses/701_connectivity_analysis.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 7975,
+      "sha256": "83474abc0f23a96c0b1bf8061ab0fc52d5fc555e88214b4713f37761676656df",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.701.lineage_connectivity"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.701.primary_perturbagen_connectivity"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.701.sensitivity_connectivity"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.701.perturbational_context_diagnostics"
+        }
+      ]
     }
   }
 }
