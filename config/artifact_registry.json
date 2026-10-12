@@ -4790,6 +4790,101 @@
           "artifact_id": "phase7.702.perturbational_hypothesis_catalog"
         }
       ]
+    },
+    "phase7.703.mechanism_annotation_map": {
+      "path": "data/processed/perturbational_hypotheses/703_mechanism_annotation_map.csv",
+      "phase": 7,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase7_perturbational_hypotheses/703_mechanism_of_action_aggregation.ipynb"
+      },
+      "shape": [
+        18780,
+        8
+      ],
+      "size_bytes": 4891047,
+      "sha256": "642694577d5a7d694530a260a8c6b941d035c7915c096f7a9859f1664120aebc",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.110.primary_compound_annotation"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.702.perturbagen_structure_map"
+        }
+      ]
+    },
+    "phase7.703.mechanism_summary": {
+      "path": "data/processed/perturbational_hypotheses/703_mechanism_summary.parquet",
+      "phase": 7,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase7_perturbational_hypotheses/703_mechanism_of_action_aggregation.ipynb"
+      },
+      "shape": [
+        1815,
+        18
+      ],
+      "size_bytes": 632611,
+      "sha256": "f70cfa5586ed71a6860669527ac4d92d8715522a9886709e2fab52a005b18ca8",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.110.primary_compound_annotation"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.702.perturbagen_structure_map"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.702.structure_connectivity_summary"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.702.perturbational_hypothesis_catalog"
+        }
+      ]
+    },
+    "phase7.703.analysis_metadata": {
+      "path": "data/processed/perturbational_hypotheses/703_analysis_metadata.json",
+      "phase": 7,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase7_perturbational_hypotheses/703_mechanism_of_action_aggregation.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 2615,
+      "sha256": "2eae3c5299bb1d8defcb6820e95979b930d81aa3de49ee12b4d23ee2b620739a",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.110.primary_compound_annotation"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.702.perturbagen_structure_map"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.702.structure_connectivity_summary"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.702.perturbational_hypothesis_catalog"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase7.702.analysis_metadata"
+        }
+      ]
     }
   }
 }
