@@ -4,7 +4,8 @@
 **Prepared:** 2026-10-22  
 **Baseline:** main commit f423d304f6ed3a4187965dcf783879e79abf47b5  
 **Primary source candidate:** GDC project CPTAC-3, frozen file universe and acquisition-time metadata from Notebook 111  
-**Downstream notebook:** 800 — External Bulk Cohorts, Phase 8 — Orthogonal Validation
+**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A section only)
+**Downstream analysis:** Notebook 800 external replication, not implemented or authorized by this draft
 
 ## 1. Scientific scope and non-goals
 
@@ -122,20 +123,23 @@ Produce an inventory by source primary_site × disease_type × modality × platf
 
 Do not use pooled pan-cancer comparisons as evidence of recurrence.
 
-## 4. Required local preflight outputs (NOT YET GENERATED)
+## 4. Notebook 800 PREFLIGHT-A: technical outputs (NOT YET EXECUTED LOCALLY)
 
-Generated audit artifacts should live in data/interim/metadata or data/interim/qc, not data/processed/validation before confirmatory execution:
+The preflight stage is implemented as short, auditable cells inside `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb`, following `docs/NOTEBOOK_STYLE_GUIDE.md`, the Notebook 111 acquisition handoff, and frozen Phase 4 registries. It uses existing `Paths`, `calculate_sha256`, `load_artifact_registry`, `get_artifact`, `resolve_artifact_path`, and `load_raw_data_registry` helpers rather than introducing an additional standalone script.
 
-| Planned output | Required contents |
+The current implementation reloads/fingerprint-checks the small local Notebook 111 derived audit tables; reports acquisition-file/stratum-level ancestry ambiguity and provisional primary-tumor coverage; leaves a case-by-case file/sample/aliquot inventory without selection; examines exact-string cross-cohort ID collisions without claiming donor independence; and performs one deterministic STAR Counts gene-ID pilot. It **does not** perform full cohort-wide feature compatibility, lineage crosswalk harmonization, donor-provenance review, program scoring, external replication or a frozen cohort selection. These remain subsequent review actions.
+
+Local non-frozen outputs are written under `data/interim/metadata/`:
+
+| Output | Scope |
 |---|---|
-| 800_preflight_a_provenance.json | Git commit, input names, SHA-256, source snapshot identity, registry state, code/environment version |
-| 800_preflight_a_candidate_lineage_inventory.csv | primary_site, disease_type, modality, platform, mapping classes, files, aliquots, sample UUIDs, case UUIDs, technical QC/missingness |
-| 800_preflight_a_case_multiplicity.csv | per-case RNA/methylation file/sample/aliquot counts, unresolved ancestries and candidate selection status |
-| 800_preflight_a_gene_compatibility.csv | frozen gene ID/symbol, external ID mapping type, exact/ambiguous/missing status and relevant technical annotation |
-| 800_preflight_a_independence_audit.csv | separately documented identity comparisons and evidence statuses; absence of exact overlap is not proof |
-| 800_preflight_a_readiness.json | checks PASS / BLOCKED / NOT_ASSESSED, with explicit blocker reasons and no replication result |
+| `800_preflight_a_candidate_lineage_inventory.csv` | GDC source stratum × modality/platform counts: acquisition files/cases, unresolved files/cases and provisional primary-tumor denominators |
+| `800_preflight_a_case_multiplicity.csv` | Exact candidate UUID lists, distinct files/samples/aliquots per provisional primary case and **NOT_FROZEN** selection flag |
+| `800_preflight_a_identifier_collisions.csv` | Exact lexical TCGA/CPTAC case and submitter-string collisions; explicit `UNRESOLVED_WITHOUT_EXTERNAL_PROVENANCE` |
+| `800_preflight_a_gene_id_pilot.csv` | Frozen 2,389-gene IDs compared to one deterministic STAR Counts pilot, including version-insensitive **diagnostics only** |
+| `800_preflight_a_readiness.json` | Upstream/input fingerprints, local candidate counts, output fingerprints, open gates and explicit no-scoring/no-validation status |
 
-Names are **proposed** and not yet stable registered artifacts. Actual counts from local derived files must be calculated on the user's machine; the existence of the Notebook 111 source does not establish current local output integrity without checking.
+These diagnostics are not published to `config/artifact_registry.json` as frozen validation artifacts. No notebook output was executed in GitHub; the GDC source payloads and Notebook 111 interim tables reside on the user's local computer.
 
 ## 5. Pre-confirmatory analysis contract — OPEN items only
 
@@ -172,4 +176,4 @@ Before observing CPTAC-3 program scores or representation-replication statistics
 **PHASE 8 REPLICATION CONTRACT: NOT FROZEN.**  
 **BIOLOGICAL VALIDATION AUTHORIZED: NO.**
 
-Next action: locally reload and checksum-reconcile the saved 111 audit outputs, compute candidate lineage and multiplicity inventories, and audit feature/workflow compatibility, all without program scoring. Review these **technical** findings before authoring the separate frozen Notebook 800 analysis contract. Do not merge this draft into a claim of completed preflight/validation merely because the document exists.
+Next action: execute the **PREFLIGHT-A section of Notebook 800 locally** in the already established Jupyter kernel; review its observed lineage, multiplicity and pilot mapping inventories, then complete donor provenance, lineage mapping and full technical compatibility before freezing the separate Notebook 800 replication contract. No standalone preflight script is part of the approved execution path. Do not merge this draft into a claim of completed preflight/validation merely because the document exists.
