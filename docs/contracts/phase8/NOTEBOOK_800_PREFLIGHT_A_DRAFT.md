@@ -127,17 +127,19 @@ Do not use pooled pan-cancer comparisons as evidence of recurrence.
 
 The preflight stage is implemented as short, auditable cells inside `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb`, following `docs/NOTEBOOK_STYLE_GUIDE.md`, the Notebook 111 acquisition handoff, and frozen Phase 4 registries. It uses existing `Paths`, `calculate_sha256`, `load_artifact_registry`, `get_artifact`, `resolve_artifact_path`, and `load_raw_data_registry` helpers rather than introducing an additional standalone script.
 
-The current implementation reloads/fingerprint-checks the small local Notebook 111 derived audit tables; reports acquisition-file/stratum-level ancestry ambiguity and provisional primary-tumor coverage; leaves a case-by-case file/sample/aliquot inventory without selection; examines exact-string cross-cohort ID collisions without claiming donor independence; and performs one deterministic STAR Counts gene-ID pilot. It **does not** perform full cohort-wide feature compatibility, lineage crosswalk harmonization, donor-provenance review, program scoring, external replication or a frozen cohort selection. These remain subsequent review actions.
+The current implementation reloads/fingerprint-checks the small local Notebook 111 derived audit tables; reuses Notebook 111 file-level source-stratum ambiguity rather than recomputing it; adds a *new case-level* affected-case diagnostic; constructs a case-by-case file/sample/aliquot inventory; **classifies RNA-seq multiplicity by within-case identifier structure and screens cross-file biospecimen ancestry conflicts, without selecting files**; examines exact-string cross-cohort ID collisions without claiming donor independence; and performs one deterministic STAR Counts gene-ID pilot. It **does not** perform full cohort-wide feature compatibility, lineage crosswalk harmonization, donor-provenance review, program scoring, external replication or a frozen cohort selection. These remain subsequent review actions.
 
 Local non-frozen outputs are written under `data/interim/metadata/`:
 
 | Output | Scope |
 |---|---|
 | `800_preflight_a_candidate_lineage_inventory.csv` | GDC source stratum × modality/platform counts: acquisition files/cases, unresolved files/cases and provisional primary-tumor denominators |
-| `800_preflight_a_case_multiplicity.csv` | Exact candidate UUID lists, distinct files/samples/aliquots per provisional primary case and **NOT_FROZEN** selection flag |
+| `800_preflight_a_case_multiplicity.csv` | Exact candidate UUID lists, distinct files/samples/aliquots per provisional primary case, **RNA-specific structural multiplicity class**, cross-file ancestry-contradiction diagnostic, and **NOT_FROZEN** selection flag |
 | `800_preflight_a_identifier_collisions.csv` | Exact lexical TCGA/CPTAC case and submitter-string collisions; explicit `UNRESOLVED_WITHOUT_EXTERNAL_PROVENANCE` |
 | `800_preflight_a_gene_id_pilot.csv` | Frozen 2,389-gene IDs compared to one deterministic STAR Counts pilot, including version-insensitive **diagnostics only** |
-| `800_preflight_a_readiness.json` | Upstream/input fingerprints, local candidate counts, output fingerprints, open gates and explicit no-scoring/no-validation status |
+| `800_preflight_a_readiness.json` | Upstream/input fingerprints, RNA-seq case multiplicity class counts, output fingerprints, open gates and explicit no-scoring/no-validation status |
+
+The added case-level classification is deliberately narrower than an adjudication. Its mutually exclusive technical categories are `SINGLE_FILE_SAMPLE_ALIQUOT`, `ONE_ALIQUOT_MULTIPLE_FILES`, `ONE_SAMPLE_MULTIPLE_ALIQUOTS`, `MULTIPLE_SAMPLES_IN_CASE`, and explicit anomaly categories (`INCONSISTENT_BIOSPECIMEN_COUNTS`, `CROSS_FILE_BIOSPECIMEN_CONFLICT`). A single-aliquot/multifile pattern does **not** establish technical replicates, equivalence of counts, or preferred source files. A multiple-sample pattern does **not** establish temporal or spatial sampling provenance. No category is a final inclusion/exclusion decision. The Notebook 111 sample/aliquot/file multiplicity tables are not recomputed; the existing 800 case-level inventory is annotated in place.
 
 These diagnostics are not published to `config/artifact_registry.json` as frozen validation artifacts. No notebook output was executed in GitHub; the GDC source payloads and Notebook 111 interim tables reside on the user's local computer.
 
