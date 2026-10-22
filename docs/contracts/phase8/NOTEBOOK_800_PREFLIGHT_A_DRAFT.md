@@ -4,7 +4,7 @@
 **Prepared:** 2026-10-22  
 **Baseline:** main commit f423d304f6ed3a4187965dcf783879e79abf47b5  
 **Primary source candidate:** GDC project CPTAC-3, frozen file universe and acquisition-time metadata from Notebook 111  
-**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A section only)
+**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A and PREFLIGHT-B metadata evidence, neither frozen)
 **Downstream analysis:** Notebook 800 external replication, not implemented or authorized by this draft
 
 ## 1. Scientific scope and non-goals
@@ -143,6 +143,30 @@ The added case-level classification is deliberately narrower than an adjudicatio
 
 These diagnostics are not published to `config/artifact_registry.json` as frozen validation artifacts. No notebook output was executed in GitHub; the GDC source payloads and Notebook 111 interim tables reside on the user's local computer.
 
+## 4B. RNA case/sample/aliquot adjudication **evidence**, not selection
+
+After the first 800 Run All confirmed **1,370 provisional primary RNA cases**, including **1,082 single-file/sample/aliquot cases, 276 cases with multiple sample UUIDs, and 12 cases with multiple aliquots of one sample**, a second outcome-blind stage was added to **the same Notebook 800**. The reported initial counts are frozen observed notebook results, not new eligibility rules.
+
+**PREFLIGHT-B is an evidence sufficiency review of the 288 already flagged cases only.** It consumes `rna_cases` and `candidate_primary` already loaded and classified in Notebook 800; these trace to the exact audited Notebook 111 file index. It does **not** reacquire/revalidate source files, reopen ambiguous ancestry, recheck the original sample/aliquot multiplicity, or reapply the Notebook 111 primary-tumor selection flag.
+
+Inspect only these already audited metadata families:
+
+- exact case/sample/aliquot/file IDs and their submitter counterparts;
+- GDC-reported `sample_type`, `tissue_type`, `tumor_descriptor`;
+- GDC `primary_site`, `disease_type`, `project_id` to expose source-label conflicts (not to harmonize lineages);
+- source `workflow_type` and `platform`; file sizes and hashes retained as provenance **without** interpreting them as quality scores.
+
+Produce one-row-per-case and one-row-per-file evidence inventories **only for the 288 review cases**, including case-class labels, source-descriptor completeness/discordance, cross-file relationship checks, and explicit `INSUFFICIENT_TO_SELECT_WITHOUT_PROSPECTIVE_QC_POLICY` status. Add to the existing notebook-output mapping:
+
+- `data/interim/metadata/800_preflight_b_rna_case_evidence.csv`
+- `data/interim/metadata/800_preflight_b_rna_file_evidence.csv`
+
+Extend the existing `800_preflight_a_readiness.json` with B-stage evidence class counts; don't create a second redundant summary or change frozen registries.
+
+**No automatic selection:** even if multiple biospecimens share all reported descriptors, that does not imply same tumor region, same collection time, equivalence or technical replicates. Missing or discordant descriptors must remain visible, not be turned into result-dependent prioritization. Relative RNA-seq quality (e.g., STAR assignment metrics), independent sample provenance, and an outcome-blind file choice/exclusion policy remain **unassessed** in this stage; no arbitrary sorting, larger-file preference, platform preference, sample-ID lexical tiebreaker, case dropping, or scores.
+
+B-stage success means technical metadata evidence was documented reproducibly, **not** that adjudication succeeded or external replication is ready.
+
 ## 5. Pre-confirmatory analysis contract — OPEN items only
 
 Before observing CPTAC-3 program scores or representation-replication statistics, separately review and freeze:
@@ -178,4 +202,4 @@ Before observing CPTAC-3 program scores or representation-replication statistics
 **PHASE 8 REPLICATION CONTRACT: NOT FROZEN.**  
 **BIOLOGICAL VALIDATION AUTHORIZED: NO.**
 
-Next action: execute the **PREFLIGHT-A section of Notebook 800 locally** in the already established Jupyter kernel; review its observed lineage, multiplicity and pilot mapping inventories, then complete donor provenance, lineage mapping and full technical compatibility before freezing the separate Notebook 800 replication contract. No standalone preflight script is part of the approved execution path. Do not merge this draft into a claim of completed preflight/validation merely because the document exists.
+Next action: rerun the updated Notebook 800 with the existing project kernel, inspect the PREFLIGHT-B evidence sufficiency tables, then define (but do not prematurely apply) an outcome-blind QC/provenance adjudication policy. Donor provenance, lineage mapping and full technical compatibility remain open before freezing the separate Notebook 800 replication contract. No standalone preflight script is part of the approved execution path. Do not merge this draft into a claim of completed preflight/validation merely because the document exists.
