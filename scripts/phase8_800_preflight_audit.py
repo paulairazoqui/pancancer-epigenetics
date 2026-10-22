@@ -124,7 +124,7 @@ def main() -> None:
     index["provisional_primary"] = (
         index["mapping_status"].eq("unique_aliquot_sample")
         & index["sample_type"].eq("Primary Tumor")
-    ).astype("int64")
+    ).fillna(False).astype("int64")
     stratum = (
         index.groupby(stratum_keys, dropna=False)
         .agg(
