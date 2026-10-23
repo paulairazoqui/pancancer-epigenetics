@@ -1,6 +1,6 @@
 # Notebook 112 — CPTAC-3 Upstream RNA QC Source Provenance Pilot
 
-**Status:** PROSPECTIVE TECHNICAL CONTRACT — DRAFT / **NOT YET EXECUTED**  
+**Status:** TECHNICAL CONTRACT + EXECUTION ADDENDUM — bounded audit **CLOSED**, QC eligibility **NOT FROZEN**  
 **Created:** 2026-10-23  
 **Phase:** 1 — Source acquisition and auditing  
 **Notebook:** `notebooks/phase1_data_acquisition_and_auditing/112_cptac3_qc_source_provenance.ipynb`  
@@ -56,3 +56,19 @@ If exact direct-input records or direct aliquot associations fail for the bounde
 **Next distinct phase:** Notebook 800 must separately determine analytical eligibility, the 288 multi-primary-candidate case policy, CPTAC–TCGA donor independence, source-to-TCGA lineage crosswalk, reference-compatible normalization and a prespecified independent matched-null replication estimand. This 112 technical work is not itself a validation study.
 
 **References:** [GDC aligned reads summary metrics](https://docs.gdc.cancer.gov/Data/Bioinformatics_Pipelines/Aligned_reads_summary_metrics/); [GDC API fields](https://docs.gdc.cancer.gov/API/Users_Guide/Appendix_A_Available_Fields/); [GDC mRNA analysis pipeline](https://docs.gdc.cancer.gov/Data/Bioinformatics_Pipelines/Expression_mRNA_Pipeline/).
+
+## 6. Execution addendum — verified bounded audit, 2026-10-23
+
+**Prospective contract preserved:** Sections 1–5 above are original decision rules; this Section 6 is a retrospective execution addendum, not a post hoc redefinition of sample selection or quality criteria.
+
+**Execution reviewed:** commit `5a29da9ed4376c3722345b74624e2e24d8c30af5`. The notebook ran all **8/8 code cells**, with zero Python exceptions and no changes to prepared code, cell identity or ordering. The inherited H source pilot and the original Notebook 111 index/summary passed the independently recorded fingerprint reconciliation. Snapshot-query behavior remained bounded and no source payload was read or acquired.
+
+**Direct input-source provenance:** H provided **12 STAR output files and 12 distinct upstream input-file UUIDs**. The new GDC public `/files` query returned **12/12 direct upstream file records**, preserving a new immutable-on-rerun snapshot SHA-256 `ca5e2f54458fb6cc26946ef734f1f2d3606817f2836cbc843466eb7633e8e358`. All **12/12 input records** had exact direct GDC case/aliquot associations matching their respective already audited STAR output file identities. This is stronger source linkage than the workflow-input-node association alone; it is not independent biological-donor identity or quality acceptance.
+
+**Quantitative metadata agreement:** GDC's six inspected file-level values—`total_reads`, `proportion_reads_mapped`, `proportion_reads_duplicated`, `average_base_quality`, `average_read_length`, and `average_insert_size`—agreed between the prior H `analysis.input_files` representation and the newly fetched direct input file projection for **72/72 file-field pairs**. The two projections may report identical stored provider values, so they cannot serve as independent reproducibility/quality replicates. Denominator definitions, library/assay comparability, workflow version semantics and quality acceptance thresholds remain **unvalidated**.
+
+**Persisted local outputs:** 12 source-provenance rows, 72 quantitative-field comparison rows, 10 summary rows, plus the 112 SHA-256-fingerprinted handoff JSON. The local output files are not Git-tracked. Zero QC thresholds and zero source-file exclusions/selections; `cohort_frozen=false`, `QC_eligibility_authorized=false`, `biological_replication_performed=false`.
+
+**Audit decision:** **PASS / CLOSED for the 12-file acquisition-metadata identity and field reconciliation pilot. NOT PASS for RNA-seq independent quality eligibility, denominator comparability or external validation.** Notebook 112's role is now to provide evidence to the 800 eligibility contract; no automatic extension to the 1,082 single-primary provisional candidates, 649 multiplicity files or 2,968 source RNA files is approved. Further provider-data acquisition would require a distinct prospectively scoped decision based on documentation of measurement applicability and coverage. The pilot's four intentionally selected source contexts must not be considered a random or representative audit sample.
+
+**Branch lineage note:** the original development branch `notebook-112-cptac3-qc-provenance` was created from the unfinished `notebook-800-preflight-a` branch to consume the locally available H evidence. For a Phase 1-only PR against `main`, use a **separate clean branch from main** containing only the 112 notebook and this Phase 1 contract. Do not merge unreviewed Notebook 800 changes into main as a side effect of closing 112.
