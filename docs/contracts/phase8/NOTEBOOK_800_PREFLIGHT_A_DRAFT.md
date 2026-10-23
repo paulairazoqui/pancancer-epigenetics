@@ -203,6 +203,21 @@ Extend the existing `800_preflight_a_readiness.json` with C-stage input fingerpr
 
 **Interpretation decision after local run:** if additional *exact-linked* provenance/QC fields exist, examine their meaning, linkage and within-case differentiation before considering expansion to the remaining 649 files. Otherwise stop the extra-GDC search path, leave 288 cases unresolved and evaluate independent source documentation or a predeclared unambiguous-cohort analysis for PREFLIGHT-E. No automatic move from pilot to 649-file acquisition is authorized.
 
+### 4D.1 Microcorrection after first PREFLIGHT-D execution — **v2, not executed**
+
+**Observed first pilot (GitHub commit `87d56d3`):** 12 cases, 29 distinct RNA files. All 29 live files matched their 111 file identity and direct linked aliquot, but **0/29** had an exact `case_uuid/sample_uuid/aliquot_uuid` nesting recovered by the queried `/files` response. The availability table consequently reported no informative additional fields. The first run is **technical execution PASS, evidentiary linkage BLOCKED**; the zero field-availability results are not evidence of provider-wide absence. The complete previous raw response is preserved locally in `800_preflight_d_gdc_targeted_pilot.json`.
+
+**Correction:** document the prior snapshot's observed nested identifier structure locally, without re-querying it. Obtain two **bounded, separately hashed query projections**, restricted to exactly the original 29 file UUIDs and 12 case UUIDs:
+
+- `/files`: request `cases.case_id`, `cases.samples.sample_id`, `cases.samples.portions.portion_id`, `cases.samples.portions.analytes.analyte_id`, `cases.samples.portions.analytes.aliquots.aliquot_id` explicitly alongside the original direct-associated-entity and analysis/read-group expansions.
+- `/cases`: use an exact 12-case UUID filter with `samples.sample_id`, `samples.portions.portion_id`, `samples.portions.analytes.analyte_id`, `samples.portions.analytes.aliquots.aliquot_id`, plus relevant sampled collection/spatial/analyte fields and fully nested sample hierarchy expansions.
+
+This dual-source approach is **not** permission to resolve file ancestry by case membership. Additional specimen attributes can be attributed to a file only if: (1) the returned file UUID, filename, size and MD5 agree with Notebook 111; (2) the new /files direct associated aliquot and case agree with the 111 pre-resolved link; (3) the /cases or /files hierarchy contains the exact *same* previously mapped case/sample/aliquot triplet. If these conditions fail, mark the record **`BLOCKED_NO_EXACT_TRIPLET`** or the corresponding direct-link conflict; never claim that a sample is uniquely assigned by a case-scoped expansion. Prioritization of /cases-linked attribute completeness over /files is explicitly documented, and the provenance path is written for every file.
+
+Write the entire new raw-provider response and both complete query definitions under a **new, non-overwriting** `800_preflight_d_gdc_targeted_pilot_v2.json`, including source/capture timestamps, original 111 metadata SHA, prior v1 SHA when present and a deterministic SHA of the combined two-query contract. Exact file and case UUID sets must reconcile. All subsequent D-stage diagnostics/readiness must refer to the v2 source SHA while preserving the prior v1 snapshot. A v2 run with fewer than 29 exact-linked files is explicitly `BLOCKED_INCOMPLETE_EXACT_TRIPLET`, not an audit PASS for specimen provenance; the field table must not attribute case-scoped descriptors to unlinked files.
+
+**Next decision:** evaluate the v2 pilot results *before* considering expansion to all 649 files. No automatic case adjudication, external validation, frozen cohort, registry mutation or program scoring is authorized.
+
 ## 5. Pre-confirmatory analysis contract — OPEN items only
 
 Before observing CPTAC-3 program scores or representation-replication statistics, separately review and freeze:
