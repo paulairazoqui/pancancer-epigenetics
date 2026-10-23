@@ -4,7 +4,7 @@
 **Prepared:** 2026-10-22  
 **Baseline:** main commit f423d304f6ed3a4187965dcf783879e79abf47b5  
 **Primary source candidate:** GDC project CPTAC-3, frozen file universe and acquisition-time metadata from Notebook 111  
-**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A, -B, -C and targeted -D v2 pilot executed; none is a frozen cohort)
+**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A–D executed; PREFLIGHT-E source-count technical inventory implemented, pending local run; no cohort freeze)
 **Downstream analysis:** Notebook 800 external replication, not implemented or authorized by this draft
 
 ## 1. Scientific scope and non-goals
@@ -227,6 +227,32 @@ For the same deterministic **12 cases and 29 file UUIDs**, identity and exact pr
 In the v2 pilot, **29/29** files had informative general anatomical and at least one collection/procurement descriptor (e.g., `biospecimen_anatomic_site`, `days_to_sample_procurement`, `method_of_sample_procurement`, `preservation_method`). Other location or processing fields were only partly present. Across the **300** case × probed-field combinations, **no pair of candidate files within a case** had differing informative field values. **0/29** pilot files carried informative queried quantitative file-level QC fields or read-group QC records. No subset was selected or excluded.
 
 **Decision:** PREFLIGHT-D v2 has **PASS for the limited source-linkage and metadata-availability pilot**. It provides no observed, prospectively defensible within-case specimen preference, and the sampled metadata fields alone do not justify an automatic 649-file expansion. The zeros are specific to the **29-file pilot** and those response fields; they cannot establish provider-wide QC absence or absence of differentiated provenance in all 649 files. The **288 multiplicity cases remain pending**, and the 1,082 structurally simple cases remain provisional pending technical QC, lineage-aware attrition, compatibility and donor-independence review. No validation cohort or biological replication contract is frozen.
+
+## 4E. PREFLIGHT-E — Single-primary RNA-seq technical readout and context attrition (pending local execution)
+
+**Entry gate.** PREFLIGHT-D v2 recovered the exact case/sample/aliquot provenance of its 29-file pilot; none of the newly informative provider attributes discriminated between candidates within a case and no queried quantitative QC field was populated. The 288 multiplicity cases therefore remain **unadjudicated**. Do **not** automatically expand the D metadata API query to 649 files or choose candidates using either program signal or administrative IDs.
+
+**Prospective E boundary: technical diagnostics, not cohort freeze.** Use the 800-A structural class `SINGLE_FILE_SAMPLE_ALIQUOT` to create exactly **1,082 cases with one provisional primary RNA-seq file each**. The phrase *single-file* refers to the **already audited provisional primary subset**, not necessarily to every source file associated with the patient. Reconcile their existing case/file IDs to the fixed Notebook 111 `candidate_primary` inventory and compute the number of *other same-case RNA files*, including records with unresolved sample ancestry, from `111_cptac3_file_index.csv` (already fingerprinted). Source context attributes are retained as `primary_site` and `disease_type`, **not** harmonized TCGA lineages.
+
+**Read-only STAR Counts technical inventory of the 1,082 files:**
+
+- Reuse the **provider MD5 PASS of Notebook 111** and frozen source UUID/file name/byte size; *do not rehash ~67 GiB, redownload, or rescan other modalities*. Missing or wrong-sized source payload is an error. Read `gene_id` and `unstranded` only, with comment lines excluded.
+- Parse the STAR `N_` special non-gene rows separately (e.g. `N_unmapped`, `N_multimapping`, `N_noFeature`, `N_ambiguous`). Record availability and descriptive counts but do **not** relabel them as alignment QC, sample-mapping rates or externally comparable RIN/FASTQ quality.
+- Detect duplicated exact gene IDs and malformed/negative/non-integer/nonfinite count values. Report file-level gene rows, total unstranded gene counts, number of detected genes, exact presence of the **frozen 2,389 tumor Ensembl IDs**, and versionless matching **diagnostics only**. Do not strip annotation versions to create mappings, replace absent genes by zeros, recalculate consensus weights or compute program scores.
+- Produce a compact **gene-ID coverage table** (2,389 frozen genes × count of simple-case files with exact ID) and **one technical-record row per file**. The small tables contain diagnostics and source IDs, **not** an external expression matrix.
+- Stratify the 1,370 provisional RNA primary cases by source `primary_site` × `disease_type`, separating **1,082 simple** and **288 multiplicity** cases, with indicators for other RNA records, ambiguously mapped same-case files, exact gene-ID compatibility and count-vector parsability. This is **structural attrition** rather than a proof of independent cases or valid source-to-TCGA lineage mapping.
+
+**New non-frozen outputs in `data/interim/metadata/`:**
+
+- `800_preflight_e_rna_single_primary_file_technical.csv` — exact case/file/sample/aliquot identifiers plus technical diagnostics and same-case other source-file flags; no selected/eligible label.
+- `800_preflight_e_frozen_gene_id_coverage.csv` — exact frozen gene presence across the 1,082 file records; no gene weights or scores.
+- `800_preflight_e_source_context_case_attrition.csv` — distinct case-count denominators and structurally simple/multiple proportions by **unharmonized source context**.
+
+Append these outputs and their hashes to the existing `800_preflight_a_readiness.json`. This is a **new local read-only count/feature diagnostic**, not re-execution of Notebook 111 file identity, provider checksums or provenance mapping.
+
+**What E does NOT establish:** library fragment metrics, usable read alignment/duplication, RNA quality scores such as RIN, platform batch comparability, tumor purity, lineage crosswalk, donor independence from TCGA, one-record-per-case selection for the 288 cases, preservation of relative program-score scale, and a frozen external replication estimand. Read count distribution and exact identifier presence do **not** define prospective QC exclusion thresholds. Every source stratum remains *not evaluable for confirmatory inference* until those requirements are reviewed and the explicit cohort and null model are frozen.
+
+**Decision after first Run All:** inspect exact 2,389-gene coverage across files, any malformed count-vector evidence, how many of the 1,082 nominally simple cases have additional/unresolved source RNA records, and which source strata lose disproportionate numbers of cases. Based on those observed **technical** results, separately propose (not implement silently) phenotype-agnostic QC criteria, independent donor-provenance checks, a lineage crosswalk and sensitivity analyses. The descriptive E output is not permission to score, normalize or freeze a CPTAC-3 validation cohort.
 
 ## 5. Pre-confirmatory analysis contract — OPEN items only
 
