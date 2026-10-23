@@ -4,7 +4,7 @@
 **Prepared:** 2026-10-22  
 **Baseline:** main commit f423d304f6ed3a4187965dcf783879e79abf47b5  
 **Primary source candidate:** GDC project CPTAC-3, frozen file universe and acquisition-time metadata from Notebook 111  
-**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A–F executed; PREFLIGHT-G QC feasibility implemented, awaiting local run; no cohort freeze)
+**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A–F reviewed, G first technical run complete; G terminology microcorrection pending rerun; no cohort freeze)
 **Downstream analysis:** Notebook 800 external replication, not implemented or authorized by this draft
 
 ## 1. Scientific scope and non-goals
@@ -350,6 +350,18 @@ Scientific evidence distinctions:
 Persist all five and their hashes in the **existing** `800_preflight_a_readiness.json` alongside the accepted earlier evidence, and preserve `cohort_frozen=false`, `rna_one_record_per_case_selection=NOT_FROZEN`, `biological_validation_authorized=false`, and **zero empirically chosen QC thresholds**.
 
 **Decision gate after local Run All:** determine whether available local evidence suffices for **a technical QC policy** (not merely a valid STAR schema), and which independently sourced QC reports can be obtained efficiently *without reopening all source acquisition*. A decision to acquire missing QC sources must be prospective, evidence-linked and lineage-aware. No biological projection, regression, program refit, or cohort freeze is authorized by G. A provider-wide or 1,082-file QC absence must not be asserted based on the 29-file D pilot.
+
+### 4G.1 Observed first PREFLIGHT-G run and microcorrection required (2026-10-23)
+
+The first G execution in GitHub commit `3c66717559c09dca88c69c7dcc03473a0e475ebc` completed **58/58 code cells without errors**; cell sources were unchanged from the approved prospective G draft. The verified E cache was reused with **zero reads of the 1,082 STAR payloads**, and the original full E gene-ID coverage evidence was preserved.
+
+The resulting *non-frozen* QC-feasibility inventories contain a **12-row evidence catalog**, **1,082 file-level source/context diagnostic rows**, **18 source-site/disease stratum rows**, **four STAR `N_` availability rows**, and **nine prospective quality/eligibility gates**. All four `N_` rows were numeric and present for 1,082/1,082 files; no rates were inferred from them. The previously fixed lowest-20 count list contained **eight uterine adenocarcinoma and five pancreatic ductal/lobular cases**. These are descriptive source-context counts, not evidence of enrichment, quality failure, or eligibility thresholds. All nine prevalidation gates remained unauthorized; `cohort_frozen=false`, no QC thresholds or exclusions, and `biological_validation_authorized=false`.
+
+**Scientific limitations identified during review:** two first-run labels overstated absence. First, the category `RNA_INTEGRITY_AND_PREP` originally described RIN and specimen preparation as absent from the D pilot, although D v2 recovered general procurement/preservation descriptors for 29/29 *pilot* files. Those descriptors are **not** independent RIN, transcript degradation, sequencing library preparation or read-quality measurements. Second, the per-file boolean `quantitative_sequencing_qc_available=False` could be misconstrued as definitive absence of QC at the provider rather than **not assessed in the audited handoff**.
+
+The microcorrection now in the feature-branch notebook (pending next local execution) distinguishes `RNA_INTEGRITY_AND_LIBRARY_PREP` with its available provenance scope, records per-file `quantitative_sequencing_qc_status=NOT_ASSESSED_IN_AUDITED_HANDOFF`, and updates the D readiness status to `PILOT_REVIEWED_NO_WITHIN_CASE_SELECTION_EVIDENCE`. The previous 58-cell run remains a valid first technical execution, **but revised G outputs and readiness are not yet execution-verified**. The next Run All uses the verified cache and must not re-read 1,082 files; no biological source files or frozen artifacts are modified.
+
+**Post-correction decision:** the current audited inputs support **technical gene/count diagnostics only**, not independent sequencing-QC eligibility. A future source-feasibility decision needs to identify independently obtainable STAR alignment/library QC or defensible external source-quality metadata with exact file/aliquot provenance, document denominators and assay comparability, and prespecify failure criteria. If independent reports are unavailable, record the limitation and design restricted sensitivity analyses without claiming that the samples passed full sequencing QC. Neither the 288-case multiplicity policy nor TCGA/CPTAC donor independence and lineage crosswalk is resolved by G.
 
 ## 5. Pre-confirmatory analysis contract — OPEN items only
 
