@@ -4,7 +4,7 @@
 **Prepared:** 2026-10-22  
 **Baseline:** main commit f423d304f6ed3a4187965dcf783879e79abf47b5  
 **Primary source candidate:** GDC project CPTAC-3, frozen file universe and acquisition-time metadata from Notebook 111  
-**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A and PREFLIGHT-B metadata evidence, neither frozen)
+**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A, -B and -C technical evidence, none frozen)
 **Downstream analysis:** Notebook 800 external replication, not implemented or authorized by this draft
 
 ## 1. Scientific scope and non-goals
@@ -123,7 +123,7 @@ Produce an inventory by source primary_site × disease_type × modality × platf
 
 Do not use pooled pan-cancer comparisons as evidence of recurrence.
 
-## 4. Notebook 800 PREFLIGHT-A: technical outputs (NOT YET EXECUTED LOCALLY)
+## 4. Notebook 800 PREFLIGHT-A: technical outputs (executed locally; non-frozen)
 
 The preflight stage is implemented as short, auditable cells inside `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb`, following `docs/NOTEBOOK_STYLE_GUIDE.md`, the Notebook 111 acquisition handoff, and frozen Phase 4 registries. It uses existing `Paths`, `calculate_sha256`, `load_artifact_registry`, `get_artifact`, `resolve_artifact_path`, and `load_raw_data_registry` helpers rather than introducing an additional standalone script.
 
@@ -167,6 +167,26 @@ Extend the existing `800_preflight_a_readiness.json` with B-stage evidence class
 
 B-stage success means technical metadata evidence was documented reproducibly, **not** that adjudication succeeded or external replication is ready.
 
+## 4C. PREFLIGHT-C — constrained provenance and QC **availability**, not QC adjudication
+
+**Accepted PREFLIGHT-B observation (2026-10-22, GitHub commit `2e3e250`).** The previous 800 Run All examined 288 RNA-seq cases (649 source files): 276 cases/619 files with multiple sample UUIDs and 12 cases/30 files with multiple aliquot UUIDs from one sample. The preserved Notebook 111 descriptors were complete for the B-stage queried fields, with zero cross-file source-descriptor disagreements. This is an *observed technical result*, not proof of biological or technical equivalence. PREFLIGHT-B was accepted for its descriptive sufficiency audit; no case was adjudicated.
+
+**PREFLIGHT-C scope.** Reuse the acquisition-time `config/manifests/cptac3/gdc_metadata_cptac3_rnaseq.json` snapshot, checksum verified against Notebook 111's `source_fingerprints.rnaseq.metadata.sha256`. Restrict all new observations to the exact **649 file UUIDs** in the existing 800-B file evidence inventory, and reach additional biospecimen attributes **only** through the already resolved `case_uuid` → `sample_uuid` → `aliquot_uuid` hierarchy path. The snapshot includes case-scoped expansions; do not infer specimen ancestry from case membership alone, redo the 111 ancestry audit, or rehabilitate the 314 ambiguously mapped RNA files. If an audited case/sample/aliquot path cannot be found, halt for contradiction review rather than guessing.
+
+Measure **field-key availability, informative scalar values, and conflicting scalar values across matching exact paths**. Common placeholders (e.g., `Not Reported`, `Unknown`, `Not Applicable`) are not informative. Store any observed scalar keys *in addition* to explicit probes, so absent predefined probes and unexpected metadata fields are both visible. Distinguish six groups: generic sample descriptors; collection timing; source sampling location detail; sample/portion/analyte processing metadata; administrative identifiers and source file/analysis workflow dates; and quantitative QC metadata probes. Source-file creation times must never be treated as collection times; concentration and `sample_type`/ `tumor_descriptor` labels are not quality measurements or proof of spatial equivalence. Provider hashes and file size remain identity/provenance metadata, never selection criteria.
+
+**Limit of C's technical QC claim:** this is an availability screen of the **preserved JSON snapshot only**. No STAR Counts files, library-level quality profiles, sequencing run reports, alignment logs, or live GDC endpoint expansions are read. A field missing from this acquisition projection is **not proof that the corresponding data are absent elsewhere in GDC**. Even a reported scalar mapping/QC metric would require definition, comparability and prespecified eligibility criteria before use for selection.
+
+Preserve three new *non-frozen* outputs, under `data/interim/metadata/`:
+
+- `800_preflight_c_rna_field_coverage.csv` — explicit probes plus observed scalar fields by nested provenance scope; number of 649 candidate files with key, informative value and within-file disagreement.
+- `800_preflight_c_rna_file_availability.csv` — one row per 649 audited RNA files, unchanged file/sample/aliquot/case IDs, matching exact path row count and per-domain availability/discordance.
+- `800_preflight_c_rna_case_coverage.csv` — one row per 288 cases, with coverage denominators kept at file and case level; **no candidate selected**.
+
+Extend the existing `800_preflight_a_readiness.json` with C-stage input fingerprint and coverage context (do not write a second readiness summary). Keep `one_record_per_case=PENDING_POLICY`, `biological_validation_authorized=false`, and `cohort_frozen=false`. No registry changes, no scoring, and no inferred donor independence. Outcomes are to be reviewed after **local execution**; these are implementation intentions, not claimed observations.
+
+**Decision boundary after C:** if the snapshot is insufficient to distinguish specimen collection region/timepoint and objective, comparable RNA quality, keep all 288 multiplicity cases explicitly unresolved pending independently sourced provenance/QC. Do not repair that insufficiency using lexical or result-dependent prioritization. Consider later predeclared sensitivity designs using a uniquely unambiguous set, with lineage-dependent attrition documented, only after scientific and technical contracts are reviewed.
+
 ## 5. Pre-confirmatory analysis contract — OPEN items only
 
 Before observing CPTAC-3 program scores or representation-replication statistics, separately review and freeze:
@@ -202,4 +222,4 @@ Before observing CPTAC-3 program scores or representation-replication statistics
 **PHASE 8 REPLICATION CONTRACT: NOT FROZEN.**  
 **BIOLOGICAL VALIDATION AUTHORIZED: NO.**
 
-Next action: rerun the updated Notebook 800 with the existing project kernel, inspect the PREFLIGHT-B evidence sufficiency tables, then define (but do not prematurely apply) an outcome-blind QC/provenance adjudication policy. Donor provenance, lineage mapping and full technical compatibility remain open before freezing the separate Notebook 800 replication contract. No standalone preflight script is part of the approved execution path. Do not merge this draft into a claim of completed preflight/validation merely because the document exists.
+Next action: run the updated Notebook 800 locally with the frozen 111 acquisition-time metadata snapshot and review the C-stage key/file/case availability tables. If field-value coverage is insufficient, identify the specific missing provenance/QC sources prospectively rather than choosing files arbitrarily. Cohort selection, lineage mapping, donor independence and full technical QC still require separately reviewed decisions; no external program replication is authorized.
