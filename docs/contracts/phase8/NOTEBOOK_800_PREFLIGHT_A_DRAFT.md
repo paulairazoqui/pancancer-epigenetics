@@ -4,7 +4,7 @@
 **Prepared:** 2026-10-22  
 **Baseline:** main commit f423d304f6ed3a4187965dcf783879e79abf47b5  
 **Primary source candidate:** GDC project CPTAC-3, frozen file universe and acquisition-time metadata from Notebook 111  
-**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A–D executed; PREFLIGHT-E source-count technical inventory implemented, pending local run; no cohort freeze)
+**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A–E executed as technical inventories; analysis cohort NOT frozen)
 **Downstream analysis:** Notebook 800 external replication, not implemented or authorized by this draft
 
 ## 1. Scientific scope and non-goals
@@ -253,6 +253,24 @@ Append these outputs and their hashes to the existing `800_preflight_a_readiness
 **What E does NOT establish:** library fragment metrics, usable read alignment/duplication, RNA quality scores such as RIN, platform batch comparability, tumor purity, lineage crosswalk, donor independence from TCGA, one-record-per-case selection for the 288 cases, preservation of relative program-score scale, and a frozen external replication estimand. Read count distribution and exact identifier presence do **not** define prospective QC exclusion thresholds. Every source stratum remains *not evaluable for confirmatory inference* until those requirements are reviewed and the explicit cohort and null model are frozen.
 
 **Decision after first Run All:** inspect exact 2,389-gene coverage across files, any malformed count-vector evidence, how many of the 1,082 nominally simple cases have additional/unresolved source RNA records, and which source strata lose disproportionate numbers of cases. Based on those observed **technical** results, separately propose (not implement silently) phenotype-agnostic QC criteria, independent donor-provenance checks, a lineage crosswalk and sensitivity analyses. The descriptive E output is not permission to score, normalize or freeze a CPTAC-3 validation cohort.
+
+### 4E.1 Observed PREFLIGHT-E outcome — 2026-10-23
+
+The first local Run All completed **47/47 executable code cells**, no errors, committed as `2e1642174447f1806759c528c5c1f5ce74f2908b`. No cell sources were changed from the prepared version. The 1,082 provisionally single-primary-file samples were processed with only `gene_id` and `unstranded` from each already acquired STAR Counts file.
+
+**Compatibility evidence:** **1,082/1,082** files had **60,660 STAR gene rows** and exactly **2,389/2,389 frozen tumor gene IDs**. No file was missing a frozen exact ID or required version-insensitive rescue. No file had invalid non-integer, negative or nonfinite unstranded count values; this is a count-vector parsability result, not complete sample sequencing QC. Per-file total unstranded gene counts: median **38,347,562**, min **1,074,810**, max **84,641,397**. Positive-count genes: median **42,264**, min **20,953**, max **46,782**. A low-count tail merits follow-up using the existing E CSV; empirical thresholds **must not** be tuned to achieve favorable sample or lineage retention.
+
+**Source-case multiplicity that survived the simple-primary structural screen:** **530/1,082** have at least one other GDC RNA file attached to their case outside the uniquely mapped provisional-primary universe, including **37** with an additional ambiguous-sample-ancestry RNA record. These figures cannot determine that a second file is another primary tumor, a normal, a technical replicate, or the same biopsy. Distinguish its tissue/mapping status from the already fingerprinted Notebook 111 index before selecting whole-patient or unique-specimen policies. This is not justification for discarding all 530.
+
+**Highly unequal attrition by *source* context:** uterine adenocarcinoma **56 single/235 provisional cases** (179 multiplicity cases), kidney adenocarcinoma **192/232**, laryngeal squamous tumors **18/37**, other tongue squamous **7/19**, floor-of-mouth squamous **6/17**, pancreatic ductal/lobular **88/100**. This is **raw primary-site/disease-type stratification**, not harmonized TCGA lineage. Discarding the 288 multiplicity cases would disproportionately change the uterine and parts of head-and-neck representation; case counts are not an independent-donor validation denominator until overlap and lineage controls are settled.
+
+The following E outputs were generated locally (not automatically committed as external validated evidence):
+`800_preflight_e_rna_single_primary_file_technical.csv` (1,082 rows),
+`800_preflight_e_frozen_gene_id_coverage.csv` (2,389 rows),
+`800_preflight_e_source_context_case_attrition.csv` (22 rows).
+The readiness record reports `DESCRIPTIVE_COMPLETE_NOT_ELIGIBILITY`, no E sample selection, no frozen cohort and `biological_validation_authorized=false`.
+
+**Verdict:** **PASS for E's bounded technical readout and source-context attrition inventory**, **NOT PASS for RNA sample QC, donor independence or prospective analytic eligibility**. Before any biological projection, review the low-count tail, explain other same-case RNA files, obtain or define independent source-aware QC evidence, assess lineage-aware feasibility and document a prespecified policy for the 288 unresolved multiplicity cases. Do not repeat the full 1,082-file scan solely to explore a different threshold. Phase 8 replication is still **unauthorized**.
 
 ## 5. Pre-confirmatory analysis contract — OPEN items only
 
