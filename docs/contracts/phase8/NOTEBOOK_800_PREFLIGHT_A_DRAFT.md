@@ -4,7 +4,7 @@
 **Prepared:** 2026-10-22  
 **Baseline:** main commit f423d304f6ed3a4187965dcf783879e79abf47b5  
 **Primary source candidate:** GDC project CPTAC-3, frozen file universe and acquisition-time metadata from Notebook 111  
-**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A–F reviewed, G first technical run complete; G terminology microcorrection pending rerun; no cohort freeze)
+**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A–G technical inventories executed and reviewed; QC-based analytic cohort NOT frozen)
 **Downstream analysis:** Notebook 800 external replication, not implemented or authorized by this draft
 
 ## 1. Scientific scope and non-goals
@@ -363,6 +363,16 @@ The microcorrection now in the feature-branch notebook (pending next local execu
 
 **Post-correction decision:** the current audited inputs support **technical gene/count diagnostics only**, not independent sequencing-QC eligibility. A future source-feasibility decision needs to identify independently obtainable STAR alignment/library QC or defensible external source-quality metadata with exact file/aliquot provenance, document denominators and assay comparability, and prespecify failure criteria. If independent reports are unavailable, record the limitation and design restricted sensitivity analyses without claiming that the samples passed full sequencing QC. Neither the 288-case multiplicity policy nor TCGA/CPTAC donor independence and lineage crosswalk is resolved by G.
 
+### 4G.2 Verification of terminology correction — PREFLIGHT-G CLOSED AS EVIDENCE-AVAILABILITY AUDIT
+
+On **2026-10-23**, the corrected notebook execution in commit `ece7279ba150c46ea721e391849babdfb9921f21` completed **58/58 code cells without errors**. Exact comparison with the prepared code shows no changed notebook source cells. The SHA-256-verified E cache was reused and **zero of the 1,082 STAR payload files were reprocessed**. Previously defined E/F source denominators, G diagnostic table counts, no-exclusion gates and all downstream readiness/persistence checks passed.
+
+The corrected catalog uses `RNA_INTEGRITY_AND_LIBRARY_PREP`: objective RIN/library sequencing-quality evidence has **not been assessed in the audited handoff**; this does not negate the distinct *general specimen procurement/preservation descriptors* observed in D's bounded 29-file pilot. Per-file quantitative sequencing-QC status is `NOT_ASSESSED_IN_AUDITED_HANDOFF`, rather than a boolean or a provider-wide claim of absent QC. The D-pilot readiness state is correctly `PILOT_REVIEWED_NO_WITHIN_CASE_SELECTION_EVIDENCE`.
+
+**Closure decision:** PREFLIGHT-G **PASS for source-aware QC evidence availability, count/feature diagnostics and prospective technical gap inventory**. It is **not** a sequencing QC PASS, not a clinically or biologically eligible cohort, not a donor-independence demonstration and not a prospective RNA QC exclusion policy. The nine prevalidation gates remain open. No library/assay-level rates, empirical cutoffs, file exclusions, representation scores, biological replication statistics or program changes were produced. Source contexts remain GDC labels, not reviewed TCGA lineage mappings. `cohort_frozen=false`; `biological_validation_authorized=false`.
+
+**Next work package, separately authorized:** prioritize independent source-file-specific QC availability and assay definitions, with exact case/sample/aliquot/file linkage and a narrow download/API scope. Do not perform a provider-wide sweep or re-read all 1,082 files without prospective justification. If comparable independent QC is unavailable, document the limitation and predeclare conservative sensitivity analyses rather than labeling technical quality as PASS.
+
 ## 5. Pre-confirmatory analysis contract — OPEN items only
 
 Before observing CPTAC-3 program scores or representation-replication statistics, separately review and freeze:
@@ -391,11 +401,14 @@ Before observing CPTAC-3 program scores or representation-replication statistics
 
 ## 7. Current gate and next action
 
-**SOURCE TECHNICAL INTEGRITY: PASS** (Notebook 111, 2026-10-21).  
-**PROVISIONAL RNA-PRIMARY INVENTORY: AVAILABLE, NOT COHORT-FROZEN.**  
-**DONOR INDEPENDENCE: NOT FULLY VERIFIED.**  
-**EXTERNAL FEATURE COMPATIBILITY: NOT ASSESSED.**  
+**SOURCE TECHNICAL INTEGRITY: PASS** (Notebook 111; reused, not repeated).  
+**PROVISIONAL RNA-PRIMARY INVENTORY: AVAILABLE, NOT COHORT-FROZEN** (1,370 cases; 1,082 structurally simple primary-file cases, 288 multiplicity cases unresolved).  
+**EXACT FROZEN FEATURE PRESENCE: PASS FOR THE 1,082 E-SCANNED RNA FILES** (2,389/2,389 genes per file; not a cohort-wide sample-quality claim).  
+**QC EVIDENCE AVAILABILITY AUDIT: PASS** (G; independent alignment/library QC not established).  
+**RNA QUALITY ELIGIBILITY / THRESHOLDS: NOT FROZEN.**  
+**DONOR INDEPENDENCE: UNRESOLVED.**  
+**TCGA LINEAGE CROSSWALK: NOT FROZEN.**  
 **PHASE 8 REPLICATION CONTRACT: NOT FROZEN.**  
 **BIOLOGICAL VALIDATION AUTHORIZED: NO.**
 
-Next action: run the revised Notebook 800 locally to execute D's bounded 12-case *live-GDC exact-file* pilot; review whether new fields are actually populated, correspond to the already audited case/sample/aliquot triplets, and differentiate within-case files. If field-value coverage is insufficient, identify the specific missing provenance/QC sources prospectively rather than choosing files arbitrarily. Cohort selection, lineage mapping, donor independence and full technical QC still require separately reviewed decisions; no external program replication is authorized.
+Next action: initiate a separately scoped feasibility assessment of **independent RNA sequencing QC reports or assay-valid provider metadata** with file/sample provenance linkage, focusing on the 1,082 simple-primary candidates and low-count contexts without an unbounded source sweep. In parallel or afterwards, separately settle donor independence, source-to-TCGA lineage harmonization and the 288 multi-primary-candidate case policy. The previous D pilot is complete; **do not rerun it as the next action**. Do not use the observed bottom-20 or per-lineage empirical distribution to set exclusions retrospectively. No CPTAC-3 program projection or external biological replication is authorized.
