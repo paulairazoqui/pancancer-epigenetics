@@ -4,7 +4,7 @@
 **Prepared:** 2026-10-22  
 **Baseline:** main commit f423d304f6ed3a4187965dcf783879e79abf47b5  
 **Primary source candidate:** GDC project CPTAC-3, frozen file universe and acquisition-time metadata from Notebook 111  
-**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A, -B and -C technical evidence, none frozen)
+**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A, -B, -C executed; -D pilot drafted; none frozen)
 **Downstream analysis:** Notebook 800 external replication, not implemented or authorized by this draft
 
 ## 1. Scientific scope and non-goals
@@ -187,6 +187,22 @@ Extend the existing `800_preflight_a_readiness.json` with C-stage input fingerpr
 
 **Decision boundary after C:** if the snapshot is insufficient to distinguish specimen collection region/timepoint and objective, comparable RNA quality, keep all 288 multiplicity cases explicitly unresolved pending independently sourced provenance/QC. Do not repair that insufficiency using lexical or result-dependent prioritization. Consider later predeclared sensitivity designs using a uniquely unambiguous set, with lineage-dependent attrition documented, only after scientific and technical contracts are reviewed.
 
+## 4D. PREFLIGHT-D — Directed *live GDC* metadata and QC feasibility pilot
+
+**Rationale.** C-stage tests of the 2026 acquisition-time GDC metadata projection yielded no informative field values for the tested precise collection timing, sample location or quantitative QC variables in 649/649 files. This does not demonstrate their absence from the current provider API. The [GDC official API field catalog](https://docs.gdc.cancer.gov/API/Users_Guide/Appendix_A_Available_Fields/) documents additional names such as `cases.samples.biospecimen_anatomic_site`, `cases.samples.biospecimen_laterality`, `cases.samples.portions.analytes.rna_integrity_number`, and `analysis.metadata.read_groups.read_group_qcs`. Fields listed in a schema are not necessarily populated for CPTAC-3, nor analytically valid as QC metrics.
+
+**Design and strict scope — staged pilot, not 649-file expansion:**
+
+1. Use only the frozen `rna_adjudication_cases`/`rna_adjudication_files` identities from 800-B, whose inputs and 288-case/649-file counts were verified. Choose **3 cases each** from source-defined `Uterus, NOS`, `Kidney`, `Larynx` (multiple-sample class) and `Pancreas` (multi-aliquot class), sorted by case UUID only to ensure a deterministic **technical diagnostic sample**, not to select a final analysis cohort. If expected source strata are absent or insufficient, stop rather than silently sampling replacement cases.
+2. Query `https://api.gdc.cancer.gov/files` by the precise pilot file UUID list with a bounded, fully recorded `fields`, `expand`, `size`, `filters` request. Use the supported file-associated nested biospecimen and analysis/read-group metadata groups; no general GDC queries or acquisition re-download. Capture an immutable-on-rerun, local, non-frozen `800_preflight_d_gdc_targeted_pilot.json` snapshot recording the query, capture time, provider response and SHA of the original Notebook 111 RNA metadata. Cached runs must match the complete request fingerprint.
+3. Reconcile the new API file identity (UUID, filename, byte size, MD5) to **Notebook 111's existing authoritative file index**; do not rehash the actual STAR or re-run MD5 of 2,968 files. Retain any absent or contradictory live association as an unresolved provenance signal. Biospecimen fields may be attributed only after matching the **exact previously resolved** case→sample→aliquot triplet and checking the direct file-associated aliquot, never by same-case nested membership alone. The new live snapshot does not resolve the 314 files with ambiguous sample ancestry.
+4. Screen source-informed provenance fields (anatomic site, laterality, collection timing and method, preservation), analyte quality candidates (e.g., RIN), and file/read-group QC **availability**. Distinguish scalar informative values, missing/unknown, structured QC reports, and distinct values across candidates within a single case. Field presence is not a quality pass; raw `basic_statistics` objects are not converted into numeric scores. No post-hoc QC threshold, sample promotion, replicate pooling or score-dependent selection.
+5. Persist pilot summaries with one-row-per-file identity, long-form file-field evidence and case-field contrasts, plus a 12-case summary. Update existing `800_preflight_a_readiness.json` and record D snapshot SHA, **without** appending new names to `config/raw_data_registry.json` or `config/artifact_registry.json`. The original 111 provider snapshots and frozen acquisition UUID universe remain unchanged.
+
+**Non-frozen D outputs in `data/interim/metadata/`:** `800_preflight_d_gdc_targeted_pilot.json`, `800_preflight_d_rna_pilot_file_identity.csv`, `800_preflight_d_rna_pilot_field_evidence.csv`, `800_preflight_d_rna_pilot_case_field_comparison.csv`, `800_preflight_d_rna_pilot_case_summary.csv`. Provider live fetch is performed only once when the exact scoped local snapshot is missing. Failure or partial retrieval is an error, not evidence that missing fields do not exist.
+
+**Interpretation decision after local run:** if additional *exact-linked* provenance/QC fields exist, examine their meaning, linkage and within-case differentiation before considering expansion to the remaining 649 files. Otherwise stop the extra-GDC search path, leave 288 cases unresolved and evaluate independent source documentation or a predeclared unambiguous-cohort analysis for PREFLIGHT-E. No automatic move from pilot to 649-file acquisition is authorized.
+
 ## 5. Pre-confirmatory analysis contract — OPEN items only
 
 Before observing CPTAC-3 program scores or representation-replication statistics, separately review and freeze:
@@ -222,4 +238,4 @@ Before observing CPTAC-3 program scores or representation-replication statistics
 **PHASE 8 REPLICATION CONTRACT: NOT FROZEN.**  
 **BIOLOGICAL VALIDATION AUTHORIZED: NO.**
 
-Next action: run the updated Notebook 800 locally with the frozen 111 acquisition-time metadata snapshot and review the C-stage key/file/case availability tables. If field-value coverage is insufficient, identify the specific missing provenance/QC sources prospectively rather than choosing files arbitrarily. Cohort selection, lineage mapping, donor independence and full technical QC still require separately reviewed decisions; no external program replication is authorized.
+Next action: run the revised Notebook 800 locally to execute D's bounded 12-case *live-GDC exact-file* pilot; review whether new fields are actually populated, correspond to the already audited case/sample/aliquot triplets, and differentiate within-case files. If field-value coverage is insufficient, identify the specific missing provenance/QC sources prospectively rather than choosing files arbitrarily. Cohort selection, lineage mapping, donor independence and full technical QC still require separately reviewed decisions; no external program replication is authorized.
