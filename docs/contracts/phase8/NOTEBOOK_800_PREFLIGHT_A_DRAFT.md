@@ -4,7 +4,7 @@
 **Prepared:** 2026-10-22  
 **Baseline:** main commit f423d304f6ed3a4187965dcf783879e79abf47b5  
 **Primary source candidate:** GDC project CPTAC-3, frozen file universe and acquisition-time metadata from Notebook 111  
-**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A, -B, -C executed; -D pilot drafted; none frozen)
+**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A, -B, -C and targeted -D v2 pilot executed; none is a frozen cohort)
 **Downstream analysis:** Notebook 800 external replication, not implemented or authorized by this draft
 
 ## 1. Scientific scope and non-goals
@@ -203,7 +203,7 @@ Extend the existing `800_preflight_a_readiness.json` with C-stage input fingerpr
 
 **Interpretation decision after local run:** if additional *exact-linked* provenance/QC fields exist, examine their meaning, linkage and within-case differentiation before considering expansion to the remaining 649 files. Otherwise stop the extra-GDC search path, leave 288 cases unresolved and evaluate independent source documentation or a predeclared unambiguous-cohort analysis for PREFLIGHT-E. No automatic move from pilot to 649-file acquisition is authorized.
 
-### 4D.1 Microcorrection after first PREFLIGHT-D execution — **v2, not executed**
+### 4D.1 Microcorrection after first PREFLIGHT-D execution — **v2 executed and reviewed**
 
 **Observed first pilot (GitHub commit `87d56d3`):** 12 cases, 29 distinct RNA files. All 29 live files matched their 111 file identity and direct linked aliquot, but **0/29** had an exact `case_uuid/sample_uuid/aliquot_uuid` nesting recovered by the queried `/files` response. The availability table consequently reported no informative additional fields. The first run is **technical execution PASS, evidentiary linkage BLOCKED**; the zero field-availability results are not evidence of provider-wide absence. The complete previous raw response is preserved locally in `800_preflight_d_gdc_targeted_pilot.json`.
 
@@ -217,6 +217,16 @@ This dual-source approach is **not** permission to resolve file ancestry by case
 Write the entire new raw-provider response and both complete query definitions under a **new, non-overwriting** `800_preflight_d_gdc_targeted_pilot_v2.json`, including source/capture timestamps, original 111 metadata SHA, prior v1 SHA when present and a deterministic SHA of the combined two-query contract. Exact file and case UUID sets must reconcile. All subsequent D-stage diagnostics/readiness must refer to the v2 source SHA while preserving the prior v1 snapshot. A v2 run with fewer than 29 exact-linked files is explicitly `BLOCKED_INCOMPLETE_EXACT_TRIPLET`, not an audit PASS for specimen provenance; the field table must not attribute case-scoped descriptors to unlinked files.
 
 **Next decision:** evaluate the v2 pilot results *before* considering expansion to all 649 files. No automatic case adjudication, external validation, frozen cohort, registry mutation or program scoring is authorized.
+
+### 4D.2 Observed v2 pilot outcome and evidence boundary — 2026-10-23
+
+The revised notebook completed **41/41 code cells** without error (GitHub execution commit `fd0ea57f`). Only notebook output payloads were modified during that local execution; the code cell sources remained unchanged. A separate snapshot was captured as `data/interim/metadata/800_preflight_d_gdc_targeted_pilot_v2.json`, SHA-256 `297c48c0b6be7979b56e12fb67853cbc32ee75017d79eafb28b4cba307d25c31` (local non-frozen source evidence; not a Git-tracked CSV).
+
+For the same deterministic **12 cases and 29 file UUIDs**, identity and exact pre-resolved case/sample/aliquot hierarchy reconstruction succeeded **29/29**. Both new /files and /cases projections contained the exact link; the specimen-field provenance table used **CASES_ENDPOINT_EXACT_TRIPLET**, conditional on direct file–aliquot association and 111 ancestry. The earlier v1 result of 0/29 nested links was a source-projection omission rather than an unresolved contradiction in the frozen association mapping.
+
+In the v2 pilot, **29/29** files had informative general anatomical and at least one collection/procurement descriptor (e.g., `biospecimen_anatomic_site`, `days_to_sample_procurement`, `method_of_sample_procurement`, `preservation_method`). Other location or processing fields were only partly present. Across the **300** case × probed-field combinations, **no pair of candidate files within a case** had differing informative field values. **0/29** pilot files carried informative queried quantitative file-level QC fields or read-group QC records. No subset was selected or excluded.
+
+**Decision:** PREFLIGHT-D v2 has **PASS for the limited source-linkage and metadata-availability pilot**. It provides no observed, prospectively defensible within-case specimen preference, and the sampled metadata fields alone do not justify an automatic 649-file expansion. The zeros are specific to the **29-file pilot** and those response fields; they cannot establish provider-wide QC absence or absence of differentiated provenance in all 649 files. The **288 multiplicity cases remain pending**, and the 1,082 structurally simple cases remain provisional pending technical QC, lineage-aware attrition, compatibility and donor-independence review. No validation cohort or biological replication contract is frozen.
 
 ## 5. Pre-confirmatory analysis contract — OPEN items only
 
