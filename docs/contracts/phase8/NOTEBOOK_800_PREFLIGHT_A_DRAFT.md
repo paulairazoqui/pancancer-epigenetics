@@ -4,7 +4,7 @@
 **Prepared:** 2026-10-22  
 **Baseline:** main commit f423d304f6ed3a4187965dcf783879e79abf47b5  
 **Primary source candidate:** GDC project CPTAC-3, frozen file universe and acquisition-time metadata from Notebook 111  
-**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A–G technical inventories executed and reviewed; QC-based analytic cohort NOT frozen)
+**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A–G reviewed; H 12-file QC-metadata source feasibility pilot implemented, pending local execution; cohort NOT frozen)
 **Downstream analysis:** Notebook 800 external replication, not implemented or authorized by this draft
 
 ## 1. Scientific scope and non-goals
@@ -372,6 +372,37 @@ The corrected catalog uses `RNA_INTEGRITY_AND_LIBRARY_PREP`: objective RIN/libra
 **Closure decision:** PREFLIGHT-G **PASS for source-aware QC evidence availability, count/feature diagnostics and prospective technical gap inventory**. It is **not** a sequencing QC PASS, not a clinically or biologically eligible cohort, not a donor-independence demonstration and not a prospective RNA QC exclusion policy. The nine prevalidation gates remain open. No library/assay-level rates, empirical cutoffs, file exclusions, representation scores, biological replication statistics or program changes were produced. Source contexts remain GDC labels, not reviewed TCGA lineage mappings. `cohort_frozen=false`; `biological_validation_authorized=false`.
 
 **Next work package, separately authorized:** prioritize independent source-file-specific QC availability and assay definitions, with exact case/sample/aliquot/file linkage and a narrow download/API scope. Do not perform a provider-wide sweep or re-read all 1,082 files without prospective justification. If comparable independent QC is unavailable, document the limitation and predeclare conservative sensitivity analyses rather than labeling technical quality as PASS.
+
+## 4H. PREFLIGHT-H — Twelve-file exact GDC RNA sequencing QC metadata feasibility pilot
+
+**Status:** Prospective technical source feasibility, implemented but **NOT YET EXECUTED**. Does **not** promise that independently comparable QC can be recovered. Source documentation: [GDC field catalog](https://docs.gdc.cancer.gov/API/Users_Guide/Appendix_A_Available_Fields/), [RNA-seq workflow](https://docs.gdc.cancer.gov/Data/Bioinformatics_Pipelines/Expression_mRNA_Pipeline/), [CPTAC genomic data access](https://gdc.cancer.gov/about-gdc/contributed-genomic-data-cancer-research/clinical-proteomic-tumor-analysis-consortium-cptac), [aligned-read quality metadata definitions](https://docs.gdc.cancer.gov/Data/Bioinformatics_Pipelines/Aligned_reads_summary_metrics/).
+
+**Why H exists.** G established that independent sequencing/library QC is **not assessed in current audited handoffs**, rather than definitively absent at GDC. The official data dictionary lists file-level `total_reads`/`proportion_reads_mapped`/`proportion_reads_duplicated`, nested `analysis.input_files` and nested `analysis.metadata.read_groups.read_group_qcs` structures. These can be tested for *presence, exact workflow linkage and measurement provenance* in a small bounded pilot; the dictionary alone does not demonstrate values or usability for CPTAC-3 STAR Count files. CPTAC harmonized gene counts are open; aligned RNA BAM files are controlled access. **Do not acquire BAMs or use dbGaP-protected read data during H.**
+
+**Fixed design:** exactly **12 GDC STAR expression file UUIDs** from E's already audited single-provisional-primary subset; three source files each from uterine adenocarcinoma, pancreatic ductal/lobular neoplasms, renal adenocarcinoma and lung adenocarcinoma (GDC source `primary_site × disease_type`, not harmonized TCGA lineage). Position selection is **two low plus one central** for uterus/pancreas and **one low plus two central** for kidney/lung, using per-file assigned-gene counts and exact file UUID as deterministic tie-breaks. This is an *outcome-blind API availability stress test only*, not a source-representative sample, not a QC failure criterion and not a rule for any future case inclusion. It is not evidence that QC covaries biologically with expression programs.
+
+**Single restricted API transaction:** call public GDC `/files` using the exact **12** file UUID filters; request file identity, GDC direct `associated_entities`, workflow analysis metadata, `analysis.input_files` fields, `analysis.metadata.read_groups`, and `analysis.metadata.read_groups.read_group_qcs`. GDC metadata may refer to *input* BAM/FASTQ or multiple read groups. Keep these **distinct** from STAR outputs, source sample identities and independently verified per-aliquot QC. A linked file record must not be treated as a confirmed same-aliquot independent QC report merely because it appears under a GDC `analysis`. Never sum read-group values into a purported per-sample mapped-rate denominator.
+
+**Exact identity and query provenance:** compare returned 12 STAR file UUID, filename, byte size and provider MD5 against frozen Notebook 111 records; separately assess direct case+aliquot association. A file or source-identity mismatch stops the pilot. Save a new immutable-on-rerun local JSON snapshot `data/interim/metadata/800_preflight_h_gdc_qc_source_pilot.json`, with capture UTC timestamp, complete filter/field/expand query and SHA-256, original 111 RNA acquisition-metadata SHA-256, exact response and a flag that no payload was downloaded. A later API release with different values does not overwrite that snapshot; interpreting provider drift requires a new versioned query.
+
+**Probed evidence (presence only):**
+
+- Workflow input file `total_reads`, `proportion_reads_mapped`, `proportion_reads_duplicated`, `average_base_quality`, `average_read_length`, `average_insert_size`. These may be absent or refer to a *different processing layer* than the STAR output.
+- Read group `rin`, `read_length`, `library_strand` and `library_preparation_kit_name`. A populated record can inform preparation provenance but does not itself validate comparable RNA quality.
+- Read group QC `total_sequences`, `percent_gc_content` and available structured FastQC fields. Structured presence is not a per-STAR-sample QC pass.
+
+**Outputs (all non-frozen) in `data/interim/metadata/`:**
+
+- `800_preflight_h_qc_pilot_star_file_identity.csv` — **12** rows with exact STAR file identity and status of direct aliquot and workflow-input links.
+- `800_preflight_h_qc_pilot_workflow_input_links.csv` — zero or more metadata-only input-file links; no assumption of a verified same-aliquot QC match.
+- `800_preflight_h_qc_pilot_field_evidence.csv` — **12 × 14** source-scoped availability rows (six input-file, four read-group and four read-group-QC probes); actual values remain in the versioned source snapshot rather than being interpreted as quality scores.
+- `800_preflight_h_qc_pilot_field_summary.csv` — source-scoped numbers of pilot STAR files with informative fields and exact source identities.
+
+Persist H's snapshot hash, pilot totals, no-expansion/no-download controls, source-provenance and all table SHA-256 values in `800_preflight_a_readiness.json`. The non-scoring/no-selection gate remains `cohort_frozen=false`, `rna_one_record_per_case_selection=NOT_FROZEN`, `biological_validation_authorized=false`.
+
+**Stop/go after H:** first inspect whether an **exact, unambiguous source-to-input library linkage**, evidence of independent RNA QC and documented measurement definitions actually exist in this restricted pilot. If they do, formulate a *separate* prospective decision about whether/where to acquire the necessary QC metadata and how to test its lineage-specific coverage. If they do not, **STOP automatic QC source expansion** and accept the limitation or seek a distinct provider source with a new, justified acquisition proposal. No unbounded 1,082/649-file API sweep, no BAM/FASTQ downloads, no retroactive low-count exclusion, and no external validation scores.
+
+**Relation to Notebook 800 closure:** H can close the **QC source-feasibility subquestion** only. Full 800 closure still needs an explicit donor-independence position, source-to-TCGA lineage harmonization, a defensible 288-case multiplicity policy, prospective inclusion/normalization/scoring and a matched-null replication protocol. No number of QC preflights alone constitutes external program validation. Group these outstanding decisions into a consolidated final eligibility/statistical contract rather than endlessly numbering new preflights.
 
 ## 5. Pre-confirmatory analysis contract — OPEN items only
 
