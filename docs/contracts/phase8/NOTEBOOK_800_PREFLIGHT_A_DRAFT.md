@@ -7,6 +7,8 @@
 **Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A–H technical audits executed/reviewed; source-QC validity and analytic cohort NOT frozen)
 **Downstream analysis:** Notebook 800 external replication, not implemented or authorized by this draft
 
+**Current consolidated decision register (2026-10-23):** [`NOTEBOOK_800_ELIGIBILITY_AND_REPLICATION_CONTRACT_DRAFT.md`](NOTEBOOK_800_ELIGIBILITY_AND_REPLICATION_CONTRACT_DRAFT.md). This follow-up draft does not retroactively turn A–H into a frozen inferential design.
+
 ## 1. Scientific scope and non-goals
 
 The objective of this microphase is to determine whether CPTAC-3 contains an auditable, independent and technically compatible external primary-tumor RNA-seq cohort for **external assessment of the three already-frozen Phase 4 transcriptomic consensus representations**. An independent methylation subset may contribute **separate contextual/orthogonal support**, but transcriptomic representation evaluation must not require methylation availability by default.
@@ -465,3 +467,11 @@ Before observing CPTAC-3 program scores or representation-replication statistics
 **BIOLOGICAL VALIDATION AUTHORIZED: NO.**
 
 Next action: complete **one exact-ID, metadata-only provenance and assay-definition test of the 12 upstream workflow input-file records discovered in H**. This is not a repeat of the 12 STAR output search, a full 1,082-file API expansion, or a new payload acquisition. Depending on actual independent file/aliquot linkage and metric definitions, record a prospective STOP or conditional GO for wider QC coverage assessment. Then consolidate the 288-case multiplicity policy, TCGA/CPTAC donor independence, source lineage mapping, assay normalization and predeclared external replication estimand into a final Notebook 800 eligibility/analysis-contract decision. No program scoring, cohort freeze, or external biological validation has been authorized.
+
+## 8. Retrospective transition to Phase 1 Notebook 112 and the consolidated 800 contract
+
+**Update dated 2026-10-23; Sections 1–7 above are preserved as the original historical preflight narrative.** The exact twelve H workflow input-file UUIDs were examined in a separate **Phase 1 Notebook 112**, executed at commit `5a29da9ed4376c3722345b74624e2e24d8c30af5`. Its source-provenance pilot passed **8/8 execution cells**, found 12/12 direct GDC input-file records with exact STAR-output **case+aliquot** association, and reconciled 72/72 source QC-related fields across two GDC metadata projections. The upstream record snapshot SHA-256 is `ca5e2f54458fb6cc26946ef734f1f2d3606817f2836cbc843466eb7633e8e358`. This resolves the pilot's *direct upstream file-association* uncertainty, **not** the independent sequencing QC, measurement-denominator, library equivalence, or sample quality gate. No wide QC retrieval or new payload read was authorized.
+
+Notebook 112's Phase 1-only integration currently sits in **draft PR #56** (`notebook-112-cptac3-qc-provenance-clean`, based on main), because 112's local frozen H input is produced by unmerged Notebook 800 evidence. Do not merge 112 merely to make a claim of independent reexecution from main; the dependency must first be reconciled.
+
+**Decision:** stop adding acquisition preflights to Notebook 800. The following review is governed by [the consolidated eligibility and replication contract draft](NOTEBOOK_800_ELIGIBILITY_AND_REPLICATION_CONTRACT_DRAFT.md), not by the historically outdated last instruction in Section 7 to initiate the now-completed twelve-record provenance lookup. The 800 notebook's executed cells and local readiness artifacts are unchanged by this documentation update. **No CPTAC-3 program score or structural replication test is authorized until the consolidated contract's independent-donor, cohort, normalization, lineage and inferential gates have been resolved and prospectively frozen.**
