@@ -4,7 +4,7 @@
 **Prepared:** 2026-10-22  
 **Baseline:** main commit f423d304f6ed3a4187965dcf783879e79abf47b5  
 **Primary source candidate:** GDC project CPTAC-3, frozen file universe and acquisition-time metadata from Notebook 111  
-**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A–E executed as technical inventories; analysis cohort NOT frozen)
+**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A–E executed; PREFLIGHT-F implemented pending local run; analytic cohort NOT frozen)
 **Downstream analysis:** Notebook 800 external replication, not implemented or authorized by this draft
 
 ## 1. Scientific scope and non-goals
@@ -271,6 +271,30 @@ The following E outputs were generated locally (not automatically committed as e
 The readiness record reports `DESCRIPTIVE_COMPLETE_NOT_ELIGIBILITY`, no E sample selection, no frozen cohort and `biological_validation_authorized=false`.
 
 **Verdict:** **PASS for E's bounded technical readout and source-context attrition inventory**, **NOT PASS for RNA sample QC, donor independence or prospective analytic eligibility**. Before any biological projection, review the low-count tail, explain other same-case RNA files, obtain or define independent source-aware QC evidence, assess lineage-aware feasibility and document a prespecified policy for the 288 unresolved multiplicity cases. Do not repeat the full 1,082-file scan solely to explore a different threshold. Phase 8 replication is still **unauthorized**.
+
+## 4F. PREFLIGHT-F — Non-rescanning additional-RNA provenance and low-count QC triage (pending execution)
+
+**Accepted E result (2026-10-23):** of **1,082** cases with exactly one uniquely mapped provisional primary-tumor RNA file, **530** also had other same-case RNA records in Notebook 111's *full-source* file inventory; **37** had at least one additional RNA file with ambiguous sample ancestry. The 1,082-file STAR technical scan verified all 2,389 frozen gene IDs in every file, with zero nonnumeric/negative/noninteger count vectors. None of these results proves donor independence, adequate RNA sequencing QC, or eligibility.
+
+**Performance and input-integrity contract:** The preceding `p800-e-003` cell previously reparsed all 1,082 STAR files and took a long time on local OneDrive-backed storage. Its default has been replaced with a **verified E-output cache**: it loads `800_preflight_e_rna_single_primary_file_technical.csv` and `800_preflight_e_frozen_gene_id_coverage.csv` only after matching their complete SHA-256 values against the **previously executed** `800_preflight_a_readiness.json`, checking Notebook 111 source fingerprints, the frozen gene universe fingerprint, exact case/file/sample/aliquot tuples, source filename/provider MD5/byte-size metadata, gene ID identity and coverage conservation. This avoids rereading 1,082 payloads on subsequent Run All executions. If any cache requirement fails or an input changes, execution **fails closed**; it does not silently re-read all files, reconstruct another version of the audit, or substitute new input rows. `RUN_E_FULL_STAR_RESCAN=True` is an **explicit, separately reviewable opt-in** to repeat the original full scan when technically justified. The default is `False`. It is not an exemption from audit: the initial full E scan was executed and the persisted outputs' fingerprints are already recorded.
+
+**F tasks using existing small metadata only:**
+
+1. Revisit `111_cptac3_file_index.csv` already fingerprint-verified in Notebook 800. Join the exact 1,082 structurally simple provisional-primary case IDs to **all** available RNA source file IDs, subtracting only the single already nominated provisional-primary file in each case. Preserve the raw 111 `mapping_status`, `sample_type`, sample/aliquot IDs, file IDs, site/disease descriptors. Classify the other files as: ambiguous sample ancestry, other unresolved association, independently resolved primary tumor (unexpected and worthy of review), resolved normal, resolved recurrent, resolved metastatic, or remaining resolved/unspecified sample type. **Never** infer file–sample ancestry from same-case membership.
+2. Compute other-file counts by sample type and mapping status, plus one row per source file and one row per each of 1,082 cases. Check that the already observed **530 cases with any other RNA** and **37 cases with any ambiguous-ancestry RNA** reconcile exactly; otherwise stop. Report how often additional records share the resolved primary sample/aliquot UUID **only** for files whose own unique mapping was already audited. The actual categories are to be interpreted *after* local Run All.
+3. Summarize case-level additional-file burden by unharmonized GDC `primary_site` × `disease_type`, keeping case denominators separate from file denominators. This is not a completed TCGA lineage crosswalk and must not be presented as replicated cross-cancer signal.
+4. Using the **cached** E file diagnostics, list a reproducible **fixed 20 lowest total-unstranded-count records** (ascending count, file UUID tie-break). Include exact gene coverage, detected gene counts and existing STAR `N_` summary fields for review. This rank is descriptive; **there is no bottom-20 exclusion, QC failure label or data-tuned count cutoff**. Low library counts are not necessarily failed sample sequencing QC in isolation.
+
+**Four new non-frozen F outputs:**
+
+- `data/interim/metadata/800_preflight_f_other_same_case_rna_files.csv` — full extra-file identities with original source mapping and typed descriptors; no promotion/exclusion.
+- `data/interim/metadata/800_preflight_f_single_primary_case_context.csv` — **1,082 case rows**, including the zero-extra-file cases and audited extra-file categories.
+- `data/interim/metadata/800_preflight_f_source_context_additional_rna_summary.csv` — descriptive provider source-site/disease case and file denominators.
+- `data/interim/metadata/800_preflight_f_low_count_tail_descriptive.csv` — **20 descriptive records**, no QC cutoff or exclusion.
+
+Persist these alongside existing E outputs in the existing readiness JSON with observed record counts and SHA-256 fingerprints. Do not modify 111 source, the frozen Phase 4 weights, registries or the previously captured D snapshots. Explicit eligibility, a truly independent QC source, donor-overlap evidence, within-lineage comparability, a one-observation-per-case protocol and an external replication estimand remain unresolved and **biological validation remains unauthorized**.
+
+**Review gate after execution:** assess the kinds of other RNA records (especially normal versus independent tumor samples versus ambiguous ancestry) and the evidence in low-count-tail diagnostics *without retrofitting QC thresholds*. Then specify the prospective inclusion and source QC strategy, lineage-aware case attrition, and donor-independence evidence needed for the scientific cohort freeze. No automatic promotion to eligible or confirmatory analysis is allowed.
 
 ## 5. Pre-confirmatory analysis contract — OPEN items only
 
