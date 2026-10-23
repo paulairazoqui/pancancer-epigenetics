@@ -4,7 +4,7 @@
 **Prepared:** 2026-10-22  
 **Baseline:** main commit f423d304f6ed3a4187965dcf783879e79abf47b5  
 **Primary source candidate:** GDC project CPTAC-3, frozen file universe and acquisition-time metadata from Notebook 111  
-**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A–F executed as technical diagnostics; analytic cohort NOT frozen)
+**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A–F executed; PREFLIGHT-G QC feasibility implemented, awaiting local run; no cohort freeze)
 **Downstream analysis:** Notebook 800 external replication, not implemented or authorized by this draft
 
 ## 1. Scientific scope and non-goals
@@ -316,6 +316,40 @@ Category-level distinct-case counts **overlap**, so their sum is not a patient d
 **New persisted (non-frozen) metadata outputs:** `800_preflight_f_other_same_case_rna_files.csv` (**544** rows), `800_preflight_f_single_primary_case_context.csv` (**1,082** rows), `800_preflight_f_source_context_additional_rna_summary.csv` (**18** rows), and `800_preflight_f_low_count_tail_descriptive.csv` (**20** rows). These remain local outputs with paths and fingerprints recorded in `800_preflight_a_readiness.json`; not all source CSVs are committed to GitHub, so full independent payload reinspection requires the locally preserved handoff.
 
 **Verdict: PASS for bounded F metadata/source diagnostics and cost-efficient reproducibility; NO analytic eligibility PASS, no QC-based file exclusion, no donor independence finding.** The remaining scientific gates should be addressed prospectively and separately: independent source/technical RNA-seq QC and normalization; lineage-aware crosswalk and attrition; documented donor overlap; treatment of 288 multi-primary-candidate cases; and a predeclared independent replication estimand and matched null. There is no permission for score projection, sample promotion, program refit, or validation claim at this stage.
+
+## 4G. PREFLIGHT-G — Prospective RNA-seq QC evidence feasibility, WITHOUT QC thresholds
+
+**Entry boundary (F accepted, 2026-10-23):** F reconciled 544 RNA files occurring in 530 cases with one uniquely mapped provisional primary file (488 resolved normal-tissue files, 18 resolved recurrent-tumor files, 38 with ambiguous sample ancestry). Full original E coverage for 2,389/2,389 frozen Ensembl IDs was observed in all 1,082 simple primary candidates, but very low `unstranded` assigned-gene-count totals were present in a small source-context-dependent tail. These observations justify a **technical QC source review**, not empirical cutoff selection or a biological comparison.
+
+**Prospective G question:** what technical RNA-seq measurements can we reproducibly obtain from the existing Notebook 111 + E/F evidence, what do they actually measure, and what independent, comparable library-/alignment-level QC and sample-provenance inputs are needed before any sample-eligibility policy?
+
+Scientific evidence distinctions:
+
+1. **Identity/byte integrity:** Notebook 111 independently checked provider MD5 of the downloaded files and the exact source UUID associations. Evidence: acquired payload identity, *not* RNA sequencing quality or tumor suitability.
+2. **Expression-table parseability/feature support:** full E scan found 2,389 exact frozen genes per file, no invalid negative/noninteger/nonfinite `unstranded` count vectors in the 1,082 simple-primary candidate subset. Evidence: schema and count integrity, not confirmation of comparable RNA integrity, fragment distribution, alignment quality or biological score scaling. G reuses the **SHA-256-confirmed E cache** and does **not** repeat 1,082 file reads; the already implemented default `RUN_E_FULL_STAR_RESCAN = False` remains in force.
+3. **Assigned gene counts and positive-count gene numbers:** descriptive technical indicators available from E, but their distributions reflect gene assignment, sequencing depth, assay type and biological sample composition. Do not equate `sum(unstranded gene counts)` with input sequencing read depth. G reports min/Q1/median/Q3/max by *source* `primary_site × disease_type` and counts representation in the fixed F lowest-20 descriptive list, without labels of PASS/FAIL, universal technical thresholds, inferential p values or selection of favored lineages.
+4. **STAR `N_` special-row tallies:** `N_unmapped`, `N_multimapping`, `N_noFeature`, `N_ambiguous` are preserved as **unstranded-source counts**. They are *not* recombined with assigned-gene counts as a new alignment-rate, deduplication-rate or mapping-rate denominator. The GDC harmonized RNA-seq workflow produces STAR unstranded/stranded raw counts, with separate normalization; GDC does not automatically batch-correct study-specific expression. [GDC mRNA pipeline](https://docs.gdc.cancer.gov/Data/Bioinformatics_Pipelines/Expression_mRNA_Pipeline/), [GDC FAQ](https://gdc.cancer.gov/about-gdc/gdc-faqs).
+5. **Independent library quality and biological confounding:** uniquely aligned read/fragment mapping, duplication/library complexity, RNA integrity (RIN), gene-body 5′/3′ coverage, rRNA/mitochondrial burden, strand/preparation/batch effects and tumor purity are **not established by the audited E/F source inputs**. The previous D pilot tested source metadata for only 29 of the 649 files with primary multiplicity; absent D fields cannot be generalized to the whole 1,082-file cohort or to all provider endpoints. Mapping/coverage QC require independent documented technical reports or aligned reads, e.g. [RSeQC](https://academic.oup.com/bioinformatics/article/28/16/2184/325191) and [RNA-SeQC](https://pmc.ncbi.nlm.nih.gov/articles/PMC3356847/). Tumor purity and proliferation remain *analysis confounders*, not automatic sample exclusion thresholds.
+
+**Implementation — bounded, read-only G diagnostics:**
+
+- Define an explicit *metric evidence catalogue* with `metric_id`, source, unit/definition, verified scope, evidence class and interpretation limitation. Do not mark any metric as an analytic quality PASS or freeze a threshold.
+- Reuse precisely the 1,082 file identities and cached `unstranded` count diagnostics. Cross-check case/sample/aliquot identity and the F case-context handoff. Store a file-level technical feasibility table with count summaries, source context, previously observed other-RNA-file flags and `analytic_eligibility=NOT_FROZEN`.
+- Produce source-stratified descriptive distributions and existing fixed lowest-20 membership, with no data-derived cutoff or pan-cancer pooling.
+- Inspect `N_` columns solely for availability, valid numeric tallies and observed ranges; explicitly record `rate_denominator_defined=false`, `mapping_rate_estimated=false` and `quality_pass_assigned=false`.
+- Construct a prospective list of **required, independently sourced prevalidation gates** (QC provenance and denominators, externally motivated QC criteria, normalization/batch strategy, lineage harmonization, the 288-case multiple-primary policy, CPTAC–TCGA donor independence, and frozen matched-null replication estimand). No `pass_authorized` or sample exclusion status may be set.
+
+**Five new *non-frozen* outputs under `data/interim/metadata/`:**
+
+- `800_preflight_g_qc_metric_evidence.csv` — expected versus actually source-backed RNA QC dimensions.
+- `800_preflight_g_rna_file_qc_feasibility.csv` — one row per 1,082 previously scanned provisional simple-primary files; no exclusion or score.
+- `800_preflight_g_source_context_qc_distribution.csv` — source-context-level descriptive count distributions and fixed-lowest-20 membership.
+- `800_preflight_g_star_n_tally_availability.csv` — raw special-row tally availability and ranges, no denominator-based rates.
+- `800_preflight_g_prevalidation_qc_gates.csv` — prospective evidence requirements and current unresolved status.
+
+Persist all five and their hashes in the **existing** `800_preflight_a_readiness.json` alongside the accepted earlier evidence, and preserve `cohort_frozen=false`, `rna_one_record_per_case_selection=NOT_FROZEN`, `biological_validation_authorized=false`, and **zero empirically chosen QC thresholds**.
+
+**Decision gate after local Run All:** determine whether available local evidence suffices for **a technical QC policy** (not merely a valid STAR schema), and which independently sourced QC reports can be obtained efficiently *without reopening all source acquisition*. A decision to acquire missing QC sources must be prospective, evidence-linked and lineage-aware. No biological projection, regression, program refit, or cohort freeze is authorized by G. A provider-wide or 1,082-file QC absence must not be asserted based on the 29-file D pilot.
 
 ## 5. Pre-confirmatory analysis contract — OPEN items only
 
