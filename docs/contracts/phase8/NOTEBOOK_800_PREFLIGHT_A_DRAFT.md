@@ -4,7 +4,7 @@
 **Prepared:** 2026-10-22  
 **Baseline:** main commit f423d304f6ed3a4187965dcf783879e79abf47b5  
 **Primary source candidate:** GDC project CPTAC-3, frozen file universe and acquisition-time metadata from Notebook 111  
-**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A–G reviewed; H 12-file QC-metadata source feasibility pilot implemented, pending local execution; cohort NOT frozen)
+**Executable implementation:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb` (PREFLIGHT-A–H technical audits executed/reviewed; source-QC validity and analytic cohort NOT frozen)
 **Downstream analysis:** Notebook 800 external replication, not implemented or authorized by this draft
 
 ## 1. Scientific scope and non-goals
@@ -404,6 +404,27 @@ Persist H's snapshot hash, pilot totals, no-expansion/no-download controls, sour
 
 **Relation to Notebook 800 closure:** H can close the **QC source-feasibility subquestion** only. Full 800 closure still needs an explicit donor-independence position, source-to-TCGA lineage harmonization, a defensible 288-case multiplicity policy, prospective inclusion/normalization/scoring and a matched-null replication protocol. No number of QC preflights alone constitutes external program validation. Group these outstanding decisions into a consolidated final eligibility/statistical contract rather than endlessly numbering new preflights.
 
+### 4H.1 Observed PREFLIGHT-H evidence, limits and bounded STOP/GO — 2026-10-23
+
+The local execution at `1d3356b38ff4f766cd014d112f10cc9e3dc3d65a` completed **63/63 code cells without errors**. Source code and cell IDs were unchanged from the prepared H version. H successfully reused E's verified 1,082-file diagnostic cache, did not reprocess STAR payloads, did not retrieve BAM/FASTQ files, and did not expand beyond the **12 prespecified exact STAR file UUIDs**.
+
+The GDC public metadata pilot saved `800_preflight_h_gdc_qc_source_pilot.json`, with complete query SHA-256 `64b036ffe91c737a887cdde10423b6f50ec58d56b6c687964c621bad0843d81a` and snapshot SHA-256 `dcd1dc8b332bda55c658751e6e781a9cbe3719ed07fd17e38e67bbcf794b6ecb`. For all **12/12** STAR files (three each uterine/pancreatic/kidney/lung source contexts), provider file UUID/name/size/MD5 reconciled with Notebook 111 and GDC supplied an exact direct `case_id + aliquot_id` match. All 12 had **one analysis workflow input-file metadata node** and **all six probed input-file quantitative fields** were informative in **12/12** nodes:
+
+- `total_reads`
+- `proportion_reads_mapped`
+- `proportion_reads_duplicated`
+- `average_base_quality`
+- `average_read_length`
+- `average_insert_size`
+
+There were **zero read-group-QC records** among the 12 STAR outputs for the requested read-group expansions, and `rin`, library-preparation kit, strand and read-length read-group fields were unpopulated within this exact query. This is a **positive bounded metadata-availability finding**, more informative than the original G/D pilot QC coverage. It does **not** confirm that the upstream input file has an independently verified source donor/sample/aliquot match or that numeric metrics have a comparable assay unit and denominator. Thus **do not convert 12/12 input-file availability into validated 12/12 independent sequencing QC**, and do not extrapolate to all 1,082 candidate STAR files or to the 649 unresolved-multiplicity files.
+
+Four H tables were persisted locally and fingerprinted in readiness: 12 STAR identity records; 12 linked-input-file records (source relationship not independently confirmed to the aliquot); 168 per-field source-availability records; and 14 probe-field summaries. The full input QC numeric values reside in the local H JSON snapshot rather than notebook printouts; GitHub output alone supports availability, not per-metric calibration/threshold evidence. No cohort file/sample selection, normalized expression, gene program score, biological replication statistic, empirical QC cutoff, or downstream registry mutation occurred.
+
+**H verdict:** **PASS for public GDC metadata source feasibility and strict output-identity reconstruction; quality usability still PENDING independent input-file validation**. H's `independent_qc_eligibility_validated=false`, `full_1082_live_query_performed=false`, `bam_fastq_downloads_performed=false`, `cohort_frozen=false`, and `biological_validation_authorized=false` fields remain intact.
+
+**Prospective next decision, one bounded test:** check exact, independent case/aliquot identity and technical measurement definitions for the **same 12 upstream workflow input-file IDs**, using *metadata only* and a separately fingerprinted GDC query, without changing the saved H snapshot or silently scaling to a larger cohort. Resolve whether an input-file QC readout can be attributed to the STAR source aliquot/library and whether all six fields have assay-comparable meanings/denominators. The decision must be **STOP** if these cannot be verified; otherwise **CONDITIONAL GO** to a separately justified metadata-only coverage/missingness plan, not direct QC acceptance. Avoid another long sequence of open-ended preflights; design the other pending closure decisions (288-case multiplicity, CPTAC–TCGA donor overlap, lineage crosswalk, external scaling, null/replication analysis contract) as one consolidated final technical/scientific review.
+
 ## 5. Pre-confirmatory analysis contract — OPEN items only
 
 Before observing CPTAC-3 program scores or representation-replication statistics, separately review and freeze:
@@ -435,11 +456,12 @@ Before observing CPTAC-3 program scores or representation-replication statistics
 **SOURCE TECHNICAL INTEGRITY: PASS** (Notebook 111; reused, not repeated).  
 **PROVISIONAL RNA-PRIMARY INVENTORY: AVAILABLE, NOT COHORT-FROZEN** (1,370 cases; 1,082 structurally simple primary-file cases, 288 multiplicity cases unresolved).  
 **EXACT FROZEN FEATURE PRESENCE: PASS FOR THE 1,082 E-SCANNED RNA FILES** (2,389/2,389 genes per file; not a cohort-wide sample-quality claim).  
-**QC EVIDENCE AVAILABILITY AUDIT: PASS** (G; independent alignment/library QC not established).  
+**QC EVIDENCE AVAILABILITY AUDIT: PASS** (G; independent alignment/library QC not established).
+**UPSTREAM QC METADATA DISCOVERY: PASS IN 12-FILE PILOT** (H; 12/12 workflow input nodes with six populated quantitative probes, but no independently verified input-file linkage/comparability).  
 **RNA QUALITY ELIGIBILITY / THRESHOLDS: NOT FROZEN.**  
 **DONOR INDEPENDENCE: UNRESOLVED.**  
 **TCGA LINEAGE CROSSWALK: NOT FROZEN.**  
 **PHASE 8 REPLICATION CONTRACT: NOT FROZEN.**  
 **BIOLOGICAL VALIDATION AUTHORIZED: NO.**
 
-Next action: initiate a separately scoped feasibility assessment of **independent RNA sequencing QC reports or assay-valid provider metadata** with file/sample provenance linkage, focusing on the 1,082 simple-primary candidates and low-count contexts without an unbounded source sweep. In parallel or afterwards, separately settle donor independence, source-to-TCGA lineage harmonization and the 288 multi-primary-candidate case policy. The previous D pilot is complete; **do not rerun it as the next action**. Do not use the observed bottom-20 or per-lineage empirical distribution to set exclusions retrospectively. No CPTAC-3 program projection or external biological replication is authorized.
+Next action: complete **one exact-ID, metadata-only provenance and assay-definition test of the 12 upstream workflow input-file records discovered in H**. This is not a repeat of the 12 STAR output search, a full 1,082-file API expansion, or a new payload acquisition. Depending on actual independent file/aliquot linkage and metric definitions, record a prospective STOP or conditional GO for wider QC coverage assessment. Then consolidate the 288-case multiplicity policy, TCGA/CPTAC donor independence, source lineage mapping, assay normalization and predeclared external replication estimand into a final Notebook 800 eligibility/analysis-contract decision. No program scoring, cohort freeze, or external biological validation has been authorized.
