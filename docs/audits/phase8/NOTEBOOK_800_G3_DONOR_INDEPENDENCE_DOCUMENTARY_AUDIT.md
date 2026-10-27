@@ -57,3 +57,22 @@ No `DOCUMENTED_INDEPENDENT` or `DOCUMENTED_OVERLAP` per-case assignments are jus
 - Phase 1 acquisition remains unopened pending a specifically justified, bounded source request.
 
 **Recommended decision log entry:** documentary search complete; G3 not met; decision pending on seeking an authoritative non-overlap attestation versus explicitly closing confirmatory independent-donor replication as non-evaluable. G4 lineage mapping can be documented separately only if it does not imply G3 PASS or authorize biological results.
+
+
+## Published TCGA–CPTAC external-validation precedents (reviewed 2026-10-27)
+
+The following articles establish **precedent for cross-resource evaluation**, not per-donor evidence for the frozen G2 subset.
+
+| Publication | TCGA role | CPTAC role | Explicit donor independence basis and limitation |
+|---|---|---|---|
+| *Deep contrastive learning for predicting cancer prognosis using gene expression values*, Brief Bioinform (2024), https://academic.oup.com/bib/article/25/6/bbae544/7848896 | LUAD/LUSC model development | CPTAC-3 lung independent-cohort evaluation | Labels cohort independent; inspected material does not substantiate donor-level matching/certification |
+| *Multiomics-Based Feature Extraction and Selection for the Prediction of Lung Cancer Survival*, IJMS (2024), https://pmc.ncbi.nlm.nih.gov/articles/PMC11011391/ | 267 LUAD discovery cases | 96 CPTAC-3 LUAD hold-out cases | Uses distinct cohorts and separately transfers feature selection; no matched donor crosswalk identified in retrieved text |
+| *Cross-cancer homologous recombination deficiency prediction from whole slide images using transfer learning*, Sci Rep (2026), https://www.nature.com/articles/s41598-026-52094-6 | 4,147 cases across eight cancers | 214 CPTAC LUAD/LUSC external evaluation | Describes CPTAC cohorts as independent; does not supply G2-specific identity proof |
+| *A pan-cancer multi-omic SuperLearner for regulated cell death survival topologies*, Front Artif Intell (2026), https://pmc.ncbi.nlm.nih.gov/articles/PMC13538856/ | TCGA model development | 1,039 CPTAC cases across ten cancers | Explicitly states no patient overlap; inspected text does not establish the method used to verify this or exact correspondence to frozen G2 cases |
+| *Pan-cancer molecular subtypes revealed by mass-spectrometry-based proteomic characterization of more than 500 human cancers*, Nat Commun (2019), https://www.nature.com/articles/s41467-019-13528-0 | Independent TCGA reference and TCGA-derived CPTAC component | 532 non-TCGA CPTAC Confirmatory/Discovery cases contrasted with CPTAC–TCGA samples | Most directly states a distinction between TCGA-excluded CPTAC and TCGA-overlapping CPTAC, **but its specific 532-case cohort cannot automatically be identified with the present GDC CPTAC-3 G2 1,082-case universe** |
+
+### Review consequence
+
+Cross-publication precedent supports the use of distinct CPTAC collections as external resources, **not G3 donor-level adjudication automatically**. The 2019 Nat Commun study is particularly informative because it separates explicitly non-TCGA CPTAC cases from TCGA-origin CPTAC profiles. The study cohort labels, acquisition versions, source IDs and case inclusion criteria must be reconciled to the frozen 111 G2 cases *before* transferring its independence assurance. Similarly, the categorical 2026 no-overlap statement is supporting secondary literature but its underlying identity-verification method requires review.
+
+**G3 status remains UNRESOLVED/BLOCKED.** The search strengthens operational study-level plausibility and establishes standard practice; it does not warrant relabelling the 1,082 `UNRESOLVED_INDEPENDENCE` records. Proposed bounded next question: can primary study documentation and exact subcohort labels from the frozen 111 snapshots demonstrate that particular G2 case strata belong to CPTAC collections documented as excluding TCGA participants? If not, require source-program attestation or maintain non-evaluability for confirmatory independent-donor replication.
