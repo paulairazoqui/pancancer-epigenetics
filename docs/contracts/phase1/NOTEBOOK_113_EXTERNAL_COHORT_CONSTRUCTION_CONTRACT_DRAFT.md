@@ -50,3 +50,69 @@ The returned dataset must distinguish **candidate universe**, **technical/indepe
 No Notebook 113 has been implemented or executed through this contract. No G3 class, QC or cohort membership has been changed. The verified Notebook 800 run at `e2269b8` and its outputs remain historical evidence; the documentary review is recorded separately under `docs/audits/phase8/`.
 
 **Next review:** verify 112 dependency and 111 local input interface, approve bounded source-provenance acquisition and one-patient-one-file contract, then implement 113 in its own Phase 1 branch.
+
+
+---
+
+## Normative addendum — transferred G2/G3 rules and source cohort construction
+
+**Status (2026-10-27):** Architectural transfer approved; **G2 candidate-universe policy APPROVED (2026-10-23)**; **G3 protocol PROSPECTIVE DRAFT, NOT APPROVED**; G4–G8 criteria and final cohort freeze pending review. This is an operational transfer of responsibilities, not retroactive scientific approval.
+
+**Traceable original sources (branch `notebook-800-preflight-a`, transfer HEAD `b7ccc7e`):**
+- `docs/contracts/phase8/NOTEBOOK_800_ELIGIBILITY_AND_REPLICATION_CONTRACT_DRAFT.md` (G2 policy §4.1, identity §4.2, other gate safeguards §3–7, architectural amendment §9).
+- `docs/contracts/phase8/NOTEBOOK_800_G3_DONOR_INDEPENDENCE_PROTOCOL_DRAFT.md` (prospective G3 evidence hierarchy and adjudication specification).
+- `docs/audits/phase8/NOTEBOOK_800_G3_DONOR_INDEPENDENCE_DOCUMENTARY_AUDIT.md` (historical exploratory evidence, not prospective donor adjudication).
+These original files need not be merged to `main` for this Phase 1 contract to be operationally self-contained; their exact Git source revisions remain auditable.
+
+### G2 — approved, inherited unchanged
+
+From the audited provisional-primary inventory of **1,370 cases / 1,731 primary RNA files**, the initial **primary candidate universe is exactly 1,082 cases / 1,082 files** with one uniquely resolved primary-tumor STAR file, sample, and aliquot each. Source identity must match the Notebook 111 immutable file inventory (UUID, filename, size, provider MD5, direct case/aliquot association, unique sample UUID, `sample_type == Primary Tumor`). File/case/sample/aliquot identifiers must never be conflated.
+
+The **288 multiply represented cases / 649 primary files** are outside this candidate universe: **276 multiple-sample cases / 619 files** and **12 multiple-aliquot cases / 30 files**. No preferred-file, selection, or secondary sensitivity policy is approved. A separately preregistered, outcome-blind selection and identity reconciliation are prerequisites for any secondary use; never rescue insufficient primary numbers post hoc.
+
+Keep the **314 RNA source files with ambiguous sample ancestry** visible in separate **file-level** accounting; these can coexist with unique candidates in the *same case* and must not be added as disjoint patient groups. **530** of the 1,082 simple cases have additional RNA files (**544** extra files: 488 resolved normal, 18 resolved recurrent, 38 ambiguous). **37 simple cases** have additional ambiguous RNA files: retain their primary-candidate membership, flag them, and consider exclusion **only as a prespecified sensitivity**, never by default. These are structural—not QC or donor-independence—observations.
+
+Preserve at every step (a) raw GDC `project × primary_site × disease_type` contexts, (b) files/aliquots/samples/cases as separate denominators, (c) non-overlapping file accounting, (d) exact per-case eligibility status and attrition reasons. The 1,082 cases are **candidates**, not a frozen external analytic cohort.
+
+### G3 — transferred prospective adjudication policy (NOT YET APPROVED)
+
+**Evidence priority:**
+1. Existing audited Notebook 111 acquisition-time GDC direct entity relationships, source identities, and fingerprinted manifests (verify checksums, never fill absent fields).
+2. Exact frozen TCGA `phase2.203.final_sample_mapping` for **9,965 discovery cases**, verified against its authoritative registry SHA-256 before use.
+3. Versioned, specific original CPTAC-3, TCGA, dbGaP, PDC, TCIA or institutional donor provenance, validated identity crosswalk or **explicit applicable non-overlap/exclusion statement**. Retain document URL, source title, date accessed, wording/claim, precise subset to which it applies and evidence ID.
+4. Unknown identities remain unknown. Do not infer personal matches from clinical attributes, disease, sex, dates, or cohort size; do not fabricate a crosswalk.
+
+**Outcome-blind exact namespace-aware screening:** compare CPTAC `case_uuid` with TCGA `rna_case_uuid`; CPTAC `case_submitter_id` with TCGA `case_submitter_id`; only compare other identifiers where both their namespace and donor-level semantics have been documented. Preserve originals, missingness, join cardinalities, flagged collisions and source evidence. A collision is a **review flag**, not automatically a demonstrated donor overlap when identifier namespaces differ; zero collisions **does not prove independence**.
+
+**Exactly one per-case identity classification:**
+- `DOCUMENTED_OVERLAP`: positive donor-level linkage via verified common identifier namespace, provenance or validated crosswalk.
+- `DOCUMENTED_INDEPENDENT`: a credible, explicit, applicable institutional/study non-overlap assurance or independently verifiable donor-level evidence that excludes overlap with the frozen TCGA discovery patients. An assurance at cohort level applies **only after verified linkage of each candidate case to its covered cohort**.
+- `UNRESOLVED_INDEPENDENCE`: neither criterion established; includes incompatible namespaces, unavailable source records, unknown cohort membership, absent non-overlap assurance or credible conflict.
+
+**Hard rule:** prospectively recruited study ≠ proven donor-independent study; different project UUIDs ≠ proven independent donors. Conflicting credible evidence remains unresolved for independent review; never settle by favorable expression patterns. The previous 800 lexical screen reported **zero exact collisions / all 1,082 unresolved**: this is *historical screening only*, not an outcome for 113 and not grounds to label independent.
+
+Until review and explicit approval of this G3 protocol, implementations may populate *evidence ledgers* but must not designate classes as frozen eligibility decisions. Unresolved cases cannot contribute to confirmatory independent-donor replication by default. If no sufficient independent donor set is documented, return `NOT_EVALUABLE_DONOR_INDEPENDENCE` and stop without replacing G2 candidates.
+
+### G4 — lineage construction
+
+Document a crosswalk of original GDC `project × primary_site × disease_type` to supported, frozen TCGA lineage/project designations using ontology or documented study records. Retain unmapped source labels; classify `UNMAPPED`, `AMBIGUOUS`, `CONTRADICTORY`. No guess from a label, no outcome-guided rescue. Attribute losses by **source context** and **accepted harmonized lineage** separately, preserving all source denominators.
+
+### G5 — technical QC admissibility
+
+Provider MD5 PASS, unambiguous sample ancestry and 2,389/2,389 Ensembl gene availability do **not** imply independent sequencing QC PASS. GDC source read/map/duplicate/base quality/insert-size fields may support QC only after verified measurement definition, software version, denominator (read vs pair/fragment), data-generation workflow, provenance and cross-lineage comparability. STAR `N_*` unassigned counts are not valid standalone mapping fractions. No retrospective empirical read-count or low-count percentile thresholds. Missing = `QC_UNASSESSED`, never automatic PASS/FAIL. The 112 twelve-file pilot supports GDC source-field provenance, **not population-wide QC**, and 112 handoff is not considered accepted until its exact branch/PR/reproducibility and output SHA-256 are verified.
+
+### G6 — source assay/input compatibility
+
+Audit deterministic availability and exact gene identifiers, STAR/count workflow provenance, count representation, measurement comparability and missingness. Preserve Phase 4's **three immutable programs**, 2,389 shared ordered features and signed loadings; do not relearn weights, change their orientation, standardize TCGA/CPTAC jointly or derive QC thresholds from program scores. Normalization/projection decisions affecting 800's replication estimand require a **prospective, outcome-blind alignment with 800 before any 113 cohort freeze**. No biological scores in 113.
+
+### G8 — source confounder and design feasibility
+
+Record batch/workflow/site, tumor purity (if validly sourced), immune/stromal and proliferation covariate availability, data missingness and batch-lineage identifiability. Do not assume missing covariates are normal. If lineage and batch are fully confounded, flag `NON_IDENTIFIABLE`; do not force an adjustment. Notebook 800 retains inferential covariate decisions, negative controls and minimum lineage support; 113 documents feasibility and cohort-level status without inspecting program outcomes.
+
+### Artifact-level handoff and scientific authorization
+
+Notebook 113 must produce immutable, SHA-256-verified case-level evidence and provenance tables, complete G2-to-final attrition, accepted lineage crosswalk, QC/feature audit, confounder feasibility and explicit blockers consistent with the seven prospective outputs specified above. Separate **source candidate**, **documentary/technical adjudication**, **proposed eligible**, and **independently approved frozen** status. Every join must preserve donor uniqueness; state denominators before and after each gate. No registry write or `cohort_frozen=true` merely because an analysis ran.
+
+Notebook 113 owns upstream cohort construction and the **proposed freeze**, conditional on signed-off identity/QC/lineage criteria and upstream/downstream compatibility. Notebook 800 owns G7 inferential test specification, structural replication and the independent go/no-go for consuming the proposed cohort; 800 must not select or replace patients after viewing scores.
+
+**Current stop state:** `G2_POLICY_APPROVED`; `G3_PROTOCOL_DRAFT`; `G3_BLOCKED`; `G4_G5_G6_G8_NOT_ADJUDICATED`; `cohort_frozen=false`; `external_analysis_authorized=false`. No new G3 class, no finalized cohort and no biological inference are created by this document.
