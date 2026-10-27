@@ -176,3 +176,18 @@ The following are **current statuses, not commitments that all gates will eventu
 5. Execute the external analysis only if the hard gates pass, or record a formal not-evaluable result and closure boundary.
 
 **Current authorization:** `cohort_frozen=false`; `external_analysis_authorized=false`; `biological_validation_authorized=false`. Drafting a contract is not a permission to score programs.
+
+
+## 9. Approved architectural amendment — 2026-10-27 (supersedes ownership, not evidence or scientific criteria)
+
+**Decision: transfer complete construction of the external cohort to Phase 1 Notebook 113.** See `docs/contracts/phase1/NOTEBOOK_113_EXTERNAL_COHORT_CONSTRUCTION_CONTRACT_DRAFT.md`. This amendment supersedes earlier sections **only where they assign source acquisition, G2–G6 eligibility, G3 adjudication, G4 lineage mapping or upstream G8 feasibility execution to Notebook 800**. It does not modify G2's approved 1,082-candidate universe, the 288 multiplicity boundary, 37-case sensitivity flag, or any G3–G8 evidence standards. The earlier historical preflight and proposed-output sections remain as an audit trail, **not a mandate to duplicate cohort construction**.
+
+**Notebook 113 owns:** G2 reuse and full provenance-preserving candidate selection, G3 documentary/identity adjudication, G4 source lineage crosswalk, G5 technical sample QC, G6 input compatibility and normalization-input feasibility, G8 source confounder availability and lineage-aware attrition, proposed one-donor-one-primary-file membership, audited handoff and explicit eligibility/freeze decision. Any unresolvable hard gate yields a not-evaluable outcome rather than a forced eligible cohort.
+
+**Notebook 800 retains:** frozen-program replication design G7, negative controls/inference, technical and confounding *analysis specification* under G6/G8, verification of 113 frozen handoff identities, and prospective go/no-go for using that cohort in external biological replication. It may neither rebuild donor membership nor reinterpret 113's adjudication after viewing scores. The 800 A–H and executed G3 lexical audit remain preserved as historical evidence, not deleted or retroactively reclassified.
+
+**Coordination rule:** the cohort cannot be frozen by 113 until analysis-dependent technical and support criteria have been agreed prospectively with 800's inferential specification; 800 must not conduct biology until the handoff is approved. This separates operational cohort assembly from inferential design without introducing leakage or circular thresholds.
+
+**Dependency boundary:** Notebook 112's clean branch and PR #56 state require fresh verification before its Phase 1 outputs are accepted as handoff. No automatic cherry-pick or merge is authorized here.
+
+**Current readiness:** `G2_POLICY_APPROVED`; `G3_BLOCKED`; `G4_G5_G6_G7_G8_BLOCKED`; `notebook_113_implemented=false`; `cohort_frozen=false`; `external_analysis_authorized=false`. The new responsibility assignment alone changes no patient classification.
