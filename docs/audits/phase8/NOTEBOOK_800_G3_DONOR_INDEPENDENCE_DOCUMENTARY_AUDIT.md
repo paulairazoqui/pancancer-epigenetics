@@ -1,34 +1,59 @@
 # Notebook 800 — G3 documentary donor-independence audit
 
-**Status:** EVIDENCE REVIEW IN PROGRESS — NOT A G3 PASS  
 **Review date:** 2026-10-27  
-**Scope:** fixed G2 simple-case candidate universe (1,082 CPTAC-3 primary RNA cases) against the frozen TCGA reference (9,965 cases).  
-**Implementation:** Notebook 800 G3 execution committed as `e2269b8`; 0 exact case UUID/submitter collisions; all 1,082 conservatively `UNRESOLVED_INDEPENDENCE`. This is a source-label collision screen, not donor certification.  
-**Source-of-truth contract:** `docs/contracts/phase8/NOTEBOOK_800_ELIGIBILITY_AND_REPLICATION_CONTRACT_DRAFT.md` section 4.2; separate G3 prospective protocol.
+**Status:** DOCUMENTARY REVIEW COMPLETED WITH EXPLICIT COVERAGE LIMITS; **G3 NOT PASSED**.  
+**Frozen computational checkpoint:** Notebook 800 executed as commit `e2269b8`: 1,082 G2 structurally simple cases; no exact CPTAC–TCGA case UUID or case submitter collisions; 37 simple cases flagged for ancillary ambiguous RNA files. All 1,082 remain `UNRESOLVED_INDEPENDENCE` pending donor-level documentation. No external biological analysis authorized.
 
-## Public primary-source evidence inventory (initial pass)
+## Audit question and decision standard
 
-| Source | Locator | Observation directly supported | What it does NOT prove |
+Is there **positive, applicable evidence** that the 1,082 precise frozen CPTAC-3 RNA candidate donors are disjoint from the frozen TCGA discovery donor cohort (9,965 cases), rather than merely having distinct project names or UUIDs?
+
+The approved G3 protocol requires validated donor crosswalk or explicit applicable non-overlap assurance for `DOCUMENTED_INDEPENDENT`; documented donor match for `DOCUMENTED_OVERLAP`. Prospective tissue collection or lack of exact lexical ID matches cannot suffice. This documentary review does not access controlled donor identifiers.
+
+## Institution-level primary records examined
+
+1. GDC `CPTAC-3`, accession `phs001287`, project page, consulted 2026-10-27: https://portal.gdc.cancer.gov/projects/CPTAC-3 . The **current** displayed GDC scope differs from the frozen 111 snapshot and must not redefine G2.
+2. dbGaP `phs001287.v13.p5` and earlier records: https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs001287.v13.p5 . Study describes new diagnoses, treatment-naive inclusion, tissue source sites, consent and prospectively acquired material; does **not** state a verified TCGA donor-exclusion crosswalk.
+3. GDC consortium description: https://gdc.cancer.gov/about-gdc/contributed-genomic-data-cancer-research/clinical-proteomic-tumor-analysis-consortium-cptac . CPTAC-3 `phs001287` must not be conflated with CPTAC-2 `phs000892`.
+4. NCI TCGA historical sample requirements: https://www.cancer.gov/ccg/research/genome-sequencing/tcga/studied-cancers . Similar primary untreated specimen criteria are **not** evidence of biological disjointness.
+
+## Original-study context evidence
+
+| CPTAC-3 context | Primary original document (methods) | Source provenance actually supported | TCGA donor non-overlap explicitly certified? |
 |---|---|---|---|
-| GDC CPTAC-3 project | https://portal.gdc.cancer.gov/projects/CPTAC-3 | Project CPTAC-3 is associated with dbGaP `phs001287`; current GDC aggregate includes multiple disease contexts | That every frozen 111 file corresponds to a donor not present in TCGA; current portal counts are not the frozen 111 candidate denominators |
-| dbGaP CPTAC-3 | https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs001287.v23.p7 | Inclusion includes newly diagnosed untreated primary cases, consent, and source eligibility; prospective case-set framing | Explicit TCGA donor exclusion or a case-level TCGA↔CPTAC crosswalk |
-| NCI CPTAC consortium / tissue source sites | https://dctd.cancer.gov/research/networks/cptac/consortium | CPTAC tissue source sites prospectively collect clinically annotated specimens under quality protocols | That every CPTAC-3 donor is absent from TCGA |
-| NCI TCGA sample material policy | https://www.cancer.gov/ccg/research/genome-sequencing/tcga/using-tcga-data | NCI states TCGA cannot provide analytes/tissues outside that program and that consent limits redistribution | Absence of an independently recruited person being included in both programs, or absence of data reuse; cannot equate material-transfer restriction with donor-level non-overlap |
+| Lung adenocarcinoma | https://pmc.ncbi.nlm.nih.gov/articles/PMC7373300/ | 111 participants, 13 tissue source sites; prospective collection | Not found |
+| Lung squamous carcinoma | https://pmc.ncbi.nlm.nih.gov/articles/PMC8475722/ | Prospective treatment-naive surgical specimens | Not found |
+| Clear-cell kidney carcinoma | https://pmc.ncbi.nlm.nih.gov/articles/PMC7331093/ | Prospectively collected CPTAC specimens | Not found |
+| Uterine/endometrial carcinoma | https://pmc.ncbi.nlm.nih.gov/articles/PMC10631452/ | Prospective collection May 2016–May 2019; five countries | Not found |
+| Pancreatic ductal carcinoma | https://pmc.ncbi.nlm.nih.gov/articles/PMC8654574/ | Prospectively collected treatment-naive surgical cases | Not found |
+| Head and neck squamous carcinoma | https://pmc.ncbi.nlm.nih.gov/articles/PMC7946781/ | 110 prospectively collected primary tumors | Not found |
+| Glioblastoma original proteogenomic cohort | https://pmc.ncbi.nlm.nih.gov/articles/PMC8044053/ | 99 cases collected from ten tissue source sites per CPTAC-3 protocol | Not found |
 
-Sources consulted 2026-10-27; exact referenced study versions should be preserved when extending the audit.
+**Important counterexample to blanket prospective characterization:** TCIA CPTAC-GBM collection https://www.cancerimagingarchive.net/collection/cptac-gbm/ states that a GBM *confirmatory* cohort was supplemented by retrospective CHOP–UPenn specimens. Retrospective origin does not establish TCGA overlap, but invalidates any unqualified assertion that every material in the later aggregated CPTAC-3 context must have been newly prospectively collected.
 
-## Adjudication discipline
+This is a context-level *documentation* matrix, not a verified join between each publication's subject list and the exact 1,082 G2 cases. In particular, source-label contexts in Notebook 111 may extend beyond the specific named histologies in original papers. Do not treat the papers' n as frozen G2 counts or assume complete row-level mapping. A full source-stratum applicability mapping must use the local 111 G2 identity inventory and G4 crosswalk rather than guessed TCGA lineages.
 
-`DOCUMENTED_INDEPENDENT` requires an explicitly applicable exclusion/non-overlap assurance or validated donor-level crosswalk. `DOCUMENTED_OVERLAP` requires positive validated donor linkage. Differing GDC IDs, study codes, chronological recruitment and tissue source design are not sufficient. `UNRESOLVED_INDEPENDENCE` is the default if neither standard is met.
+## Evidence evaluation
 
-This document must next be extended to a *source-stratum-specific applicability matrix* using the frozen 111 G2 strata, with a reference for each relevant CPTAC-3 disease study and a recorded direct statement (or explicit absence of one) addressing overlap. Do not label a lineage solely from name similarity before G4. The version-controlled G3 protocol prohibits unbounded GDC acquisition in Notebook 800.
+- **Supported:** institutionally distinct program, prospectively recruited discovery cohorts in several major CPTAC-3 cancer contexts; audited zero exact case identifier collisions against frozen TCGA mapping.
+- **Not established:** explicit, study- and case-applicable TCGA non-overlap certification; validated cross-cohort donor-level matching; absence of overlap specifically within retrospectively supplemented/confirmatory cases; positive independence status for any given one of the 1,082 candidates.
+- **No documented overlap demonstrated:** zero validated donor matches found in the checked public records; this is not equivalent to proven disjointness.
+- **Evidence ceiling:** the sources are sufficient to describe CPTAC-3 as *prospectively sourced in documented discovery cohorts* and *operationally external at the study level*, with exceptions to universal prospective origin. They are insufficient to label the precise G2 set donor-independent under the frozen standard.
 
-## Current preliminary evaluation
+## Final documentary verdict as of 2026-10-27
 
-**G3 BLOCKED.** The documents above support prospectively acquired CPTAC specimens and describe the TCGA sample-distribution policy, but currently do not establish donor-level disjointness for the 1,082 exact G2 cases. No patient class changes and no confirmatory external replication authorized.
+**G3 = UNRESOLVED / HARD BLOCKER for confirmatory independent-donor replication** under current evidence. This is a completed bounded documentary review with a negative sufficiency outcome, not a claim that overlap exists.
 
-**Not a final documentary audit:** disease/context coverage and study-specific TCGA overlap statements still require verification. If no adequate source exists after a bounded review, close as `NOT_EVALUABLE_DONOR_INDEPENDENCE` for confirmatory claims, rather than assuming independence or escalating automatically into a new acquisition notebook.
+No `DOCUMENTED_INDEPENDENT` or `DOCUMENTED_OVERLAP` per-case assignments are justified by the reviewed documents; retain the executed 1,082 `UNRESOLVED_INDEPENDENCE` G3 labels. No changes to G2 or frozen Phase 4 representations. Do not declare G3 PASS, release G4 as confirmatory eligibility, perform program scoring, or merge 800 as independently validated.
 
-## Handoff after documentary review
+**Ways to resolve the hard gate without lowering the criterion:** obtain written study-wide and subcohort-specific non-overlap assurance from CPTAC/GDC/BCR applicable to frozen G2 donors, or an authorized validated donor-level crosswalk / matching audit with privacy-safe attestation. If these are unavailable, the contract permits `NOT_EVALUABLE_DONOR_INDEPENDENCE` for the confirmatory track; exploratory structural study-level assessment, if ever authorized, needs a separately prospective narrowed estimand and cannot be misreported as independent patient replication.
 
-Document verified references and per-stratum applicability; peer-review documentary interpretation; update the G3 protocol/contract gate status as a separate versioned decision. Only if authoritative new identity data are found should Phase 1 acquire them in a bounded source-fingerprinted handoff and G3 cases be readjudicated. Preserve the executed G3 csv/json SHA-256 fingerprints; never overwrite the frozen TCGA mapping or historical A–H snapshots.
+## Audit and reproducibility limitations
+
+- Literature review does not prove a negative: absence of published crosswalk is not proof no crosswalk exists.
+- The audited GitHub snapshot contains code and outputs, but the local 111 G2 case-by-document-source matrix was not available to this document review. No claim of full per-case publication coverage is made.
+- Public institutional GDC counts change with releases and cannot replace immutable manifest/source fingerprints.
+- Controlled germline or direct patient identity inference was neither attempted nor authorized.
+- Phase 1 acquisition remains unopened pending a specifically justified, bounded source request.
+
+**Recommended decision log entry:** documentary search complete; G3 not met; decision pending on seeking an authoritative non-overlap attestation versus explicitly closing confirmatory independent-donor replication as non-evaluable. G4 lineage mapping can be documented separately only if it does not imply G3 PASS or authorize biological results.
