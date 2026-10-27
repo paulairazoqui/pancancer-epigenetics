@@ -1,6 +1,6 @@
 # Notebook 113 — CPTAC-3 External Cohort Construction and Source-Provenance Contract
 
-**Lifecycle:** ARCHITECTURAL RESPONSIBILITY TRANSFER APPROVED 2026-10-27; IMPLEMENTATION AND COHORT FREEZE NOT AUTHORIZED YET.
+**Lifecycle:** ARCHITECTURAL RESPONSIBILITY TRANSFER APPROVED 2026-10-27; NOTEBOOK 113 IMPLEMENTED AS A CONSERVATIVE, UNEXECUTED METADATA LEDGER; G3 PROTOCOL APPROVAL, COHORT FREEZE AND BIOLOGICAL INFERENCE PENDING.
 **Owner:** Phase 1 / Notebook 113 (new), upstream of Phase 8 / Notebook 800.
 **Normative Phase 8 policy source:** `docs/contracts/phase8/NOTEBOOK_800_ELIGIBILITY_AND_REPLICATION_CONTRACT_DRAFT.md` G2 decision and G3–G8 guardrails; this contract does not retroactively change their scientific standards.
 **Inputs:** immutable 111 CPTAC-3 source universe and audited outputs, applicable 112 handoff if accepted/fingerprint-verifiable, frozen TCGA `phase2.203.final_sample_mapping`, provider/primary-study documentation and approved bounded identity metadata; all exact source records versioned.
@@ -47,9 +47,9 @@ The returned dataset must distinguish **candidate universe**, **technical/indepe
 
 ## Implementation status
 
-No Notebook 113 has been implemented or executed through this contract. No G3 class, QC or cohort membership has been changed. The verified Notebook 800 run at `e2269b8` and its outputs remain historical evidence; the documentary review is recorded separately under `docs/audits/phase8/`.
+Notebook 113 has been implemented in `notebooks/phase1_data_acquisition_and_auditing/113_cptac3_external_cohort_construction.ipynb` (commit `be7500b`), but not yet executed or locally validated. It reconstructs the approved G2 universe and emits conservative unresolved G3/G4/QC evidence ledgers, with optional separately reviewed external evidence. It does not freeze a cohort, assign sample eligibility from program outcomes or authorize inference. No G3 scientific approval is implied. The verified Notebook 800 run at `e2269b8` and its outputs remain historical evidence; the documentary review is recorded separately under `docs/audits/phase8/`.
 
-**Next review:** verify 112 dependency and 111 local input interface, approve bounded source-provenance acquisition and one-patient-one-file contract, then implement 113 in its own Phase 1 branch.
+**Next execution:** run the implemented 113 notebook locally against 111 CSV artifacts and the frozen TCGA mapping; audit exact G2 reconciliation and emitted interim ledgers. Then adjudicate documented donor/cohort linkage, lineage, QC, G6 and G8 evidence before any freeze. Notebook 112 remains a separate, not-yet-accepted QC provenance input.
 
 
 ---
