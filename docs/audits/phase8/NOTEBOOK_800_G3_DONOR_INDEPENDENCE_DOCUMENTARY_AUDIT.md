@@ -76,3 +76,29 @@ The following articles establish **precedent for cross-resource evaluation**, no
 Cross-publication precedent supports the use of distinct CPTAC collections as external resources, **not G3 donor-level adjudication automatically**. The 2019 Nat Commun study is particularly informative because it separates explicitly non-TCGA CPTAC cases from TCGA-origin CPTAC profiles. The study cohort labels, acquisition versions, source IDs and case inclusion criteria must be reconciled to the frozen 111 G2 cases *before* transferring its independence assurance. Similarly, the categorical 2026 no-overlap statement is supporting secondary literature but its underlying identity-verification method requires review.
 
 **G3 status remains UNRESOLVED/BLOCKED.** The search strengthens operational study-level plausibility and establishes standard practice; it does not warrant relabelling the 1,082 `UNRESOLVED_INDEPENDENCE` records. Proposed bounded next question: can primary study documentation and exact subcohort labels from the frozen 111 snapshots demonstrate that particular G2 case strata belong to CPTAC collections documented as excluding TCGA participants? If not, require source-program attestation or maintain non-evaluability for confirmatory independent-donor replication.
+
+## Adversarial search — studies using TCGA patients inside CPTAC (2026-10-27)
+
+**Counterexamples were positively identified**; therefore the absence-of-same-patient-papers argument cannot be used.
+
+1. *Pan-cancer molecular subtypes revealed by mass-spectrometry-based proteomic characterization of more than 500 human cancers* (Nat Commun 2019; https://www.nature.com/articles/s41467-019-13528-0) explicitly distinguishes 532 CPTAC Confirmatory/Discovery cases **not in TCGA** from 364 `CPTAC-TCGA` cases belonging to TCGA (105 BRCA; 90 colorectal; 169 ovarian). Its supplementary patient-level table can provide cohort identity evidence, but the historic group of 532 must not be equated with the exact GDC CPTAC-3 G2 subset.
+2. NCI ProteomeXchange dataset RPXT000299 (https://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=RPXT000299&test=yes) documents 95 colorectal specimens from 90 TCGA patients in a proteomic reanalysis.
+3. Cancer Genomics Cloud public guide (https://docs.cancergenomicscloud.org/docs/cptac-data) identifies `CPTAC` as CPTAC-2 retrospective data from TCGA cancers, while the separate `CPTAC-3` data derive from the third-phase project. This **institutional resource distinction** is positive evidence against treating all CPTAC records as one donor cohort, but project distinction is not a donor-level crosswalk.
+
+**Result:** explicit overlap in CPTAC-2 / CPTAC-TCGA is real; this does **not** establish an overlap inside frozen `CPTAC-3` G2. The existence of overlap reports makes the test more stringent, not less.
+
+## Published-cohort-to-GDC identity traceability
+
+- GDC `CPTAC-3` project uses `phs001287` (https://portal.gdc.cancer.gov/projects/CPTAC-3); CGC maps third-phase genomic data in GDC to proteomic data in CPTAC3 Discovery/PDC. This supports project-level provenance, not an exact-case match.
+- Original UCEC proteogenomic study (https://pmc.ncbi.nlm.nih.gov/articles/PMC10631452/) references *both* CPTAC cohorts under `phs001287` and TCGA under `phs000178`, and PDC project IDs. PDC UCEC original and confirmatory studies must be distinguished.
+- TCIA's CPTAC-UCEC collection (https://www.cancerimagingarchive.net/collection/cptac-ucec/) and guide (https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=33948263) specify that deidentified CPTAC Patient ID is preserved across imaging, clinical, proteomic, and genomic CPTAC databases. This identifies a credible **within-CPTAC linkage mechanism**. It does not connect GDC `case_uuid` to that Patient ID unless a verified submitter/crosswalk column matches.
+- Official PDC release notes (https://pdc-release-notes.s3.amazonaws.com/PDC_Data_Release_Notes.htm) document `CPTAC UCEC Confirmatory Study` accession `PDC000439` (and companion IDs). This reinforces that subcohort origin needs to be mapped specifically rather than inferred from UCEC site labels.
+- Recent pan-cancer study (https://pmc.ncbi.nlm.nih.gov/articles/PMC13538856/) describes 1,039 external CPTAC patients and claims no overlap with TCGA, but does not furnish the validated donor crosswalk for this project's frozen 1,082 CPTAC-3 cases.
+
+### Resolution relative to the user question
+
+**Not yet demonstrable at case level.** The literature and consortium guides show plausible independent CPTAC-3 source cohorts, but the frozen 111 `case_uuid`/`case_submitter_id` G2 inventory and a curated source-to-publication participant identifier map are necessary to count how many of the 1,082 belong to each documented original study. The tracked Notebook 800 output does not publish all those rows. No exact per-case publication membership has been verified. Do not equate raw project `CPTAC-3` label with a named independent PDC study.
+
+**Suggested bounded follow-up (metadata only):** join the already audited local 111 G2 `case_submitter_id` and `project_id` (plus exact upstream identifiers as available) with published/PDC/TCIA cohort patient IDs by documented namespace; output `case_uuid, case_submitter_id, source_study_id, reference_id, link_method, match_status`, with `NOT_LINKED` for missing keys. Preserve G2 universe and hashes. A source study documented to exclude TCGA donors may justify *subcohort-level* independence under a prospectively reviewed authority standard; never infer it from lack of match. No new expression or biological tests.
+
+**G3 decision unchanged:** independent-donor confirmatory analysis remains **BLOCKED**; do not count papers or their absence as proof of independence. Literature precedent increases the plausibility of operational externality but does not replace donor provenance.
