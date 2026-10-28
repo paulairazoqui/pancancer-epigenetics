@@ -144,3 +144,16 @@ Notebook 113 owns upstream cohort construction and the **proposed freeze**, cond
 G4 uses a predefined, **source site × GDC broad histology** crosswalk targeting only project IDs present in the frozen TCGA reference. It does not equate broad GDC histology to histopathological subtyping, nor does it impute subtype from organ alone. Seven disease groups are provisionally comparable: LUAD, LUSC, PAAD, SKCM, STAD, UCEC and HNSC (multiple anatomic sites). Source `Brain/Gliomas` and `Kidney/Adenomas and Adenocarcinomas` remain `AMBIGUOUS` because GBM/LGG and KIRC/KIRP/KICH cannot be safely distinguished from the GDC fields alone. Remaining kidney histologies are `UNMAPPED`. Linked PDC study labels remain traceable but cannot by themselves establish a patient's histology. No donor will be reassigned based on program scores or to rescue sample size.
 
 The crosswalk in Notebook 113 is G4 exploratory source-harmonization eligibility, distinct from later analysis-specific comparability, case-mix and platform validity. The case table and a source-stratum crosswalk include explicit statuses and reasons; exact G2 and G3 inventories stay unchanged. G4 acceptance is conditional on support in the frozen TCGA lineage universe; G5, G6 and G8 remain independent pending gates. This amendment supersedes any earlier generic `UNMAPPED` G4 stop-state descriptions only for the implemented deterministic source mapping.
+
+
+---
+
+## Proportionate G5–G8 evidence boundary (2026-10-28)
+
+The Notebook 111 full-payload provider MD5 and exact primary-sample ancestry checks constitute completed **source-integrity** evidence, not a read-level sequencing QC assessment. Missing read-level QC metrics are reported as limitations, not scored as failure or imputed pass. Explicit independently reviewed file-level QC failures, if available, remain exclusions.
+
+G6 records source STAR-count workflow coverage and retains a separate pending decision for real count-column/gene-feature identity and fixed-program projection compatibility. These tests are performed on actual matrices before inference, never inferred from metadata alone.
+
+G8 records availability of source covariates and outcome-blind source-context/workflow/lineage support. Missing tumor purity or batch data are not invented; confounding and identifiability are evaluated in the analysis design before confirmatory replication. No covariate adjustment, program scores, or lineage-aware inference are run in Notebook 113.
+
+The remaining `BLOCKED` readiness state means **the full analytic cohort is not frozen**, not that all 1,082 RNA files have failed sequencing QC. G3/G4 candidate counts remain untouched; the readouts above permit proceeding to focused matrix-level compatibility and study design without a new general-purpose sequencing QC research phase.
