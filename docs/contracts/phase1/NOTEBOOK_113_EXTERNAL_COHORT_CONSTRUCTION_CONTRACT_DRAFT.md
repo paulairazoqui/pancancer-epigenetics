@@ -135,3 +135,12 @@ Notebook 113 owns upstream cohort construction and the **proposed freeze**, cond
 **Interpretation and scope.** G3 can be provisionally closed at the *cohort-provenance* level using these rules, provided all exceptions remain excluded/pending and source references are recorded. Do not claim zero donor-level overlap. Do not confuse a G3 PASS with G4/G5/G6/G8, which remain blocked until evaluated. Notebook 113 must retain all 1,082 G2 candidates with explicit G3 statuses; it cannot freeze the final cohort or authorize Notebook 800 inference by itself.
 
 **Foundational source context (not proof of each donor's identity):** NCI CPTAC program and CPTAC-3 prospective acquisition; dbGaP `phs001287`; original CPTAC-3 cancer-cohort studies linked in Notebook 113; PDC project and study identity snapshots with locally verified SHA-256. Exact source URLs and evidence must be preserved in the phase handoff; `G3_CPTAC3_PROSPECTIVE_COHORT` is the named cohort-level evidence identifier. This rule was set without looking at external program replication outcomes.
+
+
+---
+
+## G4 source-context harmonization implementation — 2026-10-28
+
+G4 uses a predefined, **source site × GDC broad histology** crosswalk targeting only project IDs present in the frozen TCGA reference. It does not equate broad GDC histology to histopathological subtyping, nor does it impute subtype from organ alone. Seven disease groups are provisionally comparable: LUAD, LUSC, PAAD, SKCM, STAD, UCEC and HNSC (multiple anatomic sites). Source `Brain/Gliomas` and `Kidney/Adenomas and Adenocarcinomas` remain `AMBIGUOUS` because GBM/LGG and KIRC/KIRP/KICH cannot be safely distinguished from the GDC fields alone. Remaining kidney histologies are `UNMAPPED`. Linked PDC study labels remain traceable but cannot by themselves establish a patient's histology. No donor will be reassigned based on program scores or to rescue sample size.
+
+The crosswalk in Notebook 113 is G4 exploratory source-harmonization eligibility, distinct from later analysis-specific comparability, case-mix and platform validity. The case table and a source-stratum crosswalk include explicit statuses and reasons; exact G2 and G3 inventories stay unchanged. G4 acceptance is conditional on support in the frozen TCGA lineage universe; G5, G6 and G8 remain independent pending gates. This amendment supersedes any earlier generic `UNMAPPED` G4 stop-state descriptions only for the implemented deterministic source mapping.
