@@ -1,6 +1,6 @@
 # Notebook 113 — CPTAC-3 External Cohort Construction and Source-Provenance Contract
 
-**Lifecycle:** ARCHITECTURAL RESPONSIBILITY TRANSFER APPROVED 2026-10-27; NOTEBOOK 113 IMPLEMENTED AS A CONSERVATIVE, UNEXECUTED METADATA LEDGER; G3 PROTOCOL APPROVAL, COHORT FREEZE AND BIOLOGICAL INFERENCE PENDING.
+**Lifecycle (current, 2026-10-28):** Notebook 113 executed and source-cohort construction COMPLETE; 721-case source inventory PROPOSED, not analytically frozen; G3 cohort-level and G4 source harmonization implemented; G5 read-QC uncertainty retained; G6 file/count coverage verified; G8 feasibility limitations recorded. Phase 8 analysis authorization remains pending. Historical sections below record earlier draft milestones; see the superseding amendments and the final 113→800 handoff.
 **Owner:** Phase 1 / Notebook 113 (new), upstream of Phase 8 / Notebook 800.
 **Normative Phase 8 policy source:** `docs/contracts/phase8/NOTEBOOK_800_ELIGIBILITY_AND_REPLICATION_CONTRACT_DRAFT.md` G2 decision and G3–G8 guardrails; this contract does not retroactively change their scientific standards.
 **Inputs:** immutable 111 CPTAC-3 source universe and audited outputs, applicable 112 handoff if accepted/fingerprint-verifiable, frozen TCGA `phase2.203.final_sample_mapping`, provider/primary-study documentation and approved bounded identity metadata; all exact source records versioned.
