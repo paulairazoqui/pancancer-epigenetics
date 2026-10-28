@@ -157,3 +157,13 @@ G6 records source STAR-count workflow coverage and retains a separate pending de
 G8 records availability of source covariates and outcome-blind source-context/workflow/lineage support. Missing tumor purity or batch data are not invented; confounding and identifiability are evaluated in the analysis design before confirmatory replication. No covariate adjustment, program scores, or lineage-aware inference are run in Notebook 113.
 
 The remaining `BLOCKED` readiness state means **the full analytic cohort is not frozen**, not that all 1,082 RNA files have failed sequencing QC. G3/G4 candidate counts remain untouched; the readouts above permit proceeding to focused matrix-level compatibility and study design without a new general-purpose sequencing QC research phase.
+
+---
+
+## Source cohort handoff to Notebook 800 (2026-10-28)
+
+The completed G6 audit identified `COMPATIBLE_RAW_COUNTS` for all 721 current G3-supported/G4-accepted candidates. Notebook 113 now emits a reproducible, outcome-blind proposed source cohort requiring `COHORT_SUPPORTED_EXTERNAL`, `ACCEPTED` lineage, and `COMPATIBLE_RAW_COUNTS` simultaneously. The candidate set is sorted, checked for case/file uniqueness, and fingerprinted. The complete 1,082-case audit is retained, including all exceptions and attrition.
+
+This is a **proposed 721-case source inventory**, not an approved or registered final analytic cohort. Missing read-level sequencing QC is stated as uncertainty, not a blanket exclusion or a QC PASS. No empirical candidate-dependent filtering is added. Before inference, Notebook 800 must specify the gene/count transformation and reference projection, lineage-aware estimands and negative controls, minimum lineage support, multiplicity, platform/batch and proliferation/purity sensitivity, and rules for non-identifiable confounding. The future source freeze requires review of the emitted handoff hash and compatibility with those prespecified requirements; source membership is not tuned after seeing replication outcomes.
+
+Handoff outputs: `113_proposed_external_source_cohort.csv`, `113_proposed_source_cohort_lineage_counts.csv`, and `113_source_handoff_attrition.csv`. Other source ledgers and frozen TCGA/program evidence remain unchanged. A Notebook 113 rerun must not be interpreted as consent to change the already-approved G2 denominator.
