@@ -116,3 +116,22 @@ Notebook 113 must produce immutable, SHA-256-verified case-level evidence and pr
 Notebook 113 owns upstream cohort construction and the **proposed freeze**, conditional on signed-off identity/QC/lineage criteria and upstream/downstream compatibility. Notebook 800 owns G7 inferential test specification, structural replication and the independent go/no-go for consuming the proposed cohort; 800 must not select or replace patients after viewing scores.
 
 **Current stop state:** `G2_POLICY_APPROVED`; `G3_PROTOCOL_DRAFT`; `G3_BLOCKED`; `G4_G5_G6_G8_NOT_ADJUDICATED`; `cohort_frozen=false`; `external_analysis_authorized=false`. No new G3 class, no finalized cohort and no biological inference are created by this document.
+
+
+---
+
+## Superseding G3 amendment — proportional cohort-level standard (2026-10-28)
+
+**This amendment supersedes the earlier G3 individual-donor documentary requirement and all conflicting G3 stop-state wording above.** The previous per-case assurance standard was an overly stringent assistant-proposed criterion, not a user-approved scientific necessity. G2, G4–G8, no-leakage safeguards, and cohort-freeze responsibilities remain unchanged.
+
+**Objective.** Establish a defensible *external cohort* for structural replication relative to TCGA, not certify absence of every conceivable shared donor with genetic identity testing. The primary cohort is the audited GDC `CPTAC-3` prospective acquisition. Published uses of CPTAC-3 for external validation and the distinction from retrospective `CPTAC-TCGA` sources provide cohort-level context. Exact GDC/TCGA case-ID screening (zero flags in the executed candidate universe) is complementary, **not** definitive donor-identity proof.
+
+**Prospective outcome-blind rule.**
+- `COHORT_SUPPORTED_EXTERNAL`: audited `CPTAC-3` GDC source, no flagged TCGA ID collision, and no conflicting source evidence. PDC `CPTAC3 Discovery and Confirmatory` is corroborating evidence. A missing PDC match does not invalidate the GDC project provenance. This class is a *cohort-level assumption*, not `DOCUMENTED_INDEPENDENT` at patient level.
+- `SOURCE_REVIEW_REQUIRED`: contradictory/ambiguous PDC linkage, subprojects outside the prospective Discovery/Confirmatory label (including `CPTAC3-Other`), ID collision or other provenance uncertainty. These cases are withheld from a proposed external analytic cohort pending narrowly scoped source review; no individual genetic testing required.
+- `DOCUMENTED_OVERLAP`: affirmative, namespace-verified donor reuse or verified `CPTAC-TCGA` origin. Exclude.
+- Case-level reviewed exception evidence may override default only with traceable source, applicability and review. No expression-program outcomes may enter the decision.
+
+**Interpretation and scope.** G3 can be provisionally closed at the *cohort-provenance* level using these rules, provided all exceptions remain excluded/pending and source references are recorded. Do not claim zero donor-level overlap. Do not confuse a G3 PASS with G4/G5/G6/G8, which remain blocked until evaluated. Notebook 113 must retain all 1,082 G2 candidates with explicit G3 statuses; it cannot freeze the final cohort or authorize Notebook 800 inference by itself.
+
+**Foundational source context (not proof of each donor's identity):** NCI CPTAC program and CPTAC-3 prospective acquisition; dbGaP `phs001287`; original CPTAC-3 cancer-cohort studies linked in Notebook 113; PDC project and study identity snapshots with locally verified SHA-256. Exact source URLs and evidence must be preserved in the phase handoff; `G3_CPTAC3_PROSPECTIVE_COHORT` is the named cohort-level evidence identifier. This rule was set without looking at external program replication outcomes.
