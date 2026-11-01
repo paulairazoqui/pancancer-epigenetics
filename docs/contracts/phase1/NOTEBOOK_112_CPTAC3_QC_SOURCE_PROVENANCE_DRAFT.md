@@ -65,3 +65,11 @@ The 12-file pilot is deliberately nonrepresentative. Agreement between two GDC A
 - Notebook 113 reuses the 112 source-technical consumable with unchanged G2 cohort membership and unchanged 721-case proposed source cohort, subject to execution verification.
 
 **This migration is not closed until those conditions have been verified.**
+
+## 6. Additional original E/F/G source analyses relocated on 2026-11-01
+
+**Pending fresh Run All after relocation.** Notebook 112 now also reconstructs the original E source-stratified structural attrition (22 source strata, 1,370 primary cases, 1,082 simple and 288 multiplicity cases) and F source-context diagnostics (18 source strata, 544 additional RNA files across 530 simple cases, including 37 with ambiguous-ancestry additional RNA).
+
+The original G prospective QC metric catalog, STAR \`N_\` tally availability and nine prospective safeguard statements have been restored as notebook-visible, outcome-blind descriptive analyses. The source-context G table retains the **descriptive** bottom-20 counts, not a learned quality threshold. No new exclusion, batch harmonization or program validation is authorized.
+
+The original E comparisons to the fixed **2,389 Phase 4 transcriptomic genes** are deliberately **not** evaluated by Notebook 112: doing so would create a reverse Phase 1→4 dependency. The prior full-1,082-case exact feature-presence and frozen-gene detection analyses must be preserved and checked in the **later Phase 8 analytical compatibility workflow**, before the migration can be called exhaustive. Existing Notebook 113 G6 verifies the 721 proposed source cohort files, which is **not identical** to the historical E all-1,082-file assessment. Do not claim this gate is complete simply because G6 reports 721/721 compatibility.
