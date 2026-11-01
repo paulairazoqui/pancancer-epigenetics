@@ -1,0 +1,3 @@
+# Preserve exact source-snapshot JSON bytes across platforms (including Windows CRLF).
+docs/evidence/phase1/notebook112/*.json -text
+docs/evidence/phase1/notebook113/*.json -text
