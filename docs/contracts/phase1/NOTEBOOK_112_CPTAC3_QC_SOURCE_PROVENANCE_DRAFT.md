@@ -1,75 +1,72 @@
-# Notebook 112 — CPTAC-3 Upstream RNA QC Source Provenance Pilot
+# Notebook 112 — CPTAC-3 source RNA technical audit and QC-metadata provenance
 
-**Status:** TECHNICAL CONTRACT + EXECUTION ADDENDUM — bounded audit **CLOSED**, QC eligibility **NOT FROZEN**  
-**Created:** 2026-10-23  
-**Phase:** 1 — Source acquisition and auditing  
-**Notebook:** `notebooks/phase1_data_acquisition_and_auditing/112_cptac3_qc_source_provenance.ipynb`  
-**Local prerequisite:** executed/fingerprint-verified Notebook 111 and H metadata-only snapshot from the executed Notebook 800  
-**Analysis/validation:** NOT AUTHORIZED; analytic cohort NOT FROZEN
+**Status (2026-11-01): MIGRATION DRAFT — code migrated, clean-clone Run All and historic upstream snapshot recovery pending.**  
+**Owner:** Phase 1 / Notebook 112.  
+**Execution contract:** Notebook 111 → Notebook 112 → Notebook 113 → Notebook 800.  
+**Methodological boundary:** source-only technical diagnostics and public metadata attribution; no quality pass/fail, downstream program scoring, cohort freeze or biological inference.
 
-## 1. Architectural rationale
+## 1. Why Notebook 112 was refactored
 
-The existing Notebook 111 established CPTAC-3 source identity, 5,578 payload MD5s, direct file-to-aliquot associations, sample-ancestry categories, provisional primary-tumor candidates and auditable intermediate tables. The separately executed **Notebook 800 PREFLIGHT-H** queried public GDC metadata for exactly **12** uniquely mapped provisional primary STAR Count outputs (three in each of four selected source contexts). H observed **one upstream workflow input-file metadata node per STAR output** and six numeric quality-related GDC fields available in all 12, without independently verifying the input files' case/aliquot provenance.
+The previously executed Notebook 112 depended on two files created by later Notebook 800: the original 12-file H GDC response and the A–H readiness manifest. That reversed the execution order. The 2026-10-23 800 A/E/F/G/H precursor calculations were also needed to reconstruct the originally selected 12 STAR output files. Merely preserving their UUIDs would have hidden the analysis that generated them.
 
-This is a provider/source acquisition-auditing problem, not a program replication problem. The project architecture explicitly permits later Phase 1 acquisition or audit notebooks to consume frozen handoffs from later-numbered analyses without reopening that analysis. Thus Notebook 112 is a **small Phase 1 provenance follow-up**, not a new Phase 8 eligibility preflight. Preserve H's historical evidence; do not move, edit or reexecute H or Notebook 111 as part of this task.
+The refactored Notebook 112 therefore regenerates the source-side chain from 111 and raw STAR Counts, selects the 12 STAR records with the **same original rule**, and checks its result against the historical H snapshot. It does not treat an observed match with the snapshot as authorization to change the original sampling logic.
 
-## 2. Frozen exact source inputs
+### Source-only chain reproduced in 112
 
-- `data/interim/metadata/111_cptac3_acquisition_audit_summary.json` and `111_cptac3_file_index.csv`. Check file-index SHA-256 against the 111 summary and original RNA acquisition metadata SHA-256.
-- `data/interim/metadata/800_preflight_h_gdc_qc_source_pilot.json`. Check its own SHA-256 and exact query hash against `800_preflight_a_readiness.json`. This cached JSON is the authoritative **discovery snapshot** for the twelve STAR output file IDs and their analysis `input_files` nodes; it is not re-requested from GDC.
-- Preserve exact GDC STAR output `file_id`, file name/size/MD5, direct `associated_entities` case/aliquot match, uniquely mapped provisional-primary status and `analysis.analysis_id` from H/111. Do not infer source sample from case membership.
-- Extract upstream input-file UUIDs `analysis.input_files.file_id` from H. Require one input node per H STAR output as actually observed; refuse to guess missing IDs or expand to any other source record. It may have fewer than twelve unique upstream input IDs if inputs are shared, in which case repeated inputs must remain visible rather than being counted as independent sample evidence.
+1. **A:** use the 111 provisional primary-tumor file index, classify file/sample/aliquot multiplicity, preserve 1,082 simple provisional primary cases, 288 multiplicity cases, 530 with extra same-case RNA files and 37 with at least one ambiguous extra RNA file.
+2. **E source technical:** read \`gene_id\` and \`unstranded\` exactly once from each of the 1,082 original local STAR Count files, verify source file sizes against 111, and compute gene-row counts, assigned gene-count totals, detected STAR gene rows and special \`N_\` tallies. All are descriptive, not independent sequencing QC. No count threshold is trained or applied.
+3. **F:** reconstruct additional same-case RNA provenance flags and the original descriptive bottom-20 count context; retain ambiguous source ancestry.
+4. **G:** calculate source-site/disease-stratum count distributions and assemble the same technical-count sampling frame.
+5. **H:** apply the prespecified four-context, three-per-context low/central rank selection, sorted by (\`unstranded_gene_count_total\`, \`file_id\`). The four strata and positions are unchanged from the old 800 code:
+   - uterus adenoma/adenocarcinoma: positions 0, 1 and \`n // 2\`;
+   - pancreas ductal/lobular: positions 0, 1 and \`n // 2\`;
+   - kidney adenoma/adenocarcinoma: positions 0, \`n // 2 - 1\` and \`n // 2\`;
+   - lung adenoma/adenocarcinoma: positions 0, \`n // 2 - 1\` and \`n // 2\`.
 
-The H pilot was deliberately **not representative**: three files per uterine, pancreatic, kidney and lung source context; technical count extremes/center. Sample counts, per-lineage quality rates or larger-cohort coverage must not be extrapolated from H/112.
+The recomputed twelve file UUIDs must exactly match the original archived H query and its hits. Any mismatch **stops** the notebook; the frozen historical sample must not be silently changed to make it pass.
 
-## 3. Independent direct-input-record query — prospective scope
+**Scope separation:** Original E comparisons against the 2,389-gene Phase 4 frozen reference are not part of Phase 1 source acquisition. They remain the responsibility of subsequent program-reference compatibility / validation. Source technical diagnostics and fixed-program gene coverage are distinct tests and must not be conflated.
 
-Perform exactly **one public GDC `/files` metadata-only query** restricted to the upstream input-file UUIDs extracted from the fixed H JSON. Request only file UUID/name/size/checksum, access and data type, `associated_entities`, workflow identity and the six fields previously observed inside H's input-file nodes: `total_reads`, `proportion_reads_mapped`, `proportion_reads_duplicated`, `average_base_quality`, `average_read_length`, `average_insert_size`.
+## 2. Historical GDC observations and version control
 
-- Query cap: **at most twelve input-file UUIDs**. Save the exact request, query SHA-256, UTC capture time, return subset/identity and response in a **new** immutable-on-rerun local snapshot, `112_cptac3_qc_upstream_direct_file_snapshot.json`.
-- Failed HTTP request or malformed response: **stop**, do not infer quality metadata are absent.
-- Some input file UUIDs might have no public direct `/files` record. Classify them explicitly as **not returned in this bounded query**, not provider-wide absence or proof of inaccessible QC.
-- If the direct file has an exact single `associated_entities` aliquot matching the STAR output's **case and aliquot**, classify `EXACT_INPUT_STAR_CASE_ALIQUOT_MATCH`. Missing, multiple or discordant associations cannot be rescued with case-level matches or lexical IDs.
-- Compare the six `analysis.input_files` embedded values with the fields retrieved from the direct input record. Agreement establishes **same-provider metadata consistency** only; these may be the same database measurements exposed along two API paths. It does not prove independence of QC, tool-specific definitions/versions or verified denominators for mapping and duplication.
-- Do not query or download source read payloads, controlled BAM/FASTQ, broaden the API filter, select a preferred STAR file, apply a QC cutoff, compute expression values, normalize, perform project integration, or score a program. Do not automatically modify `config/raw_data_registry.json` or `config/artifact_registry.json`.
+The old H STAR-output snapshot was recovered from Git commit \`b0f41b0^\` with **unchanged Git blob SHA \`9a7c5a7aa0fe4f3cf6580128aa7837df84c7debd\`** and SHA-256 \`dcd1dc8b332bda55c658751e6e781a9cbe3719ed07fd17e38e67bbcf794b6ecb\`. It was captured at \`2026-10-23T20:51:50.219909+00:00\` and remains the original response, not a newly fabricated snapshot.
 
-## 4. Output contracts
+| Versioned source snapshot | Original SHA-256 | State |
+|---|---|---|
+| \`docs/evidence/phase1/notebook112/112_gdc_star_output_pilot_snapshot.json\` | \`dcd1dc8b332bda55c658751e6e781a9cbe3719ed07fd17e38e67bbcf794b6ecb\` | Recovered, byte-identical |
+| \`docs/evidence/phase1/notebook112/112_gdc_upstream_input_pilot_snapshot.json\` | \`ca5e2f54458fb6cc26946ef734f1f2d3606817f2836cbc843466eb7633e8e358\` | **NOT YET RECOVERED: blocker** |
 
-All outputs are local `data/interim/metadata/`, not automatically registered/frozen artifacts:
+The second upstream JSON was generated on the original local Notebook 112 execution of 2026-10-23; it is not reconstructible byte-for-byte from the H snapshot because it is a separately queried projection. Until that original JSON is restored, a clean-clone reproduction is **not certified**. A contemporary GDC requery may be compared to the frozen response but may never replace it silently.
 
-| Output | Purpose |
-|---|---|
-| `112_cptac3_qc_upstream_direct_file_snapshot.json` | Versioned exact GDC upstream file metadata projection and query/source hashes; never overwrite silently |
-| `112_cptac3_qc_input_file_provenance.csv` | 12 STAR output rows with exact per-output upstream input-file UUID, source type and case+aliquot matching status |
-| `112_cptac3_qc_input_metric_reconciliation.csv` | 72 source-scoped field-comparison rows (12 STAR × six named QC metadata fields); no sample QC pass/fail |
-| `112_cptac3_qc_source_feasibility.csv` | Bounded counts of direct input records and source-link/field agreement; no extrapolation |
-| `112_cptac3_qc_provenance_handoff.json` | 111 and H input hashes, query and snapshot hash, metadata CSV hashes, strictly defined status, open gates, no-scoring/no-selection flags |
+The snapshot files are exceptions to \`.gitignore\` because external metadata responses may change after publication. Derived CSV and JSON outputs under \`data/interim/\` remain untracked and are regenerated from code.
 
-Preserve `cohort_frozen=false`, `QC_eligibility_authorized=false`, `biological_replication_performed=false`, `samples_selected_or_excluded=0`, `QC_cutoffs_frozen=0`. These are Phase 1 **source provenance** outputs, not a frozen external validation cohort.
+## 3. Exact inputs and outputs
 
-## 5. Scientific decision and stop rule
+**Inputs:** 111 audit summary and file index, 111 provisional primary file inventory, 1,082 acquired local STAR Count files, two versioned GDC metadata snapshots. Notebook 111 must have performed complete source-payload MD5 verification. The 112 execution does not repeat 111's 5,578-file integrity sweep.
 
-A positive exact case+aliquot match **permits proposing** a separately reviewed assessment of provider QC definitions and their coverage across the frozen STAR source universe. It does not create an automatic GO to scale or a QC-eligible primary cohort. A field is useful for prospective QC only after its source processing level, read vs fragment unit, denominator, software/workflow version, dependence on library protocol and missingness structure are established.
+**Downstream technical consumable:** \`data/interim/metadata/112_cptac3_rna_simple_primary_technical_inventory.csv\` (1,082 rows; case/file identity plus source-only STAR counts). Notebook 113 consumes this file for source provenance, **not** as an independent read-quality cutoff.
 
-If exact direct-input records or direct aliquot associations fail for the bounded pilot, record the limitation and **STOP** this provider-QC acquisition route without automatic sample rescue. If 12/12 source links reconcile, record a **CONDITIONAL SOURCE-PROVENANCE PASS** and hand over the descriptive evidence for review; do not automatically fetch all 1,082 primary candidates.
+**Other descriptive outputs** may be displayed within 112, with local CSVs retained only where needed for the accepted source handoff. The historical direct-input audit retains:
+- \`112_cptac3_qc_input_file_provenance.csv\` (12 records);
+- \`112_cptac3_qc_input_metric_reconciliation.csv\` (72 paired-field records);
+- \`112_cptac3_qc_source_feasibility.csv\` (10 summary records);
+- \`112_cptac3_qc_provenance_handoff.json\` (input fingerprints and explicit limitations).
 
-**Next distinct phase:** Notebook 800 must separately determine analytical eligibility, the 288 multi-primary-candidate case policy, CPTAC–TCGA donor independence, source-to-TCGA lineage crosswalk, reference-compatible normalization and a prespecified independent matched-null replication estimand. This 112 technical work is not itself a validation study.
+All these generated files remain \`data/interim/metadata/\`, not version-controlled. Rationalization of unnecessary local outputs is separate from any scientific source-content change.
 
-**References:** [GDC aligned reads summary metrics](https://docs.gdc.cancer.gov/Data/Bioinformatics_Pipelines/Aligned_reads_summary_metrics/); [GDC API fields](https://docs.gdc.cancer.gov/API/Users_Guide/Appendix_A_Available_Fields/); [GDC mRNA analysis pipeline](https://docs.gdc.cancer.gov/Data/Bioinformatics_Pipelines/Expression_mRNA_Pipeline/).
+## 4. Historical comparison and QC limitations
 
-## 6. Execution addendum — verified bounded audit, 2026-10-23
+The original execution on 2026-10-23 reported twelve direct upstream file records with exact case+aliquot associations (12/12), six agreeing metrics in two provider metadata projections (72/72), no sample exclusions, no frozen QC threshold and no independent library/read-quality validation. The refactored notebook must reproduce these outcomes from the original snapshots, not assert them solely from the historical markdown.
 
-**Prospective contract preserved:** Sections 1–5 above are original decision rules; this Section 6 is a retrospective execution addendum, not a post hoc redefinition of sample selection or quality criteria.
+The 12-file pilot is deliberately nonrepresentative. Agreement between two GDC API projections does not prove independent measurements or denominators. Do not generalize 12/12 availability to the full 1,082/2,968-file source universe, declare all 721 downstream proposed cases QC-pass, or infer donor independence, external biological replication, or clinical validity.
 
-**Execution reviewed:** commit `5a29da9ed4376c3722345b74624e2e24d8c30af5`. The notebook ran all **8/8 code cells**, with zero Python exceptions and no changes to prepared code, cell identity or ordering. The inherited H source pilot and the original Notebook 111 index/summary passed the independently recorded fingerprint reconciliation. Snapshot-query behavior remained bounded and no source payload was read or acquired.
+## 5. Migration-specific acceptance gates
 
-**Direct input-source provenance:** H provided **12 STAR output files and 12 distinct upstream input-file UUIDs**. The new GDC public `/files` query returned **12/12 direct upstream file records**, preserving a new immutable-on-rerun snapshot SHA-256 `ca5e2f54458fb6cc26946ef734f1f2d3606817f2836cbc843466eb7633e8e358`. All **12/12 input records** had exact direct GDC case/aliquot associations matching their respective already audited STAR output file identities. This is stronger source linkage than the workflow-input-node association alone; it is not independent biological-donor identity or quality acceptance.
+- Original archived H snapshot byte identity and query integrity pass.
+- A/E/F/G source-derived sampling frame reconstructs original 12 file UUIDs without a hardcoded list.
+- Original upstream-input snapshot is restored to Git at the specified SHA-256.
+- Clean-clone sequential execution can regenerate 111 → 112 and the 112 technical consumable.
+- Local Run All reproduces the observed 12/12 and 72/72 counts and does not modify raw data or registries.
+- Notebook 113 reuses the 112 source-technical consumable with unchanged G2 cohort membership and unchanged 721-case proposed source cohort, subject to execution verification.
 
-**Quantitative metadata agreement:** GDC's six inspected file-level values—`total_reads`, `proportion_reads_mapped`, `proportion_reads_duplicated`, `average_base_quality`, `average_read_length`, and `average_insert_size`—agreed between the prior H `analysis.input_files` representation and the newly fetched direct input file projection for **72/72 file-field pairs**. The two projections may report identical stored provider values, so they cannot serve as independent reproducibility/quality replicates. Denominator definitions, library/assay comparability, workflow version semantics and quality acceptance thresholds remain **unvalidated**.
-
-**Persisted local outputs:** 12 source-provenance rows, 72 quantitative-field comparison rows, 10 summary rows, plus the 112 SHA-256-fingerprinted handoff JSON. The local output files are not Git-tracked. Zero QC thresholds and zero source-file exclusions/selections; `cohort_frozen=false`, `QC_eligibility_authorized=false`, `biological_replication_performed=false`.
-
-**Audit decision:** **PASS / CLOSED for the 12-file acquisition-metadata identity and field reconciliation pilot. NOT PASS for RNA-seq independent quality eligibility, denominator comparability or external validation.** Notebook 112's role is now to provide evidence to the 800 eligibility contract; no automatic extension to the 1,082 single-primary provisional candidates, 649 multiplicity files or 2,968 source RNA files is approved. Further provider-data acquisition would require a distinct prospectively scoped decision based on documentation of measurement applicability and coverage. The pilot's four intentionally selected source contexts must not be considered a random or representative audit sample.
-
-**Branch lineage note:** the original development branch `notebook-112-cptac3-qc-provenance` was created from the unfinished `notebook-800-preflight-a` branch to consume the locally available H evidence. For a Phase 1-only PR against `main`, use a **separate clean branch from main** containing only the 112 notebook and this Phase 1 contract. Do not merge unreviewed Notebook 800 changes into main as a side effect of closing 112.
-
+**This migration is not closed until those conditions have been verified.**
