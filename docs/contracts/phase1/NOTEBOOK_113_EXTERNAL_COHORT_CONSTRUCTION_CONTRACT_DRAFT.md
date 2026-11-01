@@ -1,5 +1,12 @@
 # Notebook 113 — CPTAC-3 External Cohort Construction and Source-Provenance Contract
 
+> **2026-11-01 reproducibility migration (separate branch; not yet execution-verified).** The historical Phase 8 Notebook 800 A/B/C source-only multiplicity and specimen-availability analyses have been transferred into Notebook 113 without changing the frozen outcome-blind G2 selection policy. Notebook 113 now consumes the regenerable 1,082-row source-only STAR technical inventory and its checksum from Notebook 112; such diagnostics must not be interpreted as independent read QC.
+>
+> The executed 2026-10 PDC public case catalog and study-membership metadata were originally stored only under gitignored \`data/interim/metadata/\`. This branch requires recovery of the **original** JSON responses into \`docs/evidence/phase1/notebook113/\` before clean-clone reproducibility can be certified. The original public-case snapshot SHA-256 was \`be21a30d790a34d1f2012ac8bdee0b445b545912f477598e9cec171b2c52e25f\`. New API queries must never silently replace the archived responses. Historic local observations (721 cases; seven lineage counts; G3 exception policy) are comparison baselines, **not proof** that the migrated notebook has passed Run All.
+>
+> **Open architectural boundary:** Notebook 113's existing donor-collision and frozen-gene checks still use Phase 2/4 artifacts. These are later-numbered notebook dependencies; their relocation must be resolved explicitly before claiming a globally sequential repository. The 721-case G3/G4 candidates all passed original G6, so moving program-specific 2,389-gene compatibility downstream is plausible but remains **unapproved and unverified**, and the selection rule cannot change silently.
+
+
 **Lifecycle (current, 2026-10-28):** Notebook 113 executed and source-cohort construction COMPLETE; 721-case source inventory PROPOSED, not analytically frozen; G3 cohort-level and G4 source harmonization implemented; G5 read-QC uncertainty retained; G6 file/count coverage verified; G8 feasibility limitations recorded. Phase 8 analysis authorization remains pending. Historical sections below record earlier draft milestones; see the superseding amendments and the final 113→800 handoff.
 **Owner:** Phase 1 / Notebook 113 (new), upstream of Phase 8 / Notebook 800.
 **Normative Phase 8 policy source:** `docs/contracts/phase8/NOTEBOOK_800_ELIGIBILITY_AND_REPLICATION_CONTRACT_DRAFT.md` G2 decision and G3–G8 guardrails; this contract does not retroactively change their scientific standards.
