@@ -46,13 +46,8 @@ The snapshot files are exceptions to \`.gitignore\` because external metadata re
 
 **Downstream technical consumable:** \`data/interim/metadata/112_cptac3_rna_simple_primary_technical_inventory.csv\` (1,082 rows; case/file identity plus source-only STAR counts). Notebook 113 consumes this file for source provenance, **not** as an independent read-quality cutoff.
 
-**Other descriptive outputs** may be displayed within 112, with local CSVs retained only where needed for the accepted source handoff. The historical direct-input audit retains:
-- \`112_cptac3_qc_input_file_provenance.csv\` (12 records);
-- \`112_cptac3_qc_input_metric_reconciliation.csv\` (72 paired-field records);
-- \`112_cptac3_qc_source_feasibility.csv\` (10 summary records);
-- \`112_cptac3_qc_provenance_handoff.json\` (input fingerprints and explicit limitations).
+**Non-consumed descriptive results stay inside the notebook:** 12 exact STAR-input source associations, 72 paired GDC metadata-field comparisons, and a 10-row feasibility summary. They are computed and displayed, **not saved as separate CSVs**. The only generated handoff file besides the 1,082-row technical inventory is \`112_cptac3_qc_provenance_handoff.json\`, which fingerprints source snapshots, records the provenance verdict and verifies the technical-inventory hash.
 
-All these generated files remain \`data/interim/metadata/\`, not version-controlled. Rationalization of unnecessary local outputs is separate from any scientific source-content change.
 
 ## 4. Historical comparison and QC limitations
 
