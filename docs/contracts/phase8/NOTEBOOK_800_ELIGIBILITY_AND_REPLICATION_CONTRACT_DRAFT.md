@@ -88,3 +88,16 @@ The prior E/F source-only case structure, 1,082 STAR count diagnostics and provi
 **Acceptance:** reproduce the 1,082/1,082 × 2,389/2,389 exact-ID coverage and all original 112 readout agreements; preserve the 721 proposed case/file/lineage membership and seven source lineages without modifying 113; retain `cohort_frozen=False`, `external_analysis_authorized=False`, no normalization/scoring, no inferential statistics and no clinical/causal conclusions. The 800 acceptance JSON must fingerprint the full-source E manifest and distinguish source feature compatibility from the 721-file G6 intersection. All 800 results must be produced by a local `Run All` before this addendum can be marked executed.
 
 **Caveat:** the exact 2,389-gene presence does not establish transcriptome-wide completeness, cross-platform calibration, cohort biological independence, read quality or stable program behavior. E result coverage is only one prerequisite for later predeclared G6 normalization and G7 structural tests.
+
+
+## Presentation, validation and recovery boundary (2026-11-02)
+
+The maintained Notebook 800 describes the **final analytical questions and current scientific constraints**. The migration chronology, reconstructed source decision provenance, and legacy E regression references are retained in this contract and the Phase 1 documentary audits rather than repeated in notebook headings.
+
+The notebook uses short, focused code cells and the project Black 88-character conventions. Static regression tests in `tests/test_notebook_800_structure.py` check Python parsing, cell size, explanatory headings, and the 1,082-source versus 721-proposed distinction. These checks do not replace a verified local Run All.
+
+**Typed comparison correction.** Source file sizes are compared after numeric conversion to the same nullable integer representation, by elementwise value equality with missing-value checks, rather than pandas `Series.equals` between `int64` and `Int64` representations. The source technical comparisons to Notebook 112 likewise use consistently converted numeric values and require all 1,082 matched records. True source-size/count differences remain failures.
+
+**Resumable derived evidence.** A completed 1,082-file STAR scan now immediately stages its derived per-file/per-gene CSV outputs and a fingerprint manifest with `verification_status=PENDING_CROSSCHECK`. No cohort or QC claim is authorized at that stage. Subsequent cells reconcile SHA-256 identities, count-vector metrics, exact frozen gene coverage and 721-member subset membership. Only then does the manifest become `verification_status=VERIFIED`. If a downstream comparison fails, the staged source evidence can be reused after the code defect is corrected; re-reading raw STAR payloads is not required when all source/cache fingerprints agree.
+
+**Verification state:** the new presentation and error-handling code has been committed for execution review. A fully executed, exception-free Notebook 800 with its final `VERIFIED` cache receipt must still be published and audited before closing the refactor branch or approving inferential Phase 8 work.
