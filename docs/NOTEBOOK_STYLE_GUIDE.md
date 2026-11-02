@@ -2,6 +2,18 @@
 
 This document defines implementation and documentation conventions for analytical notebooks in the `pancancer-epigenetics` project.
 
+## Formatting and presentation
+
+- Apply **Black formatting** to Python code cells (88-character line length).
+  For Jupyter notebooks: `python -m black --ipynb path/to/notebook.ipynb`.
+- Keep cell boundaries aligned with a single purpose and aim for no more than
+  50 lines of executable Python in analytical notebooks.
+- Present the **current analytical workflow** in notebook headings and comments.
+  Decision history, discarded alternatives and refactoring rationale belong in
+  the relevant contract, audit or decision-log document, not repeatedly in cells.
+- Before publication, parse all code cells and run the relevant checks. Do not
+  claim a clean Run All until the executed notebook has been inspected.
+
 ## Cell structure
 
 - Keep code cells short and focused on a single analytical responsibility.
