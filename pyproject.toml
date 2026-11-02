@@ -12,3 +12,7 @@ requires-python = ">=3.11"
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["pancancer_epigenetics*"]
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
