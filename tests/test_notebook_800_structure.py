@@ -61,3 +61,17 @@ def test_phase8_notebook_has_distinct_full_source_and_cohort_scopes():
     assert "n_proposed_source_cases" in code
     assert '"cohort_frozen": False' in code
     assert '"biological_replication_executed": False' in code
+
+
+def test_numeric_size_comparison_preserves_values_across_pandas_dtypes():
+    import pandas as pd
+
+    from_strings = pd.Series(["100", "200"], dtype="string")
+    from_records = pd.Series([100, 200], dtype="int64")
+
+    observed = pd.to_numeric(from_strings, errors="raise").astype("Int64")
+    expected = pd.to_numeric(from_records, errors="raise").astype("Int64")
+    assert observed.eq(expected).fillna(False).all()
+
+    changed = pd.Series([100, 201], dtype="int64").astype("Int64")
+    assert not observed.eq(changed).fillna(False).all()
