@@ -1,6 +1,6 @@
 # Notebook 112 — CPTAC-3 source RNA technical audit and QC-metadata provenance
 
-**Status (2026-11-01): MIGRATION DRAFT — code updated for first-run snapshot generation; Run All and snapshot baseline acceptance pending.**  
+**Status (2026-11-02): Phase 1 source-migration EXECUTED AND AUDITED on branch `refactor/phase1-cptac3-source-audit-order`; complete Phase 8 feature-compatibility migration remains pending.**  
 **Owner:** Phase 1 / Notebook 112.  
 **Execution contract:** Notebook 111 → Notebook 112 → Notebook 113 → Notebook 800.  
 **Methodological boundary:** source-only technical diagnostics and public metadata attribution; no quality pass/fail, downstream program scoring, cohort freeze or biological inference.
@@ -64,12 +64,20 @@ The 12-file pilot is deliberately nonrepresentative. Agreement between two GDC A
 - Local Run All reproduces the observed 12/12 and 72/72 counts and does not modify raw data or registries.
 - Notebook 113 reuses the 112 source-technical consumable with unchanged G2 cohort membership and unchanged 721-case proposed source cohort, subject to execution verification.
 
-**This migration is not closed until those conditions have been verified.**
+**Notebook 112 source-side execution audit passed; full cross-notebook migration remains open for the downstream Phase 8 gene-reference scope and clean-clone reproducibility.**
 
 ## 6. Additional original E/F/G source analyses relocated on 2026-11-01
 
-**Pending fresh Run All after relocation.** Notebook 112 now also reconstructs the original E source-stratified structural attrition (22 source strata, 1,370 primary cases, 1,082 simple and 288 multiplicity cases) and F source-context diagnostics (18 source strata, 544 additional RNA files across 530 simple cases, including 37 with ambiguous-ancestry additional RNA).
+**Executed and reviewed on GitHub (2026-11-02).** Notebook 112 now also reconstructs the original E source-stratified structural attrition (22 source strata, 1,370 primary cases, 1,082 simple and 288 multiplicity cases) and F source-context diagnostics (18 source strata, 544 additional RNA files across 530 simple cases, including 37 with ambiguous-ancestry additional RNA).
 
 The original G prospective QC metric catalog, STAR \`N_\` tally availability and nine prospective safeguard statements have been restored as notebook-visible, outcome-blind descriptive analyses. The source-context G table retains the **descriptive** bottom-20 counts, not a learned quality threshold. No new exclusion, batch harmonization or program validation is authorized.
 
 The original E comparisons to the fixed **2,389 Phase 4 transcriptomic genes** are deliberately **not** evaluated by Notebook 112: doing so would create a reverse Phase 1→4 dependency. The prior full-1,082-case exact feature-presence and frozen-gene detection analyses must be preserved and checked in the **later Phase 8 analytical compatibility workflow**, before the migration can be called exhaustive. Existing Notebook 113 G6 verifies the 721 proposed source cohort files, which is **not identical** to the historical E all-1,082-file assessment. Do not claim this gate is complete simply because G6 reports 721/721 compatibility.
+
+## 7. Post-execution audit — 2026-11-02
+
+The published second execution at commit `ff0fbde` contains **18/18 consecutively executed code cells with no recorded exceptions**. The source STAR scan processed **1,082/1,082 files**. The original H sampling rule reproduced the same 12 output-file UUIDs, the provider linked 12/12 direct upstream input files, and the six-field metadata comparison reproduced 72/72 concordant pairs. The newly captured upstream input-file GDC JSON is committed in `docs/evidence/phase1/notebook112/`; the notebook's comparison against the previous locally retained October snapshot showed 12/12 unchanged provider records.
+
+The restored E/F analyses produced 22 unharmonized source-context strata across 1,370 provisional-primary cases (1,082 structurally simple; 288 multiplicity), 18 F source strata and 544 additional same-case RNA files, 37 simple cases with ancillary ambiguous-ancestry files. The G QC catalogue has 12 predefined categories; all four STAR `N_` tallies were present in 1,082/1,082 source files. Nine prospective QC/methodological safeguards remain explicitly non-authorizing. **This is source metadata and counts verification, not independent sequencing QC.**
+
+The source-only 112 handoff fingerprint was consumed successfully by the executed 113; its original proposed 721 case/file/lineage identities were unchanged. No new QC-based case exclusion is authorized. The **outstanding cross-phase condition** is preservation of the historical E exact 2,389-gene Phase 4 reference coverage across the full 1,082-file source universe (distinct from 113's 721 proposed cohort G6 audit), in the Phase 8 validation notebook. This audit does not assert a clean-clone run was performed.
