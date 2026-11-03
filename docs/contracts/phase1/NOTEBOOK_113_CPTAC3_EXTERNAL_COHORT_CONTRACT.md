@@ -93,22 +93,26 @@ The 288 multiply represented primary cases remain outside the starting candidate
 
 ## 10. Reproducibility and analytical inputs
 
-The reproducible outputs under `data/interim/metadata/` include:
+The notebook persists **only results with a defined downstream consumer**. Its four derived outputs under `data/interim/metadata/` are:
 
-| Artifact | Scientific purpose |
+| Artifact | Downstream use |
 | --- | --- |
-| `113_source_provenance_manifest.json` | Immutable input/source identities, versions, evidence references and recorded SHA-256 values |
-| `113_donor_identity_and_cohort_links.csv` | Source membership and identifier-linkage evidence with unresolved cases retained |
-| `113_primary_candidate_case_eligibility.csv` | Complete case-level candidate universe, statuses and exclusion reasons |
-| `113_source_to_tcga_lineage_crosswalk.csv` | Reviewed original-context-to-TCGA mapping and ambiguity |
-| `113_cohort_attrition_by_context.csv` | Separate source-context denominators and case/sample/file attrition |
-| `113_assay_qc_and_feature_compatibility.csv` | Source-integrity, QC-evidence and gene/count compatibility findings |
-| `113_cohort_readiness.json` | Audited output fingerprints, unresolved limitations and cohort-freeze status |
-| `113_proposed_external_source_cohort.csv` | Outcome-blind 721-case proposed membership with unique source file identities |
-| `113_proposed_source_cohort_lineage_counts.csv` | Proposed membership counts by accepted lineage |
-| `113_source_handoff_attrition.csv` | Reconciliation from the candidate universe to proposed source membership |
+| `113_proposed_external_source_cohort.csv` | Exact proposed 721-case membership, unique primary RNA file/sample/aliquot identities, source labels, accepted TCGA lineage, provenance and eligibility flags used by Notebook 800 |
+| `113_primary_candidate_case_eligibility.csv` | Full 1,082-case, outcome-blind candidate ledger, including source identifiers, reviewed PDC/source evidence where relevant, provenance and lineage adjudications, QC limitations, selection status and non-inclusion reasons needed for Notebook 800 checks |
+| `113_raw_count_compatibility.csv` | Persisted case/file-level STAR count-schema and frozen-gene coverage assessment consumed by Notebook 800 without repeating the source matrix audit |
+| `113_source_provenance_manifest.json` | Input and source-evidence identities, verified SHA-256 values of the three CSVs, cohort-level readiness/limitations and the exact provenance needed by Notebook 800 to accept its inputs |
 
-These are local generated outputs; they are not automatically registered or frozen by virtue of execution. Any downstream use must verify the actual local membership file against the SHA-256 recorded in the source manifest and readiness record; also verify case/file uniqueness, source statuses and lineage totals. A mismatch is a reproducibility failure requiring source review, not grounds for ad hoc re-selection.
+The manifest must record the exact hashes, row counts, versions and source identities required to authenticate these artifacts. It must also convey `cohort_frozen=false`, `external_analysis_authorized=false`, the unresolved read-level QC limitation and the qualified cohort-level externality assumption. No second readiness JSON is needed. The manifest is written **after** the three CSVs have been finalized and fingerprinted; avoid self-referential checksums.
+
+The candidate ledger is the authoritative persisted record of source provenance, lineage decisions, ambiguous or excluded cases and their reasons. Its column names and status codes must be scientifically self-explanatory, not internal preflight labels. The raw-count compatibility file records the completed matrix-level assessment with case and file keys, rather than requiring downstream notebooks to repeat that assessment. Only the proposed cohort file defines the exact downstream source membership; the ledger documents the selection and excluded alternatives.
+
+The following remain **in-notebook results**, not separate exported artifacts: lineage counts, attrition tables, source-context/workflow summaries, field-availability reports, PDC study catalogs and linkage diagnostics, source lineage crosswalk summaries, and other intermediate adjudication views. Preserve their underlying source evidence and any decision-bearing case-level conclusions needed downstream in the retained input snapshots, candidate ledger and manifest. Do not export duplicate CSV representations solely because the analysis computed or displayed them.
+
+Immutable provider metadata, PDC/source snapshots, the frozen TCGA reference and other fingerprinted **inputs** are distinct from these four derived outputs. Required source snapshots must remain available with traceable hashes; the four-output rule does not authorize deletion of source inputs.
+
+A downstream notebook must verify the three produced CSVs against the manifest, their case/file uniqueness and the expected source-lineage denominator before using them. It must not redo source eligibility, donor/cohort adjudication, histology harmonization or raw-count matrix compatibility. A hash mismatch or inconsistent membership is a stop condition requiring correction at the producing notebook.
+
+No artifact is created for speculative future use. If a specific additional analytical result is later required downstream, add its export to Notebook 113, execute and verify that producer, update its manifest, then consume the persisted result. Do not repeat the underlying source analysis in the consumer. Generated local outputs are not automatically frozen or registered solely because the notebook executed.
 
 ## 11. Limitations and interpretation
 
