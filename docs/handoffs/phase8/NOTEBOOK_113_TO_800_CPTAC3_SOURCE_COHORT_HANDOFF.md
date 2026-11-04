@@ -1,54 +1,55 @@
-# Notebook 113 → 800 — CPTAC-3 proposed external source cohort handoff
+# Notebook 113 → 800 — CPTAC-3 external RNA-seq source cohort handoff
 
-**Date:** 2026-10-28
-**Status:** Notebook 113 source-construction work complete; proposed cohort **not frozen**; Notebook 800 inference **not authorized**.
-**Source branch:** `notebook-113-cptac3-external-cohort`
-**Executed source notebook commit:** `c496e28` (G3–G6 construction and handoff outputs, as inspected on branch).
-**Owner:** Notebook 113 (source cohort and case-level provenance); Notebook 800 (independent structural replication design).
+**Source producer:** `notebooks/phase1_data_acquisition_and_auditing/113_cptac3_external_cohort_construction.ipynb`  
+**Downstream consumer:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb`  
+**Status:** Executed, outcome-blind source construction; proposed membership is **not** an approved frozen inferential cohort.
 
-## Reviewed, outcome-blind cohort definition
+## Source membership and eligibility
 
-Read the already executed `data/interim/metadata/113_proposed_external_source_cohort.csv`; require its SHA-256 to equal the value recorded in `113_source_provenance_manifest.json` and `113_cohort_readiness.json`. The authoritative digest is **the 64-character value in those generated files**, not a transcription from truncated notebook display.
+Notebook 113 establishes a proposed **727-case / 727-file** GDC `CPTAC-3` primary-tumor RNA-seq source cohort. The source candidate universe contains 1,082 cases with uniquely represented primary STAR Counts RNA-seq file/sample/aliquot identities. Its 355 not-proposed cases are attributable to lineage mapping: 351 ambiguous brain/kidney subtypes and four unsupported kidney source contexts. The 288 multiply represented primary cases are outside the 1,082-case source candidate universe.
 
-Per-case inclusion is the intersection of:
-- G2: one uniquely linked primary-tumor RNA-seq STAR Counts file/sample/aliquot, frozen 1,082-case source universe.
-- G3: `COHORT_SUPPORTED_EXTERNAL`, a proportionate *cohort-level* external provenance assumption (not proof of individual genetic independence).
-- G4: `ACCEPTED` source-site/histology → frozen TCGA lineage mapping.
-- G6: `COMPATIBLE_RAW_COUNTS`, exact `unstranded` raw count input, unique version-normalized Ensembl IDs, nonnegative integer counts and complete 2,389-gene frozen Phase 4 universe.
-
-**Proposed source cohort: 721 unique cases and 721 files, across seven TCGA lineages.** Executed results:
-
-| TCGA lineage | Cases |
+| Accepted TCGA lineage | Proposed cases |
 | --- | ---: |
+| TCGA-HNSC | 36 |
 | TCGA-LUAD | 178 |
 | TCGA-LUSC | 89 |
-| TCGA-STAD | 142 |
+| TCGA-PAAD | 88 |
 | TCGA-SKCM | 138 |
-| TCGA-PAAD | 82 |
+| TCGA-STAD | 142 |
 | TCGA-UCEC | 56 |
-| TCGA-HNSC | 36 |
-| **Total** | **721** |
+| **Total** | **727** |
 
-The complete 1,082-case G2 inventory is retained. **361 not proposed**: 351 unresolved source subtype (159 brain glioma, 192 kidney adenoma/adenocarcinoma); four other kidney contexts without supported TCGA lineage mapping; and six provenance exceptions in PAAD. These are not automatically recoded or rescued after observing results.
+The source eligibility criteria are: unique primary file/sample/aliquot in the fixed candidate universe; `cohort_provenance_status=COHORT_LEVEL_EXTERNALITY_ASSUMED`; `lineage_mapping_status=ACCEPTED`; validated `unstranded` nonnegative integer raw-count vector; and complete representation of the frozen **2,389** shared Phase 4 Ensembl genes.
 
-## Mandatory import/checks in Notebook 800
+Cohort-level externality remains a **qualified study-design assumption**. The status `donor_independence_status=NOT_INDIVIDUALLY_VERIFIED` must be preserved. GDC project provenance and absence of demonstrated overlap do **not** establish genetic donor independence. The ambiguity flag for cases with additional RNA files is preserved for prospective sensitivity analyses; it does not automatically exclude their unique primary-tumor file.
 
-1. Load `113_source_provenance_manifest.json`, `113_cohort_readiness.json`, and the proposed cohort CSV. Independently verify both SHA-256 records, source input fingerprints, the 721-case count, unique case/file IDs, permitted inclusion labels, and the exact seven-lineage denominator **before** reading program scores.
-2. Treat case/sample/file identity and source-to-TCGA lineage as immutable. An 800-side mismatch is a STOP, not a reason to reselect G2 cases or amend 113 outputs.
-3. Preserve all seven lineages individually and do not pool them naively. Define lineage-aware structural replication estimands, sample-support rules and uncertainty handling prospectively; report any lineage too small as non-evaluable.
-4. Predefine count normalization, frozen weight/feature projection, handling of TCGA/CPTAC platform shifts, proliferation and purity limitations, negative controls, multiplicity, and sensitivity analysis, **without using CPTAC replication outcomes to choose preprocessing or eligibility rules**.
-5. G5 read-level QC is **not formally assessed**; MD5 integrity and unambiguous sample ancestry are verified, but do not imply QC PASS. G8 purity, sequencing batch, collection center and library preparation are not present in the audited candidate inventory; do not interpret absence of fields as confirmed lack of biological/batch variation. Assess confounder identifiability and any external metadata provenance before claims.
-6. Source cohort handoff is **not an analytic cohort freeze**. Do not set `external_analysis_authorized=true` or register the proposed cohort as a frozen artifact until the 800 design and upstream source requirements are separately approved.
+## Four authoritative locally generated source outputs
 
-## Source evidence / paths
+All four outputs are located under `data/interim/metadata/`:
 
-- Notebook: `notebooks/phase1_data_acquisition_and_auditing/113_cptac3_external_cohort_construction.ipynb`
-- Contract: `docs/contracts/phase1/NOTEBOOK_113_EXTERNAL_COHORT_CONSTRUCTION_CONTRACT_DRAFT.md`
-- Proposed source cohort: `data/interim/metadata/113_proposed_external_source_cohort.csv`
-- Per-lineage summary: `data/interim/metadata/113_proposed_source_cohort_lineage_counts.csv`
-- Attrition: `data/interim/metadata/113_source_handoff_attrition.csv`
-- Complete case ledger: `data/interim/metadata/113_primary_candidate_case_eligibility.csv`
-- Local source manifest: `data/interim/metadata/113_source_provenance_manifest.json`
-- Readiness: `data/interim/metadata/113_cohort_readiness.json`
+| Output | Consumer responsibility |
+| --- | --- |
+| `113_proposed_external_source_cohort.csv` | Exact proposed membership and source file/sample/aliquot/lineage identities |
+| `113_primary_candidate_case_eligibility.csv` | Complete 1,082-case candidate ledger, inclusion/non-inclusion reasons, original source context, QC and provenance limitations |
+| `113_raw_count_compatibility.csv` | Case/file keyed completed raw-count and 2,389-gene coverage assessment; do not redo source eligibility audit |
+| `113_source_provenance_manifest.json` | Input fingerprints, SHA-256 and row/column counts of the three CSVs, per-lineage denominators, source statuses and analysis readiness |
 
-The `data/interim` files are generated locally and may not be version-controlled. Their reproducibility and fingerprints—not merely the committed executed notebook outputs—must be verified wherever Notebook 800 runs. No new cohort construction should be attempted inside Notebook 800.
+The manifest is generated after the CSVs and has no self-referential checksum. The source files are local generated outputs and are not automatically registered or frozen in Git.
+
+## Mandatory Notebook 800 acceptance
+
+1. Load the four outputs exactly as produced. Verify the SHA-256 of all **three CSVs** against `derived_outputs` in the manifest. Reconcile case/file uniqueness, memberships between eligible ledger rows/cohort/compatibility, source statuses, 727 proposed cases and the seven lineage counts.
+2. Verify the frozen TCGA source reference and three immutable Phase 4 programs against their authoritative registry fingerprints. Do not refit program loadings or redefine the 2,389-gene reference based on external outcomes.
+3. For the source RNA-seq payloads actually consumed, verify local file availability, `size_bytes` and provider MD5 against the audited identities. This is downstream **file-integrity verification**, not new acquisition or a repeat of 113's matrix-level feature-presence audit.
+4. Do not requery GDC for case selection; reconstruct candidate membership; reassess source histology or donor provenance; or select, remove, relabel or replace cases in response to program scores. Producer-output disagreement is a **STOP** requiring correction of the producing source and its fingerprints.
+5. Preserve `cohort_frozen=false`, `external_analysis_authorized=false`, `read_level_qc_status=QC_UNASSESSED` and `cross_platform_comparability=NOT_ESTABLISHED` as current readiness limitations. Do not promote source compatibility to read/library-level sequencing QC PASS.
+6. Specify and review, before confirmatory testing, normalization and frozen-program projection; a **non-tautological within-lineage structural replication estimand**; negative controls and their matching diagnostics; effect sizes and uncertainty; the primary program-by-lineage multiplicity family; support/evaluability rules; and identifiable sensitivity analyses for purity/composition, proliferation, technical factors and recorded ancestry ambiguity.
+
+If reliable measurement comparability, donor provenance or identifiable adjustment assumptions cannot be established for an intended claim, report the limitation or the relevant `NOT_EVALUABLE` state; do not rescue the analysis by outcome-dependent selection or naïve cross-lineage pooling.
+
+## Governing documents
+
+- `docs/contracts/phase1/NOTEBOOK_113_CPTAC3_EXTERNAL_COHORT_CONTRACT.md`
+- `docs/contracts/phase8/NOTEBOOK_800_CPTAC3_EXTERNAL_TRANSCRIPTOMIC_REPLICATION_CONTRACT.md`
+
+Notebook 113 defines and fingerprints the **proposed source cohort**. Notebook 800 owns the prospective analytic readiness decision, lineage-aware structural-replication analysis and its scientifically qualified interpretation. Neither successful 113 execution nor an available program score constitutes inferential authorization.
