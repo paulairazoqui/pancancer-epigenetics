@@ -2,7 +2,7 @@
 
 **Phase:** 8 — Orthogonal validation  
 **Notebook:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb`  
-**Scientific status:** External RNA-seq source cohort proposed and source compatibility assessed; the analytical normalization, primary replication estimand and inferential decision rules require prospective specification before confirmatory analysis. No external program-replication result is established by this contract.
+**Scientific status:** External RNA-seq source cohort proposed and source compatibility assessed. The normalization and fixed-program projection approach, the primary scientific replication property, and two negative-control families have been selected. A weighted reference-network concordance statistic is a **candidate**, not a frozen confirmatory test; control algorithms, uncertainty, and decision rules remain to be specified before confirmatory analysis. No external program-replication result is established by this contract.
 
 ## 1. Scientific objective and scope
 
@@ -43,46 +43,109 @@ Maintain a deterministic, versioned execution environment and recorded input has
 
 ## 4. Transcriptomic data preparation and program projection
 
-The audited external input representation is the GDC STAR Counts **`unstranded` raw-count column**, with uniquely version-normalized Ensembl gene IDs, nonnegative integer values and all 2,389 required reference genes present in the 727 proposed files. The presence of all required identifiers does not itself establish numerical equivalence between platforms, library preparations or pipelines.
+The audited external input representation is the GDC STAR Counts **`unstranded` raw-count column**, with uniquely version-normalized Ensembl gene IDs, nonnegative integer values and all **2,389** frozen reference genes present in the **727** proposed files. Identifier coverage does not establish numerical comparability across sequencing workflows.
 
-The analytical procedure must preserve the original programs: no gene-symbol substitution, arbitrary feature selection, absent-gene zero imputation, re-estimation of loadings, sign reversal or outcome-dependent normalization. Treat the expression normalization and gene-scaling choices as part of the measurement model, not as an opportunity to maximize replication.
+### 4.1. Agreed primary normalization
 
-**Required prospective specifications before projection:**
+- Normalize the CPTAC-3 counts **independently of TCGA** using `edgeR` in R: trimmed mean of M values (**TMM**) library normalization followed by **log2 counts per million (logCPM)**, with the executed TCGA Notebook 205 procedure as the technical reference.
+- Estimate TMM normalization factors from the **broad protein-coding count universe**, not only the 2,389 program genes. Apply `edgeR::filterByExpr` for the genes informing normalization, using the **seven accepted lineages as groups**. The agreed primary specification uses its conventional defaults (`min.count=10`, `min.total.count=15`, `large.n=10`, `min.prop=0.7`), subject to checking the installed `edgeR` version and actual function call at implementation.
+- Calculate logCPM for **all 2,389 frozen genes**, including those that do not pass `filterByExpr`, using the TMM factors and effective library sizes estimated from the broader reference. Expression filtering must **not** redefine the frozen scoring features.
+- Retain the logCPM convention from Notebook 205 (`edgeR::cpm(..., log=TRUE, prior.count=2, normalized.lib.sizes=TRUE)`) unless an explicit implementation-compatibility issue is identified and resolved before projection. Notebook 205 used a CPM >= 1 gene-presence criterion instead of `filterByExpr`; this difference must be recorded, not described as an identical transformation.
+- The Notebook 800 Python workflow may invoke a small, versioned R script via `Rscript`, following the existing repository pattern. **RStudio is not an execution requirement.** Avoid redundant persisted intermediate matrices unless reproducibility requires them.
 
-1. The exact input gene universe used for library normalization, filtering, offsets and any zero-count handling; the algorithm and package implementation, including version and parameters.
-2. The relationship between the executed TCGA reference transformation and the external transformation, including whether scale parameters are estimated independently within CPTAC-3 or externally anchored to frozen TCGA reference quantities.
-3. The projection formula for each frozen signed loading vector, the scaling domain, treatment of constant genes and handling of missing or nonfinite measurements.
-4. A bounded normalization/projection sensitivity justified by technical comparability rather than by observed replication results.
+### 4.2. Agreed immutable program projection
 
-Do not combine TCGA and CPTAC-3 to estimate normalization or standardization parameters in a manner that leaks external outcomes into the reference. Do not assume that an absolute score threshold learned in TCGA transfers to CPTAC-3. No external program scores should be computed for inferential purposes until the transformation and projection are approved and reproducible. Mark a comparison **not evaluable for input compatibility** if an essential measurement assumption cannot be supported.
+- Use the frozen `phase4.400.cross_system_shared_gene_universe` and `phase4.401.consensus_transcriptomic_gene_weights` artifacts (3 programs × 2,389 ordered genes) with exact identities, signs, magnitudes, and SHA-256 verification.
+- Following executed Notebook 401, within **CPTAC-3 as one cohort**, standardize each gene independently using its CPTAC-3 mean and sample standard deviation (`ddof=1`) after normalization. Do **not** reuse TCGA means/standard deviations, join cohorts for scaling, or standardize genes separately within each lineage for the primary projection.
+- For each sample and program, compute the dot product of the standardized 2,389-gene expression vector and the **unchanged** signed consensus-weight vector. Standardize each resulting program score to mean zero and sample SD one **within CPTAC-3**, following Notebook 401.
+- Analyze structural evidence **within lineage**. Global within-CPTAC-3 standardization can depend on the relative composition of the seven lineages; it must not be interpreted as cross-platform absolute-score calibration. A score's computability or dispersion is **not** itself replication.
+- Diagnose zero-variance genes, nonfinite values, absent identifiers, and the fraction of 2,389 frozen genes passing `filterByExpr`. **Do not silently delete genes, zero-fill missing genes, replace SD=0 by an arbitrary constant, or alter frozen weights.** If standardization is undefined, record the problem and its scope before any affected projection proceeds.
+
+### 4.3. Technical sensitivity and reproducibility
+
+- Agreed technical sensitivity: compare the expression-filtering behavior with the executed TCGA Notebook 205 **CPM >= 1** rule. This does not redefine the primary normalization or remove frozen genes.
+- An optional diagnostic may examine TMM factors estimated from only the 2,389 fixed genes; because such factors may be program-biased, this **cannot replace the broad-gene primary normalization** and must not be chosen based on favorable replication outcomes.
+- Before executing the workflow, pin and record relevant R/`edgeR` and Python dependency versions, precise counting/normalization settings, sample order, gene alignment, and numerical tolerances.
+
+Do not re-estimate loadings, reorient programs, replace features by symbols, perform de novo ICA in CPTAC-3, or use external replication results to optimize transformations. Essential measurement incompatibility remains a reason to classify an analysis as non-evaluable rather than repairing the frozen program after seeing outcomes.
 
 ## 5. Structural replication target and analysis design
 
-The primary inferential target must be the **within-lineage external reproducibility of a clearly defined non-tautological property of each frozen signed multigene program**. The chosen property should distinguish coherent program structure from mere ability to calculate a fixed weighted sum.
+### 5.1. Approved scientific target
 
-An analysis design is not fully specified merely by naming a correlation, projection or score. Before examining CPTAC-3 replication statistics, define the target population, estimand, unit of analysis, test statistic, negative-control reference, uncertainty estimator and decision rule. Methods that compare independent or disjoint gene contributions, preservation of a reference multigene relationship, or other structural criteria may be evaluated for suitability, but **no single method is approved by this contract merely because it was proposed previously**.
+The **approved primary scientific property** is **within-lineage preservation in CPTAC-3 of the TCGA reference gene–gene coexpression structure** for each of the three frozen signed consensus programs. A favorable projection score alone cannot establish this property. The **approved complementary property** is within-CPTAC-3 signed multigene coherence, evaluated without treating score–constituent-gene association as independent evidence.
 
-Any chosen structural criterion must address:
+TCGA and CPTAC-3 must be evaluated separately for each of the seven accepted matching lineages. The TCGA reference is estimated from its observed tumors, not assumed to be an error-free true network. A result for one lineage does not automatically generalize to other cancer types.
 
-- **Non-tautology:** do not treat a score–constituent-gene correlation, or a statistic algebraically implied by the score, as independent replication.
-- **Frozen representation:** no learning or reweighting of program components using CPTAC-3 responses to the replication analysis.
-- **Lineage awareness:** estimate evidence separately within each eligible lineage; between-lineage composition may not substitute for within-lineage structure.
-- **Technical and biological alternatives:** clarify what the statistic can and cannot distinguish from shared library, proliferation, immune/stromal or purity effects.
-- **Negative outcomes:** a failed or inconclusive test is reportable; do not alter the structure, membership or statistic to recover support.
+### 5.2. Candidate primary statistic — not yet frozen
 
-A formal confirmatory structural claim requires the design details and justification to be frozen prospectively. Descriptive score summaries, visualization, exploratory correlations and technical feasibility summaries must be clearly labeled and must not be substituted for the structural test.
+The leading **candidate** is the weighted Pearson correlation between corresponding **untransformed gene–gene Pearson correlations** in lineage-matched TCGA and CPTAC-3, using only distinct gene pairs:
+
+```text
+T(program k, lineage l) =
+    weighted_Pearson_corr(
+        { r_TCGA(i,j,l) : i < j },
+        { r_CPTAC3(i,j,l) : i < j },
+        pair_weights = { abs(w_i,k * w_j,k) : i < j }
+    )
+```
+
+Here `w_i,k` is the unchanged consensus weight for gene `i` in program `k`. This is **relative edge-pattern concordance**: it does **not** demonstrate equal coexpression magnitudes, preservation of causal or regulatory edges, or independence from shared latent factors. No universal observed-`T` cutoff has been adopted. Fisher `atanh` transformation of individual correlations is **not primary**; its possible sensitivity role remains to be justified.
+
+The candidate is not a prevalidated ICA network-preservation test. Its suitability, stability and inferential calibration must be assessed prospectively before confirmatory CPTAC-3 evaluation. A high score with weakened correlation magnitudes must not be described as full structural preservation.
+
+### 5.3. Approved supporting analyses and reference characterization
+
+- **Secondary:** within-lineage signed coexpression coherence, with pairwise correlations oriented by `sign(w_i * w_j)` and summarized using a **weighted median** with pair weights `abs(w_i * w_j)`. This characterizes internal coherence but is not an independent confirmation of reference-network preservation.
+- **Complementary interpretation:** inspect attenuation or shifts in coexpression strength compared with TCGA using a prespecified, weighted effect-size summary; its exact formula is **pending**. Do not promote this automatically to a second independent success test.
+- **Construction diagnostic:** concordance of scores from prespecified **disjoint-gene** partitions balanced for frozen weight sign and magnitude; not a substitute for network preservation.
+- **Reference stability:** assess whether TCGA gene–gene patterns are reproducible within each lineage using tumor-level partitions/resampling; comparability with the smaller external sample sizes must be considered. This has **not yet been executed as an inferential reference-calibration study**.
+
+The completed **TCGA-only descriptive audit** used verified frozen files, did not access CPTAC-3, and did not amend registered artifacts. It established materially different weight concentration across programs:
+
+| Program | Positive / negative / zero weights | Energy in highest 10% `abs(w)` genes | Effective number of genes, inverse squared-energy concentration |
+| --- | ---: | ---: | ---: |
+| `CONSENSUS_TX_01` | 819 / 1,570 / 0 | 75.3% | 138.3 |
+| `CONSENSUS_TX_02` | 1,348 / 1,041 / 0 | 55.0% | 503.9 |
+| `CONSENSUS_TX_03` | 1,024 / 1,365 / 0 | 53.5% | 489.6 |
+
+In seven reference TCGA lineages, the unweighted median signed correlations across all 2,389 genes were generally small (0.007–0.030), whereas medians among pairs of the top 10% `abs(w)` genes ranged from 0.067 to 0.281 (program/lineage dependent). Weighted median signed correlations across lineages ranged 0.032–0.062 (TX_01), 0.028–0.070 (TX_02), and 0.017–0.053 (TX_03). These are **descriptive source-reference observations, not external replication results or pairwise-independent statistical tests**. The concentration of TX_01 weighs against unweighted all-gene median coherence as a primary estimand.
+
+The TCGA-only audit reported disjoint-partition score correlations of 0.980–0.988 (TX_01), 0.943–0.990 (TX_02) and 0.959–0.987 (TX_03); these do not independently establish biological specificity. The audit figures were reported in the development review and are **not yet a newly frozen registered artifact**; any figures used in a manuscript or confirmatory calibration must be reproducibly regenerated and recorded from the SHA-verified source inputs.
+
+### 5.4. Interpretation boundary
+
+All primary effect sizes are program-by-lineage; do not pool cancers naïvely, treat millions of dependent gene pairs as independent samples, or choose lineages after observing their external values. Similar edge patterns may reflect proliferation, immune/stromal composition, tumor purity, platform or batch effects rather than a specific epigenetic program. An external structural association is not clinical resistance prediction, causal validation or therapeutic reversal.
 
 ## 6. Negative controls and statistical inference
 
-Negative controls must be chosen to challenge the property measured by the primary statistic, not merely to produce a favorable contrast. Their construction must preserve relevant gene-level and sample-level properties **to the extent necessary for the chosen estimand**—potentially reference expression abundance, detectability, signed loading distribution, program size, lineage or technical characteristics—without importing CPTAC program-replication results into selection or tuning. Unmatched random-gene controls alone should not be presumed sufficient. A null that reuses the tested signal or encodes the desired result is unacceptable.
+### 6.1. Approved conceptual negative-control families
 
-Specify before inferential execution: the exact control-generation algorithm and eligibility universe; matching variables and tolerances; treatment of overlap with frozen program genes; deterministic seed(s); number of draws; target statistic; test direction; effect-size definition; uncertainty method; and any failure-to-match handling. Control validity and attainable matching quality must be reported even when results are unfavorable.
+Two control families have been **approved in principle**, but their exact algorithms and valid roles remain to be specified against the candidate statistic:
 
-The primary multiplicity family must be defined over the **three programs and all lineages passing outcome-blind evaluability criteria**, without selecting comparisons on observed effect size. Prespecify the family-wise or false-discovery-rate procedure, the evidence threshold and the uncertainty reporting convention. The case, not a gene or technical replicate, is the independent observational unit to the extent supported by source provenance. Account for dependence among program tests and avoid treating repeated resampling draws as independent biological samples.
+1. **Primary negative reference: matched alternative gene sets.** Compare the tested program with alternative gene sets of matching cardinality and relevant expression characteristics, accounting for detectability, abundance and variability using prospective TCGA-side or otherwise outcome-blind information. Preserve a defensible signed/magnitude weight distribution. An eligible alternative-gene universe must be shown to exist and to have comparably available expression in both cohorts; **the 2,389 frozen scoring genes are not automatically a sufficient alternative pool**. Construct corresponding TCGA and CPTAC-3 references for the *same* alternative genes. Specify allowed overlap and failure-to-match handling.
+2. **Complementary negative reference: reassignment/permutation of frozen weights and signs.** Evaluate whether the original assignment has distinctive performance relative to alternatives on the same genes. In the candidate primary statistic, pair weights use **absolute magnitudes**; a **global sign inversion** changes nothing, while permuting sign labels alone does not change its absolute pair weights and is therefore **not a meaningful primary-statistic null**. Reassigning magnitudes can alter primary-statistic weights. Signed permutations can instead be useful for the **signed-coherence secondary analysis** with an explicitly defined null.
 
-Report every planned program-by-lineage test, including negative, uncertain, unmatched-control and non-evaluable outcomes. Any cross-lineage synthesis requires an explicit stratified or hierarchical estimand and cannot replace the lineage-level findings.
+Unmatched random genes alone are not a sufficient primary control. Neither a null that retains the tested signal trivially nor a null designed to favor the observed result is acceptable. Control distributions must not be tuned using CPTAC-3 replication outcomes.
 
-**Statistical choices not yet approved:** primary structural estimand and statistic; control-matching and null procedure; resampling/uncertainty scheme; multiplicity method and threshold; and the role, if any, of direct TCGA-reference comparisons. These require scientific approval before confirmatory calculations.
+### 6.2. Reference reliability and tumor-level uncertainty
+
+Before confirmatory use, characterize **within-lineage TCGA reference stability** by deterministic repeated, disjoint tumor splits or suitable tumor-level resampling. Specify sample counts and acknowledge that TCGA split-half precision differs from full-TCGA-versus-CPTAC-3 precision. A TCGA internal-reference reproducibility score is **not an automatic external replication threshold**.
+
+Uncertainty for the primary statistic should be estimated at the **tumor/case level**, considering uncertainty in **both** TCGA reference edges and CPTAC-3 edges. Bootstrap or related tumor-resampling design remains to be specified, with stratification by lineage and attention to small external sample counts (notably CPTAC-3 HNSC, n=36) and smaller reference counts (notably TCGA-SKCM, n=103). Neither dependent gene pairs nor permutations/splits are independent biological replicates.
+
+### 6.3. Inferential specifications still open
+
+Before viewing confirmatory CPTAC-3 coexpression preservation statistics, define and record the following:
+
+- Exact matched-control source universe, matching variables, tolerances, set construction, sample-level handling, permitted overlap, seeds, number of controls and null interpretation.
+- Exact weight-reassignment control (if informative for the chosen test), number of permutations, and handling of invariant sign operations.
+- TCGA reference stability design, treatment of estimated reference-network uncertainty, and primary-statistic degeneracy (e.g., nearly constant edge vectors).
+- Tumor-level uncertainty estimator, test direction, effect-size comparison to controls, and rules for non-evaluability.
+- Primary multiplicity family over **3 programs × 7 accepted lineages** (21 planned comparisons), with an explicit missing/non-evaluable policy and selected FDR or FWER method and thresholds.
+- If used, the exact formula for coexpression-magnitude attenuation and any technical sensitivity of the `atanh` correlation transform.
+
+A scientifically defensible no-effect/negative conclusion and an inconclusive result must remain reportable; do not reselect genes, tumors, controls, or statistics to recover a positive result. No confirmatory structural comparison is authorized by the conceptual approvals alone.
 
 ## 7. Lineage-aware evaluability and interpretation
 
@@ -142,4 +205,4 @@ The current proposed CPTAC-3 population supports source-level externality rather
 
 Permissible conclusions must be limited to the specific external transcriptomic structure actually tested and the lineages in which the design is evaluable. Evidence that a structure recurs does not imply resistance-like phenotype replication, a validated target, clinical prediction or therapeutic reversal; such outcomes require separate data and validation.
 
-**Readiness:** The 727-case cohort is proposed and raw-count feature compatibility has been assessed at source level. Its final inferential membership and the primary normalization/projection, structural estimand, controls, statistical decision rules and identifiable sensitivity analyses are **not yet frozen**. These decisions must be scientifically reviewed and documented before confirmatory execution; until then, no external structural-replication claim is warranted.
+**Readiness:** The 727-case source cohort remains proposed, with feature compatibility assessed at source level. The primary normalization and immutable program-projection **approaches are approved** (Section 4), the reference-network preservation property is **approved** (Section 5), and matched-gene and weight/sign-reassignment **control families are approved conceptually** (Section 6). The weighted edge-pattern Pearson statistic is a **candidate, not a frozen inferential specification**. Final inferential membership, implemented normalization details and versioning, TCGA reference reliability, exact null generation, uncertainty, multiplicity, outcome-blind evaluability and feasible confounding sensitivities remain **open**. The Notebook 800 may be developed incrementally for authenticated inputs, normalization and fixed projection; a confirmatory external structural-replication claim requires the remaining design decisions before its inferential computation.
