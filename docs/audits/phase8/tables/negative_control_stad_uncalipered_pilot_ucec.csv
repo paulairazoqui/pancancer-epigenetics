@@ -1,0 +1,13 @@
+tcga_lineage,strategy,weighting,feature,smd,absolute_smd,passes_smd_0_10,matched_genes,unique_alternatives,pairs_max_gap_gt_0_10,pairs_max_gap_gt_0_14,maximum_rank_gap
+TCGA-UCEC,uncalipered_minimum_euclidean_distance,unweighted,mean_logcpm,0.07226705416298512,0.07226705416298512,True,2389,2389,301,185,0.3577222314186393
+TCGA-UCEC,uncalipered_minimum_euclidean_distance,unweighted,sd_logcpm,0.16627420859608294,0.16627420859608294,False,2389,2389,301,185,0.3577222314186393
+TCGA-UCEC,uncalipered_minimum_euclidean_distance,unweighted,prevalence_logcpm_gt0,0.04336222193910419,0.04336222193910419,True,2389,2389,301,185,0.3577222314186393
+TCGA-UCEC,uncalipered_minimum_euclidean_distance,CONSENSUS_TX_01,mean_logcpm,0.06383549532287015,0.06383549532287015,True,2389,2389,301,185,0.3577222314186393
+TCGA-UCEC,uncalipered_minimum_euclidean_distance,CONSENSUS_TX_01,sd_logcpm,0.1618654925136728,0.1618654925136728,False,2389,2389,301,185,0.3577222314186393
+TCGA-UCEC,uncalipered_minimum_euclidean_distance,CONSENSUS_TX_01,prevalence_logcpm_gt0,0.04075128432449849,0.04075128432449849,True,2389,2389,301,185,0.3577222314186393
+TCGA-UCEC,uncalipered_minimum_euclidean_distance,CONSENSUS_TX_02,mean_logcpm,0.08035253595388274,0.08035253595388274,True,2389,2389,301,185,0.3577222314186393
+TCGA-UCEC,uncalipered_minimum_euclidean_distance,CONSENSUS_TX_02,sd_logcpm,0.19409591207171478,0.19409591207171478,False,2389,2389,301,185,0.3577222314186393
+TCGA-UCEC,uncalipered_minimum_euclidean_distance,CONSENSUS_TX_02,prevalence_logcpm_gt0,0.04885607082299903,0.04885607082299903,True,2389,2389,301,185,0.3577222314186393
+TCGA-UCEC,uncalipered_minimum_euclidean_distance,CONSENSUS_TX_03,mean_logcpm,0.06246364831304825,0.06246364831304825,True,2389,2389,301,185,0.3577222314186393
+TCGA-UCEC,uncalipered_minimum_euclidean_distance,CONSENSUS_TX_03,sd_logcpm,0.17190433030249852,0.17190433030249852,False,2389,2389,301,185,0.3577222314186393
+TCGA-UCEC,uncalipered_minimum_euclidean_distance,CONSENSUS_TX_03,prevalence_logcpm_gt0,0.03696812442122964,0.03696812442122964,True,2389,2389,301,185,0.3577222314186393

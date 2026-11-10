@@ -1,0 +1,3 @@
+tcga_lineage,caliper,matched_genes,unmatched_genes,complete_matching
+TCGA-UCEC,0.1,2311,78,False
+TCGA-UCEC,0.14,2359,30,False

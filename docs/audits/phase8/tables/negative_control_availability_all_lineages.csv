@@ -1,0 +1,8 @@
+tcga_lineage,targets_without_candidate,minimum_candidates,median_candidates,p90_candidates
+TCGA-HNSC,6,0,553.0,1062.0
+TCGA-LUAD,4,0,481.0,1044.0
+TCGA-LUSC,1,0,462.0,1041.2000000000005
+TCGA-PAAD,1,0,360.0,1014.0
+TCGA-SKCM,0,1,622.0,1033.0
+TCGA-STAD,10,0,457.0,1007.4000000000004
+TCGA-UCEC,0,1,565.0,1139.0
