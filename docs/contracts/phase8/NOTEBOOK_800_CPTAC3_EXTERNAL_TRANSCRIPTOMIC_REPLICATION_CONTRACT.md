@@ -147,6 +147,61 @@ Before viewing confirmatory CPTAC-3 coexpression preservation statistics, define
 
 A scientifically defensible no-effect/negative conclusion and an inconclusive result must remain reportable; do not reselect genes, tumors, controls, or statistics to recover a positive result. No confirmatory structural comparison is authorized by the conceptual approvals alone.
 
+### 6.4. Prospective TCGA-only matched-control feasibility protocol
+
+**Status and scope:** This section specifies a **design-stage feasibility/calibration analysis**, not a frozen confirmatory negative-control test. It is to be implemented reproducibly in Notebook 800, with a strictly TCGA-only expression/stability evaluation. The prior CPTAC-3 source normalization and fixed-score projection are acknowledged; **no TCGA-to-CPTAC-3 edge-concordance statistic, control rank, or external replication result may be inspected to select or revise controls**. A subsequent amendment must approve the final inferential algorithm before confirmatory comparison.
+
+#### 6.4.1. Candidate universe and permitted information
+
+- Construct a unique Ensembl-gene-ID universe from the frozen Phase 2 Notebook 205 TCGA normalized RNA-seq expression gene index and the protein-coding gene IDs available in the previously inventoried CPTAC-3 STAR Counts source. Strip Ensembl version suffixes consistently and use gene IDs, never gene-symbol substitution, to join features.
+- Require presence in **both** source representations; exclude all **2,389** frozen Phase 4 genes from the alternative pool. Technical presence on the CPTAC-3 side is permitted; its expression values, variability, coexpression, scores and cross-cohort concordance are **not** permitted for matching, calibration or rule changes.
+- Use the seven accepted TCGA lineages independently and the fixed Notebook 205 TCGA logCPM representation. The existing Notebook 205 expression filter defines the available TCGA reference gene universe; do not claim that it is an unbiased sample of all protein-coding genes.
+- A target gene with undefined within-lineage TCGA variance is a **target/reference evaluability issue**, not a reason to drop or replace the gene. Alternative genes with undefined values or within-lineage zero variance cannot be used in that lineage. Report such exclusions and their provenance.
+- Alternative control genes will eventually require CPTAC-3 logCPM calculated using the **already estimated** broad-gene CPTAC-3 TMM effective library sizes; no second TMM fitting or result-driven normalization may be performed.
+
+#### 6.4.2. Prespecified TCGA-only matching features and feasibility settings
+
+Within each lineage compute, for each available gene, using only TCGA tumor samples:
+
+1. Mean logCPM (abundance).
+2. Sample standard deviation of logCPM (variability; ddof=1).
+3. Fraction of TCGA tumors with logCPM > 0 (a fixed **logCPM-based low-abundance proxy**, not the raw-count CPM >= 1 detection criterion).
+
+Convert each feature into a percentile rank within the lineage-specific joint pool of eligible target and alternative genes, using average ranks for ties. For the **initial feasibility specification**, a target–alternative pair is eligible only when the absolute percentile-rank difference is **at most 0.10 in each of the three features**. This is an explicitly provisional matching tolerance, not an empirically validated biological equivalence threshold.
+
+- Seek **one-to-one, without-replacement matching of all 2,389 target genes** within each lineage. Alternative genes must be unique within a single matched set and disjoint from all frozen genes. Reuse across different sets or different lineages is permissible and must be reported.
+- Construct assignments using **full-cardinality minimum-cost bipartite matching** restricted to the prespecified eligible target–alternative edges; an unconstrained greedy nearest-neighbor pass is insufficient. Define the base edge cost as Euclidean distance in the three TCGA percentile-rank coordinates. For independent, reproducible alternatives, add a fresh `Uniform(0, 0.02)` perturbation to **each eligible edge cost** before solving each full-cardinality assignment. Randomness influences assignments only within fixed TCGA-derived calipers; it does not alter gene eligibility. Match assignment must **not** use network coexpression or program-replication outcomes.
+- Retain each target gene's original signed weight when assigning it to its corresponding alternative. Since all three programs share the same 2,389 genes, the same lineage-specific gene matching may be used for all three programs; assess balance **separately for each program**, using its frozen absolute weights.
+- Feasibility target: **10 distinct, structurally diverse complete alternative gene sets per lineage**. Use `numpy.random.default_rng(numpy.random.SeedSequence([800621, lineage_index, attempt_index]))`, with lineages in sorted order, indices starting at zero, and a limit of **100 attempts per lineage**. Examine attempts in increasing index order and retain the first 10 full-cardinality assignments for which the set of 2,389 alternative gene IDs is different and its pairwise overlap with **every** previously retained set is **at most 95%** (shared alternative genes / 2,389). Thus mere reassignment of the same alternative gene set does not count as a new control. Record every attempted outcome and the exact accepted attempt indices; no resampling based on SMD, split-half stability, program results or external concordance. If fewer than 10 qualifying sets are obtained within 100 attempts, the 10-set diversity target **fails** for that lineage; do not loosen the bound or overlap threshold silently. Exact implementation and library versions must be recorded in Notebook 800 before execution. This feasibility target is **not** the final number of confirmatory controls.
+
+#### 6.4.3. Matching diagnostics and feasibility gates
+
+For **every lineage and every candidate matched set**, report:
+
+- Number of target genes, unique eligible alternative genes, targets with no eligible alternative, full matching achieved (yes/no), and any conflict preventing full matching.
+- The distribution (median, 90th percentile, maximum) of the three absolute within-pair percentile-rank differences.
+- Signed standardized mean differences (SMDs) of the **original TCGA-scale features**, unweighted and weighted separately by each program's absolute target-gene weights. The fixed SMD denominator is the standard deviation of that feature across the **joint TCGA eligible gene universe** within the lineage; zero denominators constitute an undefined diagnostic and must be reported rather than silently repaired.
+- Across all attempts and the retained assignments: report the number of attempted, full-cardinality, duplicate, overlap-rejected and retained sets; retained attempt indices; pairwise alternative-gene set overlap fractions (intersection / 2,389), and gene reuse frequencies. An assignment accepted for diversity is **not automatically accepted for expression balance**. Repeated sets are **not** independent biological samples.
+
+A matched set passes the **initial operational feasibility gate** only if **all 2,389 target genes** are uniquely matched and the absolute SMD is **at most 0.10** for all three features, both unweighted and for **each** of the three program-specific weightings. The 0.10 value is a prospective balance diagnostic, **not** a claim that correlation structures or null distributions are equivalent. Record the full distribution of failures, not only successful sets. The presence of a sufficient number of alternatives does not by itself certify exchangeability or a valid p-value.
+
+#### 6.4.4. TCGA reference-stability diagnostic and computational pilot
+
+Only after the matching-feasibility outputs are recorded:
+
+- Use **five** deterministically generated, disjoint, approximately equal-sized TCGA tumor splits **within each of the seven lineages** (seed **800622**). Each split yields two independent tumor subsets; no CPTAC-3 tumor or gene-expression value enters these calculations.
+- For each split, compute the **candidate weighted edge-pattern Pearson concordance** between its two TCGA subsets for the frozen genes and for the **first three prespecified matched sets** (the same retained per-position absolute weights). Sample size, total gene pairs, number of usable pairs, degenerate edge vectors, runtime and peak working memory must be reported. The 2,852,466 distinct gene pairs are dependent and are **not** inferential replicates.
+- For each lineage and program, report the distributions of target and matched-control split-half concordance, their descriptive median differences and spread, and the effective half-sample sizes. These results assess **reference-estimation stability**, not external validation. Split-half precision is not comparable by default to full-TCGA-versus-CPTAC-3 precision.
+- Stability is **a post-matching diagnostic, not an additional gene-level matching feature or a criterion for retrospectively choosing particular control sets**. Five splits and three controls are a design/computational pilot, not a sufficient basis for formal competitive p-values or a universal stability-equivalence threshold. A quantitative reference-reliability/evaluability rule, if used, must be prespecified in a later documented amendment before any confirmatory CPTAC-3 edge statistic is inspected.
+
+#### 6.4.5. Failure handling, evidence, and inferential boundary
+
+- **Full matching unavailable, insufficient balance, or insufficient control-set diversity:** report the failure by lineage and control set; do not silently widen calipers, allow duplicate genes, omit difficult high-weight genes, replace the original features, or select the most favorable surviving controls. The affected negative-control family is **not yet feasible** under this specification.
+- **Reference instability, zero-variance target, degenerate edge vectors, or excessive computational cost:** record the specific cause and scope. These conditions trigger explicit review of feasibility or evaluability; they must not be relabeled as a negative replication finding.
+- If the initial design fails, a revised algorithm/tolerance may be investigated **only as a visibly labeled new TCGA-only exploratory calibration**, with its complete failures and rationale preserved. Freeze any eventual revision in this contract **before** examining CPTAC-3 edge concordance.
+- The notebook must contain the executable analysis, fixed seeds, gene/sample identifiers, input artifact fingerprints, complete lineage-wise matching metrics, stability summaries and limitations. Prefer small reproducible summary outputs; do not persist large pairwise correlation matrices or redundant copies of source expression. Document any exact control maps required for later reconstruction.
+- **No control-based p-value, Holm correction, or confirmatory external program-replication interpretation is authorized by this feasibility exercise.** Matched-set ranks describe relative specificity unless a statistically valid null and its calibration are separately justified. Tumor-level uncertainty in both cohorts, the inferential control algorithm, 21-test multiplicity and non-evaluability policies remain open under Section 6.3.
+
 ## 7. Lineage-aware evaluability and interpretation
 
 Begin with the seven accepted source lineages and their fixed proposed case counts. Define **outcome-blind** minimum statistical support, effective case counts, data completeness, usable variance, identifiable adjustment structure and any other necessary conditions before evaluating program replication. A universal minimum sample-size cutoff is not justified merely by convenience; support criteria must reflect the chosen statistic, anticipated precision and control feasibility.
