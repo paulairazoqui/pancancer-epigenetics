@@ -49,7 +49,9 @@ def smd_bounds(target: np.ndarray, alternative: np.ndarray, weights: np.ndarray)
     denominator = weights.sum()
     alt_sorted = np.sort(alternative)
     return (
-        float(np.dot(order_w, alt_sorted[: len(weights)]) / denominator),
+        # The rearrangement inequality pairs the largest weights with the
+        # smallest selected values to attain the lower weighted mean.
+        float(np.dot(order_w[::-1], alt_sorted[: len(weights)]) / denominator),
         float(np.dot(order_w, alt_sorted[-len(weights) :]) / denominator),
     )
 
@@ -71,7 +73,37 @@ def write_csv(frame: pd.DataFrame, name: str, suffix: str = "") -> None:
     frame.to_csv(OUT / f"{stem}{suffix}.{extension}", index=False)
 
 
-def main(run_pilot: bool, extend_uncalipered: bool, selected_lineage: str | None) -> None:
+def consolidate_lineage_outputs() -> None:
+    """Replace per-lineage transient outputs with four review-sized tables."""
+    suffixes = ("hnsc", "luad", "lusc", "paad", "skcm", "stad", "ucec")
+    sources = {
+        "negative_control_strict_caliper_feasibility.csv": "negative_control_strict_caliper_feasibility",
+        "negative_control_caliper_010_availability.csv": "negative_control_caliper_010_availability",
+        "negative_control_unconditional_balance_bounds.csv": "negative_control_unconditional_balance_bounds",
+        "negative_control_uncalipered_assignment.csv": "negative_control_stad_uncalipered_pilot",
+    }
+    for destination, stem in sources.items():
+        source_paths = [OUT / f"{stem}_{suffix}.csv" for suffix in suffixes]
+        frames = [pd.read_csv(path) for path in source_paths]
+        frame = pd.concat(frames, ignore_index=True).sort_values("tcga_lineage")
+        frame.to_csv(OUT / destination, index=False)
+        for path in source_paths:
+            path.unlink()
+
+    provenance = json.loads((OUT / "negative_control_feasibility_provenance_stad.json").read_text(encoding="utf-8"))
+    provenance["lineages"] = [f"TCGA-{suffix.upper()}" for suffix in suffixes]
+    provenance["output_layout"] = "consolidated_lineage_tables"
+    (OUT / "negative_control_feasibility_provenance.json").write_text(json.dumps(provenance, indent=2) + "\n", encoding="utf-8")
+    for suffix in suffixes:
+        (OUT / f"negative_control_feasibility_provenance_{suffix}.json").unlink()
+
+
+def main(
+    run_pilot: bool,
+    extend_uncalipered: bool,
+    selected_lineage: str | None,
+    bounds_only: bool,
+) -> None:
     gene_meta = pd.read_csv(ROOT / "data/interim/expression/tcga_primary_tumor_rnaseq_program_discovery_filtered_gene_metadata.csv")
     sample_meta = pd.read_csv(ROOT / "data/interim/expression/tcga_primary_tumor_rnaseq_program_discovery_sample_metadata.csv")
     shared = pd.read_csv(ROOT / "data/processed/consensus_programs/400_cross_system_shared_gene_universe.csv")
@@ -125,15 +157,16 @@ def main(run_pilot: bool, extend_uncalipered: bool, selected_lineage: str | None
             for program in PROGRAM_IDS:
                 profile_weights[program] = aligned_weights[program].abs().to_numpy()
 
-            tree = cKDTree(alt_ranks)
-            for caliper in CALIPERS:
-                lists = tree.query_ball_point(target_ranks, r=caliper, p=np.inf)
-                lengths = np.fromiter((len(x) for x in lists), dtype=np.int64, count=len(lists))
-                graph = csr_matrix((np.ones(lengths.sum(), dtype=np.int8), np.concatenate(lists), np.r_[0, np.cumsum(lengths)]), shape=(len(lists), alt_ranks.shape[0]))
-                assignment = maximum_bipartite_matching(graph, perm_type="column")
-                strict_rows.append({"tcga_lineage": lineage, "caliper": caliper, "matched_genes": int((assignment >= 0).sum()), "unmatched_genes": int((assignment < 0).sum()), "complete_matching": bool((assignment >= 0).all())})
-                if caliper == CALIPERS[0]:
-                    availability_rows.append({"tcga_lineage": lineage, "targets_without_candidate": int((lengths == 0).sum()), "minimum_candidates": int(lengths.min()), "median_candidates": float(np.median(lengths)), "p90_candidates": float(np.percentile(lengths, 90))})
+            if not bounds_only:
+                tree = cKDTree(alt_ranks)
+                for caliper in CALIPERS:
+                    lists = tree.query_ball_point(target_ranks, r=caliper, p=np.inf)
+                    lengths = np.fromiter((len(x) for x in lists), dtype=np.int64, count=len(lists))
+                    graph = csr_matrix((np.ones(lengths.sum(), dtype=np.int8), np.concatenate(lists), np.r_[0, np.cumsum(lengths)]), shape=(len(lists), alt_ranks.shape[0]))
+                    assignment = maximum_bipartite_matching(graph, perm_type="column")
+                    strict_rows.append({"tcga_lineage": lineage, "caliper": caliper, "matched_genes": int((assignment >= 0).sum()), "unmatched_genes": int((assignment < 0).sum()), "complete_matching": bool((assignment >= 0).all())})
+                    if caliper == CALIPERS[0]:
+                        availability_rows.append({"tcga_lineage": lineage, "targets_without_candidate": int((lengths == 0).sum()), "minimum_candidates": int(lengths.min()), "median_candidates": float(np.median(lengths)), "p90_candidates": float(np.percentile(lengths, 90))})
 
             reference_sd = frame.loc[:, FEATURES].std(ddof=1).to_numpy()
             for profile, profile_weight in profile_weights.items():
@@ -144,7 +177,7 @@ def main(run_pilot: bool, extend_uncalipered: bool, selected_lineage: str | None
                     lower_abs = max(0.0, target_mean - upper, lower - target_mean) / reference_sd[feature_ix]
                     bound_rows.append({"tcga_lineage": lineage, "weighting": profile, "feature": feature, "target_mean": target_mean, "alternative_mean_lower_bound": lower, "alternative_mean_upper_bound": upper, "absolute_smd_lower_bound": lower_abs, "smd_threshold": 0.10, "single_feature_balance_impossible": lower_abs > 0.10})
 
-            if run_pilot and (lineage == PILOT_LINEAGE or extend_uncalipered):
+            if not bounds_only and run_pilot and (lineage == PILOT_LINEAGE or extend_uncalipered):
                 cost = cdist(target_ranks, alt_ranks, metric="euclidean")
                 target_ix, alt_ix = linear_sum_assignment(cost)
                 gaps = np.abs(target_ranks[target_ix] - alt_ranks[alt_ix])
@@ -158,8 +191,10 @@ def main(run_pilot: bool, extend_uncalipered: bool, selected_lineage: str | None
                 del cost
 
     suffix = f"_{selected_lineage.removeprefix('TCGA-').lower()}" if selected_lineage else ""
-    write_csv(pd.DataFrame(strict_rows), "negative_control_strict_caliper_feasibility.csv", suffix)
-    write_csv(pd.DataFrame(availability_rows), "negative_control_caliper_010_availability.csv", suffix)
+    if strict_rows:
+        write_csv(pd.DataFrame(strict_rows), "negative_control_strict_caliper_feasibility.csv", suffix)
+    if availability_rows:
+        write_csv(pd.DataFrame(availability_rows), "negative_control_caliper_010_availability.csv", suffix)
     write_csv(pd.DataFrame(bound_rows), "negative_control_unconditional_balance_bounds.csv", suffix)
     if pilot_rows:
         write_csv(pd.DataFrame(pilot_rows), "negative_control_stad_uncalipered_pilot.csv", suffix)
@@ -171,6 +206,16 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--skip-uncalipered-stad-pilot", action="store_true")
     parser.add_argument("--extend-uncalipered-all", action="store_true", help="Run the unchanged full assignment after the STAD pilot.")
+    parser.add_argument("--bounds-only", action="store_true", help="Regenerate only analytical balance bounds; skip matching and assignment.")
+    parser.add_argument("--consolidate-lineage-outputs", action="store_true", help="Create consolidated review tables from existing lineage outputs.")
     parser.add_argument("--lineage", choices=("TCGA-HNSC", "TCGA-LUAD", "TCGA-LUSC", "TCGA-PAAD", "TCGA-SKCM", "TCGA-STAD", "TCGA-UCEC"))
     args = parser.parse_args()
-    main(run_pilot=not args.skip_uncalipered_stad_pilot, extend_uncalipered=args.extend_uncalipered_all, selected_lineage=args.lineage)
+    if args.consolidate_lineage_outputs:
+        consolidate_lineage_outputs()
+        raise SystemExit(0)
+    main(
+        run_pilot=not args.skip_uncalipered_stad_pilot,
+        extend_uncalipered=args.extend_uncalipered_all,
+        selected_lineage=args.lineage,
+        bounds_only=args.bounds_only,
+    )

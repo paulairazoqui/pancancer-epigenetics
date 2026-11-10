@@ -4,7 +4,7 @@
     0.1,
     0.14
   ],
-  "pilot_lineage": "TCGA-STAD",
+  "pilot_lineage": null,
   "seed": null,
   "python": "3.11.8",
   "numpy": "2.3.3",
@@ -12,5 +12,15 @@
   "scipy": "1.16.3",
   "h5py": "3.15.1",
   "cptac3_expression_read": false,
-  "tcga_cptac3_coexpression_calculated": false
+  "tcga_cptac3_coexpression_calculated": false,
+  "lineages": [
+    "TCGA-HNSC",
+    "TCGA-LUAD",
+    "TCGA-LUSC",
+    "TCGA-PAAD",
+    "TCGA-SKCM",
+    "TCGA-STAD",
+    "TCGA-UCEC"
+  ],
+  "output_layout": "consolidated_lineage_tables"
 }

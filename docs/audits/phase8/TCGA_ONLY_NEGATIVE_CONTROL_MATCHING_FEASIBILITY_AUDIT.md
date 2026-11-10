@@ -61,8 +61,9 @@ not just isolated targets.  The full tables are in `tables/`.
 
 For each feature/profile, the audit computes the attainable lower and upper
 alternative mean after relaxing *all pairwise-distance constraints*.  It uses
-the rearrangement inequality: select the appropriate 2,389 alternatives and
-pair their feature values with sorted absolute weights.  The resulting minimum
+the rearrangement inequality: for the lower extreme, it pairs the largest
+absolute weights with the smallest selected alternative feature values; for the
+upper extreme, it pairs the largest weights with the largest values.  The resulting minimum
 absolute SMD is an optimistic mathematical lower bound.  No single
 feature/profile bound exceeded 0.10 in any lineage.
 
@@ -142,12 +143,16 @@ python scripts/phase8_audit_negative_control_feasibility.py --lineage TCGA-LUSC 
 python scripts/phase8_audit_negative_control_feasibility.py --lineage TCGA-PAAD --extend-uncalipered-all
 python scripts/phase8_audit_negative_control_feasibility.py --lineage TCGA-SKCM --extend-uncalipered-all
 python scripts/phase8_audit_negative_control_feasibility.py --lineage TCGA-UCEC --extend-uncalipered-all
+python scripts/phase8_audit_negative_control_feasibility.py --bounds-only --skip-uncalipered-stad-pilot --lineage TCGA-STAD
+python scripts/phase8_audit_negative_control_feasibility.py --consolidate-lineage-outputs
 ```
 
-The provenance JSON records Python and package versions.  No seed is needed:
-all methods are deterministic.  Small output tables retain caliper feasibility,
-availability, unconditional bounds, and all full-assignment balance diagnostics;
-no expression matrices, pairwise correlations, or gene-level maps are stored.
+The bounds-only command is the targeted post-review regeneration route; repeat
+it across the seven lineages before consolidation. The provenance JSON records
+Python and package versions. No seed is needed: all methods are deterministic.
+Five compact output tables retain caliper feasibility, availability,
+unconditional bounds, full-assignment balance diagnostics, and provenance; no
+expression matrices, pairwise correlations, or gene-level maps are stored.
 
 ## Approval required before continuing
 
