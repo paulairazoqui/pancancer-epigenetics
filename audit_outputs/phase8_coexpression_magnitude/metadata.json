@@ -1,0 +1,23 @@
+{
+  "seed": 20261111,
+  "n_simulation_replicates": 800,
+  "n_matched_subsamples": 32,
+  "n_tcga_hnsc_partitions": 16,
+  "simulation_genes": 60,
+  "zero_correlation_exact_E_abs_r": {
+    "36": 0.13583375955931845,
+    "56": 0.10807684889525065,
+    "103": 0.07919621132166632,
+    "138": 0.06829238484900471
+  },
+  "artifacts_sha256": {
+    "phase2.205.rna_program_discovery_expression": "0072307c93357f4c4008a444d1999fe5a5374222ef87b6c3fff2e17e81d97fc8",
+    "phase2.205.rna_program_discovery_gene_metadata": "e0cd2feb28f980923b2df744b1903a3d7bd364309ce768731610db8194e3337e",
+    "phase2.205.rna_program_discovery_sample_metadata": "04e33010d8df780c1af066618b687437244226817f05a0f598fe46fd7c2bb3be",
+    "phase4.400.cross_system_shared_gene_universe": "080fee1216c41f488414817f9265cb36e6162743391f7f28eb735c1253f0a84c",
+    "phase4.401.consensus_transcriptomic_gene_weights": "09b33db831e1d723915da8a62dce331ba493187c131506ab8fd172c5ab472b39"
+  },
+  "python": "3.11.8 (tags/v3.11.8:db85d51, Feb  6 2024, 22:03:32) [MSC v.1937 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26320-SP0",
+  "external_expression_opened": false
+}
