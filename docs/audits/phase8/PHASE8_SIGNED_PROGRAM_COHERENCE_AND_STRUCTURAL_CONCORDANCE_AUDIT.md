@@ -41,6 +41,17 @@ sin cambios y los tres vectores de peso congelados. La representación TCGA es
 la de Notebook 205: TMM de edgeR y logCPM con `prior.count=2`; no se normalizó
 ni reestimó nada.
 
+Además de los hashes, el script falla explícitamente si el universo compartido
+no contiene exactamente 2,389 `gene_symbol` únicos; si el mapeo de esos genes a
+`gene_name` en los metadatos TCGA es ambiguo, ausente o no cubre ese universo; si un programa tiene
+un gen faltante/adicional/duplicado; o si sus genes no están en el orden
+congelado. Los pesos se vuelven a alinear por `gene_symbol` sólo después de esas
+comprobaciones; no se infiere su correspondencia por posición. También exige que
+`final_sample_column_index` sea el vector contiguo `0..n-1`, que el número de
+columnas HDF5 coincida, y que casos y muestras sean únicos. Por tanto, una
+discrepancia de genes, pesos o columnas detiene la auditoría en vez de repararse
+silenciosamente.
+
 Los consensos no tienen signos arbitrarios añadidos posteriormente. Notebook
 401 centró y normalizó las cargas de tumor y célula, orientó la carga celular
 con el multiplicador de Notebook 400 y ancló la orientación final al componente
@@ -107,6 +118,35 @@ cero borraría información. La media no se transforma en robusta por tener
 millones de pares, y la mediana no es inmune a concentración de pesos. Un
 valor alto interno tampoco equivale a replicación: no hace referencia a TCGA.
 
+### Relación exacta de la media con la varianza del score
+
+Sea `Z_i` la expresión de cada gen centrada y estandarizada **dentro del mismo
+linaje** con desviación estándar muestral (`ddof=1`), y sea
+`S=sum_i w_i Z_i` el score sin su estandarización posterior. Si las
+correlaciones `r_ij` se calculan sobre esas mismas observaciones y los pesos son
+los congelados, entonces
+
+```text
+Var(S) = sum_i w_i^2 + 2 sum_{i<j} w_i w_j r_ij
+       = sum_i w_i^2 + 2 C_mean sum_{i<j}|w_i w_j|.
+```
+
+La primera igualdad es la expansión de la forma cuadrática `w' R w`; la segunda
+usa `sign(w_i w_j)|w_i w_j|=w_i w_j`. Así, con pesos y escala fijados,
+`C_mean` es una transformación afín de la varianza del score: no aporta
+evidencia independiente de un score construido con esos mismos pesos y esa
+misma estandarización. Es una descripción de la parte de covarianza cruzada,
+no una propiedad adicional del score.
+
+La identidad no debe trasladarse sin más a scores con otra normalización, genes
+filtrados, pesos reescalados o estandarización posterior: cambian `R`, la escala
+de `Z` o ambos. La mediana ponderada no participa en esta expansión cuadrática;
+no tiene una identidad equivalente con la varianza y sigue siendo un resumen
+robusto de una arista orientada típica, aunque comparte datos, genes y pesos con
+el score. En la ejecución corregida, la identidad se verificó en los 21 pares
+programa–linaje y el máximo error absoluto numérico fue registrado en los
+metadatos de salida.
+
 ## C. Demostraciones y simulación sintética declarada
 
 Hay dos propiedades algebraicas suficientes sin simulación: (i) la invariancia
@@ -122,11 +162,23 @@ demostración de comportamiento, no evidencia biológica ni calibración.
 | Reordenamiento local | 0.605 | 0.085 | 0.122 | el daño localizado separa medidas |
 | Inversión entre grupos | -0.008 | -0.002 | -0.057 | signos y patrón quedan incompatibles |
 | Factor global compartido | 0.690 | 0.143 | 0.068 | un factor puede afectar ambas sin especificidad |
-| Patrón relativo con baja coherencia | 0.169 | 0.013 | -0.117 | coherencia baja no es sinónimo de red aleatoria |
+| Factor mixto con baja coherencia | 0.169 | 0.013 | -0.117 | ejemplo de coherencia baja; no de alta `T` |
 
 El último escenario es deliberadamente una construcción de factor mixto, no un
-modelo biológico. Ilustra por qué las medidas no son equivalentes. En particular,
-no se seleccionó una fórmula porque separara numéricamente programas.
+modelo biológico. Demuestra coherencia baja, pero su `T=0.169` **no** demuestra
+alta concordancia relativa con coherencia baja; no se le atribuye esa conclusión.
+Existe, no obstante, una demostración algebraica transparente para la media:
+si `R` es una matriz de correlación de referencia y
+`B=cR+(1-c)11'` con `0<c<1`, `B` también es una matriz de correlación y sus
+aristas cumplen `b_ij=c r_ij+(1-c)`. Mientras la varianza ponderada de aristas
+no sea degenerada, `T(R,B)=1`. A la vez,
+`C_mean(B)=c C_mean(R)+(1-c) mu_s`, donde
+`mu_s=sum(q_ij sign(w_iw_j))/sum(q_ij)`. En estos tres programas `mu_s` es
+cercano a cero (-0.00107, -0.00076 y -0.00073), por lo que al disminuir `c` la
+media puede acercarse a cero con `T` matemáticamente perfecto. Cerca de `c=0`
+la varianza de aristas se vuelve casi degenerada y `T` es numéricamente frágil;
+es una demostración de límite, no una receta ni una simulación adicional. No
+hay una afirmación análoga automática para la mediana ponderada.
 
 ## D. Resultados TCGA-only y estabilidad
 

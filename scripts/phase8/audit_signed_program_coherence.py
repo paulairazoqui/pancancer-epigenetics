@@ -127,6 +127,125 @@ def coherence(
     )
 
 
+def score_variance_identity(
+    values: np.ndarray,
+    weights: np.ndarray,
+    pair_weights: np.ndarray,
+    coherence_mean: float,
+) -> tuple[float, float]:
+    """Check Var(w'Z) = sum(w^2) + 2 sum_{i<j} w_i w_j r_ij."""
+    standardized = (values - values.mean(axis=0, keepdims=True)) / values.std(
+        axis=0, ddof=1, keepdims=True
+    )
+    observed = float(np.var(standardized @ weights, ddof=1))
+    reconstructed = float(
+        np.dot(weights, weights) + 2.0 * pair_weights.sum() * coherence_mean
+    )
+    return observed, reconstructed
+
+
+def validate_and_align_inputs(
+    shared_genes: pd.DataFrame,
+    gene_metadata: pd.DataFrame,
+    sample_metadata: pd.DataFrame,
+    weights_frame: pd.DataFrame,
+    expression_shape: tuple[int, int],
+) -> tuple[list[str], np.ndarray, pd.DataFrame, np.ndarray]:
+    """Fail closed unless frozen identifiers define one exact alignment."""
+    required_gene_columns = {"gene_symbol"}
+    required_weight_columns = {
+        "consensus_program_id",
+        "gene_symbol",
+        "consensus_weight",
+    }
+    required_sample_columns = {
+        "final_sample_column_index",
+        "case_submitter_id",
+        "sample_submitter_id",
+        "project_id",
+    }
+    if not required_gene_columns.issubset(shared_genes.columns):
+        raise ValueError("Shared-gene artifact lacks gene_symbol.")
+    if not required_weight_columns.issubset(weights_frame.columns):
+        raise ValueError("Weight artifact lacks required identity columns.")
+    if not required_sample_columns.issubset(sample_metadata.columns):
+        raise ValueError("Sample metadata lacks required identity columns.")
+    genes = shared_genes["gene_symbol"].tolist()
+    if len(genes) != 2389 or pd.isna(genes).any() or len(set(genes)) != len(genes):
+        raise ValueError("Shared genes are not exactly 2,389 unique identifiers.")
+    selected_gene_metadata = gene_metadata.loc[
+        gene_metadata["gene_name"].isin(genes), "gene_name"
+    ]
+    if selected_gene_metadata.isna().any() or selected_gene_metadata.duplicated().any():
+        raise ValueError(
+            "Frozen shared genes have missing or duplicated TCGA expression mappings."
+        )
+    gene_index = pd.Series(
+        selected_gene_metadata.index.to_numpy(), index=selected_gene_metadata
+    )
+    missing_expression_genes = set(genes).difference(gene_index.index)
+    if missing_expression_genes or len(gene_index) != len(genes):
+        raise ValueError(
+            "A frozen shared gene is absent from TCGA expression metadata."
+        )
+    row_indices = gene_index.loc[genes].to_numpy()
+    if len(np.unique(row_indices)) != len(genes):
+        raise ValueError("Frozen genes do not map one-to-one to TCGA expression rows.")
+    if expression_shape[0] != len(gene_metadata):
+        raise ValueError("TCGA expression rows do not match gene metadata rows.")
+    samples = sample_metadata.sort_values("final_sample_column_index").reset_index(
+        drop=True
+    )
+    expected_columns = np.arange(expression_shape[1])
+    if len(samples) != expression_shape[1] or not np.array_equal(
+        samples["final_sample_column_index"].to_numpy(), expected_columns
+    ):
+        raise ValueError(
+            "Sample metadata does not exactly index TCGA expression columns."
+        )
+    if (
+        samples["case_submitter_id"].isna().any()
+        or samples["sample_submitter_id"].isna().any()
+    ):
+        raise ValueError("TCGA sample metadata has missing sample identities.")
+    if (
+        samples["case_submitter_id"].duplicated().any()
+        or samples["sample_submitter_id"].duplicated().any()
+    ):
+        raise ValueError(
+            "TCGA sample metadata has duplicated case or sample identities."
+        )
+    if tuple(weights_frame["consensus_program_id"].drop_duplicates()) != PROGRAMS:
+        raise ValueError("Unexpected frozen consensus-program identities or ordering.")
+    aligned_weights = []
+    frozen_gene_set = set(genes)
+    for program in PROGRAMS:
+        program_weights = weights_frame.loc[
+            weights_frame["consensus_program_id"].eq(program)
+        ].copy()
+        program_genes = program_weights["gene_symbol"].tolist()
+        if len(program_weights) != len(genes) or pd.isna(program_genes).any():
+            raise ValueError(f"{program} does not contain exactly 2,389 gene weights.")
+        if len(set(program_genes)) != len(program_genes):
+            raise ValueError(f"{program} has duplicated gene identifiers.")
+        if set(program_genes) != frozen_gene_set:
+            raise ValueError(f"{program} has missing or additional frozen genes.")
+        if program_genes != genes:
+            raise ValueError(
+                f"{program} gene order differs from the frozen shared universe."
+            )
+        explicit = program_weights.set_index("gene_symbol").loc[
+            genes, "consensus_weight"
+        ]
+        if not np.array_equal(explicit.index.to_numpy(), np.asarray(genes)):
+            raise ValueError(f"{program} failed explicit gene-symbol alignment.")
+        aligned_weights.append(explicit.to_numpy())
+    matrix = np.vstack(aligned_weights)
+    if matrix.shape != (len(PROGRAMS), len(genes)) or not np.isfinite(matrix).all():
+        raise ValueError("Frozen consensus weights are malformed.")
+    return genes, row_indices, samples, matrix
+
+
 def synthetic_scenarios(seed: int) -> pd.DataFrame:
     """Model demonstrations, computed from declared population correlations."""
     rng = np.random.default_rng(seed)
@@ -149,7 +268,7 @@ def synthetic_scenarios(seed: int) -> pd.DataFrame:
         "local_rewiring": edges_from_loadings(rewired_signs * loading),
         "opposite_sign_relation_inversion": edges_from_loadings(loading),
         "shared_global_latent_factor": edges_from_loadings(signs * loading + 0.28),
-        "relative_pattern_with_low_signed_coherence": edges_from_loadings(
+        "low_signed_coherence_mixed_factor": edges_from_loadings(
             signs * loading * 0.35 + 0.42
         ),
     }
@@ -183,36 +302,25 @@ def main() -> None:
         raise ValueError("At least two predeclared splits are required.")
     args.output_dir.mkdir(parents=True, exist_ok=True)
     artifacts = resolve_artifacts(args.registry, args.data_root)
-    genes = pd.read_csv(artifacts["shared_genes"]["path"])["gene_symbol"].tolist()
+    shared_genes = pd.read_csv(artifacts["shared_genes"]["path"])
     gene_metadata = pd.read_csv(artifacts["gene_metadata"]["path"])
-    samples = pd.read_csv(artifacts["sample_metadata"]["path"]).sort_values(
-        "final_sample_column_index"
-    )
+    sample_metadata = pd.read_csv(artifacts["sample_metadata"]["path"])
     weights_frame = pd.read_csv(artifacts["weights"]["path"])
-    if (
-        len(genes) != 2389
-        or len(set(genes)) != 2389
-        or tuple(weights_frame["consensus_program_id"].drop_duplicates()) != PROGRAMS
-    ):
-        raise ValueError("Unexpected frozen gene or program identity.")
-    gene_index = pd.Series(
-        gene_metadata.index.to_numpy(), index=gene_metadata["gene_name"]
+    with h5py.File(artifacts["expression"]["path"], "r") as handle:
+        if "logcpm" not in handle:
+            raise ValueError("TCGA expression artifact lacks the logcpm dataset.")
+        expression_shape = handle["logcpm"].shape
+    genes, row_indices, samples, matrix = validate_and_align_inputs(
+        shared_genes,
+        gene_metadata,
+        sample_metadata,
+        weights_frame,
+        expression_shape,
     )
-    row_indices = gene_index.loc[genes].to_numpy()
     read_order, restore_order = np.argsort(row_indices), np.argsort(
         np.argsort(row_indices)
     )
-    matrix = np.vstack(
-        [
-            weights_frame.loc[
-                weights_frame.consensus_program_id.eq(program), "consensus_weight"
-            ].to_numpy()
-            for program in PROGRAMS
-        ]
-    )
-    if matrix.shape != (3, 2389) or not np.isfinite(matrix).all():
-        raise ValueError("Malformed frozen weights.")
-    triangle = np.triu_indices(2389, k=1)
+    triangle = np.triu_indices(len(genes), k=1)
     pair_weights = np.abs(matrix[:, triangle[0]] * matrix[:, triangle[1]])
     pair_signs = np.sign(matrix[:, triangle[0]] * matrix[:, triangle[1]])
     if np.any(pair_weights.sum(axis=1) <= 0) or np.any(pair_signs == 0):
@@ -222,6 +330,8 @@ def main() -> None:
             handle["logcpm"][row_indices[read_order], :][restore_order, :].T,
             dtype=np.float64,
         )
+    if expression.shape != (len(samples), len(genes)):
+        raise ValueError("Aligned TCGA expression has an unexpected shape.")
     if not np.isfinite(expression).all():
         raise ValueError("Non-finite TCGA expression.")
     rng = np.random.default_rng(args.seed)
@@ -243,6 +353,9 @@ def main() -> None:
         )
         for p, program in enumerate(PROGRAMS):
             mean, median = coherence(edges, pair_weights[p], pair_signs[p])
+            score_variance, reconstructed_variance = score_variance_identity(
+                lineage_values, matrix[p], pair_weights[p], mean
+            )
             normalized = pair_weights[p] / pair_weights[p].sum()
             full_rows.append(
                 {
@@ -250,6 +363,11 @@ def main() -> None:
                     "consensus_program_id": program,
                     "signed_weighted_mean": mean,
                     "signed_weighted_median": median,
+                    "score_variance_standardized_within_lineage": score_variance,
+                    "score_variance_from_signed_mean": reconstructed_variance,
+                    "score_variance_identity_abs_error": abs(
+                        score_variance - reconstructed_variance
+                    ),
                     "effective_pair_count": float(1.0 / np.dot(normalized, normalized)),
                     "top_10pct_gene_weight_energy": float(
                         np.sort(np.abs(matrix[p]))[-239:].dot(
@@ -296,12 +414,23 @@ def main() -> None:
     synthetic_scenarios(args.seed + 1).to_csv(
         args.output_dir / "signed_coherence_synthetic_scenarios.csv", index=False
     )
+    identity_max_abs_error = float(full["score_variance_identity_abs_error"].max())
     metadata = {
         "purpose": "TCGA-only descriptive signed-coherence audit; not external replication or hypothesis testing.",
         "no_cptac3_expression_accessed": True,
         "seed": args.seed,
         "splits": args.splits,
         "pair_count": int(len(triangle[0])),
+        "alignment_checks": {
+            "shared_gene_count": len(genes),
+            "exact_gene_order_verified_for_each_program": True,
+            "tcga_expression_column_alignment_verified": True,
+        },
+        "score_variance_identity": {
+            "standardization": "within-lineage gene mean 0 and sample SD 1 (ddof=1)",
+            "n_program_lineage_checks": int(len(full)),
+            "max_absolute_error": identity_max_abs_error,
+        },
         "artifacts": artifacts,
         "python": sys.version,
         "platform": platform.platform(),

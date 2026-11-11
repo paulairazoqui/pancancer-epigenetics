@@ -4,6 +4,16 @@
   "seed": 20261111,
   "splits": 8,
   "pair_count": 2852466,
+  "alignment_checks": {
+    "shared_gene_count": 2389,
+    "exact_gene_order_verified_for_each_program": true,
+    "tcga_expression_column_alignment_verified": true
+  },
+  "score_variance_identity": {
+    "standardization": "within-lineage gene mean 0 and sample SD 1 (ddof=1)",
+    "n_program_lineage_checks": 21,
+    "max_absolute_error": 4.973799150320701e-13
+  },
   "artifacts": {
     "expression": {
       "artifact_id": "phase2.205.rna_program_discovery_expression",

@@ -31,6 +31,12 @@ sign inversion of every weight leaves both unchanged; a single-gene sign flip
 changes exactly its incident edges.  No additional robust formula will be
 searched.
 
+For a lineage-specific score formed from the same weights and genes
+standardized within that lineage to mean zero and sample SD one, `C_mean` is
+algebraically tied to score variance. It is therefore a signed edge summary and
+not evidence independent of a score constructed from those inputs. This does
+not apply unchanged to a score with another scaling convention.
+
 ## TCGA-only calculations
 
 All inputs are SHA-verified registered Phase 2/4 artifacts.  The 2,389 genes,
@@ -52,7 +58,7 @@ With an independently seeded (`20261112`) Gaussian signed two-block reference
 correlation construction, calculate relative-edge concordance and both signed
 summaries for six declared comparison mechanisms: near preservation, uniform
 attenuation, local rewiring, inversion of opposite-sign relationships, a common
-latent factor, and a rank-preserving but sign-incoherent pattern.  These are
+latent factor, and a mixed-factor low-coherence pattern. These are
 algebraic/model demonstrations, not biological models, nor a calibration of a
 test or external data.
 
