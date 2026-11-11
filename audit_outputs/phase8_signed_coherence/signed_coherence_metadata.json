@@ -1,0 +1,39 @@
+{
+  "purpose": "TCGA-only descriptive signed-coherence audit; not external replication or hypothesis testing.",
+  "no_cptac3_expression_accessed": true,
+  "seed": 20261111,
+  "splits": 8,
+  "pair_count": 2852466,
+  "artifacts": {
+    "expression": {
+      "artifact_id": "phase2.205.rna_program_discovery_expression",
+      "path": "data\\interim\\expression\\tcga_primary_tumor_rnaseq_program_discovery_tmm_logcpm.h5",
+      "sha256": "0072307c93357f4c4008a444d1999fe5a5374222ef87b6c3fff2e17e81d97fc8"
+    },
+    "gene_metadata": {
+      "artifact_id": "phase2.205.rna_program_discovery_gene_metadata",
+      "path": "data\\interim\\expression\\tcga_primary_tumor_rnaseq_program_discovery_filtered_gene_metadata.csv",
+      "sha256": "e0cd2feb28f980923b2df744b1903a3d7bd364309ce768731610db8194e3337e"
+    },
+    "sample_metadata": {
+      "artifact_id": "phase2.205.rna_program_discovery_sample_metadata",
+      "path": "data\\interim\\expression\\tcga_primary_tumor_rnaseq_program_discovery_sample_metadata.csv",
+      "sha256": "04e33010d8df780c1af066618b687437244226817f05a0f598fe46fd7c2bb3be"
+    },
+    "shared_genes": {
+      "artifact_id": "phase4.400.cross_system_shared_gene_universe",
+      "path": "data\\processed\\consensus_programs\\400_cross_system_shared_gene_universe.csv",
+      "sha256": "080fee1216c41f488414817f9265cb36e6162743391f7f28eb735c1253f0a84c"
+    },
+    "weights": {
+      "artifact_id": "phase4.401.consensus_transcriptomic_gene_weights",
+      "path": "data\\processed\\consensus_programs\\401_consensus_transcriptomic_gene_weights.csv",
+      "sha256": "09b33db831e1d723915da8a62dce331ba493187c131506ab8fd172c5ab472b39"
+    }
+  },
+  "python": "3.11.8 (tags/v3.11.8:db85d51, Feb  6 2024, 22:03:32) [MSC v.1937 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26320-SP0",
+  "numpy": "2.3.3",
+  "pandas": "2.3.2",
+  "h5py": "3.15.1"
+}

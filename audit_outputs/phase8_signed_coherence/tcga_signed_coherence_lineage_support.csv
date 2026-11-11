@@ -1,0 +1,8 @@
+lineage,tcga_n,contract_cptac3_source_n,per_half_n,external_sized_disjoint_split_feasible
+TCGA-LUAD,512,178,178,True
+TCGA-LUSC,500,89,89,True
+TCGA-STAD,412,142,142,True
+TCGA-SKCM,103,138,51,False
+TCGA-PAAD,178,88,88,True
+TCGA-UCEC,543,56,56,True
+TCGA-HNSC,520,36,36,True
