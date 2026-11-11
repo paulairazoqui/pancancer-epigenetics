@@ -105,6 +105,6 @@ Do not introduce a second readiness JSON, duplicate lineage-count CSV, attrition
 
 The proposed 727-case cohort has source-level GDC provenance, supported source-to-TCGA lineage mapping and compatible raw-count inputs. Individual donor independence has not been verified; independent read-level QC has not been certified; normalized expression comparability is unestablished; and purity, proliferation, immune/stromal composition and technical batch effects may confound downstream analyses.
 
-Neither a source-cohort construction PASS nor a computable program score establishes external structural replication. Notebook 800 must separately define and review normalization, immutable program projection, non-tautological within-lineage structural estimands, negative controls, uncertainty, multiplicity and confounding/sensitivity analyses before confirmatory inference.
+Neither a source-cohort construction PASS nor a computable program score establishes external structural replication. Notebook 800 must separately define and review normalization, immutable program projection, non-tautological within-lineage structural estimands, justified inferential calibration, uncertainty, multiplicity and confounding/sensitivity analyses before confirmatory inference.
 
 **Current state:** proposed source cohort; `cohort_frozen = false`; `external_analysis_authorized = false`. No independent-donor, clinical-predictor, causal or therapeutic-reversal claim is warranted.

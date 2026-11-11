@@ -2,13 +2,13 @@
 
 **Phase:** 8 — Orthogonal validation  
 **Notebook:** `notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb`  
-**Scientific status:** External RNA-seq source cohort proposed and source compatibility assessed. The normalization and fixed-program projection approach, the primary scientific replication property, and two negative-control families have been selected. A weighted reference-network concordance statistic is a **candidate**, not a frozen confirmatory test; control algorithms, uncertainty, and decision rules remain to be specified before confirmatory analysis. No external program-replication result is established by this contract.
+**Scientific status:** External RNA-seq source cohort proposed and source compatibility assessed. The normalization and fixed-program projection approach and the primary scientific replication property are defined. A weighted reference-network concordance statistic remains a **candidate**, not a frozen confirmatory test. Reference reliability, inferential calibration, tumor-level uncertainty and decision rules remain to be specified before confirmatory analysis. No external program-replication result is established by this contract.
 
 ## 1. Scientific objective and scope
 
 Evaluate whether the three fixed, TCGA-derived Phase 4 transcriptomic candidate programs exhibit reproducible multigene structure in an externally sourced CPTAC-3 primary-tumor RNA-seq cohort, accounting for tumor lineage, analytical representation and plausible technical or biological confounding.
 
-The scientific target is **external structural support for previously defined transcriptomic programs**. Neither a calculable program score nor nonzero between-sample variation constitutes replication. Agreement with genes used to construct a score is mechanically dependent and is not independent evidence of the underlying multigene structure. The analysis must specify which non-tautological property of each frozen program it tests and which alternative explanations its controls address.
+The scientific target is **external structural support for previously defined transcriptomic programs**. Neither a calculable program score nor nonzero between-sample variation constitutes replication. Agreement with genes used to construct a score is mechanically dependent and is not independent evidence of the underlying multigene structure. The analysis must specify which non-tautological property of each frozen program it tests, how statistical uncertainty is handled and which technical or biological alternative explanations remain plausible.
 
 This notebook does not discover or refit programs, reconstruct the CPTAC-3 source cohort, predict clinical drug resistance, estimate treatment effects, validate drug response, infer causal epigenetic mechanisms or demonstrate perturbational reversal. An external transcriptomic pattern, if supported, remains a computational association subject to validation.
 
@@ -117,111 +117,39 @@ The TCGA-only audit reported disjoint-partition score correlations of 0.980–0.
 
 All primary effect sizes are program-by-lineage; do not pool cancers naïvely, treat millions of dependent gene pairs as independent samples, or choose lineages after observing their external values. Similar edge patterns may reflect proliferation, immune/stromal composition, tumor purity, platform or batch effects rather than a specific epigenetic program. An external structural association is not clinical resistance prediction, causal validation or therapeutic reversal.
 
-## 6. Negative controls and statistical inference
+## 6. Reference reliability, specificity sensitivity and statistical inference
 
-### 6.1. Approved conceptual negative-control families
+### 6.1. Weight-allocation specificity: candidate sensitivity analysis
 
-Two control families have been **approved in principle**, but their exact algorithms and valid roles remain to be specified against the candidate statistic:
+The candidate structural statistic uses pair weights `abs(w_i,k * w_j,k)` on the **same 2,389 frozen genes**. A possible exploratory specificity analysis is reassignment of the **absolute loading magnitudes** among these frozen gene positions, while keeping the set of genes, the observed cohort representations and the primary statistic unchanged. This would ask whether the original magnitude allocation gives a distinctive edge-pattern concordance relative to alternative allocations; it would **not** establish that the frozen genes are more distinctive than other genes, nor automatically generate a valid no-replication null.
 
-1. **Primary negative reference: matched alternative gene sets.** Compare the tested program with alternative gene sets of matching cardinality and relevant expression characteristics, accounting for detectability, abundance and variability using prospective TCGA-side or otherwise outcome-blind information. Preserve a defensible signed/magnitude weight distribution. An eligible alternative-gene universe must be shown to exist and to have comparably available expression in both cohorts; **the 2,389 frozen scoring genes are not automatically a sufficient alternative pool**. Construct corresponding TCGA and CPTAC-3 references for the *same* alternative genes. Specify allowed overlap and failure-to-match handling.
-2. **Complementary negative reference: reassignment/permutation of frozen weights and signs.** Evaluate whether the original assignment has distinctive performance relative to alternatives on the same genes. In the candidate primary statistic, pair weights use **absolute magnitudes**; a **global sign inversion** changes nothing, while permuting sign labels alone does not change its absolute pair weights and is therefore **not a meaningful primary-statistic null**. Reassigning magnitudes can alter primary-statistic weights. Signed permutations can instead be useful for the **signed-coherence secondary analysis** with an explicitly defined null.
+A global sign inversion or sign-only permutation is invariant for the candidate primary statistic, because only absolute pair weights enter it. Signed-weight permutations could inform a **separately specified signed-coherence sensitivity**, but not the candidate primary statistic as currently defined. No permutation procedure, permutation count, exchangeability claim or inferential interpretation is approved yet.
 
-Unmatched random genes alone are not a sufficient primary control. Neither a null that retains the tested signal trivially nor a null designed to favor the observed result is acceptable. Control distributions must not be tuned using CPTAC-3 replication outcomes.
+Any sensitivity that uses reallocated weights must preserve the original frozen programs for the primary analysis, justify its conditioning and randomization scheme, document concentration effects and assess interpretation limits. Do not equate the rank of the observed statistic among rearrangements with a calibrated p-value without an explicit valid null hypothesis and calibration.
 
 ### 6.2. Reference reliability and tumor-level uncertainty
 
-Before confirmatory use, characterize **within-lineage TCGA reference stability** by deterministic repeated, disjoint tumor splits or suitable tumor-level resampling. Specify sample counts and acknowledge that TCGA split-half precision differs from full-TCGA-versus-CPTAC-3 precision. A TCGA internal-reference reproducibility score is **not an automatic external replication threshold**.
+Before confirmatory use, characterize **within-lineage TCGA reference stability** by reproducible, disjoint tumor splits or suitable tumor-level resampling. Specify sample counts and acknowledge that TCGA split-half precision differs from full-TCGA-versus-CPTAC-3 precision. A TCGA internal-reference reproducibility score is **not an automatic external replication threshold**.
 
-Uncertainty for the primary statistic should be estimated at the **tumor/case level**, considering uncertainty in **both** TCGA reference edges and CPTAC-3 edges. Bootstrap or related tumor-resampling design remains to be specified, with stratification by lineage and attention to small external sample counts (notably CPTAC-3 HNSC, n=36) and smaller reference counts (notably TCGA-SKCM, n=103). Neither dependent gene pairs nor permutations/splits are independent biological replicates.
+Uncertainty for the candidate primary statistic must be assessed at the **tumor/case level**, considering estimation error in **both** TCGA reference edges and CPTAC-3 edges. A bootstrap or related tumor-resampling design remains to be specified, within lineage and with attention to small CPTAC-3 strata (notably HNSC, n=36) and smaller TCGA reference strata (notably SKCM, n=103). Dependent gene pairs, permutations and resampling draws are **not** independent biological replicates.
 
-### 6.3. Inferential specifications still open
+### 6.3. Inferential specifications to finalize before external structural testing
 
-Before viewing confirmatory CPTAC-3 coexpression preservation statistics, define and record the following:
+Before computing confirmatory TCGA–CPTAC-3 coexpression-preservation statistics, predefine and record:
 
-- Exact matched-control source universe, matching variables, tolerances, set construction, sample-level handling, permitted overlap, seeds, number of controls and null interpretation.
-- Exact weight-reassignment control (if informative for the chosen test), number of permutations, and handling of invariant sign operations.
-- TCGA reference stability design, treatment of estimated reference-network uncertainty, and primary-statistic degeneracy (e.g., nearly constant edge vectors).
-- Tumor-level uncertainty estimator, test direction, effect-size comparison to controls, and rules for non-evaluability.
-- Primary multiplicity family over **3 programs × 7 accepted lineages** (21 planned comparisons), with an explicit missing/non-evaluable policy and selected FDR or FWER method and thresholds.
-- If used, the exact formula for coexpression-magnitude attenuation and any technical sensitivity of the `atanh` correlation transform.
+- The exact primary structural statistic, treatment of degenerate or nearly constant edge vectors, numerical and pairwise-missingness rules, and the distinction between relative edge-pattern agreement and preservation of correlation magnitude.
+- An estimand-aligned hypothesis and a defensible inferential comparison or null calibration, if hypothesis testing is justified. A weight-allocation sensitivity is **not** a substitute for a no-replication null. If no suitable null is established, report calibrated uncertainty and descriptive effect sizes without null-based significance claims.
+- The TCGA reference-stability procedure and the treatment of finite-sample uncertainty in both cohorts.
+- The tumor-level uncertainty estimator, analysis direction, criteria for interpretability and non-evaluability, and prespecified technical or biological sensitivity analyses.
+- Whether a weight-allocation sensitivity is informative; if implemented, its full randomization procedure, conditioning assumptions, seed, number of draws and non-inferential interpretation unless a valid null is demonstrated.
+- The multiplicity family over **3 programs × 7 accepted lineages** (21 planned comparisons), including an explicit policy for missing/non-evaluable results; choose FDR/FWER correction and thresholds **only if valid inferential tests are available**.
+- If used, the exact definition of coexpression-magnitude attenuation and any sensitivity involving the `atanh` transformation.
 
-A scientifically defensible no-effect/negative conclusion and an inconclusive result must remain reportable; do not reselect genes, tumors, controls, or statistics to recover a positive result. No confirmatory structural comparison is authorized by the conceptual approvals alone.
-
-### 6.4. Prospective TCGA-only matched-control feasibility protocol
-
-**Status and scope:** This section specifies a **design-stage feasibility/calibration analysis**, not a frozen confirmatory negative-control test. It is to be implemented reproducibly in Notebook 800, with a strictly TCGA-only expression/stability evaluation. The prior CPTAC-3 source normalization and fixed-score projection are acknowledged; **no TCGA-to-CPTAC-3 edge-concordance statistic, control rank, or external replication result may be inspected to select or revise controls**. A subsequent amendment must approve the final inferential algorithm before confirmatory comparison.
-
-#### 6.4.1. Candidate universe and permitted information
-
-- Construct a unique Ensembl-gene-ID universe from the frozen Phase 2 Notebook 205 TCGA normalized RNA-seq expression gene index and the protein-coding gene IDs available in the previously inventoried CPTAC-3 STAR Counts source. Strip Ensembl version suffixes consistently and use gene IDs, never gene-symbol substitution, to join features.
-- Require presence in **both** source representations; exclude all **2,389** frozen Phase 4 genes from the alternative pool. Technical presence on the CPTAC-3 side is permitted; its expression values, variability, coexpression, scores and cross-cohort concordance are **not** permitted for matching, calibration or rule changes.
-- Use the seven accepted TCGA lineages independently and the fixed Notebook 205 TCGA logCPM representation. The existing Notebook 205 expression filter defines the available TCGA reference gene universe; do not claim that it is an unbiased sample of all protein-coding genes.
-- A target gene with undefined within-lineage TCGA variance is a **target/reference evaluability issue**, not a reason to drop or replace the gene. Alternative genes with undefined values or within-lineage zero variance cannot be used in that lineage. Report such exclusions and their provenance.
-- Alternative control genes will eventually require CPTAC-3 logCPM calculated using the **already estimated** broad-gene CPTAC-3 TMM effective library sizes; no second TMM fitting or result-driven normalization may be performed.
-
-#### 6.4.2. Prespecified TCGA-only matching features and feasibility settings
-
-Within each lineage compute, for each available gene, using only TCGA tumor samples:
-
-1. Mean logCPM (abundance).
-2. Sample standard deviation of logCPM (variability; ddof=1).
-3. Fraction of TCGA tumors with logCPM > 0 (a fixed **logCPM-based low-abundance proxy**, not the raw-count CPM >= 1 detection criterion).
-
-Convert each feature into a percentile rank within the lineage-specific joint pool of eligible target and alternative genes, using average ranks for ties. For the **initial feasibility specification**, a target–alternative pair is eligible only when the absolute percentile-rank difference is **at most 0.10 in each of the three features**. This is an explicitly provisional matching tolerance, not an empirically validated biological equivalence threshold.
-
-- Seek **one-to-one, without-replacement matching of all 2,389 target genes** within each lineage. Alternative genes must be unique within a single matched set and disjoint from all frozen genes. Reuse across different sets or different lineages is permissible and must be reported.
-- Construct assignments using **full-cardinality minimum-cost bipartite matching** restricted to the prespecified eligible target–alternative edges; an unconstrained greedy nearest-neighbor pass is insufficient. Define the base edge cost as Euclidean distance in the three TCGA percentile-rank coordinates. For independent, reproducible alternatives, add a fresh `Uniform(0, 0.02)` perturbation to **each eligible edge cost** before solving each full-cardinality assignment. Randomness influences assignments only within fixed TCGA-derived calipers; it does not alter gene eligibility. Match assignment must **not** use network coexpression or program-replication outcomes.
-- Retain each target gene's original signed weight when assigning it to its corresponding alternative. Since all three programs share the same 2,389 genes, the same lineage-specific gene matching may be used for all three programs; assess balance **separately for each program**, using its frozen absolute weights.
-- Feasibility target: **10 distinct, structurally diverse complete alternative gene sets per lineage**. Use `numpy.random.default_rng(numpy.random.SeedSequence([800621, lineage_index, attempt_index]))`, with lineages in sorted order, indices starting at zero, and a limit of **100 attempts per lineage**. Examine attempts in increasing index order and retain the first 10 full-cardinality assignments for which the set of 2,389 alternative gene IDs is different and its pairwise overlap with **every** previously retained set is **at most 95%** (shared alternative genes / 2,389). Thus mere reassignment of the same alternative gene set does not count as a new control. Record every attempted outcome and the exact accepted attempt indices; no resampling based on SMD, split-half stability, program results or external concordance. If fewer than 10 qualifying sets are obtained within 100 attempts, the 10-set diversity target **fails** for that lineage; do not loosen the bound or overlap threshold silently. Exact implementation and library versions must be recorded in Notebook 800 before execution. This feasibility target is **not** the final number of confirmatory controls.
-
-#### 6.4.3. Matching diagnostics and feasibility gates
-
-For **every lineage and every candidate matched set**, report:
-
-- Number of target genes, unique eligible alternative genes, targets with no eligible alternative, full matching achieved (yes/no), and any conflict preventing full matching.
-- The distribution (median, 90th percentile, maximum) of the three absolute within-pair percentile-rank differences.
-- Signed standardized mean differences (SMDs) of the **original TCGA-scale features**, unweighted and weighted separately by each program's absolute target-gene weights. The fixed SMD denominator is the standard deviation of that feature across the **joint TCGA eligible gene universe** within the lineage; zero denominators constitute an undefined diagnostic and must be reported rather than silently repaired.
-- Across all attempts and the retained assignments: report the number of attempted, full-cardinality, duplicate, overlap-rejected and retained sets; retained attempt indices; pairwise alternative-gene set overlap fractions (intersection / 2,389), and gene reuse frequencies. An assignment accepted for diversity is **not automatically accepted for expression balance**. Repeated sets are **not** independent biological samples.
-
-A matched set passes the **initial operational feasibility gate** only if **all 2,389 target genes** are uniquely matched and the absolute SMD is **at most 0.10** for all three features, both unweighted and for **each** of the three program-specific weightings. The 0.10 value is a prospective balance diagnostic, **not** a claim that correlation structures or null distributions are equivalent. Record the full distribution of failures, not only successful sets. The presence of a sufficient number of alternatives does not by itself certify exchangeability or a valid p-value.
-
-#### 6.4.4. TCGA reference-stability diagnostic and computational pilot
-
-Only after the matching-feasibility outputs are recorded:
-
-- Use **five** deterministically generated, disjoint, approximately equal-sized TCGA tumor splits **within each of the seven lineages** (seed **800622**). Each split yields two independent tumor subsets; no CPTAC-3 tumor or gene-expression value enters these calculations.
-- For each split, compute the **candidate weighted edge-pattern Pearson concordance** between its two TCGA subsets for the frozen genes and for the **first three prespecified matched sets** (the same retained per-position absolute weights). Sample size, total gene pairs, number of usable pairs, degenerate edge vectors, runtime and peak working memory must be reported. The 2,852,466 distinct gene pairs are dependent and are **not** inferential replicates.
-- For each lineage and program, report the distributions of target and matched-control split-half concordance, their descriptive median differences and spread, and the effective half-sample sizes. These results assess **reference-estimation stability**, not external validation. Split-half precision is not comparable by default to full-TCGA-versus-CPTAC-3 precision.
-- Stability is **a post-matching diagnostic, not an additional gene-level matching feature or a criterion for retrospectively choosing particular control sets**. Five splits and three controls are a design/computational pilot, not a sufficient basis for formal competitive p-values or a universal stability-equivalence threshold. A quantitative reference-reliability/evaluability rule, if used, must be prespecified in a later documented amendment before any confirmatory CPTAC-3 edge statistic is inspected.
-
-#### 6.4.5. Failure handling, evidence, and inferential boundary
-
-- **Full matching unavailable, insufficient balance, or insufficient control-set diversity:** report the failure by lineage and control set; do not silently widen calipers, allow duplicate genes, omit difficult high-weight genes, replace the original features, or select the most favorable surviving controls. The affected negative-control family is **not yet feasible** under this specification.
-- **Reference instability, zero-variance target, degenerate edge vectors, or excessive computational cost:** record the specific cause and scope. These conditions trigger explicit review of feasibility or evaluability; they must not be relabeled as a negative replication finding.
-- If the initial design fails, a revised algorithm/tolerance may be investigated **only as a visibly labeled new TCGA-only exploratory calibration**, with its complete failures and rationale preserved. Freeze any eventual revision in this contract **before** examining CPTAC-3 edge concordance.
-- The notebook must contain the executable analysis, fixed seeds, gene/sample identifiers, input artifact fingerprints, complete lineage-wise matching metrics, stability summaries and limitations. Prefer small reproducible summary outputs; do not persist large pairwise correlation matrices or redundant copies of source expression. Document any exact control maps required for later reconstruction.
-- **No control-based p-value, Holm correction, or confirmatory external program-replication interpretation is authorized by this feasibility exercise.** Matched-set ranks describe relative specificity unless a statistically valid null and its calibration are separately justified. Tumor-level uncertainty in both cohorts, the inferential control algorithm, 21-test multiplicity and non-evaluability policies remain open under Section 6.3.
-
-### 6.5. Exploratory full-cardinality assignment calibration (second design-stage attempt)
-
-**Status:** Outcome-blind TCGA-only **exploratory feasibility revision**, not a replacement for the primary 6.4 specification and **not** an authorized confirmatory control test. Preserve the original 0.10-caliper failures and the subsequent exploratory 0.14-caliper failures as complete Notebook 800 evidence. Both calipers permitted incomplete maximum-cardinality matches in all seven lineages despite broad individual candidate availability; do not silently mark either design as successful.
-
-**Rationale:** Requiring a unique alternative gene for each of 2,389 frozen positions can fail because multiple targets compete for a limited subset of allowable candidates (a global cardinality constraint), not merely because individual targets have no alternative. Increasing the per-pair caliper does not directly resolve this structural constraint. The signed frozen genes and all three original program-weight vectors remain unchanged; only a potential **negative-reference construction** is explored.
-
-**Prospectively fixed pilot (before viewing its results):**
-
-1. Use the exact gene universe, frozen-gene exclusions, seven TCGA lineages, and three TCGA-only expression-feature percentile ranks defined in Section 6.4. No CPTAC-3 expression or cross-cohort edge-concordance value may enter the method.
-2. For each lineage, solve a **full-cardinality, without-replacement, minimum-total-cost rectangular bipartite assignment**, with no hard per-pair caliper. Define the cost of assigning target gene i to alternative gene j as the **Euclidean distance between their three TCGA percentile-rank feature vectors**. For this pilot, use scipy.optimize.linear_sum_assignment on the complete target-by-alternative cost matrix; no greedy approximation or candidate pruning is allowed. Infeasible or resource-exhausting execution is a reported failure, not a reason to substitute an undocumented method.
-3. Run **TCGA-STAD first**, because its earlier 0.14-caliper maximum-cardinality result had the greatest number of unassigned targets. This is a **computational/feasibility pilot**, not a lineage chosen for its program or external concordance. Extend the *unchanged* method to all seven lineages only after validating the pilot.
-4. Report exact one-to-one cardinality, unique alternatives, total/median/90th-percentile/maximum three-feature Euclidean distance, and the number/proportion of matched target positions exceeding the **former 0.10 and 0.14 maximum-coordinate-gap calipers**. Preserve gene-level maps and feature gaps deterministically as regenerable notebook outputs.
-5. Apply the **same initial global-balance diagnostic** in Section 6.4.3: absolute unweighted and per-program-absolute-weight SMD <= 0.10 for each of the three original-scale TCGA features. Record all failed features, all three programs, and any high-weight targets with large matching gaps; **no retrospective selection** of favorable assignments.
-6. A complete optimal assignment establishes **coverage only**, not adequate similarity, diversity of negative controls, preservation of reference stability, exchangeability, or valid p-values. Do not proceed automatically to generating 10 randomized sets. First evaluate full matching and balance in the unchanged seven-lineage procedure; a distinct amendment would be required to specify randomized diverse control construction under this new assignment objective.
-
-**Evidence and decision boundary:** Implement the pilot as short, executed Notebook 800 cells, with reproducible TCGA-only input identities and matching diagnostics. Keep the original caliper feasibility failures visible, together with this method's results; do not rewrite the first-pass history. If the alternative approach fails its balance criteria, record a negative feasibility result rather than tuning it using CPTAC-3. A separately documented decision is required before any confirmatory use. No primary TCGA–CPTAC-3 gene–gene concordance statistic or corresponding null ranks are to be inspected at this stage.
+A negative, inconclusive or non-evaluable result must remain reportable. Do not reselect genes, tumors, weights, statistics or sensitivity parameters after viewing CPTAC-3 structural results to obtain a favorable finding. The candidate statistic and unresolved inferential conditions do **not** authorize confirmatory external structural testing.
 
 ## 7. Lineage-aware evaluability and interpretation
 
-Begin with the seven accepted source lineages and their fixed proposed case counts. Define **outcome-blind** minimum statistical support, effective case counts, data completeness, usable variance, identifiable adjustment structure and any other necessary conditions before evaluating program replication. A universal minimum sample-size cutoff is not justified merely by convenience; support criteria must reflect the chosen statistic, anticipated precision and control feasibility.
+Begin with the seven accepted source lineages and their fixed proposed case counts. Define **outcome-blind** minimum statistical support, effective case counts, data completeness, usable variance, identifiable adjustment structure and any other necessary conditions before evaluating program replication. A universal minimum sample-size cutoff is not justified merely by convenience; support criteria must reflect the chosen statistic, anticipated precision and inferential evaluability.
 
 Preserve all original lineage denominators and distinguish a failure to meet an evaluability condition from a tested negative result. If a lineage or program cannot be evaluated, report the precise technical, sample-support or identifiability reason. Never pool tumor types naïvely to rescue small strata or choose lineages because they show larger program effects.
 
@@ -246,8 +174,8 @@ The notebook should proceed through these logically separate analytical responsi
 1. Source and frozen-program identity checks with explicit stop conditions.
 2. Outcome-blind cohort and lineage accounting, metadata coverage and analysis feasibility.
 3. Technically justified count normalization and fixed-program projection.
-4. Prospective structural test and matched negative-control evaluation.
-5. Complete lineage-specific inference, uncertainty and multiplicity.
+4. Prospective structural-statistic specification and TCGA reference-reliability assessment.
+5. Complete lineage-specific structural assessment, uncertainty and multiplicity where inferential tests are justified.
 6. Prespecified confounding and sensitivity assessments.
 7. An integrated, conservative interpretation of supported, unsupported and non-evaluable findings.
 
@@ -264,8 +192,8 @@ The intended scientific output classes are:
 | Input and cohort verification | Checked artifact IDs/hashes, unique case and file identities, cohort status, original and analytic denominators |
 | Lineage feasibility | Per-lineage support, input missingness, usable measurements and non-evaluable reasons |
 | Projection specification | Gene universe, count transformation, fixed loading identity, scaling rule, technical diagnostics and exact parameters |
-| Structural replication | Complete program-by-lineage effect sizes, test statistics, reference/null comparisons and uncertainty |
-| Control diagnostics | Matching quality, null construction, failure cases and dependence limitations |
+| Structural replication | Program-by-lineage effect sizes, reference characterization, uncertainty and any justified calibrated inference |
+| Specificity sensitivity (if implemented) | Exact weight-reassignment scheme, preserved quantities, diagnostic comparisons and interpretation limits |
 | Confounding and sensitivity | Available covariates, identifiability, sensitivity estimates and residual uncertainties |
 | Scientific reporting | Clearly separated confirmatory and exploratory findings, including negative and non-evaluable results |
 
@@ -277,4 +205,4 @@ The current proposed CPTAC-3 population supports source-level externality rather
 
 Permissible conclusions must be limited to the specific external transcriptomic structure actually tested and the lineages in which the design is evaluable. Evidence that a structure recurs does not imply resistance-like phenotype replication, a validated target, clinical prediction or therapeutic reversal; such outcomes require separate data and validation.
 
-**Readiness:** The 727-case source cohort remains proposed, with feature compatibility assessed at source level. The primary normalization and immutable program-projection **approaches are approved** (Section 4), the reference-network preservation property is **approved** (Section 5), and matched-gene and weight/sign-reassignment **control families are approved conceptually** (Section 6). The weighted edge-pattern Pearson statistic is a **candidate, not a frozen inferential specification**. Final inferential membership, implemented normalization details and versioning, TCGA reference reliability, exact null generation, uncertainty, multiplicity, outcome-blind evaluability and feasible confounding sensitivities remain **open**. The Notebook 800 may be developed incrementally for authenticated inputs, normalization and fixed projection; a confirmatory external structural-replication claim requires the remaining design decisions before its inferential computation.
+**Readiness:** The 727-case source cohort remains proposed, with feature compatibility assessed at source level. The primary normalization and immutable program-projection **approaches are approved** (Section 4), and the reference-network preservation property is **approved** (Section 5). The weighted edge-pattern Pearson statistic is a **candidate, not a frozen inferential specification**. Weight-allocation specificity is a possible sensitivity analysis, not a validated inferential null (Section 6). Final inferential membership, implemented normalization details and versioning, TCGA reference reliability, suitable calibration or explicit limits on hypothesis testing, tumor-level uncertainty, multiplicity, outcome-blind evaluability and feasible confounding sensitivities remain **open**. The Notebook 800 may be developed incrementally for authenticated inputs, normalization and fixed projection; a confirmatory external structural-replication claim requires the remaining design decisions before its inferential computation.
