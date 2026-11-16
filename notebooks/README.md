@@ -9,11 +9,12 @@
 - **Phase 4B — Secondary Molecular Context Characterization:** notebooks `450`–`451` in `phase4b_secondary_molecular_characterization/` — **CLOSED / FROZEN**.
 - **Phase 5 — Functional Vulnerabilities:** notebooks `500`–`502` in `phase5_functional_vulnerabilities/` — **CLOSED / FROZEN**.
 - **Phase 6 — Pharmacogenomic Contexts and Explainable Modeling (XAI):** notebooks `600`–`603` in `phase6_pharmacogenomic_contexts/` — **COMPLETE UNDER FROZEN SPECIFICATIONS**.
+- **Phase 8 — Orthogonal Validation:** [Notebook 800 — External Bulk Cohorts](phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb) — **COMPLETE AS A DESCRIPTIVE EXTERNAL ASSESSMENT**.
 
 Phase 2 and Phase 3 are independent discovery systems. Their implemented notebooks should be run only in numerical order within their respective completed phases and with their frozen inputs. Phase 4 consumes those independently frozen candidate layers and is not redefined by Phase 4B or Phase 5. Phase 4B methylation-expression results are contextual computational evidence, not causal regulation; TCGA tumors are not assigned resistance/sensitivity labels. Phase 6 downstream work must consume frozen upstream handoffs rather than silently recomputing them.
 
 ## Future phases
 
-Notebook `603 — Cross-Screen Replication` is complete under the specification prospectively frozen on 2026-09-22. Phase 6 is therefore complete under frozen specifications. Phases 7–10 remain planned. Future notebooks are implemented only after their required inputs and methodological decisions are available and frozen.
+Notebook `603 — Cross-Screen Replication` is complete under the specification prospectively frozen on 2026-09-22. Phase 6 is therefore complete under frozen specifications. The remaining Phase 8 notebooks (801–804) and the Phase 9–10 notebooks remain planned. Future notebooks are implemented only after their required inputs and methodological decisions are available and frozen.
 
 See `roadmap.md` for the current notebook sequence and `docs/workflow.md` for the operational workflow.

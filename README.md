@@ -31,7 +31,7 @@ The broader approved scientific project includes experimental validation. Experi
 - **Phase 5 — Functional Vulnerabilities:** closed / frozen. Notebooks 500–502 completed lineage-aware CRISPR characterization, independent RNAi characterization, and platform-aware CRISPR–RNAi evidence integration without statistical pooling, a common post-hoc coverage threshold, joint cross-platform FDR, or composite vulnerability ranking. Cross-platform concordance is complementary computational evidence rather than independent validation. The Phase 5 derived artifacts are registered with frozen identity and lineage in `config/artifact_registry.json`.
 - **Phase 6 — Pharmacogenomic Contexts and Explainable Modeling (XAI):** complete under frozen specifications. Notebooks 600 — Program–Drug Associations, 601 — Explainable Predictive Modeling, 602 — SHAP Attribution and Stability Analysis, and 603 — Cross-Screen Replication are implemented and executed, with their stable handoffs registered in `config/artifact_registry.json`. Notebook 601 evaluated all 281 frozen eligible GDSC drugs using repeated lineage-stratified out-of-fold evaluation; 125 satisfied the frozen internal predictive-validity gate and entered notebook 602 attribution. Notebook 602 used persisted held-out fitted state without refitting, reconstructed predictions to numerical precision, and found structured but heterogeneous program-level attribution: `CONSENSUS_TX_02` had the highest median drug-level attribution, while lineage remained an important prediction-space component for a substantial subset of drugs. These results are internal GDSC model-attribution evidence, not mechanism, external reproducibility, clinical predictiveness, or therapeutic relevance. Notebook 603 cross-screen replication is complete under the prospectively frozen 2026-09-22 specification. Among 177 primary evaluable external hypotheses, 33/79 CTRP and 4/98 PRISM hypotheses met the frozen screen-level replication rule; none of the 40 hypotheses evaluable in both external screens replicated in both, and 4 CTRP replications received prespecified non-overlapping-model corroboration. These are external cross-screen pharmacogenomic replication results, not independent biological or clinical validation.
 - **Phase 7 — Perturbational Hypotheses:** planned.
-- **Phase 8 — Orthogonal Validation:** planned.
+- **Phase 8 — Orthogonal Validation:** in progress. [Notebook 800](notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb) is complete as a descriptive TCGA–CPTAC-3 comparison of three frozen programs across seven matched lineages. Notebooks 801–804 remain planned.
 - **Phase 9 — Integrated Evidence Synthesis and Therapeutic Prioritization:** planned, including a structured computational-to-experimental evidence handoff in notebook 904.
 - **Phase 10 — Manuscript Preparation:** planned.
 
@@ -196,7 +196,7 @@ notebooks/
 ├── phase5_functional_vulnerabilities/              # closed / frozen through notebook 502
 ├── phase6_pharmacogenomic_contexts/                # complete through notebook 603 under frozen specifications
 ├── phase7_perturbational_hypotheses/               # planned
-├── phase8_orthogonal_validation/                   # planned
+├── phase8_orthogonal_validation/                   # 800 complete; 801–804 planned
 ├── phase9_integrated_evidence_and_prioritization/  # planned
 └── phase10_manuscript_preparation/                 # planned
 ```

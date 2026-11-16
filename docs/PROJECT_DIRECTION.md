@@ -209,7 +209,9 @@ Purpose:
 
 ## Layer 7 — Orthogonal and External Validation
 
-**Phase 8 — planned**
+**Phase 8 — Notebook 800 complete; Notebooks 801–804 planned**
+
+[Notebook 800](../notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb) provides a descriptive comparison of frozen transcriptomic program structure in seven matched TCGA and CPTAC-3 lineages.
 
 Purpose:
 

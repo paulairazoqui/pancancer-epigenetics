@@ -555,6 +555,10 @@ Assess cross-dataset replication and orthogonal support across independent biolo
 
 #### 800 — External Bulk Cohorts
 
+**Status:** complete. [Notebook 800](notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb) reports lineage-specific coexpression concordance between TCGA and CPTAC-3 for three frozen transcriptomic programs, with signed coherence, absolute-correlation change, tumor-level bootstrap percentiles, and sensitivity analyses. The [analysis contract](docs/contracts/phase8/NOTEBOOK_800_CPTAC3_EXTERNAL_TRANSCRIPTOMIC_REPLICATION_CONTRACT.md) specifies the descriptive scope and execution workflow.
+
+Notebooks 801–804 remain planned.
+
 #### 801 — Cell Model Passports
 
 #### 802 — scRNA-seq Validation
