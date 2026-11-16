@@ -104,13 +104,13 @@ This workflow describes the operational sequence for the roadmap v3.2 framework.
 
 ## Phase 8 — Orthogonal Validation
 
-**Status:** planned.
+**Status:** Notebook 800 is complete as a descriptive external assessment. Notebooks 801–804 remain planned.
 
-- **Objective:** assess cross-dataset replication and orthogonal support in independent biological resources.
-- **Notebook series:** `800`–`804`.
-- **Primary inputs:** frozen program representations and independent bulk cohorts, Cell Model Passports where applicable, scRNA-seq, ATAC-seq, and other orthogonal resources.
-- **Primary outputs:** validation reports, robustness assessments, and cross-resource concordance analyses in `data/processed/validation`.
-- **Boundary:** TCGA is the tumor discovery system, not an external validation cohort.
+- **Completed analysis:** [Notebook 800](../notebooks/phase8_orthogonal_validation/800_external_bulk_cohorts.ipynb) evaluates three frozen Phase 4 transcriptomic programs in seven matched TCGA–CPTAC-3 lineages. TCGA supplies the discovery reference and CPTAC-3 supplies the external cohort.
+- **Inputs:** CPTAC-3 source artifacts from Notebooks 111 → 112 → 113, the frozen TCGA expression reference from Notebook 205, and the ordered gene universe and program weights from Notebooks 400–401.
+- **Execution:** export protein-coding counts and metadata in Notebook 800, run the [CPTAC-3 normalization script](../scripts/r/800_cptac3_tmm_logcpm.R), then resume the notebook at the normalized-expression load cell. The [analysis contract](contracts/phase8/NOTEBOOK_800_CPTAC3_EXTERNAL_TRANSCRIPTOMIC_REPLICATION_CONTRACT.md#10-reproducibility-and-outputs) gives the file paths and bootstrap checkpoint behavior.
+- **Outputs:** 21 program–lineage comparisons, including weighted edge-pattern concordance, signed coherence, absolute correlation-magnitude change, tumor bootstrap percentiles, and matched-size and source-ancestry sensitivities. The executed notebook contains the results and their interpretation.
+- **Interpretation:** cohort provenance supports external comparison with residual donor-overlap uncertainty. The evidence is descriptive and lineage-specific. Confirmatory replication requires a separately specified analysis.
 
 ## Phase 9 — Integrated Evidence Synthesis and Therapeutic Prioritization
 
