@@ -9,6 +9,9 @@ unchanged as historical methodological provenance; realized artifact identity
 and lineage are represented by the analysis metadata and
 `config/artifact_registry.json`.
 
+The completed execution used the previous three-program consensus set.
+Re-execution with the current two-program Notebook 401 inputs is pending.
+
 ## Status
 
 Planned / prespecified before result inspection.

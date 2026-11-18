@@ -103,7 +103,7 @@ Purpose:
 * evaluate their internal robustness within the cell-line system; and
 * characterize discovery-level phenotype associations without importing tumor-program identities or rankings.
 
-The completed DepMap–GDSC cohort contains 713 models. Cellular discovery did not use tumor–cell-line matching, TCGA program identities, TCGA rankings, or Phase 2 information to select cellular components. Functional dependency analyses using CRISPR or RNAi are downstream work, not part of Phase 3 discovery.
+The completed DepMap–GDSC cohort contains 712 models. Cellular discovery did not use tumor–cell-line matching, TCGA program identities, TCGA rankings, or Phase 2 information to select cellular components. Functional dependency analyses using CRISPR or RNAi are downstream work, not part of Phase 3 discovery.
 
 ---
 
@@ -118,7 +118,7 @@ Purpose:
 * construct consensus programs only after matching; and
 * retain explicit “not recoverable” outcomes.
 
-Phase 4 completed notebooks 400–404 and froze three candidate cross-system transcriptomic consensus representations with tumor-side methylation context. Cross-lineage robustness, epigenetic-regulator enrichment, and biological annotation were used for characterization only and did not retrospectively redefine, rescue, exclude, reweight, or rename the frozen consensus representations.
+The rebuilt notebooks 400–404 report two candidate cross-system transcriptomic consensus representations with tumor-side methylation context. Cross-lineage robustness, epigenetic-regulator enrichment, and biological annotation were used for characterization only and did not retrospectively redefine, rescue, exclude, reweight, or rename the frozen consensus representations.
 
 Component indices are not assumed to be portable between systems. Scoring or projection can be used as an analytical operation downstream, but not as the mechanism of cell-line discovery. Cross-system correspondence remains computational reproducibility evidence rather than biological or causal validation.
 
@@ -126,7 +126,7 @@ Component indices are not assumed to be portable between systems. Scoring or pro
 
 ## Layer 3B — Secondary Molecular Context Characterization
 
-**Phase 4B — closed / frozen**
+**Phase 4B — Notebook 450 rebuilt, Notebook 451 pending re-execution**
 
 Primary resources:
 
@@ -141,9 +141,9 @@ Purpose:
 * characterize locus-level CpG-to-gene methylation-expression relationships relevant to frozen programs; and
 * evaluate inverse promoter methylation-expression relationships where annotation and coverage support the analysis.
 
-Notebooks `450 — Secondary Genomic Context Characterization` and `451 — Locus-Level Methylation–Expression Characterization` are complete / frozen. Notebook 450 treats mutations as contextual evidence rather than as a new discovery modality; notebook 451 provides locus-level methylation-expression context but does not infer causal epigenetic regulation or assign TCGA resistance/sensitivity labels.
+Notebook `450 — Secondary Genomic Context Characterization` is complete for the two current consensus programs and reports 8,898 gene × program tests. Notebook `451 — Locus-Level Methylation–Expression Characterization` previously ran with the three-program consensus set. The [operational workflow](workflow.md) records the current downstream handoff status.
 
-Positive, negative, lineage-specific, heterogeneous, and non-recurrent outcomes are all valid. Phase 4B outputs cannot redefine the three frozen consensus programs and need not appear in a manuscript if they do not materially strengthen its scientific argument.
+Positive, negative, lineage-specific, heterogeneous, and non-recurrent outcomes are all valid. Phase 4B outputs cannot redefine the frozen consensus programs and need not appear in a manuscript if they do not materially strengthen its scientific argument.
 
 ---
 
@@ -193,7 +193,7 @@ Resistance-like context refers only to relative baseline drug insensitivity in p
 
 ## Layer 6 — Perturbational Hypothesis Generation
 
-**Phase 7 — planned**
+**Phase 7 — notebooks 700–703 implemented for the previous consensus set**
 
 Primary resources:
 
