@@ -2,7 +2,8 @@
 
 ## Status
 
-Implemented.
+Implemented for the two-program consensus set built from the 712-model
+DepMap–GDSC cohort.
 
 This document consolidates the analytical decisions used by notebook
 `450 — Secondary Genomic Context Characterization`.
@@ -21,7 +22,7 @@ The authoritative executable record remains:
 
 ## Purpose
 
-Notebook 450 characterizes somatic genomic context associated with the three
+Notebook 450 characterizes somatic genomic context associated with the two
 frozen Phase 4 cross-system consensus transcriptomic programs in the TCGA
 primary-tumor cohort.
 
@@ -72,9 +73,8 @@ The outcome space is inherited from:
 
 The primary program universe is restricted to:
 
-- `CONSENSUS_TX_01`;
-- `CONSENSUS_TX_02`; and
-- `CONSENSUS_TX_03`.
+- `CONSENSUS_TX_01` (RNA_IC150 ↔ ICA_PROGRAM_15)
+- `CONSENSUS_TX_02` (RNA_IC151 ↔ ICA_PROGRAM_47)
 
 The frozen tumor scores are consumed exactly as produced by Phase 4.
 
@@ -312,9 +312,9 @@ Every eligible gene is evaluated against every frozen consensus tumor program.
 
 The primary family is therefore:
 
-`4,449 genes × 3 consensus programs = 13,347 gene × program tests`
+`4,449 genes × 2 consensus programs = 8,898 gene × program tests`
 
-All 13,347 tests belong to one primary multiple-testing family.
+All 8,898 tests belong to one primary multiple-testing family.
 
 Genes or programs are not removed from the family because of:
 
@@ -491,7 +491,7 @@ that fails the primary inferential framework.
 
 ## Primary multiplicity control
 
-All 13,347 primary gene × program tests form one inferential family.
+All 8,898 primary gene × program tests form one inferential family.
 
 Benjamini–Hochberg FDR correction is applied globally across that family.
 
@@ -740,8 +740,7 @@ including:
 - sensitivity-stability information; and
 - exploratory background-burden-conditioned diagnostics where applicable.
 
-The complete output contains all primary gene × program hypotheses, not only
-statistically supported associations.
+The CSV contains all 8,898 primary gene × program tests in 30 columns.
 
 ---
 

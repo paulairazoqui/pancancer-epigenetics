@@ -2,6 +2,10 @@
 
 ## Operational Analysis Roadmap (v3.2)
 
+The current rebuild extends through Notebook 450. Later completed analyses
+describe execution with the previous Phase 4 consensus set. See the
+[operational workflow](docs/workflow.md) for the current handoff status.
+
 ### Project Objective
 
 Identify recurrent epigenetic-transcriptomic programs across human cancers through independent discovery in primary tumors and cancer cell models, characterize their secondary genomic and locus-level methylation-expression context, evaluate associated functional vulnerabilities and resistance-like pharmacogenomic contexts, apply explainable predictive modeling where appropriate, generate perturbational hypotheses, and integrate convergent evidence into a conservative therapeutic-prioritization framework.
@@ -225,7 +229,7 @@ Outputs:
 
 ## Status
 
-**CLOSED.** The frozen cohort contains 713 models. Transcriptomic discovery was independent of the tumor system; latent-program extraction was phenotype-independent, and internal robustness was completed in notebook 311.
+**CLOSED.** The corrected cohort contains 712 models. Transcriptomic discovery was independent of the tumor system; latent-program extraction was phenotype-independent, and internal robustness was completed in notebook 311.
 
 ## Objective
 
@@ -275,7 +279,7 @@ Outputs:
 
 ## Status
 
-**CLOSED / FROZEN.** Notebooks **400 — Cross-System Program Comparison** through **404 — Program Annotation** are complete. The phase retains three frozen candidate cross-system transcriptomic consensus representations with tumor-side methylation context, lineage-aware robustness characterization, epigenetic-regulator enrichment results, and prespecified biological annotations. Phase 4 reopens only for a concrete identified problem; downstream evidence must not retrospectively redefine, rescue, exclude, reweight, or rename the frozen consensus representations.
+**CLOSED / FROZEN.** Notebooks **400 — Cross-System Program Comparison** through **404 — Program Annotation** are complete. The phase retains two candidate cross-system transcriptomic consensus representations over 2,388 shared genes with tumor-side methylation context, lineage-aware robustness characterization, epigenetic-regulator enrichment results, and prespecified biological annotations. Phase 4 reopens only for a concrete identified problem; downstream evidence must not retrospectively redefine, rescue, exclude, reweight, or rename the frozen consensus representations.
 
 ## Objective
 
@@ -315,7 +319,7 @@ Outputs:
 
 ## Status
 
-**CLOSED / FROZEN.** Notebooks **450 — Secondary Genomic Context Characterization** and **451 — Locus-Level Methylation–Expression Characterization** are complete / frozen. This downstream characterization layer does **not** reopen Phase 4 discovery or consensus construction.
+**Notebook 450 rebuilt.** Notebook 451 was completed with the previous consensus set and is pending re-execution with the current inputs. Phase 4B characterizes the existing Phase 4 programs.
 
 ## Objective
 
@@ -334,19 +338,13 @@ Primary resource:
 Completed analysis:
 
 * constructed deterministic case-level qualifying-variant states using all retained exact-sample MAFs, genomic-key deduplication, and explicit indeterminate handling for all-empty payloads;
-* defined an outcome-blind primary universe of 4,449 genes with prespecified project-level mutated/non-mutated support, yielding a complete family of 13,347 gene × program tests across the three frozen consensus programs;
+* defined an outcome-blind primary universe of 4,449 genes with prespecified project-level mutated/non-mutated support, yielding a complete family of 8,898 gene × program tests across the two current consensus programs;
 * estimated project-adjusted primary associations with HC3 uncertainty and global Benjamini–Hochberg FDR control;
 * characterized primary FDR-supported associations using within-project direction and leave-one-project-out stability under prespecified cross-cancer recurrence criteria;
 * evaluated prespecified purity, proliferation, single-MAF, and extended-`Splice_Region` sensitivities without allowing them to rescue primary associations; and
 * evaluated focal-excluded background observed-variant burden as an exploratory confounding diagnostic without treating it as conventional TMB or as a post hoc replacement for the primary model.
 
-The complete primary gene × consensus-program association family is frozen as:
-
-`data/processed/secondary_characterization/450_primary_gene_program_associations.csv`
-
-Its stable registry identifier is:
-
-`phase4b.450.primary_gene_program_associations`
+The rebuilt notebook exports the complete primary gene × consensus-program association family to `data/processed/secondary_characterization/450_primary_gene_program_associations.csv`. Its stable registry identifier is `phase4b.450.primary_gene_program_associations`.
 
 The notebook-specific analytical rules are documented in `docs/contracts/phase4b/PHASE4B_450_ANALYSIS_CONTRACT.md`.
 

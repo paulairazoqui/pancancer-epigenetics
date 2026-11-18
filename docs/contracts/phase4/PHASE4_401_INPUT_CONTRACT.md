@@ -18,14 +18,14 @@ These levels are not interchangeable. Family members remain distinct arms, but s
 |---|---|---|
 | `config/program_handoffs/tcga_phase2_candidate_program_handoff.csv` | 13 tumor arms / 8 families | Tumor identity, family membership, frozen audit status, priority, HM27 status, relationship form, limitation, and consensus handling. |
 | `data/processed/consensus_programs/400_cross_system_correspondence_summary.csv` | 10 unique RNA axes | Axis-level correspondence class, accepted cell-line program only when supported, and orientation. |
-| `data/processed/consensus_programs/400_cross_system_pairwise_matching_metrics.csv` | 100 prespecified axis-by-program comparisons | Full matching topology and ambiguity metadata; not an alternate route to promote a match. |
+| `data/processed/consensus_programs/400_cross_system_pairwise_matching_metrics.csv` | 80 prespecified axis-by-program comparisons | Full matching topology and ambiguity metadata; not an alternate route to promote a match. |
 | `data/processed/consensus_programs/400_cross_system_tumor_arm_handoff.csv` | 13 tumor arms | Propagation of axis-level matching to arms; rows are not independent correspondence events. |
-| `data/processed/consensus_programs/400_cross_system_shared_gene_universe.csv` | 2,389 shared genes | Exact HGNC-symbol crosswalk for construction; it does not contain loadings. |
+| `data/processed/consensus_programs/400_cross_system_shared_gene_universe.csv` | 2,388 shared genes | Exact HGNC-symbol crosswalk for construction; it does not contain loadings. |
 | `data/processed/consensus_programs/400_cross_system_comparison_metadata.json` | one comparison run | Frozen matching policy, dimensions, thresholds, seed, support rule, and limitations. |
-| `data/processed/cellline_programs/311_program_robustness_summary.csv` and metadata | 10 cell-line candidates | Cell-line internal robustness context; never a structural matching or rescue criterion. |
+| `data/processed/cellline_programs/311_program_robustness_summary.csv` and metadata | 8 cell-line candidates | Cell-line internal robustness context; never a structural matching or rescue criterion. |
 | `data/processed/tumor_programs/tcga_cross_omic_candidate_program_robustness_evidence.csv` and metadata | 13 tumor arms | Numeric internal tumor robustness context only; never a source for reconstructing categorical audit labels. |
 
-When construction is permitted by the gates below, 401 may use the frozen loading artifacts `data/processed/tumor_programs/tcga_primary_tumor_rna_ica_candidate_gene_loadings.csv` and `data/processed/cellline_programs/310_ica_program_loadings.parquet`, restricted and ordered by the 2,389-gene crosswalk and oriented with the accepted notebook 400 orientation. Scores or downstream phenotypes must not determine eligibility or construction choices.
+When construction is permitted by the gates below, 401 may use the frozen loading artifacts `data/processed/tumor_programs/tcga_primary_tumor_rna_ica_candidate_gene_loadings.csv` and `data/processed/cellline_programs/310_ica_program_loadings.parquet`, restricted and ordered by the 2,388-gene crosswalk and oriented with the accepted notebook 400 orientation. Scores or downstream phenotypes must not determine eligibility or construction choices.
 
 ## Frozen rules for 401
 
@@ -41,7 +41,7 @@ Only an axis-level row with `correspondence_class == SUPPORTED_CORRESPONDENCE` m
 
 Notebook 311 fields must remain explicitly namespaced as cell-line evidence, for example `cell_line_robustness_category`, `cell_line_program_status`, and `cell_line_context_sensitive`. They provide contextual internal evidence and must not change, rescue, or upgrade the frozen structural correspondence class.
 
-`RNA_IC150 ↔ ICA_PROGRAM_09` remains `SUPPORTED_CORRESPONDENCE`, while `ICA_PROGRAM_09` remains `CONTEXT_SENSITIVE_CANDIDATE`. Both facts must coexist; structural correspondence does not erase context sensitivity.
+The two `SUPPORTED_CORRESPONDENCE` pairs are `RNA_IC150 ↔ ICA_PROGRAM_15` and `RNA_IC151 ↔ ICA_PROGRAM_47`. In Notebook 311, `ICA_PROGRAM_15` is an `UNRESOLVED_CONFOUNDED_CANDIDATE` and `ICA_PROGRAM_47` is a `ROBUSTNESS_SUPPORTED_CANDIDATE`. Both cell-line qualifications are retained alongside the structural matches.
 
 ### Tumor cautions
 
@@ -49,7 +49,7 @@ Notebook 401 must load the tracked Phase 2 handoff manifest directly. It must no
 
 ### Dependence
 
-`CROSS_OMIC_PAIR_03` and `CROSS_OMIC_PAIR_12` represent one `RNA_IC184` cross-system transcriptomic correspondence event, not two independent replications. The same no-inflation rule applies to every shared RNA axis, methylation axis, and structural family. Arms remain non-interchangeable; dependence controls evidence counting rather than collapsing arms.
+`CROSS_OMIC_PAIR_03` and `CROSS_OMIC_PAIR_12` share the `RNA_IC184` axis. The current Notebook 400 classifies that axis as `AMBIGUOUS_CORRESPONDENCE`. Count each shared RNA axis, methylation axis, or structural family once at its own level, and preserve the annotations of each tumor arm separately.
 
 ### Cross-omic interpretation
 

@@ -2,6 +2,13 @@
 
 This workflow describes the operational sequence for the roadmap v3.2 framework. Provenance, release names, and canonical source filenames are maintained in `config/raw_data_registry.json`; repository paths are maintained in `config/paths.yaml`.
 
+The notebooks rebuilt from the corrected 712-model cohort extend through
+Notebook 450. Completed runs described below for Notebook 451 and later phases
+used the previous Phase 4 inputs. Some entries in
+`config/artifact_registry.json` still describe the previous artifacts. Their
+shapes and fingerprints need to be verified against the rebuilt files before
+use in notebooks that check artifact identity.
+
 ## Phase 0 — Infrastructure and Reproducibility
 
 **Status:** completed.
@@ -37,7 +44,7 @@ This workflow describes the operational sequence for the roadmap v3.2 framework.
 
 - **Objective:** independently discover latent transcriptomic programs in cancer cell models.
 - **Notebook series:** `300_cross_dataset_overlap_analysis`, `301_identifier_landscape_and_harmonization_strategy`, `302_integrated_modeling_cohort_construction`, `303_expression_matrix_integration`, `304_expression_quality_control_and_variability_assessment`, `305_global_transcriptomic_structure_analysis`, `306_gdsc_pharmacology_integration`, `307_pharmacological_phenotype_framework`, `308_model_level_transcriptome_phenotype_integration`, `309_phenotype_sensitivity_analysis`, `310_program_discovery`, and `311_program_robustness`.
-- **Primary inputs:** DepMap and GDSC data with provenance defined exclusively in `config/raw_data_registry.json`; the frozen cohort contains 713 models.
+- **Primary inputs:** DepMap and GDSC data with provenance defined exclusively in `config/raw_data_registry.json`; the corrected cohort contains 712 models.
 - **Primary outputs:** independently discovered cell-line program representations, internal robustness results, and frozen candidate-program outputs under `data/processed/cellline_programs`.
 - **Boundary / handoff:** the sequence is transcriptomic representation discovery → representation freeze → pharmacogenomic phenotype association → internal robustness. Latent-program extraction in notebook 310 is phenotype-independent; the phenotype did not select the latent programs. The frozen cell-line candidates enter Phase 4 without being refit to tumor candidates.
 
@@ -48,17 +55,17 @@ This workflow describes the operational sequence for the roadmap v3.2 framework.
 - **Objective:** compare the separately frozen tumor and cell-line candidates across systems, construct consensus transcriptomic representations only for supported correspondence events, and characterize those frozen representations without downstream redefinition.
 - **Notebook series:** `400` Cross-System Program Comparison; `401` Consensus Program Construction; `402` Cross-Lineage Robustness; `403` Epigenetic Regulator Enrichment; and `404` Program Annotation.
 - **Primary inputs:** frozen outputs from `data/processed/tumor_programs` and `data/processed/cellline_programs`, followed by the frozen cross-system correspondence and consensus artifacts under `data/processed/consensus_programs`.
-- **Primary outputs:** cross-system comparison results; three candidate cross-system transcriptomic consensus representations with tumor-side methylation context; lineage-aware robustness summaries; epigenetic-regulator enrichment results; and prespecified biological annotations under `data/processed/consensus_programs`.
+- **Primary outputs:** cross-system comparison results; two candidate cross-system transcriptomic consensus representations over 2,388 shared genes with tumor-side methylation context; lineage-aware robustness summaries; epigenetic-regulator enrichment results; and prespecified biological annotations under `data/processed/consensus_programs`.
 - **Boundary / handoff:** Phase 4 reopens only for a concrete identified problem. Downstream characterization cannot redefine, rescue, exclude, reweight, reorient, or rename the frozen consensus programs.
 
 ## Phase 4B — Secondary Molecular Context Characterization
 
-**Status:** **CLOSED / FROZEN — notebooks 450–451 complete**.
+**Status:** **Notebook 450 rebuilt. Notebook 451 pending re-execution with the current inputs.**
 
 - **Objective:** characterize frozen program representations through somatic genomic context and locus-level methylation-expression relationships without reopening discovery.
-- **Notebook series:** `450` Secondary Genomic Context Characterization — complete / frozen; `451` Locus-Level Methylation–Expression Characterization — complete / frozen.
+- **Notebook series:** `450` Secondary Genomic Context Characterization and `451` Locus-Level Methylation–Expression Characterization.
 - **Primary inputs:** frozen Phase 4 programs; the audited and frozen TCGA/GDC somatic-mutation handoff from notebook 108; frozen TCGA methylation and RNA-seq data; and prespecified CpG-to-gene and promoter/regulatory annotations for notebook 451.
-- **Primary outputs:** notebook 450 publishes the frozen `450_primary_gene_program_associations.csv` handoff containing the complete primary gene × consensus-program family, primary inference, lineage-aware recurrence characterization, prespecified sensitivity stability, and exploratory focal-excluded background observed-variant-burden diagnostics. Notebook 451 publishes frozen CpG–gene annotation/eligibility, primary, within-project, leave-one-project-out, sensitivity, locus-level evidence, and analysis-metadata artifacts; all seven are registered as `phase4b.451.*` artifacts.
+- **Primary outputs:** the rebuilt Notebook 450 exports `450_primary_gene_program_associations.csv` with all 8,898 primary tests and their available recurrence, sensitivity, and exploratory burden diagnostics. The previous Notebook 451 execution produced CpG–gene annotation/eligibility, primary, within-project, leave-one-project-out, sensitivity, locus-level evidence, and analysis-metadata artifacts; all seven are registered as `phase4b.451.*` artifacts.
 - **Genomic boundary:** notebook 450 uses somatic mutations as secondary characterization, not rediscovery. Primary inference is project-adjusted and recurrence requires prespecified cross-project directional and leave-one-project-out support. Conventional TMB is not reported because a defensible sample-comparable callable-territory denominator is unavailable. The focal-excluded background observed-variant-burden analysis is exploratory and does not redefine primary significance, recurrence, or sensitivity stability. Copy-number analysis remains outside this block unless separately justified before implementation.
 - **Methylation-expression boundary:** inverse promoter methylation-expression associations may be described as compatible with epigenetic regulation but not as mechanistic proof. TCGA tumors are not assigned resistant/sensitive labels for this analysis. Platform coverage, annotation uncertainty, purity, and other applicable confounders remain explicit.
 - **Freeze boundary:** Phase 4B cannot modify frozen Phase 4 objects. Positive, negative, lineage-specific, heterogeneous, or non-recurrent outcomes are all valid. Publication is optional; the analysis may remain a documented project result if it does not strengthen a manuscript.
@@ -94,7 +101,7 @@ This workflow describes the operational sequence for the roadmap v3.2 framework.
 
 ## Phase 7 — Perturbational Hypotheses
 
-**Status:** planned.
+**Status:** notebooks 700–703 are implemented for the previous consensus set.
 
 - **Objective:** generate perturbational hypotheses from inverse computational associations with consensus programs.
 - **Notebook series:** `700`–`703`.
