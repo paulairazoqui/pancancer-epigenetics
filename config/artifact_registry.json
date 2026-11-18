@@ -1031,11 +1031,11 @@
         "path": "notebooks/phase4_consensus_programs/401_consensus_program_construction.ipynb"
       },
       "shape": [
-        3,
+        2,
         21
       ],
-      "size_bytes": 1637,
-      "sha256": "c97024c2cd5d2403dc39a6f225ad7cbd4df3d3758bdcfb6e502f18906059e7e7",
+      "size_bytes": 1229,
+      "sha256": "75ff7cc71d294be063e9507cfe6a87710ecd0de095a9151184f7342bdc0d793d",
       "inputs": [
         {
           "type": "artifact",
@@ -1203,11 +1203,11 @@
         "path": "notebooks/phase4_consensus_programs/401_consensus_program_construction.ipynb"
       },
       "shape": [
-        4,
+        2,
         25
       ],
-      "size_bytes": 2634,
-      "sha256": "574402b5112ea8aa7356621fb7ba0a20db746bf85050a9374cee3f541cc04837",
+      "size_bytes": 1558,
+      "sha256": "c657b245c5775bf0274816d84e8dd5501eb45627987c875cf0ec8d1cb262c1f8",
       "inputs": [
         {
           "type": "artifact",
@@ -2806,11 +2806,11 @@
         "path": "notebooks/phase4b_secondary_molecular_characterization/451_locus_level_methylation_expression_characterization.ipynb"
       },
       "shape": [
-        343,
+        242,
         33
       ],
-      "size_bytes": 357389,
-      "sha256": "3033a909d713b6da0f80c0fc28bc0e895b295825ce3fc5e42ecdd3d9c6a474ba",
+      "size_bytes": 199055,
+      "sha256": "d5bc246c2174acef8f02f0396effee4d11fd47c71575c0584013f171927f93a2",
       "inputs": [
         {
           "type": "raw_registry",
@@ -2856,11 +2856,11 @@
         "path": "notebooks/phase4b_secondary_molecular_characterization/451_locus_level_methylation_expression_characterization.ipynb"
       },
       "shape": [
-        311,
+        222,
         47
       ],
-      "size_bytes": 383104,
-      "sha256": "3e7e58b5f1efe6465b0dd4926357ecbe3326008f450a2a89acb4f6f1b9ea4a17",
+      "size_bytes": 222652,
+      "sha256": "a2846c97c08bb48f35baddb9f5450f8b8581d7676bff584d1a91377513b871f9",
       "inputs": [
         {
           "type": "artifact",
@@ -2898,11 +2898,11 @@
         "path": "notebooks/phase4b_secondary_molecular_characterization/451_locus_level_methylation_expression_characterization.ipynb"
       },
       "shape": [
-        9248,
+        6560,
         5
       ],
-      "size_bytes": 573457,
-      "sha256": "acd02ed587481ebb8d30ed1f2dad31d65635172bd2d156fbbbb1de311dab2f94",
+      "size_bytes": 406837,
+      "sha256": "2d3ed245f734d212cf5bb3a1d67f3910d6e75d9b8819462630f7d418cd3969e1",
       "inputs": [
         {
           "type": "artifact",
@@ -2940,11 +2940,11 @@
         "path": "notebooks/phase4b_secondary_molecular_characterization/451_locus_level_methylation_expression_characterization.ipynb"
       },
       "shape": [
-        9248,
+        6560,
         6
       ],
-      "size_bytes": 641527,
-      "sha256": "84b594d32aa02480aeaf6c043d99d89d83799559acf469d97054e56c545fecb3",
+      "size_bytes": 455145,
+      "sha256": "43b0ca2a2f77ad5f1f69ae347f355e8a4daf3a8239d773da9381b17594a8815b",
       "inputs": [
         {
           "type": "artifact",
@@ -2982,11 +2982,11 @@
         "path": "notebooks/phase4b_secondary_molecular_characterization/451_locus_level_methylation_expression_characterization.ipynb"
       },
       "shape": [
-        972,
+        720,
         11
       ],
-      "size_bytes": 151512,
-      "sha256": "af51a22eed52f6b015426adc6bbb26c5a1a90c72a86415d33b3e778211c04861",
+      "size_bytes": 112444,
+      "sha256": "86715656dcb361dc3d937cb443bdc20616da992f1928415d83e2f62f7b4ae591",
       "inputs": [
         {
           "type": "artifact",
@@ -3032,11 +3032,11 @@
         "path": "notebooks/phase4b_secondary_molecular_characterization/451_locus_level_methylation_expression_characterization.ipynb"
       },
       "shape": [
-        311,
+        222,
         56
       ],
-      "size_bytes": 397158,
-      "sha256": "58a1b3c69b9e64ee95d9a3b8cdfa64399f50a944bf27a2019630355b657ea484",
+      "size_bytes": 232786,
+      "sha256": "6d2de01ae893ea6e265ca4ca1adb7a07d1fd3f902899c5fbea36dc8f2cfb2779",
       "inputs": [
         {
           "type": "artifact",
@@ -3078,8 +3078,8 @@
         "path": "notebooks/phase4b_secondary_molecular_characterization/451_locus_level_methylation_expression_characterization.ipynb"
       },
       "shape": null,
-      "size_bytes": 7210,
-      "sha256": "68f286136bb27dc828a1232cb77d1aabf5128238a545b4fee0f74859822a745e",
+      "size_bytes": 7189,
+      "sha256": "547ea7e943f3c8e487afe6dbff3c82d18543ce7f21a2d811963c8082d9e80dca",
       "inputs": [
         {
           "type": "artifact",
