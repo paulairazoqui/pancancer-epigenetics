@@ -2525,11 +2525,11 @@
         "path": "notebooks/phase5_functional_vulnerabilities/502_integrated_vulnerability_mapping.ipynb"
       },
       "shape": [
-        54951,
+        36634,
         51
       ],
-      "size_bytes": 6345739,
-      "sha256": "21bfaf035ea4669f98efd64d356bbb96b2aa6e1cf2f01926865d67e07f3f49cd",
+      "size_bytes": 4418981,
+      "sha256": "df6db4d7166a4a54d597ed6ab6a37eaac9533567408e1bf19434832ed0630f48",
       "inputs": [
         {
           "type": "artifact",
@@ -2571,11 +2571,11 @@
         "path": "notebooks/phase5_functional_vulnerabilities/502_integrated_vulnerability_mapping.ipynb"
       },
       "shape": [
-        28,
+        21,
         4
       ],
-      "size_bytes": 1495,
-      "sha256": "5596e7fc51d4432edab9076b8162fdc1ff8f462b7c5e540f484448a1b9aca3c4",
+      "size_bytes": 1111,
+      "sha256": "3e67721b889f14aa520e82997c17d4ab872e369cd51b2196669505eeaec50e24",
       "inputs": [
         {
           "type": "artifact",
@@ -2593,11 +2593,11 @@
         "path": "notebooks/phase5_functional_vulnerabilities/502_integrated_vulnerability_mapping.ipynb"
       },
       "shape": [
-        35,
+        20,
         51
       ],
-      "size_bytes": 27202,
-      "sha256": "85df5b347c0ca0fd701676f9d87582129a6191acd50cb03645554d14bc2c3fce",
+      "size_bytes": 15945,
+      "sha256": "a268761e26ee39f209bcd10da5dc5e28a720a662b3a17e0c293ba5b90ab357cf",
       "inputs": [
         {
           "type": "artifact",
@@ -2615,8 +2615,8 @@
         "path": "notebooks/phase5_functional_vulnerabilities/502_integrated_vulnerability_mapping.ipynb"
       },
       "shape": null,
-      "size_bytes": 4837,
-      "sha256": "9e1952fd14cabeafbddd7882a7b283bb5dae01ff3383c03e332de22fa4866d15",
+      "size_bytes": 4747,
+      "sha256": "237bdab85335743def3010a91b17836a14aebb3115d2f26f260423d7a9879d7c",
       "inputs": [
         {
           "type": "artifact",
