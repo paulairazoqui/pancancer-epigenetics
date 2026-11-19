@@ -53,6 +53,23 @@ Once upstream cohorts, QC, schemas, and authoritative artifacts are frozen:
 - perform only local checks required by genuinely new transformations or risks introduced in the current notebook;
 - do not silently recompute authoritative upstream decisions.
 
+## Derived artifact registration
+
+- After exporting and verifying registered notebook outputs, use
+  `refresh_notebook_artifacts()` with the verified paths and observed shapes.
+  This updates file dimensions, size, and SHA-256 for the declared outputs.
+- For new or deliberately revised declarations, prepare the artifact IDs,
+  producer, roles, and input dependencies in the notebook and call
+  `register_artifacts()` once for the batch. New file dimensions, sizes, and
+  hashes can replace the recorded identities in a successful rebuild.
+  Use `allow_declaration_change=True` for deliberate changes to existing
+  declarations, including paths, producers, or input dependencies.
+- Both functions validate the full derived artifact registry and write the
+  batch through the shared JSON registry utility.
+- A frozen entry records the verified identity of the latest accepted output.
+  After correcting an upstream result, rerun its downstream notebooks in
+  dependency order so each producer refreshes its own entries.
+
 ## Documentation balance
 
 Markdown is the primary location for scientific rationale and interpretation.
