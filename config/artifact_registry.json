@@ -1626,11 +1626,11 @@
         "path": "notebooks/phase5_functional_vulnerabilities/500_crispr_associations.ipynb"
       },
       "shape": [
-        539,
-        5
+        538,
+        4
       ],
-      "size_bytes": 43845,
-      "sha256": "268a58dbfcef63a16469d26d5516208dbf0017d671503f664a5d053bb41f9be7",
+      "size_bytes": 33132,
+      "sha256": "3bd162cdc270e0a9db7d33ba1233e2a7688c2320190492f1417bbc6ae06fc921",
       "inputs": [
         {
           "type": "artifact",
@@ -1659,8 +1659,8 @@
         17916,
         9
       ],
-      "size_bytes": 1200182,
-      "sha256": "67152e5638b13dcf986ba6c22ded37a6abd0c4ad130659effa738ae51acbc9e6",
+      "size_bytes": 1200462,
+      "sha256": "983608fc849a4af851a91b489e357b43b56f9467aea294b468bff4b1accf8292",
       "inputs": [
         {
           "type": "artifact",
@@ -1682,11 +1682,11 @@
         "path": "notebooks/phase5_functional_vulnerabilities/500_crispr_associations.ipynb"
       },
       "shape": [
-        51615,
+        34410,
         10
       ],
-      "size_bytes": 6924575,
-      "sha256": "d2a3cec67a52bbceb7ff91fcdc56bfed0c82fbe2aabfd2ed721a89efc8a2c44c",
+      "size_bytes": 4611860,
+      "sha256": "7d6333f0e85874d08e0d86fd0a95f9ad26efd82a5d207ffdb88b77028e19ff62",
       "inputs": [
         {
           "type": "artifact",
@@ -1712,11 +1712,11 @@
         "path": "notebooks/phase5_functional_vulnerabilities/500_crispr_associations.ipynb"
       },
       "shape": [
-        12272,
+        7280,
         7
       ],
-      "size_bytes": 946045,
-      "sha256": "b0343798e0ded839c93d09f4e345f43b306e7d21f319a2d2bfbeb194f73be5cf",
+      "size_bytes": 561428,
+      "sha256": "3f927a829740963c7cc87499263f3a151b64f86f51aa28f4b555e024f5ff9dc6",
       "inputs": [
         {
           "type": "artifact",
@@ -1742,11 +1742,11 @@
         "path": "notebooks/phase5_functional_vulnerabilities/500_crispr_associations.ipynb"
       },
       "shape": [
-        944,
+        560,
         22
       ],
-      "size_bytes": 304075,
-      "sha256": "894b351320d610a7b92dd20dfe00775c3ebce9a8d7cf2011e2a231d04ad09b92",
+      "size_bytes": 180440,
+      "sha256": "3c872b03c68514f44ad9a575a46edc376a9b09195d4389bc1930a3e8e159841b",
       "inputs": [
         {
           "type": "artifact",
@@ -1776,11 +1776,11 @@
         "path": "notebooks/phase5_functional_vulnerabilities/500_crispr_associations.ipynb"
       },
       "shape": [
-        492,
+        341,
         20
       ],
-      "size_bytes": 140026,
-      "sha256": "74d0e2c7f9cd18b2f9ee26342cf3236a8210a498c6f3ca23878e495fda752d02",
+      "size_bytes": 96902,
+      "sha256": "c21a7c0554bda12770abbcac726bb900f047dab0d4901975ffa5b7aeeab44f82",
       "inputs": [
         {
           "type": "artifact",
@@ -1798,8 +1798,8 @@
         "path": "notebooks/phase5_functional_vulnerabilities/500_crispr_associations.ipynb"
       },
       "shape": null,
-      "size_bytes": 1364,
-      "sha256": "b37394f3661bef379282bbb5efd56400673357213975f2a63a5aa82f6cc98a5b",
+      "size_bytes": 1340,
+      "sha256": "bf596d3d6494220e2fe1625247318b768e745f0879db442a657604d39cfb10c1",
       "inputs": [
         {
           "type": "artifact",
