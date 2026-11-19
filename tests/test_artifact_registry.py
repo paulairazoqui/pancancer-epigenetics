@@ -1,12 +1,16 @@
+import json
 from pathlib import Path
 
 import pytest
 
 from pancancer_epigenetics.utils.artifact_registry import (
     load_artifact_registry,
+    refresh_notebook_artifacts,
+    register_artifacts,
     resolve_artifact_path,
     validate_artifact_registry,
 )
+from pancancer_epigenetics.utils.file_checks import calculate_sha256
 
 
 def _artifact(path: str = "data/interim/example.csv", inputs: list | None = None) -> dict:
@@ -97,6 +101,73 @@ def test_self_dependency_and_cycle_rejected() -> None:
 def test_resolution_is_deterministic(tmp_path: Path) -> None:
     registry, _ = _registry()
     assert resolve_artifact_path(registry, "a", tmp_path) == (tmp_path / "data/interim/example.csv").resolve()
+
+
+def test_batch_registration_preserves_frozen_and_unrelated_entries(tmp_path):
+    path = tmp_path / "artifact_registry.json"
+    path.write_text('{"schema_version": 1, "artifacts": {}}', encoding="utf-8")
+    inputs = [{"type": "raw_registry", "ref": "/depmap/files/CRISPRGeneEffect.csv"}]
+    entry = _artifact(inputs=inputs)
+    register_artifacts({"a": entry}, registry_path=path)
+    original = path.read_bytes()
+
+    register_artifacts({"a": entry}, registry_path=path)
+    assert path.read_bytes() == original
+
+    replacement = {**entry, "size_bytes": 2}
+    new_entry = _artifact("data/interim/new.csv", inputs=inputs)
+    with pytest.raises(ValueError, match="Frozen artifact"):
+        register_artifacts({"b": new_entry, "a": replacement}, registry_path=path)
+    assert path.read_bytes() == original
+
+    invalid_entry = {**new_entry, "inputs": [{"type": "artifact", "artifact_id": "missing"}]}
+    with pytest.raises(ValueError, match="does not exist"):
+        register_artifacts(
+            {"a": replacement, "b": invalid_entry}, allow_replace=True, registry_path=path
+        )
+    assert path.read_bytes() == original
+
+    saved = register_artifacts(
+        {"a": replacement, "b": new_entry}, allow_replace=True, registry_path=path
+    )
+    assert json.loads(path.read_text(encoding="utf-8")) == saved
+    assert saved["artifacts"] == {"a": replacement, "b": new_entry}
+
+
+def test_refresh_updates_only_declared_output_identities(tmp_path):
+    path = tmp_path / "artifact_registry.json"
+    path.write_text('{"schema_version": 1, "artifacts": {}}', encoding="utf-8")
+    inputs = [{"type": "raw_registry", "ref": "/depmap/files/CRISPRGeneEffect.csv"}]
+    entry = _artifact(inputs=inputs)
+    unrelated = {
+        **_artifact("data/interim/other.csv", inputs=inputs),
+        "producer": {"type": "notebook", "path": "notebooks/other.ipynb"},
+    }
+    register_artifacts({"a": entry, "b": unrelated}, registry_path=path)
+    output = tmp_path / entry["path"]
+    output.parent.mkdir(parents=True)
+    output.write_bytes(b"gene\nA\nB\n")
+
+    original = path.read_bytes()
+    with pytest.raises(ValueError, match="Verified outputs differ"):
+        refresh_notebook_artifacts(
+            "notebooks/example.ipynb", {}, registry_path=path, root=tmp_path
+        )
+    assert path.read_bytes() == original
+
+    count = refresh_notebook_artifacts(
+        "notebooks/example.ipynb", {output: (2, 1)}, registry_path=path, root=tmp_path
+    )
+    assert count == 1
+    assert load_artifact_registry(path)["artifacts"] == {
+        "a": {
+            **entry,
+            "shape": [2, 1],
+            "size_bytes": output.stat().st_size,
+            "sha256": calculate_sha256(output),
+        },
+        "b": unrelated,
+    }
 
 
 def test_real_registry_structure_and_frozen_outputs() -> None:

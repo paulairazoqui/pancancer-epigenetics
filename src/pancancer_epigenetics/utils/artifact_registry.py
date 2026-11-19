@@ -3,12 +3,18 @@
 from __future__ import annotations
 
 import json
+import os
 import re
+from collections.abc import Iterator, Mapping
+from contextlib import contextmanager
+from hashlib import sha256
 from pathlib import Path, PurePosixPath
+from tempfile import gettempdir
 from typing import Any
 
 from pancancer_epigenetics.utils.file_checks import calculate_sha256
 from pancancer_epigenetics.utils.paths import PROJECT_ROOT, Paths
+from pancancer_epigenetics.utils.registry import register_json_entry
 
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 _ROLES = {"data", "metadata", "handoff"}
@@ -163,3 +169,101 @@ def verify_artifact_identity(registry: dict[str, Any], root: Path = PROJECT_ROOT
         elif calculate_sha256(path) != artifact["sha256"]:
             findings.append({"artifact_id": artifact_id, "issue": "sha256_mismatch"})
     return findings
+
+
+@contextmanager
+def _lock_artifact_registry(registry_path: Path) -> Iterator[None]:
+    """Serialize the read, validation, and write across notebook kernels."""
+    registry_key = os.fsencode(os.path.normcase(registry_path.resolve()))
+    lock_name = f"pancancer-artifacts-{sha256(registry_key).hexdigest()}.lock"
+    lock_path = Path(gettempdir()) / lock_name
+    with lock_path.open("a+b") as lock_file:
+        if os.name == "nt":
+            from msvcrt import LK_LOCK, LK_UNLCK, locking
+
+            lock_file.seek(0)
+            locking(lock_file.fileno(), LK_LOCK, 1)
+            try:
+                yield
+            finally:
+                locking(lock_file.fileno(), LK_UNLCK, 1)
+        else:
+            from fcntl import LOCK_EX, flock
+
+            flock(lock_file.fileno(), LOCK_EX)
+            yield
+
+
+def _save_artifact_entries(
+    registry_path: Path,
+    registry: dict[str, Any],
+    entries: Mapping[str, dict[str, Any]],
+    *,
+    allow_replace: bool,
+) -> dict[str, Any]:
+    artifacts = registry["artifacts"]
+    for artifact_id, entry in entries.items():
+        if (
+            artifact_id in artifacts
+            and artifacts[artifact_id] != entry
+            and not allow_replace
+        ):
+            raise ValueError(
+                f"Frozen artifact already has a different entry: {artifact_id}"
+            )
+
+    artifacts.update(entries)
+    validate_artifact_registry(registry)
+    register_json_entry(registry_path, ("artifacts",), artifacts, allow_replace=True)
+    return registry
+
+
+def register_artifacts(
+    entries: Mapping[str, dict[str, Any]],
+    *,
+    allow_replace: bool = False,
+    registry_path: Path = Paths.artifact_registry,
+) -> dict[str, Any]:
+    """Validate and commit a batch of declared artifact entries together."""
+    with _lock_artifact_registry(registry_path):
+        registry = load_artifact_registry(registry_path)
+        return _save_artifact_entries(
+            registry_path, registry, entries, allow_replace=allow_replace
+        )
+
+
+def refresh_notebook_artifacts(
+    notebook_path: str,
+    verified_outputs: Mapping[Path, tuple[int, ...] | None],
+    *,
+    registry_path: Path = Paths.artifact_registry,
+    root: Path = PROJECT_ROOT,
+) -> int:
+    """Refresh only file identities for a notebook's declared output files."""
+    with _lock_artifact_registry(registry_path):
+        registry = load_artifact_registry(registry_path)
+        registered_outputs = {
+            resolve_artifact_path(registry, artifact_id, root): artifact_id
+            for artifact_id, entry in registry["artifacts"].items()
+            if entry["producer"].get("path") == notebook_path
+        }
+        output_shapes = {
+            path.resolve(): shape for path, shape in verified_outputs.items()
+        }
+        if not registered_outputs or registered_outputs.keys() != output_shapes.keys():
+            raise ValueError(
+                f"Verified outputs differ from registered outputs for {notebook_path}"
+            )
+
+        entries = {}
+        for path, artifact_id in registered_outputs.items():
+            shape = output_shapes[path]
+            entries[artifact_id] = {
+                **get_artifact(registry, artifact_id),
+                "shape": list(shape) if shape is not None else None,
+                "size_bytes": path.stat().st_size,
+                "sha256": calculate_sha256(path),
+            }
+
+        _save_artifact_entries(registry_path, registry, entries, allow_replace=True)
+    return len(entries)
