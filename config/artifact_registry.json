@@ -580,11 +580,11 @@
         "path": "notebooks/phase3_cell_line_discovery_layer/302_integrated_modeling_cohort_construction.ipynb"
       },
       "shape": [
-        713,
+        712,
         8
       ],
-      "size_bytes": 85385,
-      "sha256": "1431e6318bd2effa642b3ee73d9d5a46fb5322673fd9d851381421b257169d7d",
+      "size_bytes": 85288,
+      "sha256": "430db92eca842c5dcfec4afd1e7b4f7f0fee0bc23748ae8efb0ea5a1c758d603",
       "inputs": [
         {
           "type": "artifact",
@@ -1476,11 +1476,11 @@
         "path": "notebooks/phase1_data_acquisition_and_auditing/107_depmap_rnai_acquisition_and_audit.ipynb"
       },
       "shape": [
-        443,
+        442,
         10
       ],
-      "size_bytes": 66854,
-      "sha256": "e37b07c4a4ad035750864b28413bd3f10e6f6293b88ae2f73bba67e5b9f84add",
+      "size_bytes": 66728,
+      "sha256": "ef43b8ffd7c8a3c2f70f5611eb14e412d2b12c4618a8ecc4e165562b21bb8a70",
       "inputs": [
         {
           "type": "artifact",
@@ -1505,8 +1505,8 @@
         17309,
         8
       ],
-      "size_bytes": 1006194,
-      "sha256": "eebee6a29fbc3de3eab3483817d0dcca61a870d3d2d1f19ffb80d59062097365",
+      "size_bytes": 1001043,
+      "sha256": "e07d36d9ea18537e16845370f58d7369fb0867aadf28014ab4d27e3803f8a234",
       "inputs": [
         {
           "type": "raw_registry",
@@ -1528,11 +1528,11 @@
         "path": "notebooks/phase1_data_acquisition_and_auditing/107_depmap_rnai_acquisition_and_audit.ipynb"
       },
       "shape": [
-        443,
+        442,
         16
       ],
-      "size_bytes": 90221,
-      "sha256": "fd2b86ea203043f789a979f595712f7667aa3cdb8ec48ad3e6aae1f4e2b0faba",
+      "size_bytes": 90044,
+      "sha256": "8436eb57a18c4b76d5de3128b41c45018d45876f2f5175e437aae136f30cf92b",
       "inputs": [
         {
           "type": "raw_registry",
@@ -1559,10 +1559,10 @@
       },
       "shape": [
         17309,
-        443
+        442
       ],
-      "size_bytes": 60598951,
-      "sha256": "1c952874be70ee7d45c4ebbc24e6274c9fb06114d995be7dc99390557f82d6b6",
+      "size_bytes": 60433192,
+      "sha256": "0d9978b9b5b656ee11ebe53459d24807125b55d5e7d0ec709ca9f6c4ff278b50",
       "inputs": [
         {
           "type": "raw_registry",
@@ -2188,11 +2188,11 @@
         "path": "notebooks/phase5_functional_vulnerabilities/501_rnai_associations.ipynb"
       },
       "shape": [
-        443,
-        6
+        442,
+        5
       ],
-      "size_bytes": 40837,
-      "sha256": "a5b3cb053c659597652bb14d972e8921427ede0e5394c2610364dec24a71d18e",
+      "size_bytes": 32024,
+      "sha256": "ccd35d90a22b03ee67bd2d04e62a25a29f81c19b496742ff45c33832ee5ddfcb",
       "inputs": [
         {
           "type": "artifact",
@@ -2221,8 +2221,8 @@
         17309,
         12
       ],
-      "size_bytes": 1601331,
-      "sha256": "036485ac3da14cab260ba0c3c73494826abf74a19a1ae7a2c0ccb8cee2839ba6",
+      "size_bytes": 1600018,
+      "sha256": "5bef5739a01a5c4d257917df608914f6ad9767b2d2ef8f94a6e0bcaece60c3ab",
       "inputs": [
         {
           "type": "artifact",
@@ -2248,11 +2248,11 @@
         "path": "notebooks/phase5_functional_vulnerabilities/501_rnai_associations.ipynb"
       },
       "shape": [
-        37794,
+        25196,
         17
       ],
-      "size_bytes": 9486536,
-      "sha256": "ef217bd9c8af9d2f44b87ccda3df5aa6fd2aba6b09275ef1f00b8e5016f0e3b0",
+      "size_bytes": 6316321,
+      "sha256": "66c9b8b2c51db3781485c3cb50614aa820c4d4b231285582b3ebb2908fd831f0",
       "inputs": [
         {
           "type": "artifact",
@@ -2278,11 +2278,11 @@
         "path": "notebooks/phase5_functional_vulnerabilities/501_rnai_associations.ipynb"
       },
       "shape": [
-        37794,
+        25196,
         17
       ],
-      "size_bytes": 7682827,
-      "sha256": "eb012843939434a9194c4379340aac4892d5fc7f9f9de3205e244fd059c8f2d3",
+      "size_bytes": 5114281,
+      "sha256": "64a8dd0f58c601590a4fb3bb0cd59c9abacd3eaa27ada4d4b716a42bdcce839d",
       "inputs": [
         {
           "type": "artifact",
@@ -2308,11 +2308,11 @@
         "path": "notebooks/phase5_functional_vulnerabilities/501_rnai_associations.ipynb"
       },
       "shape": [
-        18279,
+        12186,
         19
       ],
-      "size_bytes": 4937881,
-      "sha256": "03d5a57c3f56c3916541ef066c074577d62f3c6cab1303dad9f688f3207eb166",
+      "size_bytes": 3286339,
+      "sha256": "e1ca5403469c803d0bc35c27ad1472449d6a78125eba99ba8183840b74dbef20",
       "inputs": [
         {
           "type": "artifact",
@@ -2338,11 +2338,11 @@
         "path": "notebooks/phase5_functional_vulnerabilities/501_rnai_associations.ipynb"
       },
       "shape": [
-        16929,
+        9938,
         14
       ],
-      "size_bytes": 3016741,
-      "sha256": "70714e39a8020461c9c885437a87188d188cb44cdd0c4deba6230ce1168e13a7",
+      "size_bytes": 1766652,
+      "sha256": "f923ac3e8738129cfc037da2b2fb795406fa2d721680ecc1fb90848004a57fae",
       "inputs": [
         {
           "type": "artifact",
@@ -2368,11 +2368,11 @@
         "path": "notebooks/phase5_functional_vulnerabilities/501_rnai_associations.ipynb"
       },
       "shape": [
-        1686,
+        992,
         37
       ],
-      "size_bytes": 868990,
-      "sha256": "dc0beec807b2da01c1d99028285f4b56ec61787280381e33233a3dc88674701b",
+      "size_bytes": 510963,
+      "sha256": "37bada9cc9895f36f3a04e3898ad39c4c0eac80b6a9823097191ae92b58daa2b",
       "inputs": [
         {
           "type": "artifact",
@@ -2410,11 +2410,11 @@
         "path": "notebooks/phase5_functional_vulnerabilities/501_rnai_associations.ipynb"
       },
       "shape": [
-        711,
+        505,
         37
       ],
-      "size_bytes": 370463,
-      "sha256": "19905005540849772731e9db45ebd9848af704eebfbbdd36d14aef7ac99a7aee",
+      "size_bytes": 262864,
+      "sha256": "ab20a0a1708514e9eed411cdcedb53ed07e897cfcaccd3cfb1d09cfe3105b8bd",
       "inputs": [
         {
           "type": "artifact",
@@ -2432,8 +2432,8 @@
         "path": "notebooks/phase5_functional_vulnerabilities/501_rnai_associations.ipynb"
       },
       "shape": null,
-      "size_bytes": 2946,
-      "sha256": "6cf37e122c0d9ecb0569f7d4d35cda528cd6381a5f5cef5a29d4d92ec1f124e4",
+      "size_bytes": 3034,
+      "sha256": "6d9f3991a7223f7b99d463dc3d9b45be96a3924673b91630b368e36bb61a6f80",
       "inputs": [
         {
           "type": "artifact",
