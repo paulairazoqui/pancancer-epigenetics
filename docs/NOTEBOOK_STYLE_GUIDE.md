@@ -60,11 +60,15 @@ Once upstream cohorts, QC, schemas, and authoritative artifacts are frozen:
   This updates file dimensions, size, and SHA-256 for the declared outputs.
 - For new or deliberately revised declarations, prepare the artifact IDs,
   producer, roles, and input dependencies in the notebook and call
-  `register_artifacts()` once for the batch. Existing frozen entries are
-  protected by default. Set `allow_replace=True` when the workflow permits
-  replacing those entries.
+  `register_artifacts()` once for the batch. New file dimensions, sizes, and
+  hashes can replace the recorded identities in a successful rebuild.
+  Use `allow_declaration_change=True` for deliberate changes to existing
+  declarations, including paths, producers, or input dependencies.
 - Both functions validate the full derived artifact registry and write the
   batch through the shared JSON registry utility.
+- A frozen entry records the verified identity of the latest accepted output.
+  After correcting an upstream result, rerun its downstream notebooks in
+  dependency order so each producer refreshes its own entries.
 
 ## Documentation balance
 

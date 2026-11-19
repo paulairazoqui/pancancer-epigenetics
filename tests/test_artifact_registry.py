@@ -103,7 +103,7 @@ def test_resolution_is_deterministic(tmp_path: Path) -> None:
     assert resolve_artifact_path(registry, "a", tmp_path) == (tmp_path / "data/interim/example.csv").resolve()
 
 
-def test_batch_registration_preserves_frozen_and_unrelated_entries(tmp_path):
+def test_batch_registration_refreshes_frozen_identities_and_guards_declarations(tmp_path):
     path = tmp_path / "artifact_registry.json"
     path.write_text('{"schema_version": 1, "artifacts": {}}', encoding="utf-8")
     inputs = [{"type": "raw_registry", "ref": "/depmap/files/CRISPRGeneEffect.csv"}]
@@ -114,21 +114,29 @@ def test_batch_registration_preserves_frozen_and_unrelated_entries(tmp_path):
     register_artifacts({"a": entry}, registry_path=path)
     assert path.read_bytes() == original
 
-    replacement = {**entry, "size_bytes": 2}
+    refreshed = {**entry, "shape": [2, 1], "size_bytes": 2, "sha256": "b" * 64}
+    assert register_artifacts({"a": refreshed}, registry_path=path)["artifacts"] == {
+        "a": refreshed
+    }
+    original = path.read_bytes()
+
+    replacement = {**refreshed, "path": "data/interim/replacement.csv"}
     new_entry = _artifact("data/interim/new.csv", inputs=inputs)
-    with pytest.raises(ValueError, match="Frozen artifact"):
+    with pytest.raises(ValueError, match="Artifact declaration changed"):
         register_artifacts({"b": new_entry, "a": replacement}, registry_path=path)
     assert path.read_bytes() == original
 
     invalid_entry = {**new_entry, "inputs": [{"type": "artifact", "artifact_id": "missing"}]}
     with pytest.raises(ValueError, match="does not exist"):
         register_artifacts(
-            {"a": replacement, "b": invalid_entry}, allow_replace=True, registry_path=path
+            {"a": refreshed, "b": invalid_entry}, registry_path=path
         )
     assert path.read_bytes() == original
 
     saved = register_artifacts(
-        {"a": replacement, "b": new_entry}, allow_replace=True, registry_path=path
+        {"a": replacement, "b": new_entry},
+        allow_declaration_change=True,
+        registry_path=path,
     )
     assert json.loads(path.read_text(encoding="utf-8")) == saved
     assert saved["artifacts"] == {"a": replacement, "b": new_entry}

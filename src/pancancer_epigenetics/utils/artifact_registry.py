@@ -20,6 +20,7 @@ _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 _ROLES = {"data", "metadata", "handoff"}
 _PRODUCER_TYPES = {"notebook", "tracked_handoff"}
 _INPUT_TYPES = {"artifact", "raw_registry"}
+_FILE_IDENTITY_FIELDS = {"shape", "size_bytes", "sha256"}
 
 
 def load_artifact_registry(path: Path = Paths.artifact_registry) -> dict[str, Any]:
@@ -199,36 +200,43 @@ def _save_artifact_entries(
     registry: dict[str, Any],
     entries: Mapping[str, dict[str, Any]],
     *,
-    allow_replace: bool,
+    allow_declaration_change: bool = False,
 ) -> dict[str, Any]:
-    artifacts = registry["artifacts"]
-    for artifact_id, entry in entries.items():
-        if (
-            artifact_id in artifacts
-            and artifacts[artifact_id] != entry
-            and not allow_replace
-        ):
-            raise ValueError(
-                f"Frozen artifact already has a different entry: {artifact_id}"
-            )
+    existing = registry["artifacts"]
+    updated = {**registry, "artifacts": {**existing, **entries}}
+    validate_artifact_registry(updated)
 
-    artifacts.update(entries)
-    validate_artifact_registry(registry)
-    register_json_entry(registry_path, ("artifacts",), artifacts, allow_replace=True)
-    return registry
+    if not allow_declaration_change:
+        for artifact_id in existing.keys() & entries.keys():
+            previous = existing[artifact_id]
+            current = entries[artifact_id]
+            previous_declaration = previous.keys() - _FILE_IDENTITY_FIELDS
+            current_declaration = current.keys() - _FILE_IDENTITY_FIELDS
+            if previous_declaration != current_declaration or any(
+                previous[field] != current[field] for field in previous_declaration
+            ):
+                raise ValueError(f"Artifact declaration changed: {artifact_id}")
+
+    register_json_entry(
+        registry_path, ("artifacts",), updated["artifacts"], allow_replace=True
+    )
+    return updated
 
 
 def register_artifacts(
     entries: Mapping[str, dict[str, Any]],
     *,
-    allow_replace: bool = False,
+    allow_declaration_change: bool = False,
     registry_path: Path = Paths.artifact_registry,
 ) -> dict[str, Any]:
-    """Validate and commit a batch of declared artifact entries together."""
+    """Refresh identities and protect existing declarations unless explicitly revised."""
     with _lock_artifact_registry(registry_path):
         registry = load_artifact_registry(registry_path)
         return _save_artifact_entries(
-            registry_path, registry, entries, allow_replace=allow_replace
+            registry_path,
+            registry,
+            entries,
+            allow_declaration_change=allow_declaration_change,
         )
 
 
@@ -265,5 +273,5 @@ def refresh_notebook_artifacts(
                 "sha256": calculate_sha256(path),
             }
 
-        _save_artifact_entries(registry_path, registry, entries, allow_replace=True)
+        _save_artifact_entries(registry_path, registry, entries)
     return len(entries)
