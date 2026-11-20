@@ -4942,6 +4942,135 @@
           "ref": "/tcga/cohorts/rnaseq_star_counts/files/gdc_metadata_tcga_primary_tumor_rnaseq_star_counts.json"
         }
       ]
+    },
+    "phase1.105.methylation_manifest": {
+      "path": "config/manifests/tcga_methylation/gdc_manifest_tcga_primary_tumor_methylation_array_sesame_beta_values_hm27_hm450.txt",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/105_tcga_methylation_cohort_freeze.ipynb"
+      },
+      "shape": [
+        10897,
+        5
+      ],
+      "size_bytes": 1804371,
+      "sha256": "9138d9c9010005da57abfa02bba49248111405d1c84b914f53d9223da60eaa0a",
+      "inputs": [
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/methylation_array_sesame_beta_values/files/gdc_manifest_tcga_primary_tumor_methylation_array_sesame_beta_values.txt"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/methylation_array_sesame_beta_values/files/gdc_sample_sheet_tcga_primary_tumor_methylation_array_sesame_beta_values.tsv"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/methylation_array_sesame_beta_values/files/gdc_metadata_tcga_primary_tumor_methylation_array_sesame_beta_values.json"
+        }
+      ]
+    },
+    "phase1.105.methylation_sample_sheet": {
+      "path": "config/manifests/tcga_methylation/gdc_sample_sheet_tcga_primary_tumor_methylation_array_sesame_beta_values_hm27_hm450.tsv",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/105_tcga_methylation_cohort_freeze.ipynb"
+      },
+      "shape": [
+        10897,
+        11
+      ],
+      "size_bytes": 2462066,
+      "sha256": "a8da01adcede092be39a8996a323e958bf92a42e608ebc3cf912937b92659021",
+      "inputs": [
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/methylation_array_sesame_beta_values/files/gdc_manifest_tcga_primary_tumor_methylation_array_sesame_beta_values.txt"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/methylation_array_sesame_beta_values/files/gdc_sample_sheet_tcga_primary_tumor_methylation_array_sesame_beta_values.tsv"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/methylation_array_sesame_beta_values/files/gdc_metadata_tcga_primary_tumor_methylation_array_sesame_beta_values.json"
+        }
+      ]
+    },
+    "phase1.105.methylation_file_index": {
+      "path": "config/manifests/tcga_methylation/gdc_file_index_tcga_primary_tumor_methylation_array_sesame_beta_values_hm27_hm450.tsv",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/105_tcga_methylation_cohort_freeze.ipynb"
+      },
+      "shape": [
+        10897,
+        25
+      ],
+      "size_bytes": 6340890,
+      "sha256": "f325bf27b670b8365c1fd80df210dfcd98ae59e223a3c5a74fb20d09a4668f77",
+      "inputs": [
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/methylation_array_sesame_beta_values/files/gdc_manifest_tcga_primary_tumor_methylation_array_sesame_beta_values.txt"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/methylation_array_sesame_beta_values/files/gdc_sample_sheet_tcga_primary_tumor_methylation_array_sesame_beta_values.tsv"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/methylation_array_sesame_beta_values/files/gdc_metadata_tcga_primary_tumor_methylation_array_sesame_beta_values.json"
+        }
+      ]
+    },
+    "phase1.105.methylation_cohort_freeze": {
+      "path": "config/manifests/tcga_methylation/gdc_cohort_freeze_tcga_primary_tumor_methylation_array_sesame_beta_values_hm27_hm450.json",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/105_tcga_methylation_cohort_freeze.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 5074,
+      "sha256": "ea4d19667a575d5506e0140e4635d3c24800bdd4181ef48e06d448a5f0998196",
+      "inputs": [
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/methylation_array_sesame_beta_values/files/gdc_manifest_tcga_primary_tumor_methylation_array_sesame_beta_values.txt"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/methylation_array_sesame_beta_values/files/gdc_sample_sheet_tcga_primary_tumor_methylation_array_sesame_beta_values.tsv"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/methylation_array_sesame_beta_values/files/gdc_metadata_tcga_primary_tumor_methylation_array_sesame_beta_values.json"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.105.methylation_manifest"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.105.methylation_sample_sheet"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.105.methylation_file_index"
+        }
+      ]
     }
   }
 }
