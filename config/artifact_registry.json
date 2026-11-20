@@ -1993,8 +1993,8 @@
         "path": "notebooks/phase2_tumor_discovery_layer/201_tcga_rnaseq_quality_control.ipynb"
       },
       "shape": null,
-      "size_bytes": 9683,
-      "sha256": "b8e57f4e4fadd7575bb275ea5aed2451811c81c7e9776edec26fa8bbf2d3546c",
+      "size_bytes": 9684,
+      "sha256": "611d231296e006a0c685bfb53df8547b0c199b4534aa05b7ec8caed57b0e77f9",
       "inputs": [
         {
           "type": "artifact",
