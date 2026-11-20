@@ -4885,6 +4885,63 @@
           "artifact_id": "phase7.702.analysis_metadata"
         }
       ]
+    },
+    "phase1.102.rnaseq_file_index": {
+      "path": "config/manifests/tcga_rna/gdc_file_index_tcga_primary_tumor_rnaseq_star_counts.tsv",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "handoff",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/102_tcga_rnaseq_cohort_freeze.ipynb"
+      },
+      "shape": [
+        10308,
+        14
+      ],
+      "size_bytes": 2986947,
+      "sha256": "e6dce55780d649c3f8aa506856e65c944fd2f765af86757041ded0a363b45077",
+      "inputs": [
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/rnaseq_star_counts/files/gdc_manifest_tcga_primary_tumor_rnaseq_star_counts.txt"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/rnaseq_star_counts/files/gdc_sample_sheet_tcga_primary_tumor_rnaseq_star_counts.tsv"
+        }
+      ]
+    },
+    "phase1.102.rnaseq_cohort_freeze": {
+      "path": "config/manifests/tcga_rna/gdc_cohort_freeze_tcga_primary_tumor_rnaseq_star_counts.json",
+      "phase": 1,
+      "status": "frozen",
+      "artifact_role": "metadata",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase1_data_acquisition_and_auditing/102_tcga_rnaseq_cohort_freeze.ipynb"
+      },
+      "shape": null,
+      "size_bytes": 2214,
+      "sha256": "20faaf4b72be635ddc1ad0c612b8131319be0a8b6520e06f14236b8c40039f62",
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase1.102.rnaseq_file_index"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/rnaseq_star_counts/files/gdc_manifest_tcga_primary_tumor_rnaseq_star_counts.txt"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/rnaseq_star_counts/files/gdc_sample_sheet_tcga_primary_tumor_rnaseq_star_counts.tsv"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/tcga/cohorts/rnaseq_star_counts/files/gdc_metadata_tcga_primary_tumor_rnaseq_star_counts.json"
+        }
+      ]
     }
   }
 }
