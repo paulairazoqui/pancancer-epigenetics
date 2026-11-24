@@ -89,3 +89,8 @@ Inline comments should remain concise and local.
 The objective is not maximal commenting, but sufficient documentation for another analyst to understand the methodological intent of non-obvious code without reconstructing it from project history.
 
 Existing closed notebooks do not require retrospective comment expansion unless a concrete reproducibility or interpretability problem is identified.
+
+Shared analytical definitions used across notebooks should be obtained through
+`pancancer_epigenetics.analysis_parameters` rather than independently redefined.
+Keep phase-specific thresholds, eligibility, and inferential designs in their
+own analytical contracts; a changed catalog requires explicit review of them.
