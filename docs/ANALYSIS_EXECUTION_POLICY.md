@@ -107,23 +107,27 @@ Before switching from Python to R, state the specific methodological advantage.
 Do not introduce cross-language complexity without a corresponding analytical
 benefit.
 
-## 3.3 Artifact publication at notebook closure
+## 3.3 Derived artifact lifecycle and notebook closure
 
-Existing closed notebooks whose artifacts were registered externally or
-manually remain valid because the version-controlled registry records frozen
-identity and lineage. Notebook 451 represents the stronger current pattern in
-which persistence, validation, provenance construction, and registration are
-coupled during notebook closure.
+The authoritative rule for derived-file lifecycle is
+[`ARTIFACT_LIFECYCLE_POLICY.md`](ARTIFACT_LIFECYCLE_POLICY.md).
 
-From Phase 6 onward, prefer this closure sequence:
+During active research, registered outputs are **rebuildable**. After an
+authorized successful notebook run, persist and verify its registered outputs,
+finalize provenance, call `refresh_notebook_artifacts()` to update their
+actual identities, and validate the registry. Apply this closure pattern to
+**all notebooks that produce registered derived outputs**, including earlier
+series when they are next maintained. Do not assume that an old registered
+SHA-256 should block a corrected rerun.
 
-persist outputs → validate outputs → construct/finalize provenance → register
-artifacts → validate registry.
+A producer with a `frozen_artifact_output` guard is not yet compatible with
+changed-output reconstruction; remove that guard in a separately reviewed
+implementation step before such a rerun. The legacy registry
+`status: "frozen"` is not a manuscript-level immutability guarantee.
 
-This is an execution and reproducibility convention, not a scientific
-inference rule. Do not retrofit registry-publication cells into closed
-notebooks solely to make their chronology uniform.
-
+Prespecified analytical decisions, leakage boundaries, input provenance, and
+historical changes remain subject to their existing scientific controls.
+Methodological freezes are not the same as permanent file-identity freezes.
 
 ## 4. Manual work versus Codex
 
@@ -356,8 +360,10 @@ agent.
 
 ## 13. Avoid unnecessary recomputation
 
-Frozen upstream QC, cohort definitions, schemas, and authoritative artifacts
-should not be repeatedly revalidated downstream.
+Upstream QC, cohort definitions, schemas, and authoritative artifacts
+that are accepted for the current execution should not be repeatedly
+revalidated downstream. A documented upstream correction still requires
+rebuilding and refreshing affected downstream producers in dependency order.
 
 Perform new checks only when:
 
@@ -370,9 +376,10 @@ Perform new checks only when:
 Do not add generic assertions or repeated QC as defensive boilerplate.
 
 
-## 14. Prefer existing frozen artifacts
+## 14. Prefer accepted upstream artifacts for the current run
 
-When an upstream artifact already contains the necessary information:
+When an upstream artifact already contains the necessary information for the
+current analytical run:
 
 - load it;
 - preserve its provenance;
