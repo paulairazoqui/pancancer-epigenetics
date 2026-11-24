@@ -20,6 +20,7 @@ For a new contributor or a new analytical session, the recommended reading order
 6. [`TERMINOLOGY_GUIDE.md`](TERMINOLOGY_GUIDE.md) — mandatory reviewer-resistant terminology and evidence vocabulary.
 7. [`ANALYSIS_EXECUTION_POLICY.md`](ANALYSIS_EXECUTION_POLICY.md) — execution strategy, interactive-analysis policy, Python/R guidance, and delegation boundaries.
 8. [`NOTEBOOK_STYLE_GUIDE.md`](NOTEBOOK_STYLE_GUIDE.md) — notebook cell structure, documentation, reproducibility, and downstream-notebook conventions.
+9. [`ARTIFACT_LIFECYCLE_POLICY.md`](ARTIFACT_LIFECYCLE_POLICY.md) — rebuildable derived artifacts during active research, notebook registry refresh, downstream reruns, and manuscript-level freeze.
 
 Read phase-specific contracts and decision records before modifying or extending the corresponding analysis.
 
@@ -33,6 +34,7 @@ Read phase-specific contracts and decision records before modifying or extending
 | [`MODELING_POLICY.md`](MODELING_POLICY.md) | Defines mandatory modeling safeguards, confounder control, secondary genomic and methylation-expression rules, evidence categories, XAI/SHAP requirements, biological-context rules, evidence integration, and leakage prevention. |
 | [`TERMINOLOGY_GUIDE.md`](TERMINOLOGY_GUIDE.md) | Defines approved terminology for candidate programs, resistance-like contexts, putative vulnerabilities, perturbational hypotheses, and validation language. |
 | [`ANALYSIS_EXECUTION_POLICY.md`](ANALYSIS_EXECUTION_POLICY.md) | Defines how analytical and repository work should be executed and when interactive analysis, Python, R, or delegated repository work is appropriate. |
+| [`ARTIFACT_LIFECYCLE_POLICY.md`](ARTIFACT_LIFECYCLE_POLICY.md) | Defines active-research artifact rebuilding, registry identity refresh, downstream propagation, and final manuscript freeze, distinguishing byte identity from methodological prespecification. |
 | [`NOTEBOOK_STYLE_GUIDE.md`](NOTEBOOK_STYLE_GUIDE.md) | Defines notebook implementation and documentation conventions, including short single-responsibility cells and downstream reuse of frozen upstream artifacts. |
 | [`contracts/`](contracts/) | Prospective analysis contracts organized by phase, with lifecycle rules in its README. |
 | [`workflow.md`](workflow.md) | Summarizes the operational handoff between phases, notebook series, inputs, outputs, Phase 4B boundaries, XAI boundaries, integrated evidence, and analytical boundaries. For the latest completion status, use the root README and `roadmap.md`. |
