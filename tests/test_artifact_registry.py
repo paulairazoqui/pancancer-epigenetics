@@ -204,3 +204,126 @@ def test_real_registry_structure_and_frozen_outputs() -> None:
         "phase5.500.crispr_analysis_metadata",
     ):
         assert artifact_id in registry["artifacts"]
+
+
+
+def test_refresh_rebuild_and_complete_output_set(tmp_path):
+    registry_path = tmp_path / "registry.json"
+    inputs = [{"type": "raw_registry", "ref": "/depmap/files/CRISPRGeneEffect.csv"}]
+    entries = {
+        "a": _artifact("data/interim/a.csv", inputs),
+        "b": _artifact("data/interim/b.csv", inputs),
+    }
+    registry_path.write_text('{"schema_version": 1, "artifacts": {}}', encoding="utf-8")
+    register_artifacts(entries, registry_path=registry_path)
+    a, b = (tmp_path / entries[key]["path"] for key in ("a", "b"))
+    a.parent.mkdir(parents=True)
+    a.write_text("x\n1\n", encoding="utf-8")
+    b.write_text("y\n2\n", encoding="utf-8")
+    outputs = {a: (1, 1), b: (1, 1)}
+    refresh_notebook_artifacts(
+        "notebooks/example.ipynb", outputs, registry_path=registry_path, root=tmp_path
+    )
+    first = load_artifact_registry(registry_path)
+    refresh_notebook_artifacts(
+        "notebooks/example.ipynb", outputs, registry_path=registry_path, root=tmp_path
+    )
+    assert load_artifact_registry(registry_path) == first
+
+    a.write_text("x\n1\n2\n", encoding="utf-8")
+    outputs[a] = (2, 1)
+    refresh_notebook_artifacts(
+        "notebooks/example.ipynb",
+        outputs,
+        registry_path=registry_path,
+        root=tmp_path,
+        require_unchanged=False,
+    )
+    changed = load_artifact_registry(registry_path)
+    assert changed["artifacts"]["a"]["shape"] == [2, 1]
+    assert changed["artifacts"]["a"]["size_bytes"] == a.stat().st_size
+    assert changed["artifacts"]["a"]["sha256"] == calculate_sha256(a)
+    assert changed["artifacts"]["a"]["sha256"] != first["artifacts"]["a"]["sha256"]
+    assert changed["artifacts"]["b"] == first["artifacts"]["b"]
+    before = registry_path.read_bytes()
+    with pytest.raises(ValueError, match="Verified outputs differ"):
+        refresh_notebook_artifacts(
+            "notebooks/example.ipynb",
+            {a: (2, 1)},
+            registry_path=registry_path,
+            root=tmp_path,
+        )
+    with pytest.raises(ValueError, match="Verified outputs differ"):
+        refresh_notebook_artifacts(
+            "notebooks/example.ipynb",
+            {**outputs, tmp_path / "extra.csv": (1, 1)},
+            registry_path=registry_path,
+            root=tmp_path,
+        )
+    b.unlink()
+    with pytest.raises(FileNotFoundError):
+        refresh_notebook_artifacts(
+            "notebooks/example.ipynb",
+            outputs,
+            registry_path=registry_path,
+            root=tmp_path,
+        )
+    assert registry_path.read_bytes() == before
+
+
+def test_scoped_notebooks_publish_complete_declared_output_sets():
+    import ast
+    from collections import Counter
+
+    root = Path(__file__).resolve().parents[1]
+    registry = load_artifact_registry()
+    counts = Counter(
+        item["producer"].get("path")
+        for item in registry["artifacts"].values()
+        if item["producer"]
+        .get("path", "")
+        .startswith(
+            (
+                "notebooks/phase3_cell_line_discovery_layer/",
+                "notebooks/phase4_consensus_programs/",
+            )
+        )
+    )
+    assert sum(count for path, count in counts.items() if "/phase3_" in path) == 17
+    assert sum(count for path, count in counts.items() if "/phase4_" in path) == 15
+    for directory in ("phase3_cell_line_discovery_layer", "phase4_consensus_programs"):
+        for notebook in (root / "notebooks" / directory).glob("*.ipynb"):
+            cells = json.loads(notebook.read_text(encoding="utf-8"))["cells"]
+            source = "\n".join(
+                "".join(cell["source"]) for cell in cells if cell["cell_type"] == "code"
+            )
+            assert "frozen_artifact_output" not in source
+            producer = notebook.relative_to(root).as_posix()
+            if producer not in counts:
+                continue
+            closure = ast.parse("".join(cells[-1]["source"]))
+            mapping = next(
+                node.value
+                for node in closure.body
+                if isinstance(node, ast.Assign)
+                and any(
+                    isinstance(target, ast.Name) and target.id == "output_objects"
+                    for target in node.targets
+                )
+            )
+            assert (
+                isinstance(mapping, ast.Dict) and len(mapping.keys) == counts[producer]
+            )
+            calls = [
+                node
+                for node in ast.walk(closure)
+                if isinstance(node, ast.Call)
+                and isinstance(node.func, ast.Name)
+                and node.func.id == "refresh_notebook_artifacts"
+            ]
+            assert len(calls) == 1 and ast.literal_eval(calls[0].args[0]) == producer
+            assert any(
+                keyword.arg == "require_unchanged"
+                and ast.literal_eval(keyword.value) is False
+                for keyword in calls[0].keywords
+            )
