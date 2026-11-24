@@ -246,8 +246,9 @@ def refresh_notebook_artifacts(
     *,
     registry_path: Path = Paths.artifact_registry,
     root: Path = PROJECT_ROOT,
+    require_unchanged: bool = False,
 ) -> int:
-    """Refresh only file identities for a notebook's declared output files."""
+    """Refresh file identities, optionally requiring them to match the registry."""
     with _lock_artifact_registry(registry_path):
         registry = load_artifact_registry(registry_path)
         registered_outputs = {
@@ -266,12 +267,15 @@ def refresh_notebook_artifacts(
         entries = {}
         for path, artifact_id in registered_outputs.items():
             shape = output_shapes[path]
+            previous = get_artifact(registry, artifact_id)
             entries[artifact_id] = {
-                **get_artifact(registry, artifact_id),
+                **previous,
                 "shape": list(shape) if shape is not None else None,
                 "size_bytes": path.stat().st_size,
                 "sha256": calculate_sha256(path),
             }
+            if require_unchanged and entries[artifact_id] != previous:
+                raise ValueError(f"Artifact identity changed: {artifact_id}")
 
         _save_artifact_entries(registry_path, registry, entries)
     return len(entries)
