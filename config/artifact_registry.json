@@ -618,11 +618,11 @@
         "path": "notebooks/phase3_cell_line_discovery_layer/303_expression_matrix_integration.ipynb"
       },
       "shape": [
-        713,
+        712,
         19194
       ],
-      "size_bytes": 57579236,
-      "sha256": "b641c3f94ba3f028f4d0d88d62660d7db4009c7fdd6e63f8a2363ddd46cbd463",
+      "size_bytes": 57469075,
+      "sha256": "e39005dbd0f81271d4d270ba857d5aab71ab3d8e03519740197b2b5b04240f0a",
       "inputs": [
         {
           "type": "artifact",
@@ -631,28 +631,6 @@
         {
           "type": "raw_registry",
           "ref": "/depmap/files/OmicsExpressionProteinCodingGenesTPMLogp1.csv"
-        }
-      ]
-    },
-    "phase3.307.model_level_phenotype": {
-      "path": "data/interim/pharmacology/307_model_level_phenotype.parquet",
-      "phase": 3,
-      "status": "frozen",
-      "artifact_role": "data",
-      "producer": {
-        "type": "notebook",
-        "path": "notebooks/phase3_cell_line_discovery_layer/307_pharmacological_phenotype_framework.ipynb"
-      },
-      "shape": [
-        713,
-        7
-      ],
-      "size_bytes": 31613,
-      "sha256": "2764917a7812cf317bbafd4be147c09417068e3d5331309f08fd6883e2d561d6",
-      "inputs": [
-        {
-          "type": "artifact",
-          "artifact_id": "phase3.302.integrated_modeling_cohort"
         }
       ]
     },
@@ -666,11 +644,11 @@
         "path": "notebooks/phase3_cell_line_discovery_layer/308_model_level_transcriptome_phenotype_integration.ipynb"
       },
       "shape": [
-        713,
+        712,
         9
       ],
-      "size_bytes": 91945,
-      "sha256": "c36e8306c9f1c781778dedaf5882ad6cf35b24b1dd2001aba092a4ebcc61ea35",
+      "size_bytes": 92596,
+      "sha256": "a4a3c9268e730e429d3113686a8b4852fc24a88b08eb299eab4c7e984a5b6cfa",
       "inputs": [
         {
           "type": "artifact",
@@ -682,7 +660,7 @@
         },
         {
           "type": "artifact",
-          "artifact_id": "phase3.307.model_level_phenotype"
+          "artifact_id": "phase3.307.drug_specific_phenotypes"
         }
       ]
     },
@@ -696,19 +674,23 @@
         "path": "notebooks/phase3_cell_line_discovery_layer/309_phenotype_sensitivity_analysis.ipynb"
       },
       "shape": [
-        713,
+        712,
         16
       ],
-      "size_bytes": 66382,
-      "sha256": "f908c1abbe9fb9aadb81e1d17520ddaf526515f3933e7eb355e9ca658d6b062a",
+      "size_bytes": 100706,
+      "sha256": "d299b7d874af258ba3120cb6802b9ca8870823e4144eb0b3c98dfea384432a66",
       "inputs": [
         {
           "type": "artifact",
-          "artifact_id": "phase3.307.model_level_phenotype"
+          "artifact_id": "phase3.307.drug_specific_phenotypes"
         },
         {
           "type": "artifact",
           "artifact_id": "phase3.308.analysis_cohort"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.306.gdsc_drug_response"
         }
       ]
     },
@@ -725,16 +707,12 @@
         5000,
         51
       ],
-      "size_bytes": 2508814,
-      "sha256": "27460cd3c38bbca52b4e1253aee6093bbe5dca335815d8770904164cc7076c80",
+      "size_bytes": 2508885,
+      "sha256": "2680850a028bb5600807f04457bb09ec997867b939d2f0482cd38ea19599b112",
       "inputs": [
         {
           "type": "artifact",
-          "artifact_id": "phase3.303.harmonized_expression"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase3.308.analysis_cohort"
+          "artifact_id": "phase3.308.transcriptome_phenotype_dataset"
         }
       ]
     },
@@ -748,19 +726,15 @@
         "path": "notebooks/phase3_cell_line_discovery_layer/310_program_discovery.ipynb"
       },
       "shape": [
-        713,
+        712,
         51
       ],
-      "size_bytes": 367004,
-      "sha256": "10be346327c9eb866a0a536b151bd3dd6a964815726d8f95ecf7a55f120d50a2",
+      "size_bytes": 366089,
+      "sha256": "37dcbe4a0ef091a2fb46b572d9511f2fe0fa5f8bf781ebc4381aa8c7658630a6",
       "inputs": [
         {
           "type": "artifact",
-          "artifact_id": "phase3.303.harmonized_expression"
-        },
-        {
-          "type": "artifact",
-          "artifact_id": "phase3.308.analysis_cohort"
+          "artifact_id": "phase3.308.transcriptome_phenotype_dataset"
         }
       ]
     },
@@ -777,8 +751,8 @@
         50,
         24
       ],
-      "size_bytes": 19231,
-      "sha256": "63c8cc9d2a1c35df44cd30582856f8e6c79b5c105e9728fcddb4ee6d7746b916",
+      "size_bytes": 19454,
+      "sha256": "46e0b4987e904d3c8eb14ed2c44c4a660e07753efea3832e1890ad1be4d83185",
       "inputs": [
         {
           "type": "artifact",
@@ -786,7 +760,11 @@
         },
         {
           "type": "artifact",
-          "artifact_id": "phase3.307.model_level_phenotype"
+          "artifact_id": "phase3.310.ica_program_loadings"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.308.transcriptome_phenotype_dataset"
         }
       ]
     },
@@ -800,8 +778,8 @@
         "path": "notebooks/phase3_cell_line_discovery_layer/310_program_discovery.ipynb"
       },
       "shape": null,
-      "size_bytes": 635,
-      "sha256": "967ba434325ffb70fdd893b9fb6532673a00c2e1c984dbcf7e77c7acbea17bdb",
+      "size_bytes": 634,
+      "sha256": "0858dcb2c6a96b6a735e6f937f9287fd9a303e3cab8d91942d3c978b041dd647",
       "inputs": [
         {
           "type": "artifact",
@@ -827,11 +805,11 @@
         "path": "notebooks/phase3_cell_line_discovery_layer/311_program_robustness.ipynb"
       },
       "shape": [
-        10,
+        8,
         33
       ],
-      "size_bytes": 5437,
-      "sha256": "b4f97f7ddb1016bd5b84ab0c4f17e36d0fd9bb384b8c5adbf93d810c65fcbff3",
+      "size_bytes": 4488,
+      "sha256": "0249838c911554316c0069206c6796ef4453067f66b295e549e6d1492e577997",
       "inputs": [
         {
           "type": "artifact",
@@ -861,8 +839,8 @@
         "path": "notebooks/phase3_cell_line_discovery_layer/311_program_robustness.ipynb"
       },
       "shape": null,
-      "size_bytes": 3955,
-      "sha256": "9f91e9097b2376d269c0758cf55857e720616b9a017bf58a5fdca815757ffb7b",
+      "size_bytes": 3873,
+      "sha256": "0e71bed32f5397119a5a6b9a15741385c75ca2d4f9930ff94d78643a117f90cf",
       "inputs": [
         {
           "type": "artifact",
@@ -5071,6 +5049,159 @@
           "artifact_id": "phase1.105.methylation_file_index"
         }
       ]
+    },
+    "phase3.306.integrated_pharmacology_cohort": {
+      "path": "data/interim/pharmacology/306_integrated_pharmacology_cohort.csv",
+      "phase": 3,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase3_cell_line_discovery_layer/306_gdsc_pharmacology_integration.ipynb"
+      },
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.302.integrated_modeling_cohort"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.303.harmonized_expression"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/gdsc/files/GDSC2_fitted_dose_response_27Oct23.xlsx"
+        }
+      ],
+      "shape": [
+        712,
+        8
+      ],
+      "size_bytes": 85288,
+      "sha256": "430db92eca842c5dcfec4afd1e7b4f7f0fee0bc23748ae8efb0ea5a1c758d603",
+      "notes": "Eligibility configuration read by producer: config/pharmacology_pair_exclusions.csv; SHA-256 f415d2661608948b8f2b51b634acc8819a5df17c2ca151267eb9188ca6169ff0. Expression input verifies cohort membership."
+    },
+    "phase3.306.drug_metadata": {
+      "path": "data/interim/pharmacology/306_drug_metadata.csv",
+      "phase": 3,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase3_cell_line_discovery_layer/306_gdsc_pharmacology_integration.ipynb"
+      },
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.302.integrated_modeling_cohort"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.303.harmonized_expression"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/gdsc/files/GDSC2_fitted_dose_response_27Oct23.xlsx"
+        }
+      ],
+      "shape": [
+        295,
+        4
+      ],
+      "size_bytes": 13229,
+      "sha256": "28e6a71f34a25aa8bb700a7269010328b377a20fdee3785541442750a21687a7",
+      "notes": "Eligibility configuration read by producer: config/pharmacology_pair_exclusions.csv; SHA-256 f415d2661608948b8f2b51b634acc8819a5df17c2ca151267eb9188ca6169ff0. Expression input verifies cohort membership."
+    },
+    "phase3.306.gdsc_drug_response": {
+      "path": "data/interim/pharmacology/306_gdsc_drug_response.csv",
+      "phase": 3,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase3_cell_line_discovery_layer/306_gdsc_pharmacology_integration.ipynb"
+      },
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.302.integrated_modeling_cohort"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.303.harmonized_expression"
+        },
+        {
+          "type": "raw_registry",
+          "ref": "/gdsc/files/GDSC2_fitted_dose_response_27Oct23.xlsx"
+        }
+      ],
+      "shape": [
+        180335,
+        9
+      ],
+      "size_bytes": 16431261,
+      "sha256": "b63ed4f2fb4edb2738b8bc487cd678f533c46b8fa90def961c5cc6503a9b7bfb",
+      "notes": "Eligibility configuration read by producer: config/pharmacology_pair_exclusions.csv; SHA-256 f415d2661608948b8f2b51b634acc8819a5df17c2ca151267eb9188ca6169ff0. Expression input verifies cohort membership."
+    },
+    "phase3.307.drug_specific_phenotypes": {
+      "path": "data/interim/pharmacology/307_drug_specific_phenotypes.parquet",
+      "phase": 3,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase3_cell_line_discovery_layer/307_pharmacological_phenotype_framework.ipynb"
+      },
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.306.integrated_pharmacology_cohort"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.306.drug_metadata"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.306.gdsc_drug_response"
+        }
+      ],
+      "shape": [
+        180335,
+        6
+      ],
+      "size_bytes": 4800445,
+      "sha256": "27381d199f4d496b5b19b9f15e9d33cb4d8b9a1e252f0dc7bd9d71d0f06e71cf"
+    },
+    "phase3.308.transcriptome_phenotype_dataset": {
+      "path": "data/interim/pharmacology/308_transcriptome_phenotype_dataset.parquet",
+      "phase": 3,
+      "status": "frozen",
+      "artifact_role": "data",
+      "producer": {
+        "type": "notebook",
+        "path": "notebooks/phase3_cell_line_discovery_layer/308_model_level_transcriptome_phenotype_integration.ipynb"
+      },
+      "inputs": [
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.302.integrated_modeling_cohort"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.303.harmonized_expression"
+        },
+        {
+          "type": "artifact",
+          "artifact_id": "phase3.307.drug_specific_phenotypes"
+        }
+      ],
+      "shape": [
+        712,
+        19195
+      ],
+      "size_bytes": 57476324,
+      "sha256": "6a87ef12c83608600e97b5b1caefd9c1bc2f9771c9681dffac77537c81cd6b1b"
     }
   }
 }
