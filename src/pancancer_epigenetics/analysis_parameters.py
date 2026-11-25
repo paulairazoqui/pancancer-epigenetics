@@ -6,7 +6,7 @@ alter any downstream analytical contract. For example::
 
     programs = load_consensus_programs()
     ids = tuple(p.program_id for p in programs)
-    validate_program_columns(score_frame.columns, ids, metadata_columns=("ModelID",))
+    aligned = align_program_columns(score_frame, ids, metadata_columns=("ModelID",))
 
 Registry paths may be supplied for isolated tests or alternate project roots.
 Artifact identity and reconstruction status remain the caller's responsibility.
@@ -18,7 +18,10 @@ import csv
 from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable
+from typing import TYPE_CHECKING, Iterable
+
+if TYPE_CHECKING:
+    from pandas import DataFrame
 
 
 @dataclass(frozen=True)
@@ -157,28 +160,31 @@ def attribution_column(program_id: str) -> str:
     return f"phi_{score_column(program_id)}"
 
 
-def validate_program_columns(
-    columns: Iterable[str],
+def align_program_columns(
+    frame: DataFrame,
     program_ids: Iterable[str],
     *,
     metadata_columns: Iterable[str] = (),
     attribution: bool = False,
-) -> None:
-    """Validate a complete wide matrix schema against the catalog IDs.
+) -> DataFrame:
+    """Validate and align a wide matrix to the supplied program order.
 
     Declare every non-program column in ``metadata_columns``. Unknown columns,
     missing columns, duplicates, and duplicate program IDs raise ValueError;
-    neither column order nor values are changed. Set attribution=True for
-    Phase 6 ``phi_`` columns. This checks identity, not scientific eligibility.
+    Set attribution=True for Phase 6 ``phi_`` columns. Return a new DataFrame
+    with metadata columns first in their declared order, followed by program
+    columns in program_ids order. The input and its values are not changed.
+    This checks identity, not scientific eligibility.
     """
     ids = _identifiers(program_ids, "Program definitions")
-    cols = _identifiers(columns, "Matrix columns")
+    cols = _identifiers(frame.columns, "Matrix columns")
     metadata = tuple(metadata_columns)
     if metadata:
         _identifiers(metadata, "Metadata columns")
-    expected_programs = {
+    ordered_programs = tuple(
         attribution_column(p) if attribution else score_column(p) for p in ids
-    }
+    )
+    expected_programs = set(ordered_programs)
     if expected_programs & set(metadata):
         raise ValueError("Metadata columns overlap program columns")
     expected = expected_programs | set(metadata)
@@ -187,3 +193,4 @@ def validate_program_columns(
         raise ValueError(
             f"Matrix columns disagree with program definitions: missing={sorted(missing)}, unexpected={sorted(unexpected)}"
         )
+    return frame.loc[:, [*metadata, *ordered_programs]].copy()
