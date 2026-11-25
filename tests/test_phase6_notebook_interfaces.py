@@ -710,3 +710,243 @@ def test_603_checks_overlap_families_and_status_before_publishing(invalid):
         with pytest.raises(RuntimeError, match="publication boundary"):
             run_cells(603, [61, 62], env)
         assert len(calls) == 1
+
+
+@pytest.mark.parametrize(
+    ("screen", "gdsc_fdr", "single_experiment_models", "shared_models"),
+    [
+        ("PRISM", True, 0, 40),
+        ("CTRP", True, 10, 40),
+        ("CTRP", True, 40, 40),
+        ("CTRP", True, 120, 120),
+        (None, True, 0, 40),
+        (None, False, 0, 40),
+    ],
+    ids=[
+        "prism-only",
+        "ctrp-only-no-single-experiment-fit",
+        "ctrp-only-small-single-experiment-fit",
+        "eligible-diagnostics",
+        "no-evaluable-screens",
+        "no-gdsc-fdr-hypotheses",
+    ],
+)
+def test_603_empty_diagnostics_and_replication_boundaries(
+    catalog,
+    tmp_path,
+    monkeypatch,
+    screen,
+    gdsc_fdr,
+    single_experiment_models,
+    shared_models,
+):
+    from statsmodels.formula.api import ols
+
+    path, cells = notebook(603)
+    definitions = [
+        node
+        for node in ast.parse(cells[3]).body
+        if isinstance(node, ast.FunctionDef)
+        and node.name in {"catalog_order", "validate_program_membership"}
+    ]
+    catalog.update(
+        program_ids=PROGRAM_IDS,
+        program_order={pid: i for i, pid in enumerate(PROGRAM_IDS)},
+        PROGRAM_COLUMNS=list(PROGRAM_IDS),
+    )
+    exec(compile(ast.Module(body=definitions, type_ignores=[]), path, "exec"), catalog)
+
+    rng = np.random.default_rng(603)
+    model_ids = [f"EXT-{i}" for i in range(120)]
+    external = pd.DataFrame(
+        {
+            "ModelID": model_ids,
+            "OncotreeLineage": np.repeat(["A", "B", "C"], 40),
+            "P2": rng.normal(size=120),
+        }
+    )
+    external["response_value"] = 2 * external["P2"] + rng.normal(scale=0.1, size=120)
+    gdsc = pd.concat(
+        [
+            external[["ModelID", "OncotreeLineage"]].iloc[:shared_models],
+            pd.DataFrame(
+                {
+                    "ModelID": [f"GDSC-{i}" for i in range(120 - shared_models)],
+                    "OncotreeLineage": np.repeat(
+                        ["D", "E"], (120 - shared_models) // 2
+                    ),
+                }
+            ),
+        ],
+        ignore_index=True,
+    ).assign(DRUG_ID=19)
+
+    context_artifact_ids = {
+        "predictive": "phase6.601.drug_level_results",
+        "attribution": "phase6.602.drug_program_attribution_summary",
+    }
+    catalog.update(
+        Paths=SimpleNamespace(root=tmp_path),
+        project_relative_path=lambda file: file.relative_to(tmp_path).as_posix(),
+        ols=ols,
+        multipletests=multipletests,
+        INPUT_ARTIFACT_IDS=(),
+        context_artifact_ids=context_artifact_ids,
+        gdsc_associations=pd.DataFrame(
+            {
+                "DRUG_ID": [19, 19],
+                "DRUG_NAME": ["Example", "Example"],
+                "program": ["P2", "P1"],
+                "beta": [0.5, 0.0],
+                "p_value": [0.001, 0.9],
+                "q_value": [0.002, 0.9],
+                "association_direction": ["resistance_like", "sensitivity_like"],
+                "fdr_05": [gdsc_fdr, False],
+            }
+        ),
+        compound_catalog=pd.DataFrame(
+            {
+                "drug_name_key": ["EXAMPLE"],
+                "gdsc_drug_id": [19],
+                "ctrp_master_cpd_id": [None if screen == "PRISM" else 121],
+                "ctrp_drug_name": ["Example"],
+                "prism_broad_id": ["BRD-19"],
+                "prism_drug_name": ["Example"],
+                "resources_present": [3],
+                "screen_pattern": ["MTS010"],
+                "primary_prism_screen": ["MTS010"],
+            }
+        ),
+        drug_eligibility=pd.DataFrame(
+            {
+                "resource": ["CTRP", "PRISM_exact_cross_resource"],
+                "resource_drug_id": ["121", "BRD-19"],
+                "supported_lineages": [3, 3],
+                "supported_models": [120, 120],
+                "eligible": [screen == "CTRP", screen == "PRISM"],
+                "analysis_universe": ["CTRP", "PRISM"],
+            }
+        ),
+        gdsc_universe=gdsc,
+        ctrp_universe=external.drop(columns="P2").assign(
+            master_cpd_id=121,
+            n_experiments=np.where(
+                np.arange(len(external)) < single_experiment_models, 1, 2
+            ),
+        ),
+        prism_universe=external.drop(columns="P2").assign(broad_id="BRD-19"),
+        program_scores=pd.concat(
+            [
+                external[["ModelID", "P2"]],
+                gdsc.loc[~gdsc["ModelID"].isin(model_ids), ["ModelID"]].assign(P2=0.0),
+            ],
+            ignore_index=True,
+        ).assign(P1=0.0, score_origin="frozen_phase4"),
+        predictive_context=pd.DataFrame(
+            {
+                "DRUG_ID": [19],
+                "median_r2_program": [0.6],
+                "median_delta_r2": [0.2],
+                "positive_delta_repeats": [5],
+                "shap_eligible": [True],
+            }
+        ),
+        attribution_context=pd.DataFrame(
+            {
+                "DRUG_ID": [19],
+                "program": ["P2"],
+                "median_repeat_mean_abs_shap": [0.2],
+                "dominant_repeat_fraction": [1.0],
+                "median_coefficient": [0.35],
+                "fraction_positive": [1.0],
+                "fraction_negative": [0.0],
+            }
+        ),
+    )
+    # Execute selected code cells with synthetic handoffs and temporary output paths.
+    run_cells(603, [*range(4, 18), *range(19, 34)], catalog)
+    primary = catalog["primary_external_associations"].copy(deep=True)
+    run_cells(603, list(range(34, 47)), catalog)
+    pd.testing.assert_frame_equal(catalog["primary_external_associations"], primary)
+
+    diagnostic_keys = [
+        "gdsc_drug_id",
+        "external_resource",
+        "external_drug_id",
+        "program",
+    ]
+    for name, keys, direction, expected_rows in (
+        (
+            "shared_only_associations",
+            diagnostic_keys,
+            "shared_direction",
+            int(shared_models == 120),
+        ),
+        (
+            "shared_lineage_associations",
+            diagnostic_keys,
+            "shared_lineage_direction",
+            int(shared_models == 120),
+        ),
+        (
+            "ctrp_single_experiment_associations",
+            ["gdsc_drug_id", "external_drug_id", "program"],
+            "sensitivity_direction",
+            int(screen == "CTRP" and single_experiment_models >= 20),
+        ),
+    ):
+        result = catalog[name]
+        assert len(result) == expected_rows
+        assert result.columns[: len(keys) + 5].tolist() == [
+            *keys,
+            "n_models",
+            "n_lineages",
+            "beta",
+            "beta_standardized",
+            direction,
+        ]
+        assert result["matches_primary_direction"].eq(True).all()
+
+    run_cells(603, [*range(48, 54), *range(55, 59)], catalog)
+    summary = catalog["replication_summary_final"]
+    assert len(summary) == (2 if gdsc_fdr else 0)
+    assert len(primary) == int(screen is not None)
+    assert summary["final_screen_status"].eq("SCREEN_REPLICATED").sum() == len(primary)
+    assert summary["dual_external_status"].isna().all()
+    assert catalog["nonoverlap_external_associations"].empty
+    assert catalog["analysis_metrics"]["replicated_both_external_screens"] == 0
+    assert catalog["diagnostic_summary"]["primary_family_sizes"] == (
+        {screen: 1} if screen else {}
+    )
+
+    registry = artifact_registry.load_artifact_registry()
+    registry_path = tmp_path / "artifact_registry.json"
+    registry_path.write_text(json.dumps(registry), encoding="utf-8")
+    real_load = artifact_registry.load_artifact_registry
+    monkeypatch.setattr(
+        artifact_registry,
+        "load_artifact_registry",
+        lambda location=registry_path: real_load(location),
+    )
+    monkeypatch.setattr(
+        artifact_registry,
+        "refresh_notebook_artifacts",
+        partial(
+            artifact_registry.refresh_notebook_artifacts,
+            registry_path=registry_path,
+            root=tmp_path,
+        ),
+    )
+    run_cells(603, [59, 60, 61, 62], catalog)
+    assert catalog["registered_count"] == 6
+    shapes = {
+        artifact_id.rsplit(".", 1)[-1]: record["shape"]
+        for artifact_id, record in catalog["refreshed_entries"].items()
+    }
+    assert {name: shape[1] for name, shape in shapes.items() if shape is not None} == {
+        "replication_hypothesis_manifest": 39,
+        "cell_line_overlap_manifest": 47,
+        "primary_external_associations": 24,
+        "nonoverlap_external_associations": 27,
+        "replication_summary": 55,
+    }
