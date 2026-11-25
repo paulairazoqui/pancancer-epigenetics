@@ -2,13 +2,14 @@ import json
 from pathlib import Path
 
 import pytest
+import pandas as pd
 
 from pancancer_epigenetics.analysis_parameters import (
     attribution_column,
     load_consensus_programs,
     load_model_ids,
     score_column,
-    validate_program_columns,
+    align_program_columns,
 )
 
 CATALOG = "phase4.401.consensus_transcriptomic_program_catalog"
@@ -88,21 +89,65 @@ def test_invalid_catalog_schema_and_orientation(artifacts):
 def test_columns_and_validation():
     assert score_column("B") == "B"
     assert attribution_column("B") == "phi_B"
-    validate_program_columns(
-        ["ModelID", "B", "A"], ["B", "A"], metadata_columns=["ModelID"]
-    )
-    validate_program_columns(["phi_A", "phi_B"], ["B", "A"], attribution=True)
     for columns in (
         ["ModelID", "B"],
         ["ModelID", "B", "A", "C"],
         ["ModelID", "B", "B", "A"],
     ):
         with pytest.raises(ValueError):
-            validate_program_columns(columns, ["B", "A"], metadata_columns=["ModelID"])
+            align_program_columns(
+                pd.DataFrame(columns=columns), ["B", "A"], metadata_columns=["ModelID"]
+            )
     with pytest.raises(ValueError, match="duplicate"):
-        validate_program_columns(["A"], ["A", "A"])
+        align_program_columns(pd.DataFrame(columns=["A"]), ["A", "A"])
     with pytest.raises(ValueError, match="overlap"):
-        validate_program_columns(["A"], ["A"], metadata_columns=["A"])
+        align_program_columns(
+            pd.DataFrame(columns=["A"]), ["A"], metadata_columns=["A"]
+        )
+    with pytest.raises(ValueError, match="missing=.*ModelID"):
+        align_program_columns(
+            pd.DataFrame(columns=["A"]), ["A"], metadata_columns=["ModelID"]
+        )
+    with pytest.raises(ValueError, match="duplicate"):
+        align_program_columns(
+            pd.DataFrame(columns=["A", "ModelID"]),
+            ["A"],
+            metadata_columns=["ModelID", "ModelID"],
+        )
+
+
+@pytest.mark.parametrize("attribution", [False, True])
+def test_align_program_columns(attribution):
+    prefix = "phi_" if attribution else ""
+    frame = pd.DataFrame(
+        {
+            f"{prefix}A": [1, 2],
+            "lineage": ["x", "y"],
+            f"{prefix}B": [3, 4],
+            "ModelID": ["m1", "m2"],
+        },
+        index=[7, 9],
+    )
+    original = frame.copy(deep=True)
+    aligned = align_program_columns(
+        frame,
+        ["B", "A"],
+        metadata_columns=["ModelID", "lineage"],
+        attribution=attribution,
+    )
+    expected = pd.DataFrame(
+        {
+            "ModelID": ["m1", "m2"],
+            "lineage": ["x", "y"],
+            f"{prefix}B": [3, 4],
+            f"{prefix}A": [1, 2],
+        },
+        index=[7, 9],
+    )
+    pd.testing.assert_frame_equal(aligned, expected)
+    pd.testing.assert_frame_equal(frame, original)
+    aligned.iloc[0, 0] = "changed"
+    pd.testing.assert_frame_equal(frame, original)
 
 
 def test_cohort_and_no_writes(artifacts):
