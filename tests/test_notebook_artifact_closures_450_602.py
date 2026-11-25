@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from types import SimpleNamespace
 
 import pandas as pd
 import pytest
@@ -52,7 +53,7 @@ def test_notebook_closure_publishes_complete_verified_outputs(
         "load_artifact_registry",
         lambda path=registry_path: real_load(path),
     )
-    env = {"pd": pd, "json": json}
+    env = {"pd": pd, "json": json, "Paths": SimpleNamespace(root=tmp_path)}
     frame = pd.DataFrame({"value": [1, 2], "label": ["a", "b"]})
     paths = {}
     for artifact_id, entry in entries.items():
